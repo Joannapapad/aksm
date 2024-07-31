@@ -44,11 +44,6 @@ body.loaded {
 
 }
 
-@media(max-width:850px){
-  #contact {
-    padding-top: 0vh;
-  }
-}
 
 .section-header {
   text-align: center;
@@ -63,10 +58,12 @@ body.loaded {
 
 }
 
+
+
 .contact-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0 auto;
   padding: 80px;
   position: relative;
@@ -75,17 +72,16 @@ body.loaded {
   background-color: #f3f3f3;
 }
 
-/* Left contact page */
 .form-horizontal {
-  /*float: left;*/
-  min-width: 350px;
+  min-width: 250px;
   width: 50%;
   font-family: 'Lato';
   font-weight: 400;
+  
 }
 .form-control, 
 textarea {
-  min-width: 350px;
+  min-width: 250px;
   width:98%;
   border: 0;  
   background: #f3f3f3;
@@ -115,18 +111,21 @@ textarea:focus {
 }
 
 .alt-send-button {
-  min-width: 350px;
+  min-width: 250px;
   height: 34px;
   text-align: center;
   transition: all .2s ease-in-out;
 }
 
 .send-text {
-  display: block;
-  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 9px;
   font: 700 12px 'Lato', sans-serif;
   letter-spacing: 2px;
   text-align: center;
+  min-width: 250px;
 }
 
 .alt-send-button:hover {
@@ -193,7 +192,6 @@ textarea:focus {
   line-height: 60px;
   border-radius: 50%;
   color: #000;
-  background-color: #fff;
   cursor: pointer; 
   transition: all .2s ease-in-out;
 }
@@ -239,11 +237,38 @@ hr {
 }
 
 
+@media(max-width:850px){
+  #contact {
+    padding-top: 0vh;
+  }
+
+  .form-group{
+    font-size: 0.6em;
+  }
+  .social-media-list li {
+    height: 50px;
+    width: 50px;
+    line-height: 60px;
+  }
+  .contact-text{
+    font-size: 0.9em;
+  }
+  .form-horizontal {
+  min-width: 250px;
+  width: 80%;
+
+  
+}
+
+}
+
 /* Begin Media Queries*/
 @media screen and (max-width: 850px) {
   .contact-wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .direct-contact-container, .form-horizontal {
     margin: 0 auto;
@@ -263,8 +288,22 @@ hr {
     height: 60px;
     line-height: 60px;
   }
+  
 }
 
+@media (max-width:850px){
+  .section-header{
+    font-size: 1.3em;
+    padding-top: 3em;
+  }
+}
+@media (max-width:650px){
+  .section-header{
+    font-size: 1em;
+    padding-top: 2em;
+  }
+  
+}
 @media screen and (max-width: 569px) {
 
   .direct-contact-container, .form-wrapper {
@@ -302,11 +341,6 @@ hr {
   
 }
 
-@media screen and (max-width: 350px) {
-  .send-button {
-    width: 99%;
-  }
-}
 
 @media screen and (max-width: 520px) {
   .contact-wrapper {
@@ -327,9 +361,7 @@ hr {
     margin-left: 0;
 
   }
-  .section-header {
-    font-size: 30px;
-  }
+
 }
 </Style>
 
@@ -352,14 +384,11 @@ hr {
             document.body.classList.add('loaded');
             });
     </script>
-
+    
+    <a href="index.html">
     <img src="assets/aksm_logo.png" class="logo_header" >
+    </a>
 
-    <div class="center_esp">
-      <a href="https://www.aksm.gr/wp-content/uploads/2023/12/aksm_antagonistikotita_webEN.pdf" target="_blank">
-      <img src="assets/e-bannerespaEÆÅÇ460X60.jpg" class="logo_espa" alt=" ">
-      </a>
-  </div>
 <section id="contact">
   <div class="backround_contact">
 
