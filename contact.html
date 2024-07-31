@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Contact Us</title>
   <link rel="icon" href="assets/aksm_logo.png">
-  <script src="header_nav.js" ></script>
+  <script src="nav.js" ></script>
 </head>
 
 <Style>
@@ -376,7 +376,7 @@ hr {
 
                 // Once header.html content is inserted, execute nav.js
                 const script = document.createElement('script');
-                script.src = 'header_nav.js';
+                script.src = 'nav.js';
                 document.body.appendChild(script);
             });
 
@@ -459,9 +459,9 @@ hr {
   
         </div>
       </div>
-      
-    
+    </div>
   </section>  
+
     <script>
         document.querySelector('#contact-form').addEventListener('submit', (e) => {
     e.preventDefault();
@@ -471,7 +471,6 @@ hr {
   });
 
     </script>
-    <script src="nav.js"></script>
 </body>
 
 </html>
