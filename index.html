@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-<latest-integrity-value>" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>AKSM</title>
+    <script src="nav.js" ></script>
+
 </head>
 
 <body>
@@ -16,20 +18,22 @@
 
 
     <script>
+        // Load header.html and nav.js sequentially
         fetch('header.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('menu-container').innerHTML = data;
 
-                // Once header.html content is inserted, execute nav.js
+                // Insert the nav.js script dynamically
                 const script = document.createElement('script');
-                script.src = 'header_nav.js';
+                script.src = 'nav.js';
+                script.async = false;  // Ensures execution order
                 document.body.appendChild(script);
             });
 
-            window.addEventListener('load', () => {
+        window.addEventListener('load', () => {
             document.body.classList.add('loaded');
-            });
+        });
     </script>
 
 
@@ -694,15 +698,10 @@
         carousel.addEventListener("touchmove", dragging);
         document.addEventListener("mouseup", dragStop);
         carousel.addEventListener("touchend", dragStop);
-    }
-});
+            }
+        });
         </script>
         
-
-
-<script src="header_nav.js" ></script>
-
-<script src="nav.js" ></script>
 
 </body>
 </html>
