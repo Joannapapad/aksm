@@ -524,7 +524,7 @@ body{
   background-size: cover;
   padding: 2rem;
   margin: 0;
-  max-height: 100vh;
+  max-height: 130vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -666,46 +666,7 @@ body{
   max-width: 550px;
 }
 
-/* Media Queries for Fine-tuning */
-@media (max-width: 900px) {
-  .news {
-    height:auto;
-    padding: 1rem;
-  }
-  .news-section {
-    flex-direction: column;
-  }
 
-  .content-left .center {
-    font-size: 1.4rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .content-left .content-text .center {
-    font-size: 1.6rem;
-  }
-  .content-left {
-    padding: 0.5rem;
-  }
-  .content-right {
-    padding: 0.5rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .content-left .center {
-    font-size: 1rem;
-  }
-}
-
-@media (min-width: 1000px) {
-  .news-carousel {
-    width: 80%;
-  }
-
-
-}  
 
 
 /*Services grid*/
@@ -1496,6 +1457,46 @@ text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.7);
   transition: font-size 0.5s ease;
 }
 
+
+@media (min-width: 1000px) {
+  .news-carousel {
+    width: 80%;
+  }
+}  
+/* Media Queries for Fine-tuning */
+@media (max-width: 900px) {
+  .news {
+    height:auto;
+    padding: 1rem;
+  }
+  .news-section {
+    flex-direction: column;
+  }
+
+  .content-left .center {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .content-left .content-text .center {
+    font-size: 1.6rem;
+  }
+  .content-left {
+    padding: 0.5rem;
+  }
+  .content-right {
+    padding: 0.5rem;
+  }
+
+}
+
+@media (max-width: 400px) {
+  .content-left .center {
+    font-size: 1rem;
+  }
+}
 /* Large phones / Phablets (up to 600px) */
 @media only screen and (max-width: 700px) {
   h2 {
@@ -1532,8 +1533,9 @@ text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.7);
 
   .text-left, .text-right {
       margin: 0;
-      padding: 2% 8%;
+      padding: 3% 10%;
       text-align: center;
+      font-size: 1.2em;
   }
 
   .text-left {
@@ -1544,6 +1546,25 @@ text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.7);
       margin-bottom: 2rem;
       order: -1; /* Display text-right before counter */
   }
+
+
+  @media (max-width:600px){
+    .text-left, .text-right {
+      font-size: 1em;
+    }
+    .heropanel__content h1{
+      font-size: 1.3em;
+    }
+    .heropanel__content p{
+      font-size: 0.7em;
+    }
+    .project h2{
+      font-size: 1.3em;
+
+    }
+  }
+
+
 
   .b_color {
       margin: 2rem 0;
