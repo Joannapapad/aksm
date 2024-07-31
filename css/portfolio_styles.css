@@ -133,8 +133,8 @@ body{
 
 
 .featured_projects .text-blk.tab {
-  font-size: 22px;
-  line-height: 34.1px;
+  font-size: 20px;
+  line-height: 10.1px;
   display: flex;
   align-items: center;
   color: #999999;
@@ -163,7 +163,7 @@ body{
 
 @media(max-width:1600px){
 .featured_projects .text-blk.tab {
-  font-size: 18px;
+  font-size: 16px;
 
 }
 }
@@ -273,10 +273,6 @@ body{
   .featured_projects .responsive-container-block.opt-cont {
     flex-direction: column;
   }
-  .featured_projects .text-blk.tab {
-    font-size: 1.1em;
-    line-height: 1em;
-}
 
 }
 
@@ -313,7 +309,6 @@ body{
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
-    font-size: 13px;
     line-height: 15px;
     padding-top: 5px;
     padding-right: 10px;
@@ -323,25 +318,11 @@ body{
 
   .featured_projects .text-blk.title {
     font-size: 13px;
-    line-height: 15px;
+    line-height: 10px;
     padding-top: 0px;
     padding-right: 10px;
     padding-bottom: 0px;
     padding-left: 10px;
-  }
-
-  .featured_projects .text-blk.title {
-    font-size: 20px;
-    line-height: 27.28px;
-  }
-
-  .featured_projects .text-blk.info {
-    font-size: 20px;
-    line-height: 27.28px;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 10px;
-    margin-left: 0px;
   }
 
   .featured_projects .responsive-container-block.opt-cont {
@@ -349,6 +330,9 @@ body{
     margin-right: 0px;
     margin-bottom: 15px;
     margin-left: 0px;
+  }
+  .featured_projects .text-blk .tab{
+    font-size: 0.5rem;
   }
 }
 
@@ -377,7 +361,7 @@ body{
   }
 
   .featured_projects .text-blk.info {
-    font-size: 17px;
+    font-size: 15px;
     line-height: 22px;
     margin-top: 0px;
     margin-right: 0px;
@@ -388,24 +372,12 @@ body{
   .featured_projects .text-blk.title {
     font-size: 17px;
     line-height: 22px;
-  }
-
-  .featured_projects .text-blk.title {
     padding-top: 0px;
     padding-right: 10px;
     padding-bottom: 5px;
     padding-left: 10px;
   }
 
-  .featured_projects .text-blk.info {
-    font-size: 20px;
-    line-height: 27.28px;
-  }
-
-  .featured_projects .text-blk.title {
-    font-size: 20px;
-    line-height: 27.28px;
-  }
 }
 
 
