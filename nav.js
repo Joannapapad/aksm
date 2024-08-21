@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    document.addEventListener("DOMContentLoaded", function() {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.setAttribute('loading', 'lazy');
+        });
+    });
+
+
     // General Intersection Observer for animations
     const animateObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
