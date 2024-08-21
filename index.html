@@ -506,139 +506,128 @@
         <div id="footer__cont"></div>
 
         
-        <script>
-            fetch('footer.html')
+         <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        // Fetch footer and insert it into the DOM
+        fetch('footer.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer__cont').innerHTML = data;
-
             });
-            
-            document.addEventListener("DOMContentLoaded", function() {
-            const next = document.querySelector('.next');
-            const prev = document.querySelector('.prev');
-            const slider = document.querySelector('.slider');
-            const sections = Array.from(slider.children);
-            let sectionIndex = 0;
-            let startX;
-            let isSwiping = false;
-            let isDragging = false;
 
-            function showSlide(index) {
-                slider.style.transform = `translateX(-${index * 100}%)`;
-            }
+    // Slider functionality
+    const next = document.querySelector('.next');
+    const prev = document.querySelector('.prev');
+    const slider = document.querySelector('.slider');
+    const sections = Array.from(slider.children);
+    let sectionIndex = 0;
+    let startX;
+    let isSwiping = false;
+    let isDragging = false;
 
-            function nextSlide() {
-                sectionIndex = (sectionIndex + 1) % sections.length;
-                showSlide(sectionIndex);
-            }
+    function showSlide(index) {
+        slider.style.transform = `translateX(-${index * 100}%)`;
+    }
 
-            function prevSlide() {
-                sectionIndex = (sectionIndex - 1 + sections.length) % sections.length;
-                showSlide(sectionIndex);
-            }
+    function nextSlide() {
+        sectionIndex = (sectionIndex + 1) % sections.length;
+        showSlide(sectionIndex);
+    }
 
-            next.addEventListener('click', function() {
-                clearInterval(autoSlideInterval);
+    function prevSlide() {
+        sectionIndex = (sectionIndex - 1 + sections.length) % sections.length;
+        showSlide(sectionIndex);
+    }
+
+    next.addEventListener('click', function() {
+        clearInterval(autoSlideInterval);
+        nextSlide();
+        autoSlideInterval = setInterval(nextSlide, 5000);
+    });
+
+    prev.addEventListener('click', function() {
+        clearInterval(autoSlideInterval);
+        prevSlide();
+        autoSlideInterval = setInterval(nextSlide, 5000);
+    });
+
+    showSlide(sectionIndex);
+
+    let autoSlideInterval = setInterval(nextSlide, 5000);
+
+    slider.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].pageX;
+        isSwiping = true;
+        clearInterval(autoSlideInterval);
+    });
+
+    slider.addEventListener('touchmove', function(e) {
+        if (isSwiping) {
+            let moveX = e.touches[0].pageX;
+            let difference = startX - moveX;
+
+            if (difference > 50) {
                 nextSlide();
-                autoSlideInterval = setInterval(nextSlide, 5000);
-            });
-
-            prev.addEventListener('click', function() {
-                clearInterval(autoSlideInterval);
-                prevSlide();
-                autoSlideInterval = setInterval(nextSlide, 5000);
-            });
-
-            showSlide(sectionIndex);
-
-            let autoSlideInterval = setInterval(nextSlide, 5000);
-
-            slider.addEventListener('touchstart', function(e) {
-                startX = e.touches[0].pageX;
-                isSwiping = true;
-                clearInterval(autoSlideInterval);
-            });
-
-            slider.addEventListener('touchmove', function(e) {
-                if (isSwiping) {
-                    let moveX = e.touches[0].pageX;
-                    let difference = startX - moveX;
-
-                    if (difference > 50) {
-                        nextSlide();
-                        isSwiping = false;
-                        autoSlideInterval = setInterval(nextSlide, 5000);
-                    } else if (difference < -50) {
-                        prevSlide();
-                        isSwiping = false;
-                        autoSlideInterval = setInterval(nextSlide, 5000);
-                    }
-                }
-            });
-
-            slider.addEventListener('touchend', function() {
                 isSwiping = false;
-            });
-
-            slider.addEventListener('mousedown', function(e) {
-                startX = e.pageX;
-                isDragging = true;
-                clearInterval(autoSlideInterval);
-            });
-
-            slider.addEventListener('mousemove', function(e) {
-                if (isDragging) {
-                    let moveX = e.pageX;
-                    let difference = startX - moveX;
-
-                    if (difference > 50) {
-                        nextSlide();
-                        isDragging = false;
-                        autoSlideInterval = setInterval(nextSlide, 5000);
-                    } else if (difference < -50) {
-                        prevSlide();
-                        isDragging = false;
-                        autoSlideInterval = setInterval(nextSlide, 5000);
-                    }
-                }
-            });
-
-            slider.addEventListener('mouseup', function() {
-                isDragging = false;
-            });
-
-            slider.addEventListener('mouseleave', function() {
-                isDragging = false;
-            });
-        });
-        function changeImage(element, newSrc) {
-        element.querySelector('img').src = newSrc;
+                autoSlideInterval = setInterval(nextSlide, 5000);
+            } else if (difference < -50) {
+                prevSlide();
+                isSwiping = false;
+                autoSlideInterval = setInterval(nextSlide, 5000);
+            }
         }
+    });
 
-        function restoreImage(element, originalSrc) {
-        element.querySelector('img').src = originalSrc;
+    slider.addEventListener('touchend', function() {
+        isSwiping = false;
+    });
+
+    slider.addEventListener('mousedown', function(e) {
+        startX = e.pageX;
+        isDragging = true;
+        clearInterval(autoSlideInterval);
+    });
+
+    slider.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+            let moveX = e.pageX;
+            let difference = startX - moveX;
+
+            if (difference > 50) {
+                nextSlide();
+                isDragging = false;
+                autoSlideInterval = setInterval(nextSlide, 5000);
+            } else if (difference < -50) {
+                prevSlide();
+                isDragging = false;
+                autoSlideInterval = setInterval(nextSlide, 5000);
+            }
         }
+    });
 
-        document.addEventListener('DOMContentLoaded', () => {
-    // Select carousel and arrow icons
+    slider.addEventListener('mouseup', function() {
+        isDragging = false;
+    });
+
+    slider.addEventListener('mouseleave', function() {
+        isDragging = false;
+    });
+
+    // Carousel functionality
     const carousel = document.querySelector(".carousel");
     const arrowIcons = document.querySelectorAll(".project_wrapper i");
 
-    // Ensure carousel has images
     if (carousel && carousel.querySelectorAll("img").length > 0) {
         const firstImg = carousel.querySelectorAll("img")[0];
 
         let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
 
-        // Show or hide navigation icons based on carousel scroll position
         const showHideIcons = () => {
             let scrollWidth = carousel.scrollWidth - carousel.clientWidth;
             arrowIcons[0].style.display = carousel.scrollLeft === 0 ? "none" : "block";
             arrowIcons[1].style.display = carousel.scrollLeft >= scrollWidth ? "none" : "block";
         };
 
-        // Handle button clicks to scroll carousel
         arrowIcons.forEach(icon => {
             icon.addEventListener("click", () => {
                 const firstImgWidth = firstImg.clientWidth + 14;
@@ -648,7 +637,6 @@
             });
         });
 
-        // Automatically adjust scroll position after dragging stops
         const autoSlide = () => {
             if (carousel.scrollLeft <= 0 || carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) return;
 
@@ -664,14 +652,12 @@
             showHideIcons();
         };
 
-        // Start dragging interaction
         const dragStart = (e) => {
             isDragStart = true;
             prevPageX = e.pageX || e.touches[0].pageX;
             prevScrollLeft = carousel.scrollLeft;
         };
 
-        // Handle dragging movement
         const dragging = (e) => {
             if (!isDragStart) return;
             e.preventDefault();
@@ -682,7 +668,6 @@
             showHideIcons();
         };
 
-        // End dragging interaction
         const dragStop = () => {
             isDragStart = false;
             carousel.classList.remove("dragging");
@@ -692,7 +677,6 @@
             }
         };
 
-        // Event listeners for drag interactions
         carousel.addEventListener("mousedown", dragStart);
         carousel.addEventListener("touchstart", dragStart);
         document.addEventListener("mousemove", dragging);
@@ -701,8 +685,8 @@
         carousel.addEventListener("touchend", dragStop);
             }
         });
+
         </script>
-        
 
 </body>
 </html>
