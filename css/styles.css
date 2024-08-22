@@ -23,6 +23,17 @@ body{
     opacity: 0;
 }
 
+/* Initial state: image is hidden */
+.lazy-img {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* Fade-in effect */
+}
+
+/* When the image is loaded */
+.lazy-img.loaded {
+    opacity: 1;
+}
+
 .cen{
   display: flex;
   width: 100%;
