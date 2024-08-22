@@ -571,15 +571,6 @@
         observer.observe(footerSection);
     }
 
-        document.addEventListener("DOMContentLoaded", function() {
-        // Fetch footer and insert it into the DOM
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer__cont').innerHTML = data;
-            });
-    });
-
     // Slider functionality
     const next = document.querySelector('.next');
     const prev = document.querySelector('.prev');
