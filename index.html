@@ -513,27 +513,29 @@
         
          <script>
         
-        document.addEventListener("DOMContentLoaded", function() {
-            function lazyLoadImages() {
-                const lazyImages = document.querySelectorAll('img[data-src]');
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.getAttribute('data-src');
-                            img.removeAttribute('data-src');
-                            observer.unobserve(img);
-                        }
-                    });
+    document.addEventListener("DOMContentLoaded", function() {
+        function lazyLoadImages() {
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.getAttribute('data-src');
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
                 });
-        
-                lazyImages.forEach(img => {
-                    imageObserver.observe(img);
-                });
-            }
-        
-            lazyLoadImages();  // Initialize lazy loading
-        });
+            }, {
+                rootMargin: '300px 0px'  // Load 100px before the image enters the viewport
+            });
+    
+            lazyImages.forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    
+        lazyLoadImages();  // Initialize lazy loading
+    });
 
 
         document.addEventListener("DOMContentLoaded", function() {
