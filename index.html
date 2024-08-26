@@ -514,29 +514,31 @@
         
          <script>
         
-    document.addEventListener("DOMContentLoaded", function() {
-        function lazyLoadImages() {
-            const lazyImages = document.querySelectorAll('img[data-src]');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.getAttribute('data-src');
-                        img.removeAttribute('data-src');
-                        observer.unobserve(img);
-                    }
-                });
-            }, {
-                rootMargin: '600px 0px' 
+ const lazyImages = document.querySelectorAll("img.lazy-img");
+
+    if ("IntersectionObserver" in window) {
+        const lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    const lazyImage = entry.target;
+                    lazyImage.src = lazyImage.dataset.src;
+                    lazyImage.removeAttribute('data-src');
+                    lazyImage.classList.remove("lazy-img");
+                    lazyImageObserver.unobserve(lazyImage);
+                }
             });
-    
-            lazyImages.forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
-    
-        lazyLoadImages();  // Initialize lazy loading
-    
+        });
+
+        lazyImages.forEach(function(lazyImage) {
+            lazyImageObserver.observe(lazyImage);
+        });
+    } else {
+        // Fallback for browsers that don't support IntersectionObserver
+        lazyImages.forEach(function(lazyImage) {
+            lazyImage.src = lazyImage.dataset.src;
+            lazyImage.removeAttribute('data-src');
+        });
+    }
 
         function lazyLoadSection(entries, observer) {
         entries.forEach(entry => {
