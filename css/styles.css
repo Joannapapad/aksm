@@ -531,7 +531,7 @@ body{
 
 
 .news {
-  background: #2826264c url("../assets/services/const_23.JPG") no-repeat center center fixed;
+  background: #2826264c url("../assets/services/const_23.webp") no-repeat center center fixed;
   background-size: cover;
   padding: 2rem;
   margin: 0;
@@ -836,7 +836,7 @@ body{
 .separator_backround{
   width: 100%;
   height: 20vh;
-  background: #dfdfdf9e url("../assets/1.jpg") no-repeat center center fixed;
+  background: #dfdfdf9e url("../assets/1.webp") no-repeat center center fixed;
   background-size: cover;
 
 }
