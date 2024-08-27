@@ -39,7 +39,6 @@ border: 0;
 }
 
 .separator3_backround {
-  position: relative; /* Change from relative to absolute */
   width: 100%;
   height: 20vh; /* Cover the entire height of the container */
   background: #dfdfdf9e url("../assets/services/const_1.jpg") no-repeat center center fixed;
