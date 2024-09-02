@@ -64,11 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (project.video1) {
                         imgTextHtml.push(`
-                            <div class="center vid">
-                                <video class="detail_proj_video" controls>
-                                    <source src="${project.video1}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
+                            <div class="img_text_flex">
+                                <video class="detail_proj_video" src="${project.video1}" alt="Project video" autoplay muted controls></video>
+                                <p>${project.description}</p>
                             </div>
                         `);
                     }
@@ -81,13 +79,16 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>
                         `);
                     }
-                    if (project.description && !(project.image2)) {
+                    /* 
+                    if (project.description && !(project.video1)) {
                         imgTextHtml.push(`
-                            <div class="img_text_flex right">
+                            <div class="img_text_flex">
+                                <video class="detail_proj_video" src="${project.video1}" alt="Project video" autoplay muted controls></video>
                                 <p>${project.description}</p>
                             </div>
                         `);
                     }
+                        */
                     if (project.image3) {
                         imgTextHtml.push(`
                             <div class="img_text_flex right">
