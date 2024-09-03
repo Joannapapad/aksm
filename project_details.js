@@ -62,23 +62,26 @@ document.addEventListener("DOMContentLoaded", () => {
                     `;
                     const imgTextHtml = [];
 
-                    if (project.video1) {
+                    if (project.video1 && project.video2) {
+                        let videoSource = '';
+                    
+                        // Determine the video source based on the screen width
+                        if (window.innerWidth <= 800) {
+                            videoSource = project.video2;  // Use the low-res video URL
+                        } else {
+                            videoSource = project.video1;  // Use the high-res video URL
+                        }
+                    
                         imgTextHtml.push(`
-                            <div class="img_text_flex">
-                                <video class="detail_proj_video" src="${project.video1}" alt="Project video" autoplay muted controls></video>
-                                <p>${project.description}</p>
+                            <div class="center vid">
+                                <video class="detail_proj_video" controls>
+                                    <source src="${videoSource}" type="video/mp4" autoplay muted loop controls>
+                                    Your browser does not support the video tag.
+                                </video>
                             </div>
                         `);
                     }
-                    // Check and add available images
-                    if (project.image2) {
-                        imgTextHtml.push(`
-                            <div class="img_text_flex">
-                                <img class="detail_proj_image" src="${project.image2}" alt="Project Image">
-                                <p>${project.description}</p>
-                            </div>
-                        `);
-                    }
+                    
                     /* 
                     if (project.description && !(project.video1)) {
                         imgTextHtml.push(`
@@ -113,6 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>
                         `);
                     }
+                    /**
                     if (project.video2) {
                         imgTextHtml.push(`
                             <div class="center vid">
@@ -123,6 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>
                         `);
                     }
+                         */
                     if (project.image5) {
                         imgTextHtml.push(`
                             <div class="img_text_flex right">
