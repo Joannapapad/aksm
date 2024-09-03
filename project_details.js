@@ -74,8 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     
                         imgTextHtml.push(`
                             <div class="center vid">
-                                <video class="detail_proj_video" controls>
-                                    <source src="${videoSource}" type="video/mp4" autoplay muted loop controls>
+                                <video class="detail_proj_video" autoplay muted loop controls>
+                                    <source src="${videoSource}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
