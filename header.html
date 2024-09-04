@@ -8,6 +8,8 @@
 
 <style>
     
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
   * {
     scrollbar-width: thin;
     scrollbar-color: #9d8fa1 #f3f3f3;
@@ -28,6 +30,8 @@
     border: 35px solid #ffffff;
   }
 
+
+    /* Navigation Of hamburger Menu */
     .flex_header{
         display: flex;
         gap: var(--gap,1rem);
@@ -107,7 +111,7 @@
     width: 100%;
     padding-top: 3vh;
     font-size: 1.2em;
-    margin: 0;
+    margin: 0; /* Ensures no extra space between paragraphs */
 }
 
 .second {
@@ -123,10 +127,10 @@
 }
 
 .content-image-1 {
-    width: 100%; 
-    height: auto; 
-    object-fit: contain; 
-    display: block; 
+    width: 100%; /* or a specific width like 300px */
+    height: auto; /* or a specific height like 200px */
+    object-fit: contain; /* or 'contain', 'fill', 'none', 'scale-down' */
+    display: block; /* Ensures proper layout */
 }
 
 .animated-line-container2 {
@@ -336,6 +340,30 @@ svg {
 
 
 }
+
+
+
+        /* Your existing CSS here */
+
+        .social-media-icons {
+            position: fixed;
+            bottom: 2em;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 2em;
+            z-index: 1000;
+        }
+
+        .social-icon img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover img {
+            transform: scale(1.2);
+        }
     
     .menu_link_header:after {
         background: none repeat scroll 0 0 transparent;
@@ -412,10 +440,30 @@ svg {
 
         <nav>
             <ul id="primary-navigation_header" data-visible="false" class="primary-navigation_header flex_header">
-                <li><a href="index.html" class="menu_link_header">Home</a></li>
-                <li><a href="portfolio.html" class="menu_link_header">Portfolio</a></li>
-                <li><a href="services.html" class="menu_link_header">Services</a></li>
-                <li><a href="contact.html" class="menu_link_header">Contact</a></li>
+                <li><a href="index.html" data-en="Home" data-gr="Αρχική" class="menu_link_header">Home</a></li>
+                <li><a href="portfolio.html" data-en="Portfolio" data-gr="Πορτφόλιο" class="menu_link_header">Portfolio</a></li>
+                <li><a href="services.html" data-en="Services" data-gr="Υπηρεσίες" class="menu_link_header">Services</a></li>
+                <li><a href="contact.html" data-en="Contact" data-gr="Επικοινωνία" class="menu_link_header">Contact</a></li>
+
+                <!--
+                <div class="language-switcher">
+                    <button onclick="switchLanguage('en')">English</button>
+                    <button onclick="switchLanguage('gr')">Ελληνικά</button>
+                </div>
+                -->
+
+                <div class="social-media-icons">
+                    <a href="https://www.facebook.com" target="_blank" class="social-icon">
+                        <img src="assets/icons/facebook-uxwing.svg" alt="Facebook">
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank" class="social-icon">
+                        <img src="assets/icons/linkedin-uxwing_1.svg" alt="Linkedin">
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="social-icon">
+                        <img src="assets/icons/instagram-uxwing.svg" alt="Instagram">
+                    </a>
+                </div>
+                
             </ul>
         </nav>
     </header>
