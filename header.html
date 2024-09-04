@@ -341,30 +341,36 @@ svg {
 
 }
 
+    .social-media-icons {
+        position: fixed;
+        bottom: 2em;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 2em;
+        z-index: 1000;
+    }
 
+    .social-icon img {
+        width: 40px;
+        height: 40px;
+        transition: transform 0.3s ease;
+    }
 
-        /* Your existing CSS here */
+    .social-icon:hover img {
+        transform: scale(1.2);
+    }
 
-        .social-media-icons {
-            position: fixed;
-            bottom: 2em;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 2em;
-            z-index: 1000;
-        }
-
+    @media (max-width: 800px) {
         .social-icon img {
-            width: 40px;
-            height: 40px;
-            transition: transform 0.3s ease;
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
         }
+    }
 
-        .social-icon:hover img {
-            transform: scale(1.2);
-        }
     
+
     .menu_link_header:after {
         background: none repeat scroll 0 0 transparent;
         bottom: 0;
