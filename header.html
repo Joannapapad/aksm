@@ -8,10 +8,26 @@
 
 <style>
     
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #9d8fa1 #f3f3f3;
+  }
 
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
 
+  *::-webkit-scrollbar-track {
+    background: #ffffff00;
+  }
 
-    /* Navigation Of hamburger Menu */
+  *::-webkit-scrollbar-thumb {
+    background-color: #59535b;
+    border-radius: 280px;
+    border: 35px solid #ffffff;
+  }
+
     .flex_header{
         display: flex;
         gap: var(--gap,1rem);
@@ -91,7 +107,7 @@
     width: 100%;
     padding-top: 3vh;
     font-size: 1.2em;
-    margin: 0; /* Ensures no extra space between paragraphs */
+    margin: 0;
 }
 
 .second {
@@ -107,10 +123,10 @@
 }
 
 .content-image-1 {
-    width: 100%; /* or a specific width like 300px */
-    height: auto; /* or a specific height like 200px */
-    object-fit: contain; /* or 'contain', 'fill', 'none', 'scale-down' */
-    display: block; /* Ensures proper layout */
+    width: 100%; 
+    height: auto; 
+    object-fit: contain; 
+    display: block; 
 }
 
 .animated-line-container2 {
