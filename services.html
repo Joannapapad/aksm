@@ -973,7 +973,7 @@
             startX = e.touches[0].pageX;
             isSwiping = true;
             clearInterval(autoSlideInterval); // Pause auto-slide on touch
-        }, { passive: true });
+        });
 
         slider.addEventListener('touchmove', throttle(function(e) {
             if (isSwiping) {
@@ -992,10 +992,20 @@
             }
         }, 100));
 
-        slider.addEventListener('touchend', function() {
-            isSwiping = false;
+        slider.addEventListener('touchend', function(e) {
+            if (isSwiping) {
+                let moveX = e.changedTouches[0].pageX;
+                let difference = Math.abs(startX - moveX);
+                
+                // Detect tap if the movement is minimal (within 10 pixels)
+                if (difference < 10) {
+                    // Handle tap, if needed
+                    console.log('Tap detected');
+                }
+        
+                isSwiping = false;
+            }
         });
-
         // Drag functionality with throttled mousemove events
         slider.addEventListener('mousedown', function(e) {
             startX = e.pageX;
