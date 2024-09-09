@@ -63,14 +63,14 @@
             <div class="card">
                 <div class="content">
                     <div class="imgBx">
+                        <img src="assets/backround_img/3dcube.svg">
+                    </div>
+                    <div class="contentBx">
                         <h3>SCAN2BIM</h3>
                     </div>
                 </div>
                 <ul class="sci">
                     <li>
-                        <img src="assets/backround_img/3dcube.svg">
-                    </div>
-                    <div class="contentBx">
                         <a href="#scan2bim-section">Learn More</a>
                     </li>
 
@@ -908,90 +908,139 @@
 
         });
 
-document.addEventListener("DOMContentLoaded", function() {
-    function initializeCarousel(carouselId) {
+        function initializeCarousel(carouselId) {
         const carousel = document.getElementById(carouselId);
         const nextButton = carousel.querySelector('.carousel-next');
         const prevButton = carousel.querySelector('.carousel-prev');
         const slider = carousel.querySelector('.carousel-slider2');
         const sections = Array.from(slider.children);
         let sectionIndex = 0;
-        let startX;
         let isSwiping = false;
         let isDragging = false;
-
+        // Add will-change to optimize performance for transform
+        slider.style.willChange = 'transform';
         function showSlide(index) {
             slider.style.transform = `translateX(-${index * 100}%)`;
         }
-
         function nextSlide() {
             sectionIndex = (sectionIndex + 1) % sections.length;
             showSlide(sectionIndex);
         }
-
         function prevSlide() {
             sectionIndex = (sectionIndex - 1 + sections.length) % sections.length;
             showSlide(sectionIndex);
         }
-
         nextButton.addEventListener('click', function() {
             clearInterval(autoSlideInterval); // Clear the interval to reset the timer
             nextSlide();
             autoSlideInterval = setInterval(nextSlide, 5000); // Restart the interval
         });
-
         prevButton.addEventListener('click', function() {
             clearInterval(autoSlideInterval); // Clear the interval to reset the timer
             prevSlide();
             autoSlideInterval = setInterval(nextSlide, 5000); // Restart the interval
         });
-
         // Initialize the first slide
         showSlide(sectionIndex);
-
         // Set up automatic slide changes
         let autoSlideInterval = setInterval(nextSlide, 5000);
+        // Throttle function to limit the rate of event handling
+        function throttle(callback, limit) {
+            let waiting = false;
+            return function () {
+                if (!waiting) {
+                    callback.apply(this, arguments);
+                    waiting = true;
+                    setTimeout(function () {
+                        waiting = false;
+                    }, limit);
+                }
+            };
+        }
+slider.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].pageX;
+    startY = e.touches[0].pageY;  // Track vertical position
+    isSwiping = true;
+    clearInterval(autoSlideInterval);  // Pause auto-slide on touch
+}, { passive: true });
 
-        // Swipe functionality
+slider.addEventListener('touchmove', throttle(function(e) {
+    if (isSwiping) {
+        let moveX = e.touches[0].pageX;
+        let moveY = e.touches[0].pageY;  // Get vertical position
+
+        let horizontalDifference = startX - moveX;
+        let verticalDifference = startY - moveY;
+
+        // Check if it's more of a horizontal swipe than vertical (ignore vertical scroll)
+        if (Math.abs(horizontalDifference) > Math.abs(verticalDifference)) {
+            // Only handle swipe if horizontal movement is dominant
+            if (horizontalDifference > 50) {
+                nextSlide();
+                isSwiping = false;
+                autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
+            } else if (horizontalDifference < -50) {
+                prevSlide();
+                isSwiping = false;
+                autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
+
         slider.addEventListener('touchstart', function(e) {
             startX = e.touches[0].pageX;
+            startY = e.touches[0].pageY;  // Track vertical position
             isSwiping = true;
-            clearInterval(autoSlideInterval); // Pause auto-slide on touch
-        });
+            clearInterval(autoSlideInterval);  // Pause auto-slide on touch
+        }, { passive: true });
 
-        slider.addEventListener('touchmove', function(e) {
+        slider.addEventListener('touchmove', throttle(function(e) {
             if (isSwiping) {
                 let moveX = e.touches[0].pageX;
-                let difference = startX - moveX;
+                let moveY = e.touches[0].pageY;  // Get vertical position
 
-                if (difference > 50) {
-                    nextSlide();
+                let horizontalDifference = startX - moveX;
+                let verticalDifference = startY - moveY;
+
+                // Check if it's more of a horizontal swipe than vertical (ignore vertical scroll)
+                if (Math.abs(horizontalDifference) > Math.abs(verticalDifference)) {
+                    // Only handle swipe if horizontal movement is dominant
+                    if (horizontalDifference > 50) {
+                        nextSlide();
+                        isSwiping = false;
+                        autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
+                    } else if (horizontalDifference < -50) {
+                        prevSlide();
+                        isSwiping = false;
+                        autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
+                    }
+                } else {
+                    // Let the vertical scroll pass through
                     isSwiping = false;
-                    autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
-                } else if (difference < -50) {
-                    prevSlide();
-                    isSwiping = false;
-                    autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
                 }
             }
-        });
+        } else {
+            // Let the vertical scroll pass through
+        }, 100), { passive: true });
 
         slider.addEventListener('touchend', function() {
             isSwiping = false;
+        }
+    }
+}, 100), { passive: true });
+
+slider.addEventListener('touchend', function() {
+    isSwiping = false;
+});
         });
 
-        // Drag functionality
+
         slider.addEventListener('mousedown', function(e) {
             startX = e.pageX;
             isDragging = true;
             clearInterval(autoSlideInterval); // Pause auto-slide on drag
         });
-
-        slider.addEventListener('mousemove', function(e) {
+        slider.addEventListener('mousemove', throttle(function(e) {
             if (isDragging) {
                 let moveX = e.pageX;
                 let difference = startX - moveX;
-
                 if (difference > 50) {
                     nextSlide();
                     isDragging = false;
@@ -1002,23 +1051,20 @@ document.addEventListener("DOMContentLoaded", function() {
                     autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
                 }
             }
-        });
-
+        }, 100));
         slider.addEventListener('mouseup', function() {
             isDragging = false;
         });
-
         slider.addEventListener('mouseleave', function() {
             isDragging = false;
         });
     }
-
     // Initialize carousels
     initializeCarousel('carousel1');
     initializeCarousel('carousel22');
-    initializeCarousel('carousel3');    
+    initializeCarousel('carousel3');
     initializeCarousel('carousel4');
-});
+
 
     </script>
 </body>
