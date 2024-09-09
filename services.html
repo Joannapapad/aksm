@@ -966,53 +966,45 @@
                 }
             };
         }
-        
-        let startX, startY, deltaX, deltaY;
-        
-        slider.addEventListener('touchstart', function(e) {
-            startX = e.touches[0].pageX;
-            startY = e.touches[0].pageY;
-            isSwiping = true;
-            clearInterval(autoSlideInterval); // Pause auto-slide on touch
-        }, { passive: true });
-        
-        slider.addEventListener('touchmove', throttle(function(e) {
-            // Calculate the horizontal and vertical distance moved
-            deltaX = e.touches[0].pageX - startX;
-            deltaY = e.touches[0].pageY - startY;
-        
-            // Check if horizontal movement is greater than vertical movement
-            if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                isSwiping = true;
-        
-                // Handle horizontal swipe
-                if (deltaX < -50) {  // Swipe left
-                    nextSlide();
-                    isSwiping = false;
-                    autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
-                } else if (deltaX > 50) {  // Swipe right
-                    prevSlide();
-                    isSwiping = false;
-                    autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
-                }
-            }
-        }, 100));
-                    
-        slider.addEventListener('touchend', function(e) {
-            if (isSwiping) {
-                let moveX = e.changedTouches[0].pageX;
-                let difference = Math.abs(startX - moveX);
-                
-                // Detect tap if the movement is minimal (within 10 pixels)
-                if (difference < 10) {
-                    // Handle tap, if needed
-                    console.log('Tap detected');
-                }
-        
+slider.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].pageX;
+    startY = e.touches[0].pageY;  // Track vertical position
+    isSwiping = true;
+    clearInterval(autoSlideInterval);  // Pause auto-slide on touch
+}, { passive: true });
+
+slider.addEventListener('touchmove', throttle(function(e) {
+    if (isSwiping) {
+        let moveX = e.touches[0].pageX;
+        let moveY = e.touches[0].pageY;  // Get vertical position
+
+        let horizontalDifference = startX - moveX;
+        let verticalDifference = startY - moveY;
+
+        // Check if it's more of a horizontal swipe than vertical (ignore vertical scroll)
+        if (Math.abs(horizontalDifference) > Math.abs(verticalDifference)) {
+            // Only handle swipe if horizontal movement is dominant
+            if (horizontalDifference > 50) {
+                nextSlide();
                 isSwiping = false;
+                autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
+            } else if (horizontalDifference < -50) {
+                prevSlide();
+                isSwiping = false;
+                autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
             }
-        });
-        // Drag functionality with throttled mousemove events
+        } else {
+            // Let the vertical scroll pass through
+            isSwiping = false;
+        }
+    }
+}, 100), { passive: true });
+
+slider.addEventListener('touchend', function() {
+    isSwiping = false;
+});
+
+            
         slider.addEventListener('mousedown', function(e) {
             startX = e.pageX;
             isDragging = true;
