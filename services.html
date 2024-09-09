@@ -993,7 +993,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
                 }
             }
-        }, 100), { passive: true });
+        }, 100));
 
         slider.addEventListener('touchend', function() {
             isSwiping = false;
