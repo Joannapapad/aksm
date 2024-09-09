@@ -972,7 +972,7 @@
         slider.addEventListener('touchstart', function(e) {
             startX = e.touches[0].pageX;
             startY = e.touches[0].pageY;
-            isSwiping = false;
+            isSwiping = true;
             clearInterval(autoSlideInterval); // Pause auto-slide on touch
         }, { passive: true });
         
