@@ -966,43 +966,44 @@
                 }
             };
         }
-slider.addEventListener('touchstart', function(e) {
-    startX = e.touches[0].pageX;
-    startY = e.touches[0].pageY;  // Track vertical position
-    isSwiping = true;
-    clearInterval(autoSlideInterval);  // Pause auto-slide on touch
-}, { passive: true });
-
-slider.addEventListener('touchmove', throttle(function(e) {
-    if (isSwiping) {
-        let moveX = e.touches[0].pageX;
-        let moveY = e.touches[0].pageY;  // Get vertical position
-
-        let horizontalDifference = startX - moveX;
-        let verticalDifference = startY - moveY;
-
-        // Check if it's more of a horizontal swipe than vertical (ignore vertical scroll)
-        if (Math.abs(horizontalDifference) > Math.abs(verticalDifference)) {
-            // Only handle swipe if horizontal movement is dominant
-            if (horizontalDifference > 50) {
-                nextSlide();
-                isSwiping = false;
-                autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
-            } else if (horizontalDifference < -50) {
-                prevSlide();
-                isSwiping = false;
-                autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
+            
+        slider.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].pageX;
+            startY = e.touches[0].pageY;  // Track vertical position
+            isSwiping = true;
+            clearInterval(autoSlideInterval);  // Pause auto-slide on touch
+        }, { passive: true });
+        
+        slider.addEventListener('touchmove', throttle(function(e) {
+            if (isSwiping) {
+                let moveX = e.touches[0].pageX;
+                let moveY = e.touches[0].pageY;  // Get vertical position
+        
+                let horizontalDifference = startX - moveX;
+                let verticalDifference = startY - moveY;
+        
+                // Check if it's more of a horizontal swipe than vertical (ignore vertical scroll)
+                if (Math.abs(horizontalDifference) > Math.abs(verticalDifference)) {
+                    // Only handle swipe if horizontal movement is dominant
+                    if (horizontalDifference > 50) {
+                        nextSlide();
+                        isSwiping = false;
+                        autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
+                    } else if (horizontalDifference < -50) {
+                        prevSlide();
+                        isSwiping = false;
+                        autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
+                    }
+                } else {
+                    // Let the vertical scroll pass through
+                    isSwiping = false;
+                }
             }
-        } else {
-            // Let the vertical scroll pass through
+        }, 100), { passive: true });
+        
+        slider.addEventListener('touchend', function() {
             isSwiping = false;
-        }
-    }
-}, 100), { passive: true });
-
-slider.addEventListener('touchend', function() {
-    isSwiping = false;
-});
+        });
 
             
         slider.addEventListener('mousedown', function(e) {
@@ -1042,34 +1043,6 @@ slider.addEventListener('touchend', function() {
     initializeCarousel('carousel22');
     initializeCarousel('carousel3');
     initializeCarousel('carousel4');
-
-
-
-
-    // Get the button
-    const scrollTopBtn = document.getElementById("scrollTopBtn");
-
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function() {
-        scrollFunction();
-    };
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            scrollTopBtn.style.display = "block";
-        } else {
-            scrollTopBtn.style.display = "none";
-        }
-    }
-
-    // When the user clicks on the button, scroll to the top of the document
-    scrollTopBtn.addEventListener('click', function() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    });
-
-
-
 
     </script>
 </body>
