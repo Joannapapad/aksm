@@ -915,7 +915,6 @@
         const slider = carousel.querySelector('.carousel-slider2');
         const sections = Array.from(slider.children);
         let sectionIndex = 0;
-        let startX;
         let isSwiping = false;
         let isDragging = false;
 
@@ -967,30 +966,43 @@
                 }
             };
         }
-
-        // Swipe functionality with passive listeners for mobile performance
+        
+        let startX, startY, deltaX, deltaY;
+        
         slider.addEventListener('touchstart', function(e) {
             startX = e.touches[0].pageX;
-            isSwiping = true;
+            startY = e.touches[0].pageY;
+            isSwiping = false;
             clearInterval(autoSlideInterval); // Pause auto-slide on touch
-        });
-
+        }, { passive: true });
+        
         slider.addEventListener('touchmove', throttle(function(e) {
-            if (isSwiping) {
-                let moveX = e.touches[0].pageX;
-                let difference = startX - moveX;
-
-                if (difference > 50) {
+            // Calculate the horizontal and vertical distance moved
+            deltaX = e.touches[0].pageX - startX;
+            deltaY = e.touches[0].pageY - startY;
+        
+            // Check if horizontal movement is greater than vertical movement
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                isSwiping = true;
+        
+                // Handle horizontal swipe
+                if (deltaX < -50) {  // Swipe left
                     nextSlide();
                     isSwiping = false;
                     autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
-                } else if (difference < -50) {
+                } else if (deltaX > 50) {  // Swipe right
                     prevSlide();
                     isSwiping = false;
                     autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
                 }
             }
-        }, 100));
+        }, 100), { passive: true });
+        
+        slider.addEventListener('touchend', function() {
+            isSwiping = false;
+        });
+
+            
 
         slider.addEventListener('touchend', function(e) {
             if (isSwiping) {
