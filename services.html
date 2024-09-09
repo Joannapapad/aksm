@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/style_services.css">
     <link rel="icon" href="assets/aksm_logo.png">
     <meta name="description" content="Explore AKSM's specialized services in Industrial and Construction Surveying, UAV Mapping, and Scan2BIM. We provide precise, cutting-edge solutions to ensure accuracy and efficiency in every project. From aerial surveys and 3D mapping to advanced BIM integration, our expert team is equipped to handle all your surveying and mapping needs. Discover how we can enhance your project's success.">
-    <script src="nav.js" ></script>
+    <script src="nav.js" defer></script>
     <title>Services</title>
 </head>
 
@@ -900,8 +900,6 @@
 
     <div id="footer__cont"></div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script>
     fetch('footer.html')
         .then(response => response.text())
@@ -910,8 +908,8 @@
 
         });
 
-document.addEventListener("DOMContentLoaded", function() {
-    function initializeCarousel(carouselId) {
+    document.addEventListener("DOMContentLoaded", function() {
+        function initializeCarousel(carouselId) {
         const carousel = document.getElementById(carouselId);
         const nextButton = carousel.querySelector('.carousel-next');
         const prevButton = carousel.querySelector('.carousel-prev');
