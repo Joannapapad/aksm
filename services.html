@@ -922,6 +922,9 @@ document.addEventListener("DOMContentLoaded", function() {
         let isSwiping = false;
         let isDragging = false;
 
+        // Add will-change to optimize performance for transform
+        slider.style.willChange = 'transform';
+
         function showSlide(index) {
             slider.style.transform = `translateX(-${index * 100}%)`;
         }
@@ -954,14 +957,28 @@ document.addEventListener("DOMContentLoaded", function() {
         // Set up automatic slide changes
         let autoSlideInterval = setInterval(nextSlide, 5000);
 
-        // Swipe functionality
+        // Throttle function to limit the rate of event handling
+        function throttle(callback, limit) {
+            let waiting = false;
+            return function () {
+                if (!waiting) {
+                    callback.apply(this, arguments);
+                    waiting = true;
+                    setTimeout(function () {
+                        waiting = false;
+                    }, limit);
+                }
+            };
+        }
+
+        // Swipe functionality with passive listeners for mobile performance
         slider.addEventListener('touchstart', function(e) {
             startX = e.touches[0].pageX;
             isSwiping = true;
             clearInterval(autoSlideInterval); // Pause auto-slide on touch
-        });
+        }, { passive: true });
 
-        slider.addEventListener('touchmove', function(e) {
+        slider.addEventListener('touchmove', throttle(function(e) {
             if (isSwiping) {
                 let moveX = e.touches[0].pageX;
                 let difference = startX - moveX;
@@ -976,20 +993,20 @@ document.addEventListener("DOMContentLoaded", function() {
                     autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
                 }
             }
-        });
+        }, 100), { passive: true });
 
         slider.addEventListener('touchend', function() {
             isSwiping = false;
         });
 
-        // Drag functionality
+        // Drag functionality with throttled mousemove events
         slider.addEventListener('mousedown', function(e) {
             startX = e.pageX;
             isDragging = true;
             clearInterval(autoSlideInterval); // Pause auto-slide on drag
         });
 
-        slider.addEventListener('mousemove', function(e) {
+        slider.addEventListener('mousemove', throttle(function(e) {
             if (isDragging) {
                 let moveX = e.pageX;
                 let difference = startX - moveX;
@@ -1004,7 +1021,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
                 }
             }
-        });
+        }, 100));
 
         slider.addEventListener('mouseup', function() {
             isDragging = false;
@@ -1018,8 +1035,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // Initialize carousels
     initializeCarousel('carousel1');
     initializeCarousel('carousel22');
-    initializeCarousel('carousel3');    
+    initializeCarousel('carousel3');
     initializeCarousel('carousel4');
+});
+
 
 
     // Get the button
