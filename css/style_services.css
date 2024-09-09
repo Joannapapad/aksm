@@ -262,24 +262,22 @@ overflow: hidden;
 
 
 .carousel-controls {
-position: absolute;
-width: 100%;
-display: flex;
-justify-content: space-between;
-align-items: center;
-top: 50%;
-transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 1000; /* Ensure it’s above other content */
 }
 
-
-.carousel-prev,
-.carousel-next {
-border: none;
-padding: 10px;
-cursor: pointer;
-z-index: 2;
-font-size: 2rem;
-background: transparent;
+.carousel-prev, .carousel-next {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border: none;
+    color: white;
+    padding: 10px 20px; /* Increase size for easier clicking */
+    cursor: pointer;
+    z-index: 1001; /* Ensure buttons are above the controls container */
 }
 
 
