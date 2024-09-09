@@ -996,14 +996,8 @@
                     autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
                 }
             }
-        }, 100), { passive: true });
-        
-        slider.addEventListener('touchend', function() {
-            isSwiping = false;
-        });
-
-            
-
+        }, 100));
+                    
         slider.addEventListener('touchend', function(e) {
             if (isSwiping) {
                 let moveX = e.changedTouches[0].pageX;
