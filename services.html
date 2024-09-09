@@ -908,135 +908,137 @@
 
         });
 
-        function initializeCarousel(carouselId) {
-        const carousel = document.getElementById(carouselId);
-        const nextButton = carousel.querySelector('.carousel-next');
-        const prevButton = carousel.querySelector('.carousel-prev');
-        const slider = carousel.querySelector('.carousel-slider2');
-        const sections = Array.from(slider.children);
-        let sectionIndex = 0;
-        let isSwiping = false;
-        let isDragging = false;
-        // Add will-change to optimize performance for transform
-        slider.style.willChange = 'transform';
-        function showSlide(index) {
-            slider.style.transform = `translateX(-${index * 100}%)`;
-        }
-        function nextSlide() {
-            sectionIndex = (sectionIndex + 1) % sections.length;
-            showSlide(sectionIndex);
-        }
-        function prevSlide() {
-            sectionIndex = (sectionIndex - 1 + sections.length) % sections.length;
-            showSlide(sectionIndex);
-        }
-        nextButton.addEventListener('click', function() {
-            clearInterval(autoSlideInterval); // Clear the interval to reset the timer
-            nextSlide();
-            autoSlideInterval = setInterval(nextSlide, 5000); // Restart the interval
-        });
-        prevButton.addEventListener('click', function() {
-            clearInterval(autoSlideInterval); // Clear the interval to reset the timer
-            prevSlide();
-            autoSlideInterval = setInterval(nextSlide, 5000); // Restart the interval
-        });
-        // Initialize the first slide
+function initializeCarousel(carouselId) {
+    const carousel = document.getElementById(carouselId);
+    const nextButton = carousel.querySelector('.carousel-next');
+    const prevButton = carousel.querySelector('.carousel-prev');
+    const slider = carousel.querySelector('.carousel-slider2');
+    const sections = Array.from(slider.children);
+    let sectionIndex = 0;
+    let isSwiping = false;
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+
+    slider.style.willChange = 'transform';
+
+    function showSlide(index) {
+        slider.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function nextSlide() {
+        sectionIndex = (sectionIndex + 1) % sections.length;
         showSlide(sectionIndex);
-        // Set up automatic slide changes
-        let autoSlideInterval = setInterval(nextSlide, 5000);
-        // Throttle function to limit the rate of event handling
-        function throttle(callback, limit) {
-            let waiting = false;
-            return function () {
-                if (!waiting) {
-                    callback.apply(this, arguments);
-                    waiting = true;
-                    setTimeout(function () {
-                        waiting = false;
-                    }, limit);
-                }
-            };
-        }
-            
+    }
+
+    function prevSlide() {
+        sectionIndex = (sectionIndex - 1 + sections.length) % sections.length;
+        showSlide(sectionIndex);
+    }
+
+    nextButton.addEventListener('click', function() {
+        console.log('Next button clicked');
+        clearInterval(autoSlideInterval);
+        nextSlide();
+        autoSlideInterval = setInterval(nextSlide, 5000);
+    });
+
+    prevButton.addEventListener('click', function() {
+        console.log('Prev button clicked');
+        clearInterval(autoSlideInterval);
+        prevSlide();
+        autoSlideInterval = setInterval(nextSlide, 5000);
+    });
+
+    showSlide(sectionIndex);
+
+    let autoSlideInterval = setInterval(nextSlide, 5000);
+
+    function throttle(callback, limit) {
+        let waiting = false;
+        return function () {
+            if (!waiting) {
+                callback.apply(this, arguments);
+                waiting = true;
+                setTimeout(function () {
+                    waiting = false;
+                }, limit);
+            }
+        };
+    }
+
     slider.addEventListener('touchstart', function(e) {
         startX = e.touches[0].pageX;
-        startY = e.touches[0].pageY;  // Track vertical position
+        startY = e.touches[0].pageY;
         isSwiping = true;
-        clearInterval(autoSlideInterval);  // Pause auto-slide on touch
+        clearInterval(autoSlideInterval);
     }, { passive: true });
 
-            
-        slider.addEventListener('touchmove', throttle(function(e) {
-            if (isSwiping) {
-                let moveX = e.touches[0].pageX;
-                let moveY = e.touches[0].pageY;
-                let horizontalDifference = startX - moveX;
-                let verticalDifference = startY - moveY;
-        
-                if (Math.abs(horizontalDifference) > Math.abs(verticalDifference)) {
-                    // Handle horizontal swipe
-                    if (Math.abs(horizontalDifference) > 80) {
-                        if (horizontalDifference > 0) {
-                            nextSlide();
-                        } else {
-                            prevSlide();
-                        }
-                        isSwiping = false;
-                        autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
-                    }
-                } else {
-                    // Horizontal swipe not detected, reset isSwiping
-                    isSwiping = false;
-                }
-            }
-        }, 100), { passive: true });
-        
-                    
-            
-        slider.addEventListener('mousedown', function(e) {
-            startX = e.pageX;
-            isDragging = true;
-            clearInterval(autoSlideInterval); // Pause auto-slide on drag
-        });
+    slider.addEventListener('touchmove', throttle(function(e) {
+        if (isSwiping) {
+            let moveX = e.touches[0].pageX;
+            let moveY = e.touches[0].pageY;
+            let horizontalDifference = startX - moveX;
+            let verticalDifference = startY - moveY;
 
-                    
-        slider.addEventListener('mousemove', throttle(function(e) {
-            if (isDragging) {
-                let moveX = e.pageX;
-                let difference = startX - moveX;
-        
-                if (Math.abs(difference) > 50) {
-                    if (difference > 0) {
+            if (Math.abs(horizontalDifference) > Math.abs(verticalDifference)) {
+                if (Math.abs(horizontalDifference) > 80) {
+                    if (horizontalDifference > 0) {
                         nextSlide();
                     } else {
                         prevSlide();
                     }
-                    isDragging = false;
-                    autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
+                    isSwiping = false;
+                    autoSlideInterval = setInterval(nextSlide, 5000);
                 }
+            } else {
+                isSwiping = false;
             }
-        }, 100));
+        }
+    }, 100), { passive: true });
 
-        slider.addEventListener('touchend', function() {
-            isSwiping = false;
-        });
-        
-        slider.addEventListener('mouseup', function() {
-            isDragging = false;
-        });
-        
-        slider.addEventListener('mouseleave', function() {
-            isDragging = false;
-        });
+    slider.addEventListener('mousedown', function(e) {
+        startX = e.pageX;
+        isDragging = true;
+        clearInterval(autoSlideInterval);
+    });
 
+    slider.addEventListener('mousemove', throttle(function(e) {
+        if (isDragging) {
+            let moveX = e.pageX;
+            let difference = startX - moveX;
 
-            
-    }
-    // Initialize carousels
-    initializeCarousel('carousel1');
-    initializeCarousel('carousel22');
-    initializeCarousel('carousel3');
-    initializeCarousel('carousel4');
+            if (Math.abs(difference) > 50) {
+                if (difference > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+                isDragging = false;
+                autoSlideInterval = setInterval(nextSlide, 5000);
+            }
+        }
+    }, 100));
+
+    slider.addEventListener('touchend', function() {
+        isSwiping = false;
+    });
+
+    slider.addEventListener('mouseup', function() {
+        isDragging = false;
+    });
+
+    slider.addEventListener('mouseleave', function() {
+        isDragging = false;
+    });
+}
+
+// Initialize carousels
+initializeCarousel('carousel1');
+initializeCarousel('carousel22');
+initializeCarousel('carousel3');
+initializeCarousel('carousel4');
+
 
     </script>
 </body>
