@@ -984,11 +984,11 @@ slider.addEventListener('touchmove', throttle(function(e) {
         // Check if it's more of a horizontal swipe than vertical (ignore vertical scroll)
         if (Math.abs(horizontalDifference) > Math.abs(verticalDifference)) {
             // Only handle swipe if horizontal movement is dominant
-            if (horizontalDifference > 80) {
+            if (horizontalDifference > 50) {
                 nextSlide();
                 isSwiping = false;
                 autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
-            } else if (horizontalDifference < -80) {
+            } else if (horizontalDifference < -50) {
                 prevSlide();
                 isSwiping = false;
                 autoSlideInterval = setInterval(nextSlide, 5000); // Restart auto-slide
