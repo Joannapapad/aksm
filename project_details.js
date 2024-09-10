@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('menu-container').innerHTML = data;
 
             const script = document.createElement('script');
-            script.src = 'header_nav.js';
+            script.src = 'nav.js';
             document.body.appendChild(script);
 
             loadProjectDetails();
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (project) {
                     const projectHtml = `
                     <div class="project-details-container">
-                        <div class="project-background" style="background: url('${project.image1 || ''}') no-repeat center center fixed;background-size: cover;">
+                        <div class="project-background" style="background: url('${project.image_front || ''}') no-repeat center center fixed;background-size: cover;">
                             <div class="project-summary">
                                 <div class="heading-container">
                                     <h1 class="head">${project.title}</h1>
@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                     <div class="project-text">
                                         <p><strong>Location:</strong> ${project.location}</p>
                                         <p><strong>Completion Year:</strong> ${project.completionyear}</p>
-                                        <p><strong>Gross Built Area:</strong> ${project.area}</p>
                                     </div>
                                 </div>
                             </div>
@@ -92,30 +91,30 @@ document.addEventListener("DOMContentLoaded", () => {
                         `);
                     }
                         */
-                    if (project.image3) {
+                    if (project.image1) {
                         imgTextHtml.push(`
                             <div class="img_text_flex right">
-                                <img class="detail_proj_image" src="${project.image3}" alt="Project Image">
-                                <p>${project.description4}</p>
+                                <img class="detail_proj_image" src="${project.image1}" alt="Project Image">
+                                <p>${project.description}</p>
+                            </div>
+                        `);
+                    }
+                    if (project.description && !(project.image1)) {
+                        imgTextHtml.push(`
+                            <div class="img_text_flex right">
+                                <p>${project.description}</p>
+                            </div>
+                        `);
+                    }
+                    if (project.image2) {
+                        imgTextHtml.push(`
+                            <div class="img_text_flex">
+                                <img class="detail_proj_image" src="${project.image2}" alt="Project Image">
+                                <p>${project.description2}</p>
                             </div>
                         `);
                     }
 
-                    if (project.image4) {
-                        imgTextHtml.push(`
-                            <div class="img_text_flex">
-                                <img class="detail_proj_image" src="${project.image4}" alt="Project Image">
-                                <p>${project.description2}</p>
-                            </div>
-                        `);
-                    }
-                    if (project.description2 && !(project.image4)) {
-                        imgTextHtml.push(`
-                            <div class="img_text_flex right">
-                                <p>${project.description2}</p>
-                            </div>
-                        `);
-                    }
                     /**
                     if (project.video2) {
                         imgTextHtml.push(`
@@ -128,18 +127,42 @@ document.addEventListener("DOMContentLoaded", () => {
                         `);
                     }
                          */
-                    if (project.image5) {
+                    if (project.image3) {
                         imgTextHtml.push(`
                             <div class="img_text_flex right">
-                                <img class="detail_proj_image" src="${project.image5}" alt="Project Image">
+                                <img class="detail_proj_image" src="${project.image3}" alt="Project Image">
                                 <p>${project.description3}</p>
                             </div>
                         `);
                     }
-                    if (project.description3 && !(project.image5)) {
+                    if (project.description3 && !(project.image3)) {
                         imgTextHtml.push(`
                             <div class="img_text_flex right">
                                 <p>${project.description3}</p>
+                            </div>
+                        `);
+                    }
+
+                    if (project.image4) {
+                        imgTextHtml.push(`
+                            <div class="img_text_flex right">
+                                <img class="detail_proj_image" src="${project.image4}" alt="Project Image">
+                                <p>${project.description4}</p>
+                            </div>
+                        `);
+                    }
+                    if (project.description4 && !(project.image4)) {
+                        imgTextHtml.push(`
+                            <div class="img_text_flex right">
+                                <p>${project.description4}</p>
+                            </div>
+                        `);
+                    }
+                    if (project.image5) {
+                        imgTextHtml.push(`
+                            <div class="img_text_flex right">
+                                <img class="detail_proj_image" src="${project.image5}" alt="Project Image">
+                                <p>${project.description5}</p>
                             </div>
                         `);
                     }
