@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         imgTextHtml.push(`
                             <div class="img_text_flex">
                                 <img class="detail_proj_image clickable-image" src="${project.image1}" alt="Project Image">
-                                <p>${project.description1}</p>
+                                <p>${project.description}</p>
                             </div>
                         `);
                     }
