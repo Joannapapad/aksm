@@ -91,6 +91,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     const imgTextHtml = [];
 
+                    if (project.main_description) {
+                        imgTextHtml.push(`
+                            <div class="img_text_flex">
+                                <p>${project.main_description}</p>
+                            </div>
+                        `);
+                    }
+
+                                        // Handle video1 and video2
+                    if (project.video1 && project.video2) {
+                        let videoSource = window.innerWidth <= 800 ? project.video2 : project.video1;
+                        imgTextHtml.push(`
+                            <div class="center vid">
+                                <video class="detail_proj_video" autoplay muted loop controls>
+                                    <source src="${videoSource}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        `);
+                    }
+                    
                     // Add image1
                     if (project.image1) {
                         imgTextHtml.push(`
