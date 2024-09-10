@@ -92,20 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     const imgTextHtml = [];
 
-                    // Handle video1 and video2
-                    if (project.video1 && project.video2) {
-                        let videoSource = window.innerWidth <= 800 ? project.video2 : project.video1;
-                        imgTextHtml.push(`
-                            <div class="center vid">
-                                <video class="detail_proj_video" autoplay muted loop controls>
-                                    <source src="${videoSource}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                        `);
-                    }
-
-                        // Add image1
+                    // Add image1
                     if (project.image1) {
                         imgTextHtml.push(`
                             <div class="img_text_flex">
@@ -125,48 +112,32 @@ document.addEventListener("DOMContentLoaded", () => {
                         `);
                     }
 
-                    // Handle image3
+                    // Add image3
                     if (project.image3) {
                         imgTextHtml.push(`
-                            <div class="img_text_flex right">
+                            <div class="img_text_flex">
                                 <img class="detail_proj_image clickable-image" src="${project.image3}" alt="Project Image">
+                                <p>${project.description3}</p>
+                            </div>
+                        `);
+                    }
+
+                    // Add image4
+                    if (project.image4) {
+                        imgTextHtml.push(`
+                            <div class="img_text_flex right">
+                                <img class="detail_proj_image clickable-image" src="${project.image4}" alt="Project Image">
                                 <p>${project.description4}</p>
                             </div>
                         `);
                     }
 
-                    // Handle image4
-                    if (project.image4) {
-                        imgTextHtml.push(`
-                            <div class="img_text_flex">
-                                <img class="detail_proj_image clickable-image" src="${project.image4}" alt="Project Image">
-                                <p>${project.description2}</p>
-                            </div>
-                        `);
-                    }
-
-                    if (project.description2 && !(project.image4)) {
-                        imgTextHtml.push(`
-                            <div class="img_text_flex right">
-                                <p>${project.description2}</p>
-                            </div>
-                        `);
-                    }
-
-                    // Handle image5
+                    // Add image5
                     if (project.image5) {
                         imgTextHtml.push(`
-                            <div class="img_text_flex right">
+                            <div class="img_text_flex">
                                 <img class="detail_proj_image clickable-image" src="${project.image5}" alt="Project Image">
-                                <p>${project.description3}</p>
-                            </div>
-                        `);
-                    }
-
-                    if (project.description3 && !(project.image5)) {
-                        imgTextHtml.push(`
-                            <div class="img_text_flex right">
-                                <p>${project.description3}</p>
+                                <p>${project.description5}</p>
                             </div>
                         `);
                     }
