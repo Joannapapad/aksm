@@ -23,16 +23,19 @@ body{
     opacity: 0;
 }
 
-/* Initial state: image is hidden */
-.lazy-img {
+/* Initial state of lazy-loaded images */
+img.lazy-img {
     opacity: 0;
-    transition: opacity 0.3s ease-in-out; /* Fade-in effect */
+    transform: translateY(20px); /* Start slightly off the viewport */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Smooth transition */
 }
 
-/* When the image is loaded */
-.lazy-img.loaded {
+/* State when image has been loaded */
+img.lazy-img.loaded {
     opacity: 1;
+    transform: translateY(0); /* Move to original position */
 }
+
 
 .cen{
   display: flex;
