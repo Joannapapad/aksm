@@ -563,25 +563,28 @@ body{
   overflow: hidden;
 }
 
+
 .controls {
   position: absolute;
+  top: 50%;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  top: 50%;
   transform: translateY(-50%);
+  z-index: 1000; /* Ensure it’s above other content */
 }
 
 .next,
 .prev {
+  background: #f3f3f382; /* Semi-transparent background */
   border: none;
-  padding: 10px;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 15px; /* Increase size for easier clicking */
   cursor: pointer;
-  z-index: 2;
-  font-size: 2rem;
-  background: transparent;
+  z-index: 1001; /* Ensure buttons are above the controls container */
 }
+
 
 .slider {
   width: 100%;
