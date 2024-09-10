@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('menu-container').innerHTML = data;
 
             const script = document.createElement('script');
-            script.src = 'header_nav.js';
+            script.src = 'nav.js';
             document.body.appendChild(script);
 
             loadProjectDetails();
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (project) {
                     const projectHtml = `
                     <div class="project-details-container">
-                        <div class="project-background" style="background: url('${project.image1 || ''}') no-repeat center center fixed;background-size: cover;">
+                        <div class="project-background" style="background: url('${project.image_front || ''}') no-repeat center center fixed;background-size: cover;">
                             <div class="project-summary">
                                 <div class="heading-container">
                                     <h1 class="head">${project.title}</h1>
@@ -79,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                     <div class="project-text">
                                         <p><strong>Location:</strong> ${project.location}</p>
                                         <p><strong>Completion Year:</strong> ${project.completionyear}</p>
-                                        <p><strong>Gross Built Area:</strong> ${project.area}</p>
                                     </div>
                                 </div>
                             </div>
