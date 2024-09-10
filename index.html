@@ -498,74 +498,75 @@
         <div id="footer__cont"></div>
 
         
-         <script>
-        
- const lazyImages = document.querySelectorAll("img.lazy-img");
+<script>
+const lazyImages = document.querySelectorAll("img.lazy-img");
 
-    if ("IntersectionObserver" in window) {
-        const lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    const lazyImage = entry.target;
-                    lazyImage.src = lazyImage.dataset.src;
-                    lazyImage.removeAttribute('data-src');
-                    lazyImage.classList.remove("lazy-img");
-                    lazyImageObserver.unobserve(lazyImage);
-                }
-            });
-        });
-
-        lazyImages.forEach(function(lazyImage) {
-            lazyImageObserver.observe(lazyImage);
-        });
-    } else {
-        // Fallback for browsers that don't support IntersectionObserver
-        lazyImages.forEach(function(lazyImage) {
-            lazyImage.src = lazyImage.dataset.src;
-            lazyImage.removeAttribute('data-src');
-        });
-    }
-
-        function lazyLoadSection(entries, observer) {
-        entries.forEach(entry => {
+if ("IntersectionObserver" in window) {
+    const lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
-                const target = entry.target;
-                if (target.id === 'services') {
-                    // Load services content if needed (e.g., fetch additional data)
-                    // If services are already present in HTML, just add this observer
-                    target.classList.add('loaded'); // Optional: add a class to trigger CSS animations
-                } else if (target.id === 'footer__cont') {
-                    // Fetch and insert footer content
-                    fetch('footer.html')
-                        .then(response => response.text())
-                        .then(data => {
-                            target.innerHTML = data;
-                            target.classList.add('loaded'); // Optional: add a class to trigger CSS animations
-                        });
-                }
-                observer.unobserve(target);
+                const lazyImage = entry.target;
+                lazyImage.src = lazyImage.dataset.src;
+                lazyImage.removeAttribute('data-src');
+                lazyImage.classList.remove("lazy-img");
+                lazyImage.classList.add("loaded"); // Add 'loaded' class to trigger CSS transitions
+                lazyImageObserver.unobserve(lazyImage);
             }
         });
-    }
+    });
 
-    const observerOptions = {
-        root: null, // Use the viewport as the root
-        rootMargin: '600px 0px', // Trigger when the element is 600px away from the viewport
-        threshold: 0 // Trigger when any part of the element is visible
-    };
+    lazyImages.forEach(function(lazyImage) {
+        lazyImageObserver.observe(lazyImage);
+    });
+} else {
+    // Fallback for browsers that don't support IntersectionObserver
+    lazyImages.forEach(function(lazyImage) {
+        lazyImage.src = lazyImage.dataset.src;
+        lazyImage.removeAttribute('data-src');
+        lazyImage.classList.add("loaded"); // Add 'loaded' class to trigger CSS transitions
+    });
+}
 
-    const observer = new IntersectionObserver(lazyLoadSection, observerOptions);
+function lazyLoadSection(entries, observer) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const target = entry.target;
+            if (target.id === 'services') {
+                // Load services content if needed (e.g., fetch additional data)
+                target.classList.add('loaded'); // Optional: add a class to trigger CSS animations
+            } else if (target.id === 'footer__cont') {
+                // Fetch and insert footer content
+                fetch('footer.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        target.innerHTML = data;
+                        target.classList.add('loaded'); // Optional: add a class to trigger CSS animations
+                    });
+            }
+            observer.unobserve(target);
+        }
+    });
+}
 
-    // Target sections to lazy load
-    const servicesSection = document.getElementById('services');
-    const footerSection = document.getElementById('footer__cont');
+const observerOptions = {
+    root: null, // Use the viewport as the root
+    rootMargin: '600px 0px', // Trigger when the element is 600px away from the viewport
+    threshold: 0 // Trigger when any part of the element is visible
+};
 
-    if (servicesSection) {
-        observer.observe(servicesSection);
-    }
-    if (footerSection) {
-        observer.observe(footerSection);
-    }
+const observer = new IntersectionObserver(lazyLoadSection, observerOptions);
+
+// Target sections to lazy load
+const servicesSection = document.getElementById('services');
+const footerSection = document.getElementById('footer__cont');
+
+if (servicesSection) {
+    observer.observe(servicesSection);
+}
+if (footerSection) {
+    observer.observe(footerSection);
+}
+
 
  // Slider functionality
 const next = document.querySelector('.next');
