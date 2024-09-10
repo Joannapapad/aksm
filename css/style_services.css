@@ -270,7 +270,6 @@ overflow: hidden;
 }
 
 .carousel-prev, .carousel-next {
-    background: rgba(99, 92, 82, 0.5); /* Semi-transparent background */
     border: none;
     color: white;
     border-radius: 20px;
