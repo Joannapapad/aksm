@@ -259,8 +259,6 @@ align-items: center;
 overflow: hidden;
 }
 
-
-
 .carousel-controls {
     position: absolute;
     top: 50%;
@@ -272,10 +270,11 @@ overflow: hidden;
 }
 
 .carousel-prev, .carousel-next {
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background: rgba(99, 92, 82, 0.5); /* Semi-transparent background */
     border: none;
     color: white;
-    padding: 10px 20px; /* Increase size for easier clicking */
+    border-radius: 20px;
+    padding: 10px 15px; /* Increase size for easier clicking */
     cursor: pointer;
     z-index: 1001; /* Ensure buttons are above the controls container */
 }
