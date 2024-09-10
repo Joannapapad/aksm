@@ -105,6 +105,26 @@ document.addEventListener("DOMContentLoaded", () => {
                         `);
                     }
 
+                        // Add image1
+                    if (project.image1) {
+                        imgTextHtml.push(`
+                            <div class="img_text_flex">
+                                <img class="detail_proj_image clickable-image" src="${project.image1}" alt="Project Image">
+                                <p>${project.description1}</p>
+                            </div>
+                        `);
+                    }
+
+                    // Add image2
+                    if (project.image2) {
+                        imgTextHtml.push(`
+                            <div class="img_text_flex right">
+                                <img class="detail_proj_image clickable-image" src="${project.image2}" alt="Project Image">
+                                <p>${project.description2}</p>
+                            </div>
+                        `);
+                    }
+
                     // Handle image3
                     if (project.image3) {
                         imgTextHtml.push(`
