@@ -538,7 +538,7 @@ img.lazy-img.loaded {
   background-size: cover;
   padding: 2rem;
   margin: 0;
-  max-height: 130vh;
+  max-height: 150vh;
   display: flex;
   justify-content: center;
   align-items: center;
