@@ -578,7 +578,7 @@ body{
 .prev {
   background: #f3f3f382; /* Semi-transparent background */
   border: none;
-  color: white;
+  color: #817C76;
   border-radius: 20px;
   padding: 10px 15px; /* Increase size for easier clicking */
   cursor: pointer;
