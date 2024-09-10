@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (project.image4) {
                         imgTextHtml.push(`
-                            <div class="img_text_flex right">
+                            <div class="img_text_flex">
                                 <img class="detail_proj_image" src="${project.image4}" alt="Project Image">
                                 <p>${project.description4}</p>
                             </div>
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     if (project.description4 && !(project.image4)) {
                         imgTextHtml.push(`
-                            <div class="img_text_flex right">
+                            <div class="img_text_flex">
                                 <p>${project.description4}</p>
                             </div>
                         `);
