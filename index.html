@@ -537,6 +537,7 @@ function updateMedia() {
 window.addEventListener('load', updateMedia);
 window.addEventListener('resize', updateMedia);
 
+document.addEventListener('DOMContentLoaded', function () {
     const slides = document.querySelectorAll('.carousel-slide');
     let currentIndex = 0;
     const totalSlides = slides.length;
@@ -565,8 +566,8 @@ window.addEventListener('resize', updateMedia);
 
     // Initialize the first slide as active
     showSlide(currentIndex);
-
-
+});
+    
 const lazyImages = document.querySelectorAll("img.lazy-img");
 
 if ("IntersectionObserver" in window) {
