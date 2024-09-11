@@ -42,49 +42,51 @@
             document.body.classList.add('loaded');
         });
     </script>
+    <div class="video-container">    
+        <div class="carousel-container">
+            <div class="carousel-slide active" id="slide1">
+                <video autoplay loop muted plays-inline class="background-clip" preload="metadata">
+                    <source src="https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video.mp4?alt=media&token=91a27c5d-27c2-4d71-b695-2071049eafe3" type="video/mp4">
+                </video>
+            </div>
 
-
-    <div class="video-container">
+            <div class="carousel-slide" id="slide2">
+                <img src="assets/1.jpg" class="background-clip" alt="Image 1">
+            </div>
+            <div class="carousel-slide" id="slide3">
+                <img src="assets/deformation_1.jpg" class="background-clip" alt="Image 2">
+            </div>
+            <div class="carousel-slide" id="slide4">
+                <img src="assets/new.jpg" class="background-clip" alt="Image 3">
+            </div>
+        </div>
         
+        <div class="filter"></div>
+
         <div class="content">
-            
-        <video autoplay loop muted plays-inline class="background-clip" preload="metadata">
-            <source src="https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video.mp4?alt=media&token=91a27c5d-27c2-4d71-b695-2071049eafe3" type="video/mp4">
-        </video>
 
-
-
-            <div class="filter"></div>
-
-            <div class="cen">
-                <a href="https://www.aksm.gr/wp-content/uploads/2023/12/aksm_antagonistikotita_webEN.pdf" target="_blank">
-                <img src="assets/espa.webp" class="logo_espa" alt=" ">
-                </a>
-            </div>
-                
-
-            
-
-                <div class="center">
-                        <img src="assets/aksm_logo.webp" class="logo_big" alt="logo" loading="eager">
+        <div class="cen">
+            <a href="https://www.aksm.gr/wp-content/uploads/2023/12/aksm_antagonistikotita_webEN.pdf" target="_blank">
+            <img src="assets/espa.webp" class="logo_espa" alt=" ">
+            </a>
+        </div>
+     
+        <div class="center">
+            <img src="assets/aksm_logo.webp" class="logo_big" alt="logo" loading="eager">
+        </div>
+    
+        <hr class="separator--line">
+        <h1 data-en="Where Construction Meets Technology" data-gr="Η Τεχνολογία ενώνεται με την Κατασκευή" class="heading-contai">Where Construction Meets Technology</h1>
+    
+        <a href="contact.html" class="button">
+            <a href="contact.html" style="text-decoration: none;" >
+                <div class="box-1">
+                    <div class="btn btn-one" id="front_page">
+                        <span>Contact us</span>
+                    </div>
                 </div>
-
-                <hr class="separator--line">
-
-                <h1 class="heading-contai">Where Construction Meets Technology</h1>
-                
-                <a href="contact.html" class="button">
-
-                    <a href="contact.html" style="text-decoration: none;" >
-
-                        <div class="box-1">
-                            <div class="btn btn-one" id="front_page">
-                              <span>Contact us</span>
-                            </div>
-                        </div>
-                    </a>            
-            </div>
-
+            </a>            
+        </div>
     </div>
 
     <div class="about_us">
@@ -499,6 +501,37 @@
 
         
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            if (i === index) {
+                slide.style.opacity = '1'; // Make the active slide visible
+                slide.style.zIndex = '-1'; // Active slide gets z-index -1
+                slide.classList.add('active');
+            } else {
+                slide.style.opacity = '0'; // Hide other slides
+                slide.style.zIndex = '-2'; // Other slides get z-index -2
+                slide.classList.remove('active');
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides; // Cycle through slides
+        showSlide(currentIndex);
+    }
+
+    // Automatically change slides every 5 seconds
+    setInterval(nextSlide, 6000);
+
+    // Initialize the first slide as active
+    showSlide(currentIndex);
+});
+
 const lazyImages = document.querySelectorAll("img.lazy-img");
 
 if ("IntersectionObserver" in window) {
