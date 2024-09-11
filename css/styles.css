@@ -116,7 +116,38 @@ img.lazy-img.loaded {
   object-fit: cover;
   position: absolute;
 }
+/* Styles for smaller screens (less than 800px) */
+@media (max-width: 800px) {
+  /* Change video */
+  #slide1 video {
+      content: url('https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video.mp4?alt=media&token=91a27c5d-27c2-4d71-b695-2071049eafe3'); /* Replace with the small video URL */
+  }
 
+  /* Change images */
+  #slide2 img {
+      content: url('assets/1-small.jpg'); /* Replace with smaller image */
+  }
+
+  #slide3 img {
+      content: url('assets/deformation_1-small.jpg'); /* Replace with smaller image */
+  }
+
+  #slide4 img {
+      content: url('assets/slide_4_main-small.png'); /* Replace with smaller image */
+  }
+
+  /* Additional styles for smaller screens, such as resizing images */
+  .background-clip {
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+  }
+
+  /* Optional: adjust carousel-container height for small screens */
+  .carousel-container {
+      height: auto;
+  }
+}
 @media (min-aspect-ratio: 16/9) {
   .background-clip {
       width: 100%;
