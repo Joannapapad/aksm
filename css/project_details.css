@@ -65,7 +65,9 @@ body {
     align-items: center;
 }
 
-
+.clickable-image{
+    cursor: pointer;
+}
 
 .project-details-container {
     width: 100%;
