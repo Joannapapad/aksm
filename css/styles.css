@@ -118,11 +118,6 @@ img.lazy-img.loaded {
 }
 /* Styles for smaller screens (less than 800px) */
 @media (max-width: 800px) {
-  /* Change video */
-  #slide1 video {
-      content: url('https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_low.mp4?alt=media&token=332280e9-1399-4646-81fe-c73daf2d4b5a'); /* Replace with the small video URL */
-  }
-
   /* Change images */
   #slide2 img {
       content: url('assets/1-small.jpg'); /* Replace with smaller image */
