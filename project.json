@@ -125,6 +125,24 @@
         "area": "50m2"
     },
     {
+        "id": "2024_027",
+        "title": "Architectural Footprint of Building",
+        "location": "Sygrou, Athens",
+        "image_front":"assets/portfolio/2023_027_Chrisochoidis_Sygrou6/revit.png",
+        "description": "POINT CLOUD",
+        "description2": "3D VIEW",
+        "description3": "PLAN VIEW",
+        "description4": "SECTION",
+        "image1":"assets/portfolio/2023_027_Chrisochoidis_Sygrou6/cloud_final.png",
+        "image2":"assets/portfolio/2023_027_Chrisochoidis_Sygrou6/revit_final.png",
+        "image3":"assets/portfolio/2023_027_Chrisochoidis_Sygrou6/plan_view_final.png",
+        "image4":"assets/portfolio/2023_027_Chrisochoidis_Sygrou6/section_final.png",
+        "typeofproject": "Scan2Bim",
+        "typeofproject2":"scan2bim",
+        "completionyear": "2023",
+        "area": "50m2"
+    },
+    {
         "id": "2023_022",
         "title": "Architectural Footprint of a Museum",
         "location": "Zakinthos",
