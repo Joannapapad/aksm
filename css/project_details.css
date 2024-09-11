@@ -234,6 +234,7 @@ body {
     color: white;
     font-size: 40px;
     cursor: pointer;
+    z-index: 999999;
 }
 
 .close-button:hover {
