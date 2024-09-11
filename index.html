@@ -44,22 +44,24 @@
     </script>
     <div class="video-container">    
         <div class="carousel-container">
-            <div class="carousel-slide active" id="slide1">
-                <video autoplay loop muted plays-inline class="background-clip" preload="metadata">
-                    <source src="https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=7efe5d1b-868a-4e36-8026-2b7c4e38f5f1" type="video/mp4">
-                </video>
+                <!-- Video Slide -->
+                <div class="carousel-slide active" id="slide1">
+                    <video autoplay loop muted plays-inline class="background-clip" preload="metadata">
+                        <source id="videoSource" src="https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=7efe5d1b-868a-4e36-8026-2b7c4e38f5f1" type="video/mp4">
+                    </video>
+                </div>
+        
+                <!-- Image Slides -->
+                <div class="carousel-slide" id="slide2">
+                    <img id="image1" src="assets/services/slide_2_main.jpg" class="background-clip" alt="Image 1">
+                </div>
+                <div class="carousel-slide" id="slide3">
+                    <img id="image2" src="assets/slide_3_main.jpg" class="background-clip" alt="Image 2">
+                </div>
+                <div class="carousel-slide" id="slide4">
+                    <img id="image3" src="assets/slide_4_main.webp" class="background-clip" alt="Image 3">
+                </div>
             </div>
-
-            <div class="carousel-slide" id="slide2">
-                <img src="assets/services/slide_2_main.jpg" class="background-clip" alt="Image 1">
-            </div>
-            <div class="carousel-slide" id="slide3">
-                <img src="assets/slide_3_main.jpg" class="background-clip" alt="Image 2">
-            </div>
-            <div class="carousel-slide" id="slide4">
-                <img src="assets/slide_4_main.webp" class="background-clip" alt="Image 3">
-            </div>
-        </div>
         
         <div class="filter"></div>
 
@@ -501,7 +503,40 @@
 
         
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+
+function updateMedia() {
+    const videoElement = document.getElementById('videoSource');
+    const image1 = document.getElementById('image1');
+    const image2 = document.getElementById('image2');
+    const image3 = document.getElementById('image3');
+
+    if (window.innerWidth < 800) {
+        // Load smaller video for smaller screens
+        videoElement.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_low.mp4?alt=media&token=332280e9-1399-4646-81fe-c73daf2d4b5a';
+        
+        // Load smaller images
+        image1.src = 'assets/services/slide_2_main.jpg';
+        image2.src = 'assets/slide_3_main_low.jpg';
+        image3.src = 'assets/slide_4_main_low.webp';
+    } else {
+        // Load large video for larger screens
+        videoElement.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=7efe5d1b-868a-4e36-8026-2b7c4e38f5f1';
+
+        // Load larger images
+        image1.src = 'assets/services/slide_2_main.jpg';
+        image2.src = 'assets/slide_3_main.jpg';
+        image3.src = 'assets/slide_4_main.webp';
+    }
+    
+    // Reload the video to apply the new source
+    const videoTag = videoElement.closest('video');
+    videoTag.load();
+}
+
+// Check screen size on load and resize
+window.addEventListener('load', updateMedia);
+window.addEventListener('resize', updateMedia);
+
     const slides = document.querySelectorAll('.carousel-slide');
     let currentIndex = 0;
     const totalSlides = slides.length;
@@ -530,7 +565,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize the first slide as active
     showSlide(currentIndex);
-});
+
 
 const lazyImages = document.querySelectorAll("img.lazy-img");
 
