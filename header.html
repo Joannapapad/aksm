@@ -30,7 +30,44 @@
     border: 35px solid #ffffff;
   }
 
+    .menu_link_header:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #000;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+      }
+    
+    .menu_link_header:hover:after { 
+        width: 100%; 
+        left: 0; 
+      }
+    
+    .nav-toggle_header{
+        display: block;
+        position: absolute;
+        z-index: 9999;
+        width: 4em;
+        aspect-ratio: 1;
+        background: transparent;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 4em;
+        right: 2em;
+        top: 2em;
+        border: 0;
+    }
 
+    
+    .nav-toggle_header[aria-expanded="true"] {
+        width: 4em;
+    
+    }
     /* Navigation Of hamburger Menu */
     .flex_header{
         display: flex;
@@ -53,7 +90,7 @@
     .primary-header_header {
         align-items: center;
         justify-content: space-between;
-        z-index: 99998;
+        z-index: 99980;
         position: fixed;
         top: 0;
         width: 100%;
@@ -371,44 +408,7 @@ svg {
 
     
 
-    .menu_link_header:after {
-        background: none repeat scroll 0 0 transparent;
-        bottom: 0;
-        content: "";
-        display: block;
-        height: 2px;
-        left: 50%;
-        position: absolute;
-        background: #000;
-        transition: width 0.3s ease 0s, left 0.3s ease 0s;
-        width: 0;
-      }
-    
-    .menu_link_header:hover:after { 
-        width: 100%; 
-        left: 0; 
-      }
-    
-    .nav-toggle_header{
-        display: block;
-        position: absolute;
-        z-index: 9999;
-        width: 4em;
-        aspect-ratio: 1;
-        background: transparent;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 4em;
-        right: 2em;
-        top: 2em;
-        border: 0;
-    }
 
-    
-    .nav-toggle_header[aria-expanded="true"] {
-        width: 4em;
-    
-    }
     @media (min-width: 2000px) {
             .logo_header {
                 margin: 2vh;
