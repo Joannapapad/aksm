@@ -129,11 +129,11 @@ img.lazy-img.loaded {
   }
 
   #slide3 img {
-      content: url('assets/deformation_1-small.jpg'); /* Replace with smaller image */
+      content: url('assets/slide_3_main_low.jpg'); /* Replace with smaller image */
   }
 
   #slide4 img {
-      content: url('assets/slide_4_main-small.png'); /* Replace with smaller image */
+      content: url('assets/slide_4_main_low.webp'); /* Replace with smaller image */
   }
 
   /* Additional styles for smaller screens, such as resizing images */
