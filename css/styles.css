@@ -120,7 +120,7 @@ img.lazy-img.loaded {
 @media (max-width: 800px) {
   /* Change video */
   #slide1 video {
-      content: url('https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video.mp4?alt=media&token=91a27c5d-27c2-4d71-b695-2071049eafe3'); /* Replace with the small video URL */
+      content: url('https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_low.mp4?alt=media&token=332280e9-1399-4646-81fe-c73daf2d4b5a'); /* Replace with the small video URL */
   }
 
   /* Change images */
