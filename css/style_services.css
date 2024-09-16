@@ -364,6 +364,7 @@ margin-right: 10px;
 
 .big-image-wrapper img {
 width: 100%;
+max-width: 450px;
 height: auto;
 padding-top: 2rem;
 }
