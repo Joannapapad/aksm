@@ -1,10 +1,7 @@
-
 html {
   scroll-behavior: smooth;
 }
 body {
-margin: 0;
-padding: 0;
 font-family: Arial, Helvetica, sans-serif;
 overflow-x: hidden;
 height: 100%;
@@ -41,9 +38,8 @@ border: 0;
 .separator3_backround {
   width: 100%;
   height: 20vh;
-  background: #dfdfdf9e url("../assets/1.webp") no-repeat center center fixed;
+  background: #dfdfdf9e url("../assets/services/const_1.webp") no-repeat center center fixed;
   background-size: cover;
-
 }
 
 .service-container {
