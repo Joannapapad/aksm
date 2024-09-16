@@ -211,6 +211,22 @@
         "typeofproject2":"scan2bim",
         "completionyear": "2023",
         "area": "50m2"
+    },
+    {
+        "id": "2022_045",
+        "title": "Architectural Footprint of Building",
+        "location": "Syros",
+        "image_front":"assets/portfolio/2022_045_Block.Syros_BIM/revit.png",
+        "description": "POINT CLOUD",
+        "description2": "3D VIEW",
+        "description3": "PLAN VIEW",
+        "image1":"assets/portfolio/2022_045_Block.Syros_BIM/cloud_final.png",
+        "image2":"assets/portfolio/2022_045_Block.Syros_BIM/revit_final.png",
+        "image3":"assets/portfolio/2022_045_Block.Syros_BIM/plan_view_final.png",
+        "typeofproject": "Scan2Bim",
+        "typeofproject2":"scan2bim",
+        "completionyear": "2022",
+        "area": "50m2"
     }
 ]
 
