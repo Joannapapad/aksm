@@ -227,8 +227,57 @@
         "typeofproject2":"scan2bim",
         "completionyear": "2022",
         "area": "50m2"
-    }
+    },
+    {
+        "id": "2021_003",
+        "title": "Architectural Footprint of Building",
+        "location": "Lykourgou kai Sokratous, Athens",
+        "image_front":"assets/portfolio/2021_003_Focal.Lykourgou_BIM/revit.png",
+        "description": "3D VIEW",
+        "description2": "PLAN VIEW",
+        "description3": "SECTION",
+        "image1":"assets/portfolio/2021_003_Focal.Lykourgou_BIM/revit_final.png",
+        "image2":"assets/portfolio/2021_003_Focal.Lykourgou_BIM/plan_view_final.png",
+        "image3":"assets/portfolio/2021_003_Focal.Lykourgou_BIM/section_final.png",
+        "typeofproject": "Scan2Bim",
+        "typeofproject2":"scan2bim",
+        "completionyear": "2021",
+        "area": "50m2"
+    },
+    {
+        "id": "2021_015",
+        "title": "Architectural Footprint of Plant Rooom",
+        "location": "Athens International Airport",
+        "image_front":"assets/portfolio/2021_015_AIA.Plant Room/revit.png",
+        "video1":"https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/portfolio%2F2021_015%2F2021_015_high.mp4?alt=media&token=63af329b-c1e9-4fc2-a270-38dda8533291",
+        "video2":"https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/portfolio%2F2021_015%2F2021_015.mp4?alt=media&token=4a39344c-896b-475e-a01d-79f0120b372f",
+        "description": "POINT CLOUD",
+        "description2": "3D VIEW",
+        "description3": "PLAN VIEW",
+        "description4": "SECTION",
+        "image1":"assets/portfolio/2021_015_AIA.Plant Room/cloud_final.png",
+        "image2":"assets/portfolio/2021_015_AIA.Plant Room/revit_final.png",
+        "image3":"assets/portfolio/2021_015_AIA.Plant Room/plan_view_final.png",
+        "image4":"assets/portfolio/2021_015_AIA.Plant Room/section_final.png",
+        "typeofproject": "Scan2Bim",
+        "typeofproject2":"scan2bim",
+        "completionyear": "2021",
+        "area": "50m2"
+    },
+    {
+    "id": "2021_073",
+    "title": "Architectural Footprint of Building",
+    "location": "Nea Peramos, Athens",
+    "image_front":"assets/portfolio/2021_073_Dimand.Softex Nea Peramos/revit.png",
+    "description": "3D VIEW",
+    "description2": "PLAN VIEW",
+    "description3": "SECTION",
+    "image1":"assets/portfolio/2021_073_Dimand.Softex Nea Peramos/revit_final.png",
+    "image2":"assets/portfolio/2021_073_Dimand.Softex Nea Peramos/plan_view_final.png",
+    "image3":"assets/portfolio/2021_073_Dimand.Softex Nea Peramos/section_final.png",
+    "typeofproject": "Scan2Bim",
+    "typeofproject2":"scan2bim",
+    "completionyear": "2021",
+    "area": "50m2"
+}
 ]
-
-
-  
