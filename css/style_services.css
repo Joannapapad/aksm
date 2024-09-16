@@ -43,8 +43,7 @@ border: 0;
   height: 20vh;
   background: #dfdfdf9e url("../assets/services/const_1.jpg") no-repeat center center fixed;
   background-size: cover;
-  object-fit: cover;
-  z-index: -1;
+
 }
 
 /* For high-resolution screens like iPhone 12 mini */
