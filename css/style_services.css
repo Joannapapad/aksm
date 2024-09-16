@@ -40,11 +40,20 @@ border: 0;
 
 .separator3_backround {
   width: 100%;
-  height: 20vh; /* Cover the entire height of the container */
+  height: 20vh;
   background: #dfdfdf9e url("../assets/services/const_1.jpg") no-repeat center center fixed;
   background-size: cover;
-  z-index: -1; /* Make sure it is behind other elements */
+  object-fit: cover;
+  z-index: -1;
 }
+
+/* For high-resolution screens like iPhone 12 mini */
+@media screen and (max-width: 576px) and (-webkit-min-device-pixel-ratio: 2) {
+  .separator3_backround {
+    background-size: 100% auto; /* Make sure it fits horizontally */
+  }
+}
+
 
 .service-container {
 padding-top: 10vh;
