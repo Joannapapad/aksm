@@ -46,14 +46,6 @@ border: 0;
 
 }
 
-/* For high-resolution screens like iPhone 12 mini */
-@media screen and (max-width: 576px) and (-webkit-min-device-pixel-ratio: 2) {
-  .separator3_backround {
-    background-size: 100% auto; /* Make sure it fits horizontally */
-  }
-}
-
-
 .service-container {
 padding-top: 10vh;
 flex-wrap: wrap;
