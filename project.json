@@ -331,5 +331,23 @@
         "typeofproject2":"scan2bim",
         "completionyear": "2020",
         "area": "50m2"
+    },   
+    {
+        "id": "2019_077",
+        "title": "Architectural Footprint of a Building",
+        "location": "Areopagitou, Athens",
+        "image_front":"assets/portfolio/2019_077_Temes.Areopagitou/revit.png",
+        "description": "POINT CLOUD",
+        "description2": "3D VIEW",
+        "description3": "PLAN VIEW",
+        "description4": "SECTION",
+        "image1":"assets/portfolio/2019_077_Temes.Areopagitou/cloud_final.png",
+        "image2":"assets/portfolio/2019_077_Temes.Areopagitou/revit_final.png",
+        "image3":"assets/portfolio/2019_077_Temes.Areopagitou/plan_view_final.png",
+        "image4":"assets/portfolio/2019_077_Temes.Areopagitou/section_final.png",
+        "typeofproject": "Scan2Bim",
+        "typeofproject2":"scan2bim",
+        "completionyear": "2019",
+        "area": "50m2"
     }
 ]
