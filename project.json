@@ -229,6 +229,22 @@
         "area": "50m2"
     },
     {
+        "id": "2022_002",
+        "title": "Architectural Footprint of Building",
+        "location": "Lefka Palace, Spetses",
+        "image_front":"assets/portfolio/2022_002_Block.Spetses/revit.png",
+        "description": "POINT CLOUD",
+        "description2": "3D VIEW",
+        "description3": "PLAN VIEW",
+        "image1":"assets/portfolio/2022_002_Block.Spetses/cloud_final.png",
+        "image2":"assets/portfolio/2022_002_Block.Spetses/revit_final.png",
+        "image3":"assets/portfolio/2022_002_Block.Spetses/plan_view_final.png",
+        "typeofproject": "Scan2Bim",
+        "typeofproject2":"scan2bim",
+        "completionyear": "2022",
+        "area": "50m2"
+    },
+    {
         "id": "2021_003",
         "title": "Architectural Footprint of Building",
         "location": "Lykourgou kai Sokratous, Athens",
