@@ -793,6 +793,12 @@ slider.addEventListener('mouseleave', function() {
         function restoreImage(element, originalSrc) {
         element.querySelector('img').src = originalSrc;
         }
+
+        fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer__cont').innerHTML = data;
+        });
         </script>
 
 </body>
