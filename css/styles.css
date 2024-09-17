@@ -12,7 +12,6 @@ body.loaded {
   opacity: 1;
 }
 
-
 body{
     font-family: Arial, Helvetica, sans-serif;
     background-color: #F3F3F3;
@@ -22,20 +21,6 @@ body{
     visibility: hidden;
     opacity: 0;
 }
-
-/* Initial state of lazy-loaded images */
-img.lazy-img {
-    opacity: 0;
-    transform: translateY(20px); /* Start slightly off the viewport */
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Smooth transition */
-}
-
-/* State when image has been loaded */
-img.lazy-img.loaded {
-    opacity: 1;
-    transform: translateY(0); /* Move to original position */
-}
-
 
 .cen{
   display: flex;
