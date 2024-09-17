@@ -55,6 +55,23 @@
         "area": "50m2"
     },
     {
+        "id": "2024_024",
+        "title": "Monitoring of Supply Tank",
+        "location": "Thessaloniki",
+        "image_front": "assets/portfolio/2024_024_EYATH.Mon/image_front.png",
+        "main_description":"Monitoring of micro-movements at the bottom of the water supply tank D5",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "image1":"assets/portfolio/2024_024_EYATH.Mon/image1.png",
+        "image2":"assets/portfolio/2024_024_EYATH.Mon/image2.png",
+        "image3":"assets/portfolio/2024_024_EYATH.Mon/image3.png",
+        "typeofproject": "Deformation Monitoring",
+        "typeofproject2":"deformation_monitoring uav_mapping",
+        "completionyear": "2024",
+        "area": "50m2"
+    },
+    {
         "id": "2024_021",
         "title": "Architectural Footprint of Building",
         "location": "Ready, Attica",
