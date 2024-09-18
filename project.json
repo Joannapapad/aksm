@@ -84,7 +84,7 @@
         "image2":"assets/portfolio/2024_024_EYATH.Mon/image2.JPG",
         "image3":"assets/portfolio/2024_024_EYATH.Mon/image3.JPG",
         "typeofproject": "Deformation Monitoring",
-        "typeofproject2":"deformation_monitoring uav_mapping",
+        "typeofproject2":"deformation_monitoring",
         "completionyear": "2024",
         "area": "50m2"
     },
@@ -119,6 +119,21 @@
         "image3":"assets/portfolio/2024_020_Τitan.Thessaloniki_Preheater/section_final.png",
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
+        "completionyear": "2024",
+        "area": "50m2"
+    },
+    {
+        "id": "2024_009",
+        "title": "Monitoring of Supply Tank",
+        "location": "Elliniko",
+        "image_front": "assets/portfolio/2024_009_RivieraTower.BBI/image_front.png",
+        "main_description":"General topographical support of the Riviera Tower project",
+        "description": "",
+        "description2": "",
+        "image1":"assets/portfolio/2024_009_RivieraTower.BBI/image_front.png",
+        "image2":"assets/portfolio/2024_009_RivieraTower.BBI/image2.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
         "completionyear": "2024",
         "area": "50m2"
     },
