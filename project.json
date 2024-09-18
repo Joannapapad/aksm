@@ -206,6 +206,22 @@
         "area": "50m2"
     },
     {
+        "id": "2024_079",
+        "title": "UAV Mapping of a Building",
+        "location": "Mylaki, Evoia",
+        "image_front": "assets/portfolio/2023_079_Lafarge.Mylaki_Aerial/image_front.jpg",
+        "main_description":"UAV Mapping of a Building",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "image1":"assets/portfolio/2023_079_Lafarge.Mylaki_Aerial/image1.jpg",
+        "image2":"assets/portfolio/2023_079_Lafarge.Mylaki_Aerial/image_front.jpg",
+        "typeofproject": "UAV Mapping",
+        "typeofproject2":"uav_mapping",
+        "completionyear": "2023",
+        "area": "50m2"
+    },
+    {
         "id": "2023_027",
         "title": "Architectural Footprint of Building",
         "location": "Sygrou, Athens",
