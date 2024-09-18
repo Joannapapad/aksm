@@ -18,6 +18,21 @@
         "completionyear": "2024",
         "area": "50m2"
     },
+        {
+        "id": "2024_039",
+        "title": "Surveying Galleria Riviera Project",
+        "location": "Paros, Greece",
+        "image_front": "assets/portfolio/2024_039_Metka_Galleria.Riviera/image_front.jpg",
+        "main_description":"",
+        "description": "",
+        "description2": "ORTHO VIEW",
+        "image1":"assets/portfolio/2024_039_Metka_Galleria.Riviera/image_front.jpg",
+        "image2":"assets/portfolio/2024_039_Metka_Galleria.Riviera/image1.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "Ongoing",
+        "area": "50m2"
+    },
     { 
         "id": "2024_035",
         "title": "Architectural Footprint of Building",
