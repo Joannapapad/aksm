@@ -206,6 +206,23 @@
         "area": "50m2"
     },
     {
+        "id": "2024_001",
+        "title": "General topographical support of the Grid project",
+        "location": "Marousi, Athens",
+        "image_front": "assets/portfolio/2024_001_Terna.Grid_Xar/image_front.jpg",
+        "main_description":"General topographical support of The Grid project, the new green office complex in Marousi.",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "image1":"assets/portfolio/2024_001_Terna.Grid_Xar/image_front.jpg",
+        "image2":"assets/portfolio/2024_001_Terna.Grid_Xar/image2.jpg",
+        "image3":"assets/portfolio/2024_001_Terna.Grid_Xar/image3.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "Ongoing",
+        "area": "50m2"
+    },
+    {
         "id": "2023_079",
         "title": "UAV Mapping of a Building",
         "location": "Mylaki, Evoia",
