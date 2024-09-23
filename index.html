@@ -337,46 +337,34 @@
             </div>
 
 
-        <div class="port">
-          <div class="project_wrapper">
-            <i id="left" class="fa-solid fa-angle-left"></i>
-            <div class="carousel">
-              <!-- Add the dynamically generated HTML elements here -->
-              <!-- Loop through your portfolio array and generate the HTML elements -->
-              <?php
-                $portfolio = [
-                  "2024_042",
-                  "2021_009",
-                  "2022_049",
-                  "2022_062",
-                  "2023_073",
-                  "2024_039",
-                  "2024_036",
-                  "2024_035"
-                ];
-        
-                foreach ($portfolio as $id) {
-                  $project = json_decode(file_get_contents("project.json"), true);
-                  echo "
-                    <a href='project_details.html?id=$id' aria-label='" . $project['title'] . " details page'>
-                      <div class='img__wrap'>
-                        <img loading='lazy' class='lazy-img' data-src='" . $project['image_front'] . "' alt='img' draggable='false'>
-                        <div class='img__description'>" . $project['title'] . "<br>" . $project['typeofproject2'] . "</div>
-                      </div>
-                    </a>";
-                }
-              ?>
-              <!-- End of dynamically generated HTML elements -->
-        
-              <i id="right" class="fa-solid fa-angle-right"></i>
+            <div class="port">
+              <div class="project_wrapper">
+                <i id="left" class="fa-solid fa-angle-left"></i>
+                <div class="carousel">
+                  <!-- Loop through your project data and generate the HTML elements -->
+                  <script>
+                    const projectJSON = await fetch('project.json');
+                    const projectData = await projectJSON.json();
+            
+                    const portfolioHTML = document.getElementById('portfolio');
+                    projectData.forEach((project) => {
+                      const html = `
+                        <a href='project_details.html?id=${project.id}' aria-label='${project.title} details page'>
+                          <div class='img__wrap'>
+                            <img loading='lazy' class='lazy-img' data-src='${project.image_front}' alt='img' draggable='false'>
+                            <div class='img__description'>${project.title}<br>${project.typeofproject2}</div>
+                          </div>
+                        </a>`;
+                      portfolioHTML.innerHTML += html;
+                    });
+                  </script>
+                  <!-- End of dynamically generated HTML elements -->
+            
+                  <i id="right" class="fa-solid fa-angle-right"></i>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-              
 
-
-
-  
               <a href="portfolio.html" style="text-decoration: none;" aria-label="portfolio page" >
 
                 <div class="box-1">
