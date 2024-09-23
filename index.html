@@ -666,78 +666,80 @@ slider.addEventListener('mouseup', function() {
 slider.addEventListener('mouseleave', function() {
     isDragging = false;
 });
+// Carousel functionality for vertical scrolling
+const carousel = document.querySelector(".carousel");
+const arrowIcons = document.querySelectorAll(".project_wrapper i");
 
-    // Carousel functionality
-    const carousel = document.querySelector(".carousel");
-    const arrowIcons = document.querySelectorAll(".project_wrapper i");
+if (carousel && carousel.querySelectorAll("img").length > 0) {
+    const firstImg = carousel.querySelectorAll("img")[0];
 
-    if (carousel && carousel.querySelectorAll("img").length > 0) {
-        const firstImg = carousel.querySelectorAll("img")[0];
+    let isDragStart = false, isDragging = false, prevPageY, prevScrollTop, positionDiff;
 
-        let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
+    const showHideIcons = () => {
+        let scrollHeight = carousel.scrollHeight - carousel.clientHeight;
+        arrowIcons[0].style.display = carousel.scrollTop === 0 ? "none" : "block";
+        arrowIcons[1].style.display = carousel.scrollTop >= scrollHeight ? "none" : "block";
+    };
 
-        const showHideIcons = () => {
-            let scrollWidth = carousel.scrollWidth - carousel.clientWidth;
-            arrowIcons[0].style.display = carousel.scrollLeft === 0 ? "none" : "block";
-            arrowIcons[1].style.display = carousel.scrollLeft >= scrollWidth ? "none" : "block";
-        };
-
-        arrowIcons.forEach(icon => {
-            icon.addEventListener("click", () => {
-                const firstImgWidth = firstImg.clientWidth + 14;
-                const scrollAmount = icon.id === "left" ? -firstImgWidth : firstImgWidth;
-                carousel.scrollLeft += scrollAmount;
-                setTimeout(showHideIcons, 60);
-            });
+    arrowIcons.forEach(icon => {
+        icon.addEventListener("click", () => {
+            const firstImgHeight = firstImg.clientHeight + 14; // Adjust for margins if any
+            const scrollAmount = icon.id === "up" ? -firstImgHeight : firstImgHeight;
+            carousel.scrollTop += scrollAmount;
+            setTimeout(showHideIcons, 60); // Show/hide icons based on scroll position
         });
+    });
 
-        const autoSlide = () => {
-            if (carousel.scrollLeft <= 0 || carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) return;
+    const autoSlide = () => {
+        if (carousel.scrollTop <= 0 || carousel.scrollTop >= carousel.scrollHeight - carousel.clientHeight) return;
 
-            positionDiff = Math.abs(positionDiff);
-            const firstImgWidth = firstImg.clientWidth + 14;
-            const valDifference = firstImgWidth - positionDiff;
+        positionDiff = Math.abs(positionDiff);
+        const firstImgHeight = firstImg.clientHeight + 14; // Adjust for margins if any
+        const valDifference = firstImgHeight - positionDiff;
 
-            if (carousel.scrollLeft > prevScrollLeft) {
-                carousel.scrollLeft += positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
-            } else {
-                carousel.scrollLeft -= positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
-            }
-            showHideIcons();
-        };
-
-        const dragStart = (e) => {
-            isDragStart = true;
-            prevPageX = e.pageX || e.touches[0].pageX;
-            prevScrollLeft = carousel.scrollLeft;
-        };
-
-        const dragging = (e) => {
-            if (!isDragStart) return;
-            e.preventDefault();
-            isDragging = true;
-            carousel.classList.add("dragging");
-            positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX;
-            carousel.scrollLeft = prevScrollLeft - positionDiff;
-            showHideIcons();
-        };
-
-        const dragStop = () => {
-            isDragStart = false;
-            carousel.classList.remove("dragging");
-            if (isDragging) {
-                isDragging = false;
-                autoSlide();
-            }
-        };
-
-        carousel.addEventListener("mousedown", dragStart);
-        carousel.addEventListener("touchstart", dragStart);
-        document.addEventListener("mousemove", dragging);
-        carousel.addEventListener("touchmove", dragging);
-        document.addEventListener("mouseup", dragStop);
-        carousel.addEventListener("touchend", dragStop);
+        if (carousel.scrollTop > prevScrollTop) {
+            // Scroll down
+            carousel.scrollTop += positionDiff > firstImgHeight / 3 ? valDifference : -positionDiff;
+        } else {
+            // Scroll up
+            carousel.scrollTop -= positionDiff > firstImgHeight / 3 ? valDifference : -positionDiff;
         }
+        showHideIcons();
+    };
+
+    const dragStart = (e) => {
+        isDragStart = true;
+        prevPageY = e.pageY || e.touches[0].pageY;
+        prevScrollTop = carousel.scrollTop;
+    };
+
+    const dragging = (e) => {
+        if (!isDragStart) return;
+        e.preventDefault();
+        isDragging = true;
+        carousel.classList.add("dragging");
+        positionDiff = (e.pageY || e.touches[0].pageY) - prevPageY;
+        carousel.scrollTop = prevScrollTop - positionDiff;
+        showHideIcons();
+    };
+
+    const dragStop = () => {
+        isDragStart = false;
+        carousel.classList.remove("dragging");
+        if (isDragging) {
+            isDragging = false;
+            autoSlide();
+        }
+    };
+
+    carousel.addEventListener("mousedown", dragStart);
+    carousel.addEventListener("touchstart", dragStart);
+    document.addEventListener("mousemove", dragging);
+    carousel.addEventListener("touchmove", dragging);
+    document.addEventListener("mouseup", dragStop);
+    carousel.addEventListener("touchend", dragStop);
+}
+
 
         function changeImage(element, newSrc) {
         element.querySelector('img').src = newSrc;
