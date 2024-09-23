@@ -143,7 +143,7 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         }
     });
 }
-/*
+
 // Testimonial Carousel
 const testimonialItems = document.querySelectorAll(".item label");
 let testimonialIndex = 0;
@@ -155,7 +155,7 @@ function cycleTestimonials(index) {
 }
 
 cycleTestimonials(0);
-
+/*
     // Image Slider
     const initSlider = () => {
         const imageList = document.querySelector(".slider-wrapper .image-list");
