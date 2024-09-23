@@ -666,60 +666,85 @@ slider.addEventListener('mouseup', function() {
 slider.addEventListener('mouseleave', function() {
     isDragging = false;
 });
-// Carousel functionality for vertical scrolling
+    
+// Carousel functionality for horizontal dragging only
 const carousel = document.querySelector(".carousel");
 const arrowIcons = document.querySelectorAll(".project_wrapper i");
 
 if (carousel && carousel.querySelectorAll("img").length > 0) {
     const firstImg = carousel.querySelectorAll("img")[0];
 
-    let isDragStart = false, isDragging = false, prevPageY, prevScrollTop, positionDiff;
+    let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
+    let isVerticalDrag = false;
 
     const showHideIcons = () => {
-        let scrollHeight = carousel.scrollHeight - carousel.clientHeight;
-        arrowIcons[0].style.display = carousel.scrollTop === 0 ? "none" : "block";
-        arrowIcons[1].style.display = carousel.scrollTop >= scrollHeight ? "none" : "block";
+        let scrollWidth = carousel.scrollWidth - carousel.clientWidth;
+        arrowIcons[0].style.display = carousel.scrollLeft === 0 ? "none" : "block";
+        arrowIcons[1].style.display = carousel.scrollLeft >= scrollWidth ? "none" : "block";
     };
 
     arrowIcons.forEach(icon => {
         icon.addEventListener("click", () => {
-            const firstImgHeight = firstImg.clientHeight + 14; // Adjust for margins if any
-            const scrollAmount = icon.id === "up" ? -firstImgHeight : firstImgHeight;
-            carousel.scrollTop += scrollAmount;
+            const firstImgWidth = firstImg.clientWidth + 14; // Adjust for margins if any
+            const scrollAmount = icon.id === "left" ? -firstImgWidth : firstImgWidth;
+            carousel.scrollLeft += scrollAmount;
             setTimeout(showHideIcons, 60); // Show/hide icons based on scroll position
         });
     });
 
     const autoSlide = () => {
-        if (carousel.scrollTop <= 0 || carousel.scrollTop >= carousel.scrollHeight - carousel.clientHeight) return;
+        if (carousel.scrollLeft <= 0 || carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) return;
 
         positionDiff = Math.abs(positionDiff);
-        const firstImgHeight = firstImg.clientHeight + 14; // Adjust for margins if any
-        const valDifference = firstImgHeight - positionDiff;
+        const firstImgWidth = firstImg.clientWidth + 14; // Adjust for margins if any
+        const valDifference = firstImgWidth - positionDiff;
 
-        if (carousel.scrollTop > prevScrollTop) {
-            // Scroll down
-            carousel.scrollTop += positionDiff > firstImgHeight / 3 ? valDifference : -positionDiff;
+        if (carousel.scrollLeft > prevScrollLeft) {
+            // Scroll right
+            carousel.scrollLeft += positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
         } else {
-            // Scroll up
-            carousel.scrollTop -= positionDiff > firstImgHeight / 3 ? valDifference : -positionDiff;
+            // Scroll left
+            carousel.scrollLeft -= positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
         }
         showHideIcons();
     };
 
     const dragStart = (e) => {
         isDragStart = true;
-        prevPageY = e.pageY || e.touches[0].pageY;
-        prevScrollTop = carousel.scrollTop;
+        prevPageX = e.pageX || e.touches[0].pageX;
+        prevScrollLeft = carousel.scrollLeft;
+        // Capture initial vertical position to detect vertical drag
+        const prevPageY = e.pageY || e.touches[0].pageY;
+
+        // Reset flags
+        isVerticalDrag = false;
+        positionDiff = 0;
+
+        // Temporary event to determine drag direction
+        const determineDragDirection = (e) => {
+            let currentX = e.pageX || e.touches[0].pageX;
+            let currentY = e.pageY || e.touches[0].pageY;
+
+            if (Math.abs(currentX - prevPageX) > 5) {
+                // If horizontal drag is detected, start horizontal dragging
+                isDragging = true;
+                document.removeEventListener("mousemove", determineDragDirection);
+                carousel.classList.add("dragging");
+            } else if (Math.abs(currentY - prevPageY) > 5) {
+                // If vertical drag is detected, set flag to allow vertical scrolling
+                isVerticalDrag = true;
+                document.removeEventListener("mousemove", determineDragDirection);
+            }
+        };
+
+        document.addEventListener("mousemove", determineDragDirection);
     };
 
     const dragging = (e) => {
-        if (!isDragStart) return;
+        if (!isDragStart || isVerticalDrag) return;
         e.preventDefault();
-        isDragging = true;
-        carousel.classList.add("dragging");
-        positionDiff = (e.pageY || e.touches[0].pageY) - prevPageY;
-        carousel.scrollTop = prevScrollTop - positionDiff;
+        positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX;
+        carousel.scrollLeft = prevScrollLeft - positionDiff;
         showHideIcons();
     };
 
@@ -730,6 +755,8 @@ if (carousel && carousel.querySelectorAll("img").length > 0) {
             isDragging = false;
             autoSlide();
         }
+        // Reset flags
+        isVerticalDrag = false;
     };
 
     carousel.addEventListener("mousedown", dragStart);
@@ -739,7 +766,6 @@ if (carousel && carousel.querySelectorAll("img").length > 0) {
     document.addEventListener("mouseup", dragStop);
     carousel.addEventListener("touchend", dragStop);
 }
-
 
         function changeImage(element, newSrc) {
         element.querySelector('img').src = newSrc;
