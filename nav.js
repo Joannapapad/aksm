@@ -143,7 +143,7 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         }
     });
 }
-
+/*
 // Testimonial Carousel
 const testimonialItems = document.querySelectorAll(".item label");
 let testimonialIndex = 0;
@@ -236,4 +236,4 @@ cycleTestimonials(0);
     };
 
     initSlider();
-});
+});*/
