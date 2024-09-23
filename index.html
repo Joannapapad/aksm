@@ -343,20 +343,22 @@
                 <div class="carousel">
                   <!-- Loop through your project data and generate the HTML elements -->
                   <script>
-                    const projectJSON = await fetch('project.json');
-                    const projectData = await projectJSON.json();
-            
-                    const portfolioHTML = document.getElementById('portfolio');
-                    projectData.forEach((project) => {
-                      const html = `
-                        <a href='project_details.html?id=${project.id}' aria-label='${project.title} details page'>
-                          <div class='img__wrap'>
-                            <img loading='lazy' class='lazy-img' data-src='${project.image_front}' alt='img' draggable='false'>
-                            <div class='img__description'>${project.title}<br>${project.typeofproject2}</div>
-                          </div>
-                        </a>`;
-                      portfolioHTML.innerHTML += html;
-                    });
+                    async function generateHTML() {
+                      const projectJSON = await fetch('project.json');
+                      const projectData = await projectJSON.json();
+                      const portfolioHTML = document.getElementById('portfolio');
+                      projectData.forEach((project) => {
+                        const html = `
+                          <a href='project_details.html?id=${project.id}' aria-label='${project.title} details page'>
+                            <div class='img__wrap'>
+                              <img loading='lazy' class='lazy-img' data-src='${project.image_front}' alt='img' draggable='false'>
+                              <div class='img__description'>${project.title}<br>${project.typeofproject2}</div>
+                            </div>
+                          </a>`;
+                        portfolioHTML.innerHTML += html;
+                      });
+                    }
+                    generateHTML();
                   </script>
                   <!-- End of dynamically generated HTML elements -->
             
@@ -364,7 +366,6 @@
                 </div>
               </div>
             </div>
-
               <a href="portfolio.html" style="text-decoration: none;" aria-label="portfolio page" >
 
                 <div class="box-1">
