@@ -336,36 +336,79 @@
                 </div>
             </div>
 
-
-            <div class="port">
-              <div class="project_wrapper">
-                <i id="left" class="fa-solid fa-angle-left"></i>
-                <div class="carousel">
-                  <!-- Loop through your project data and generate the HTML elements -->
-                  <script>
-                    async function generateHTML() {
-                      const projectJSON = await fetch('project.json');
-                      const projectData = await projectJSON.json();
-                      const portfolioHTML = document.getElementById('portfolio');
-                      projectData.forEach((project) => {
-                        const html = `
-                          <a href='project_details.html?id=${project.id}' aria-label='${project.title} details page'>
-                            <div class='img__wrap'>
-                              <img loading='lazy' class='lazy-img' data-src='${project.image_front}' alt='img' draggable='false'>
-                              <div class='img__description'>${project.title}<br>${project.typeofproject2}</div>
-                            </div>
-                          </a>`;
-                        portfolioHTML.innerHTML += html;
-                      });
-                    }
-                    generateHTML();
-                  </script>
-                  <!-- End of dynamically generated HTML elements -->
-            
-                  <i id="right" class="fa-solid fa-angle-right"></i>
+        <div class="port">
+          <div class="project_wrapper">
+            <i id="left" class="fa-solid fa-angle-left"></i>
+            <div class="carousel">
+              
+              <a href="project_details.html?id=2024_042" aria-label="agia napa details page">
+                <div class="img__wrap">
+                  <img loading="lazy" class="lazy-img" data-src="assets/portfolio/2024_042_Elementengineers.Paros/revit.png" alt="img" draggable="false">
+                  <div class="img__description">
+                    Paros, Greece <br> Scan2Bim
+                  </div>
                 </div>
-              </div>
+              </a>
+        
+              <a href="project_details.html?id=2021_009" aria-label="hilton hotel details page">
+                <div class="img__wrap">
+                  <img loading="lazy" class="lazy-img" data-src="assets/portfolio/2021_009_Temes.Hilton/image_front.jpg" alt="img" draggable="false">
+                  <div class="img__description">
+                    Vasilisis Sofias, Greece <br> Construction Surveying
+                  </div>
+                </div>
+              </a>
+        
+              <a href="project_details.html?id=2022_049" aria-label="pwc offices details page">
+                <div class="img__wrap">
+                  <img loading="lazy" class="lazy-img" data-src="assets/portfolio/2022_049_Terna.PwC/image_front.jpg" alt="img" draggable="false">
+                  <div class="img__description">
+                    Marousi, Greece <br> Deformation Monitoring
+                  </div>
+                </div>
+              </a>
+        
+              <a href="project_details.html?id=2022_062" aria-label="vasiliko power station details page">
+                <div class="img__wrap">
+                  <img loading="lazy" class="lazy-img" data-src="assets/portfolio/2022_062_Terna.Vasiliko.Cyprus/image_front.jpg" alt="img" draggable="false">
+                  <div class="img__description">
+                    Vasiliko, Cyprus <br> Construction Surveying
+                  </div>
+                </div>
+              </a>
+        
+              <a href="project_details.html?id=2023_073" aria-label="noval property details page">
+                <div class="img__wrap">
+                  <img loading="lazy" class="lazy-img" data-src="assets/portfolio/2023_073_Ballian.Noval/image_front.jpg" alt="img" draggable="false">
+                  <div class="img__description">
+                    Marousi, Athens <br> Construction Surveying
+                  </div>
+                </div>
+              </a>
+        
+              <a href="project_details.html?id=2024_039" aria-label="galleria riviera details page">
+                <div class="img__wrap">
+                  <img loading="lazy" class="lazy-img" data-src="assets/portfolio/2024_039_Metka_Galleria.Riviera/image_front.jpg" alt="img" draggable="false">
+                  <div class="img__description">
+                    Elliniko, Greece <br> Construction Surveying
+                  </div>
+                </div>
+              </a>
+        
+              <a href="project_details.html?id=2024_036" aria-label="avenue mall details page">
+                <div class="img__wrap">
+                  <img loading="lazy" class="lazy-img" data-src="assets/portfolio/2024_036_Ballian.Avenue_Mon/image_front.jpg" alt="img" draggable="false">
+                  <div class="img__description">
+                    Marousi, Athens <br> Deformation Monitoring
+                  </div>
+                </div>
+              </a>
+        
             </div>
+            <i id="right" class="fa-solid fa-angle-right"></i>
+          </div>
+        </div>
+
               <a href="portfolio.html" style="text-decoration: none;" aria-label="portfolio page" >
 
                 <div class="box-1">
