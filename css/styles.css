@@ -1003,12 +1003,6 @@ body{
   position: relative;
   
 }
-.carousel {
-    overflow-y: scroll; 
-    display: flex;
-    flex-direction: column; 
-    scroll-behavior: smooth; 
-}
 
 .project_wrapper i {
   top: 50%;
