@@ -235,5 +235,5 @@ cycleTestimonials(0);
         });
     };
 
-    initSlider();
-});*/
+    initSlider();*/
+});
