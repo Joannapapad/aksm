@@ -336,8 +336,8 @@
         "image1":"assets/portfolio/2024_001_Terna.Grid_Xar/image_front.jpg",
         "image2":"assets/portfolio/2024_001_Terna.Grid_Xar/image2.jpg",
         "image3":"assets/portfolio/2024_001_Terna.Grid_Xar/image3.jpg",
-        "typeofproject": "Construction Surveying",
-        "typeofproject2":"const_ind_surv",
+        "typeofproject": "Deformation Monitoring & Construction Surveying",
+        "typeofproject2":"deformation_monitoring const_ind_surv",
         "completionyear": "Ongoing",
         "area": "50m2"
     },
