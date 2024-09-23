@@ -337,39 +337,41 @@
             </div>
 
 
-
-            <div class="port">
-                <div class="project_wrapper">
-                  <i id="left" class="fa-solid fa-angle-left"></i>
-                  <div class="carousel">
-                    
-
-                    <a href="project_details.html?id=2024_042" aria-label="agia napa details page">
-                        <div class="img__wrap">
-                          <img loading="lazy" class="lazy-img"  data-src="https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/portfolio%2F2024_042%2F2024_042_photo.jpg?alt=media&token=3f053f1a-31ad-42b8-ac88-81feae1084a7" id="img1" alt="img" draggable="false">
-                          <div class="img__description">
-                            Paros, Greece <br> Scan2Bim
-                          </div>
-                        </div>
-                      </a>
-                      <a href="project_details.html?id=2024_021" aria-label="riviera tower details page">
-                        <div class="img__wrap">
-                          <img loading="lazy" class="lazy-img"  data-src="https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/portfolio%2F2024_021%2F2024_021.jpg?alt=media&token=81f4f13a-78f7-49c4-8b1b-646b9008cd2d" id="img2" alt="img" draggable="false">
-                          <div class="img__description">Ready, Attica<br>Scan2Bim</div>
-                        </div>
-                      </a>
-                    <a href="project_details.html?id=2024_004" aria-label="stavros niarxos details page">
-                      <div class="img__wrap">
-                        <img loading="lazy" class="lazy-img"  data-src="https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/portfolio%2F2024_004%2F2024_004.jpg?alt=media&token=740c0b37-3172-49b2-86f5-034b9cbed597" alt="img" draggable="false">
-                        <div class="img__description">Panepistimiou, Attica<br>Scan2Bim
-                             </div>
+        <div class="port">
+          <div class="project_wrapper">
+            <i id="left" class="fa-solid fa-angle-left"></i>
+            <div class="carousel">
+              <!-- Add the dynamically generated HTML elements here -->
+              <!-- Loop through your portfolio array and generate the HTML elements -->
+              <?php
+                $portfolio = [
+                  "2024_042",
+                  "2021_009",
+                  "2022_049",
+                  "2022_062",
+                  "2023_073",
+                  "2024_039",
+                  "2024_036",
+                  "2024_035"
+                ];
+        
+                foreach ($portfolio as $id) {
+                  $project = json_decode(file_get_contents("project.json"), true);
+                  echo "
+                    <a href='project_details.html?id=$id' aria-label='" . $project['title'] . " details page'>
+                      <div class='img__wrap'>
+                        <img loading='lazy' class='lazy-img' data-src='" . $project['image_front'] . "' alt='img' draggable='false'>
+                        <div class='img__description'>" . $project['title'] . "<br>" . $project['typeofproject2'] . "</div>
                       </div>
-                    </a>
-                      
-                  </div>
-                  <i id="right" class="fa-solid fa-angle-right"></i>
-                </div>
-              </div>
+                    </a>";
+                }
+              ?>
+              <!-- End of dynamically generated HTML elements -->
+        
+              <i id="right" class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </div>
               
 
 
