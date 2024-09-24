@@ -47,7 +47,7 @@ border: 0;
 /* Media query for smaller screens */
 @media (max-width: 800px) {
   .separator3_backround {
-    background-image: url("../assets/separator.png"); /* New image for smaller screens */
+    background-image: url("../assets/separator.jpg"); /* New image for smaller screens */
   }
 }
 .service-container {
