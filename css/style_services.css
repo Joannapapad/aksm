@@ -38,10 +38,18 @@ border: 0;
 .separator3_backround {
   width: 100%;
   height: 20vh;
-  background: #dfdfdf9e url("../assets/services/const_1.webp") no-repeat center center fixed;
+  background: #dfdfdf9e url("../assets/separator_high.png") no-repeat center center fixed;
   background-size: cover;
+  object-fit: cover;
+  align-self: center;
 }
 
+/* Media query for smaller screens */
+@media (max-width: 800px) {
+  .separator3_backround {
+    background-image: url("../assets/separator.png"); /* New image for smaller screens */
+  }
+}
 .service-container {
 padding-top: 10vh;
 flex-wrap: wrap;
