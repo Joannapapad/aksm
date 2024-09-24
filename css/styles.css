@@ -533,7 +533,7 @@ body{
 
 
 .news {
-  background: #2826264c url("../assets/services/const_23.webp") no-repeat center center fixed;
+  background: #2826264c url("../assets/news_backround_high.jpg") no-repeat center center fixed;
   background-size: cover;
   padding: 2rem;
   margin: 0;
@@ -541,6 +541,12 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 800px) {
+  .news {
+    background-image: url("../assets/news_backround_low.jpg");
+  }
 }
 
 .news-container {
