@@ -130,7 +130,48 @@ function startCountdown(counter, start, end, interval) {
 }
 
 // Logo scroller
-const logos = [...]; // (Add logo objects here)
+const logos = [{ src: "assets/constumers/LOGOS/LOGOS/stfa.jpg", alt: "STFA" },
+        { src: "assets/constumers/LOGOS/LOGOS/LOGO_TOSONI.jpg", alt: "tosoni" },
+        { src: "assets/constumers/LOGOS/LOGOS/LOGO_village_roadshow.jpg", alt: "village_cinema" },
+        { src: "assets/constumers/LOGOS/LOGOS/alja.jpg", alt: "alja" },
+        { src: "assets/constumers/LOGOS/LOGOS/l&-T-logo.jpg", alt: "I&T" },
+        { src: "assets/constumers/LOGOS/LOGOS/logo_aktor_en.jpg", alt: "aktor" },
+        { src: "assets/constumers/LOGOS/LOGOS/alysj.jpg", alt: "alysj" },
+        { src: "assets/constumers/LOGOS/EOLFI.jpg", alt: "eolfi" },
+        { src: "assets/constumers/LOGOS/EMEK.JPG", alt: "emek" },
+        { src: "assets/constumers/LOGOS/ELMEC SPORT.jpg", alt: "emelksport" },
+        { src: "assets/constumers/LOGOS/DSTEEL.jpg", alt: "steel" },
+        { src: "assets/constumers/LOGOS/DIMAND.JPG", alt: "dimand" },
+        { src: "assets/constumers/LOGOS/CYCLON.jpg", alt: "cyclon" },
+        { src: "assets/constumers/LOGOS/CORE.JPG", alt: "core" },
+        { src: "assets/constumers/LOGOS/BIC.jpg", alt: "bic" },
+        { src: "assets/constumers/LOGOS/BEMEKEP.JPG", alt: "bemekep" },
+        { src: "assets/constumers/LOGOS/ARKTEAM.JPG", alt: "arkteam" },
+        { src: "assets/constumers/LOGOS/ARCON. CONST..jpg", alt: "arcon" },
+        { src: "assets/constumers/LOGOS/ALUMAN.JPG", alt: "aluman" },
+        { src: "assets/constumers/LOGOS/ALSTOM.jpg", alt: "alstom" },
+        { src: "assets/constumers/LOGOS/ZINON ATH..JPG", alt: "zinon" },
+        { src: "assets/constumers/LOGOS/YPOURGEIO DHMOSIAS TAXIS.JPG", alt: "ypoyrgeio" },
+        { src: "assets/constumers/LOGOS/xalyvourgiki.jpg", alt: "xalivourgiki" },
+        { src: "assets/constumers/LOGOS/TERNA.jpg", alt: "terna" },
+        { src: "assets/constumers/LOGOS/terkenlis1.jpg", alt: "terkenlis" },
+        { src: "assets/constumers/LOGOS/SWLIN. KORINTHOU.jpg", alt: "svlin" },
+        { src: "assets/constumers/LOGOS/sidma ae1.jpg", alt: "sidma" },
+        { src: "assets/constumers/LOGOS/SANYO HELLAS.jpg", alt: "sanyo" },
+        { src: "assets/constumers/LOGOS/SAMIA INTERNATIONAL.JPG", alt: "samia" },
+        { src: "assets/constumers/LOGOS/MOXLOS.jpg", alt: "moxlos" },
+        { src: "assets/constumers/LOGOS/METRON.JPG", alt: "metron" },
+        { src: "assets/constumers/LOGOS/METKA.jpg", alt: "metka" },
+        { src: "assets/constumers/LOGOS/maillis.jpg", alt: "maillis" },
+        { src: "assets/constumers/LOGOS/LEROY MERLIN.jpg", alt: "leroi" },
+        { src: "assets/constumers/LOGOS/KOCH + PARTNERS.JPG", alt: "koch + partners" },
+        { src: "assets/constumers/LOGOS/karenta ae.jpg", alt: "karenta" },
+        { src: "assets/constumers/LOGOS/intrakat.jpg", alt: "intrakat" },
+        { src: "assets/constumers/LOGOS/IMBREGILO.jpg", alt: "IMBREGILO" },
+        { src: "assets/constumers/LOGOS/h & m.jpg", alt: "h&m" },
+        { src: "assets/constumers/LOGOS/FOKAS.JPG", alt: "fokas" },
+        { src: "assets/constumers/LOGOS/FOCAL.JPG", alt: "focal" }];
+
 function generateScrollerContent(logos) {
     const scrollerInner = document.querySelector(".scroller__inner");
     logos.forEach(logo => {
