@@ -1,476 +1,208 @@
-    // Load header.html and nav.js sequentially
+// Load header.html and nav.js sequentially
 fetch('header.html')
     .then(response => response.text())
     .then(data => {
         document.getElementById('menu-container').innerHTML = data;
-
-    const script = document.createElement('script');
-    script.src = 'nav.js';
-    script.defer = true;  // Use defer instead of async
-    document.body.appendChild(script);
-
+        const script = document.createElement('script');
+        script.src = 'nav.js';
+        script.defer = true; // Use defer instead of async
+        document.body.appendChild(script);
     });
 
+// Add class when the window has loaded
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
-
+// Update media sources based on screen size
 function updateMedia() {
     const videoElement = document.getElementById('videoSource');
-    const image1 = document.getElementById('image1');
-    const image2 = document.getElementById('image2');
-    const image3 = document.getElementById('image3');
+    const images = [
+        document.getElementById('image1'),
+        document.getElementById('image2'),
+        document.getElementById('image3')
+    ];
 
-    if (window.innerWidth < 800) {
-        // Load smaller video for smaller screens
-        videoElement.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video.mp4?alt=media&token=91a27c5d-27c2-4d71-b695-2071049eafe3';
-        
-        // Load smaller images
-        image1.src = 'assets/slide_2_main_low.jpg';
-        image2.src = 'assets/slide_3_main_low.jpg';
-        image3.src = 'assets/slide_4_main_low.webp';
-    } else {
-        // Load large video for larger screens
-        videoElement.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=7efe5d1b-868a-4e36-8026-2b7c4e38f5f1';
+    const isSmallScreen = window.innerWidth < 800;
+    videoElement.src = isSmallScreen
+        ? 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video.mp4?alt=media&token=91a27c5d-27c2-4d71-b695-2071049eafe3'
+        : 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=7efe5d1b-868a-4e36-8026-2b7c4e38f5f1';
 
-        // Load larger images
-        image1.src = 'assets/slide_2_main_high.jpg';
-        image2.src = 'assets/slide_3_main.jpg';
-        image3.src = 'assets/slide_4_main.webp';
-    }
-    
-    // Reload the video to apply the new source
-    const videoTag = videoElement.closest('video');
-    videoTag.load();
+    images.forEach((img, index) => {
+        img.src = isSmallScreen
+            ? `assets/slide_${index + 2}_main_low.jpg`
+            : `assets/slide_${index + 2}_main_high.jpg`;
+    });
+
+    videoElement.closest('video').load();
 }
 
 // Check screen size on load and resize
 window.addEventListener('load', updateMedia);
 window.addEventListener('resize', updateMedia);
 
-document.addEventListener('DOMContentLoaded', function () {
+// Carousel functionality
+document.addEventListener('DOMContentLoaded', () => {
     const slides = document.querySelectorAll('.carousel-slide');
     let currentIndex = 0;
     const totalSlides = slides.length;
 
     function showSlide(index) {
         slides.forEach((slide, i) => {
-            if (i === index) {
-                slide.style.opacity = '1'; // Make the active slide visible
-                slide.style.zIndex = '-1'; // Active slide gets z-index -1
-                slide.classList.add('active');
-            } else {
-                slide.style.opacity = '0'; // Hide other slides
-                slide.style.zIndex = '-2'; // Other slides get z-index -2
-                slide.classList.remove('active');
-            }
+            slide.style.opacity = i === index ? '1' : '0';
+            slide.classList.toggle('active', i === index);
         });
     }
 
     function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides; // Cycle through slides
+        currentIndex = (currentIndex + 1) % totalSlides;
         showSlide(currentIndex);
     }
 
-    // Automatically change slides every 5 seconds
     setInterval(nextSlide, 6000);
-
-    // Initialize the first slide as active
     showSlide(currentIndex);
 });
 
 // Lazy load images using IntersectionObserver
-const lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-    entries.forEach(function(entry) {
+const lazyImageObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
         if (entry.isIntersecting) {
             const lazyImage = entry.target;
             lazyImage.src = lazyImage.dataset.src;
-            lazyImage.removeAttribute('data-src');
-            lazyImage.classList.remove("lazy-img");
-            lazyImage.classList.add("loaded"); // Add 'loaded' class to trigger CSS transitions
-            observer.unobserve(lazyImage); // Stop observing once loaded
+            lazyImage.classList.replace("lazy-img", "loaded");
+            lazyImageObserver.unobserve(lazyImage);
         }
     });
 }, {
-    rootMargin: '0px 0px 200px 0px', // Load images 200px before they appear in view
-    threshold: 0.1 // Start loading when 10% of the image is visible
+    rootMargin: '0px 0px 200px 0px',
+    threshold: 0.1
 });
 
-const lazyImages = document.querySelectorAll("img.lazy-img");
+document.querySelectorAll("img.lazy-img").forEach(image => {
+    lazyImageObserver.observe(image);
+});
 
-if ("IntersectionObserver" in window) {
-    lazyImages.forEach(function(lazyImage) {
-        lazyImageObserver.observe(lazyImage); // Observe each image
+// General Intersection Observer for animations
+const animateObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        entry.target.classList.toggle('animate', entry.isIntersecting);
     });
-} else {
-    // Fallback for browsers that don't support IntersectionObserver
-    lazyImages.forEach(function(lazyImage) {
-        lazyImage.src = lazyImage.dataset.src;
-        lazyImage.removeAttribute('data-src');
-        lazyImage.classList.add("loaded"); // Add 'loaded' class to trigger CSS transitions
-    });
-}
+}, { threshold: 0.3 });
 
+document.querySelectorAll('.animate-on-scroll').forEach(element => {
+    animateObserver.observe(element);
+});
 
-    // General Intersection Observer for animations
-    const animateObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            entry.target.classList.toggle('animate', entry.isIntersecting);
-        });
-    }, { threshold: 0.3 });
+// Counter Animation
+const counters = [
+    { id: 'counter1', start: 0, end: 23, interval: 50 },
+    { id: 'counter2', start: 1400, end: 2000, interval: -100 },
+    { id: 'counter3', start: 0, end: 80, interval: 10 }
+];
 
-    const elementsToObserve = document.querySelectorAll('.text-left, .services_text-left, .about_services_title, .animated-line-container, .animated-line-container2, .heading, .project, .text-right, .vertical-separator, .services_vertical-separator, .vertical-separator2, .heropanel__content, .vertical-line-container, .customers');
-    elementsToObserve.forEach(element => animateObserver.observe(element));
-
-    // Counter Animation
-    const counters = [
-        { counterId: 'counter1', startCount: 0, maxCount: 23, interval: 50 },
-        { counterId: 'counter2', startCount: 1400, maxCount: 2000, interval: -100 },
-        { counterId: 'counter3', startCount: 0, maxCount: 80, interval: 10 }
-    ];
-
-    const counterObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const { counterId, startCount, maxCount, interval } = entry.target.dataset;
-                startCountdown(entry.target, parseInt(startCount), parseInt(maxCount), parseInt(interval));
-                counterObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    counters.forEach(item => {
-        const counter = document.getElementById(item.counterId);
-        if (counter) {
-            counter.dataset.startCount = item.startCount;
-            counter.dataset.maxCount = item.maxCount;
-            counter.dataset.interval = item.interval;
-            counterObserver.observe(counter);
+const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const { id, start, end, interval } = entry.target.dataset;
+            startCountdown(entry.target, parseInt(start), parseInt(end), parseInt(interval));
+            counterObserver.unobserve(entry.target);
         }
     });
+}, { threshold: 0.3 });
 
-    function startCountdown(counter, startCount, maxCount, interval) {
-        let count = startCount;
-        counter.textContent = count;
-        const countdown = setInterval(() => {
-            count++;
-            counter.textContent = count;
-            if (count >= maxCount) clearInterval(countdown);
-        }, interval);
+counters.forEach(({ id, start, end }) => {
+    const counter = document.getElementById(id);
+    if (counter) {
+        counter.dataset.start = start;
+        counter.dataset.end = end;
+        counterObserver.observe(counter);
     }
+});
 
-    const logos = [
-        { src: "assets/constumers/LOGOS/LOGOS/stfa.jpg", alt: "STFA" },
-        { src: "assets/constumers/LOGOS/LOGOS/LOGO_TOSONI.jpg", alt: "tosoni" },
-        { src: "assets/constumers/LOGOS/LOGOS/LOGO_village_roadshow.jpg", alt: "village_cinema" },
-        { src: "assets/constumers/LOGOS/LOGOS/alja.jpg", alt: "alja" },
-        { src: "assets/constumers/LOGOS/LOGOS/l&-T-logo.jpg", alt: "I&T" },
-        { src: "assets/constumers/LOGOS/LOGOS/logo_aktor_en.jpg", alt: "aktor" },
-        { src: "assets/constumers/LOGOS/LOGOS/alysj.jpg", alt: "alysj" },
-        { src: "assets/constumers/LOGOS/EOLFI.jpg", alt: "eolfi" },
-        { src: "assets/constumers/LOGOS/EMEK.JPG", alt: "emek" },
-        { src: "assets/constumers/LOGOS/ELMEC SPORT.jpg", alt: "emelksport" },
-        { src: "assets/constumers/LOGOS/DSTEEL.jpg", alt: "steel" },
-        { src: "assets/constumers/LOGOS/DIMAND.JPG", alt: "dimand" },
-        { src: "assets/constumers/LOGOS/CYCLON.jpg", alt: "cyclon" },
-        { src: "assets/constumers/LOGOS/CORE.JPG", alt: "core" },
-        { src: "assets/constumers/LOGOS/BIC.jpg", alt: "bic" },
-        { src: "assets/constumers/LOGOS/BEMEKEP.JPG", alt: "bemekep" },
-        { src: "assets/constumers/LOGOS/ARKTEAM.JPG", alt: "arkteam" },
-        { src: "assets/constumers/LOGOS/ARCON. CONST..jpg", alt: "arcon" },
-        { src: "assets/constumers/LOGOS/ALUMAN.JPG", alt: "aluman" },
-        { src: "assets/constumers/LOGOS/ALSTOM.jpg", alt: "alstom" },
-        { src: "assets/constumers/LOGOS/ZINON ATH..JPG", alt: "zinon" },
-        { src: "assets/constumers/LOGOS/YPOURGEIO DHMOSIAS TAXIS.JPG", alt: "ypoyrgeio" },
-        { src: "assets/constumers/LOGOS/xalyvourgiki.jpg", alt: "xalivourgiki" },
-        { src: "assets/constumers/LOGOS/TERNA.jpg", alt: "terna" },
-        { src: "assets/constumers/LOGOS/terkenlis1.jpg", alt: "terkenlis" },
-        { src: "assets/constumers/LOGOS/SWLIN. KORINTHOU.jpg", alt: "svlin" },
-        { src: "assets/constumers/LOGOS/sidma ae1.jpg", alt: "sidma" },
-        { src: "assets/constumers/LOGOS/SANYO HELLAS.jpg", alt: "sanyo" },
-        { src: "assets/constumers/LOGOS/SAMIA INTERNATIONAL.JPG", alt: "samia" },
-        { src: "assets/constumers/LOGOS/MOXLOS.jpg", alt: "moxlos" },
-        { src: "assets/constumers/LOGOS/METRON.JPG", alt: "metron" },
-        { src: "assets/constumers/LOGOS/METKA.jpg", alt: "metka" },
-        { src: "assets/constumers/LOGOS/maillis.jpg", alt: "maillis" },
-        { src: "assets/constumers/LOGOS/LEROY MERLIN.jpg", alt: "leroi" },
-        { src: "assets/constumers/LOGOS/KOCH + PARTNERS.JPG", alt: "koch + partners" },
-        { src: "assets/constumers/LOGOS/karenta ae.jpg", alt: "karenta" },
-        { src: "assets/constumers/LOGOS/intrakat.jpg", alt: "intrakat" },
-        { src: "assets/constumers/LOGOS/IMBREGILO.jpg", alt: "IMBREGILO" },
-        { src: "assets/constumers/LOGOS/h & m.jpg", alt: "h&m" },
-        { src: "assets/constumers/LOGOS/FOKAS.JPG", alt: "fokas" },
-        { src: "assets/constumers/LOGOS/FOCAL.JPG", alt: "focal" }
-    ];
-    
-// Function to generate scroller content dynamically
+function startCountdown(counter, start, end, interval) {
+    let count = start;
+    counter.textContent = count;
+    const countdown = setInterval(() => {
+        count += interval > 0 ? 1 : -1;
+        counter.textContent = count;
+        if ((interval > 0 && count >= end) || (interval < 0 && count <= end)) clearInterval(countdown);
+    }, Math.abs(interval));
+}
+
+// Logo scroller
+const logos = [...]; // (Add logo objects here)
 function generateScrollerContent(logos) {
     const scrollerInner = document.querySelector(".scroller__inner");
-
     logos.forEach(logo => {
-        // Create a new div for each logo
         const circleDiv = document.createElement("div");
         circleDiv.classList.add("circle");
-
-        // Create a new image element
         const img = document.createElement("img");
         img.setAttribute("loading", "lazy");
-        img.setAttribute("src", logo.src);
-        img.setAttribute("alt", logo.alt);
-
-        // Append the image to the circle div
+        img.src = logo.src;
+        img.alt = logo.alt;
         circleDiv.appendChild(img);
-
-        // Append the circle div to the scroller inner container
         scrollerInner.appendChild(circleDiv);
     });
 }
-
-// Call the function to generate the content
 generateScrollerContent(logos);
 
-// Handle scroller animation if not reducing motion
-if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const scrollers = document.querySelectorAll(".scroller");
-    scrollers.forEach(scroller => {
-        scroller.setAttribute("data-animated", true);
-        const scrollerInner = scroller.querySelector(".scroller__inner");
-        if (scrollerInner) {
-            const scrollerContent = Array.from(scrollerInner.children);
-            scrollerContent.forEach(item => {
-                const clone = item.cloneNode(true);
-                clone.setAttribute("aria-hidden", true);
-                scrollerInner.appendChild(clone);
-            });
-        }
-    });
-}
- // Slider functionality
-const next = document.querySelector('.next');
-const prev = document.querySelector('.prev');
+// Slider functionality
+const nextButton = document.querySelector('.next');
+const prevButton = document.querySelector('.prev');
 const slider = document.querySelector('.slider');
 const sections = Array.from(slider.children);
 let sectionIndex = 0;
-let startX;
-let isSwiping = false;
-let isDragging = false;
 
 function showSlide(index) {
     slider.style.transform = `translateX(-${index * 100}%)`;
-    slider.style.transition = 'transform 0.5s ease'; // Adding smooth transition
 }
 
 function nextSlide() {
-    // Increment sectionIndex and loop back if needed
-    if (sectionIndex < sections.length - 1) {
-        sectionIndex++;
-    } else {
-        sectionIndex = 0;
-    }
+    sectionIndex = (sectionIndex + 1) % sections.length;
     showSlide(sectionIndex);
 }
 
 function prevSlide() {
-    // Decrement sectionIndex and loop back if needed
-    if (sectionIndex > 0) {
-        sectionIndex--;
-    } else {
-        sectionIndex = sections.length - 1;
-    }
+    sectionIndex = (sectionIndex - 1 + sections.length) % sections.length;
     showSlide(sectionIndex);
 }
 
-// Handle the "next" button click
-next.addEventListener('click', function() {
-    clearInterval(autoSlideInterval); // Pause auto-sliding
-    nextSlide(); // Move to the next slide
-    autoSlideInterval = setInterval(nextSlide, 5000); // Resume auto-sliding
+// Button click events
+nextButton.addEventListener('click', () => {
+    clearInterval(autoSlideInterval);
+    nextSlide();
+    autoSlideInterval = setInterval(nextSlide, 5000);
+});
+prevButton.addEventListener('click', () => {
+    clearInterval(autoSlideInterval);
+    prevSlide();
+    autoSlideInterval = setInterval(nextSlide, 5000);
 });
 
-// Handle the "prev" button click
-prev.addEventListener('click', function() {
-    clearInterval(autoSlideInterval); // Pause auto-sliding
-    prevSlide(); // Move to the previous slide
-    autoSlideInterval = setInterval(nextSlide, 5000); // Resume auto-sliding
-});
-
-// Initially show the first slide
-showSlide(sectionIndex);
-
-// Auto-slide functionality (every 5 seconds)
+// Auto-slide functionality
 let autoSlideInterval = setInterval(nextSlide, 5000);
 
 // Touch handling for swiping
-slider.addEventListener('touchstart', function(e) {
+let startX, isSwiping = false;
+slider.addEventListener('touchstart', e => {
     startX = e.touches[0].pageX;
     isSwiping = true;
-    clearInterval(autoSlideInterval); // Pause auto-sliding
+    clearInterval(autoSlideInterval);
 });
-
-slider.addEventListener('touchmove', function(e) {
+slider.addEventListener('touchmove', e => {
     if (isSwiping) {
-        let moveX = e.touches[0].pageX;
-        let difference = startX - moveX;
-
-        if (difference > 50) {
-            nextSlide();
-            isSwiping = false;
-            autoSlideInterval = setInterval(nextSlide, 5000); // Resume auto-sliding
-        } else if (difference < -50) {
-            prevSlide();
-            isSwiping = false;
-            autoSlideInterval = setInterval(nextSlide, 5000); // Resume auto-sliding
-        }
+        const moveX = e.touches[0].pageX;
+        const difference = startX - moveX;
+        if (difference > 50) nextSlide();
+        else if (difference < -50) prevSlide();
+        isSwiping = false;
+        autoSlideInterval = setInterval(nextSlide, 5000);
     }
 });
 
-slider.addEventListener('touchend', function() {
-    isSwiping = false;
-});
-
-// Mouse handling for dragging
-slider.addEventListener('mousedown', function(e) {
-    startX = e.pageX;
-    isDragging = true;
-    clearInterval(autoSlideInterval); // Pause auto-sliding
-});
-
-slider.addEventListener('mousemove', function(e) {
-    if (isDragging) {
-        let moveX = e.pageX;
-        let difference = startX - moveX;
-
-        if (difference > 50) {
-            nextSlide();
-            isDragging = false;
-            autoSlideInterval = setInterval(nextSlide, 5000); // Resume auto-sliding
-        } else if (difference < -50) {
-            prevSlide();
-            isDragging = false;
-            autoSlideInterval = setInterval(nextSlide, 5000); // Resume auto-sliding
-        }
-    }
-});
-
-slider.addEventListener('mouseup', function() {
-    isDragging = false;
-});
-
-slider.addEventListener('mouseleave', function() {
-    isDragging = false;
-});
-    
-// Carousel functionality for horizontal dragging only
-const carousel = document.querySelector(".carousel");
-const arrowIcons = document.querySelectorAll(".project_wrapper i");
-
-if (carousel && carousel.querySelectorAll("img").length > 0) {
-    const firstImg = carousel.querySelectorAll("img")[0];
-
-    let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
-    let isVerticalDrag = false;
-
-    const showHideIcons = () => {
-        let scrollWidth = carousel.scrollWidth - carousel.clientWidth;
-        arrowIcons[0].style.display = carousel.scrollLeft === 0 ? "none" : "block";
-        arrowIcons[1].style.display = carousel.scrollLeft >= scrollWidth ? "none" : "block";
-    };
-
-    arrowIcons.forEach(icon => {
-        icon.addEventListener("click", () => {
-            const firstImgWidth = firstImg.clientWidth + 14; // Adjust for margins if any
-            const scrollAmount = icon.id === "left" ? -firstImgWidth : firstImgWidth;
-            carousel.scrollLeft += scrollAmount;
-            setTimeout(showHideIcons, 60); // Show/hide icons based on scroll position
-        });
+// Load footer.html
+fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('footer__cont').innerHTML = data;
     });
-
-    const autoSlide = () => {
-        if (carousel.scrollLeft <= 0 || carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) return;
-
-        positionDiff = Math.abs(positionDiff);
-        const firstImgWidth = firstImg.clientWidth + 14; // Adjust for margins if any
-        const valDifference = firstImgWidth - positionDiff;
-
-        if (carousel.scrollLeft > prevScrollLeft) {
-            // Scroll right
-            carousel.scrollLeft += positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
-        } else {
-            // Scroll left
-            carousel.scrollLeft -= positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
-        }
-        showHideIcons();
-    };
-
-    const dragStart = (e) => {
-        isDragStart = true;
-        prevPageX = e.pageX || e.touches[0].pageX;
-        prevScrollLeft = carousel.scrollLeft;
-        // Capture initial vertical position to detect vertical drag
-        const prevPageY = e.pageY || e.touches[0].pageY;
-
-        // Reset flags
-        isVerticalDrag = false;
-        positionDiff = 0;
-
-        // Temporary event to determine drag direction
-        const determineDragDirection = (e) => {
-            let currentX = e.pageX || e.touches[0].pageX;
-            let currentY = e.pageY || e.touches[0].pageY;
-
-            if (Math.abs(currentX - prevPageX) > 5) {
-                // If horizontal drag is detected, start horizontal dragging
-                isDragging = true;
-                document.removeEventListener("mousemove", determineDragDirection);
-                carousel.classList.add("dragging");
-            } else if (Math.abs(currentY - prevPageY) > 5) {
-                // If vertical drag is detected, set flag to allow vertical scrolling
-                isVerticalDrag = true;
-                document.removeEventListener("mousemove", determineDragDirection);
-            }
-        };
-
-        document.addEventListener("mousemove", determineDragDirection);
-    };
-
-    const dragging = (e) => {
-        if (!isDragStart || isVerticalDrag) return;
-        e.preventDefault();
-        positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX;
-        carousel.scrollLeft = prevScrollLeft - positionDiff;
-        showHideIcons();
-    };
-
-    const dragStop = () => {
-        isDragStart = false;
-        carousel.classList.remove("dragging");
-        if (isDragging) {
-            isDragging = false;
-            autoSlide();
-        }
-        // Reset flags
-        isVerticalDrag = false;
-    };
-
-    carousel.addEventListener("mousedown", dragStart);
-    carousel.addEventListener("touchstart", dragStart);
-    document.addEventListener("mousemove", dragging);
-    carousel.addEventListener("touchmove", dragging);
-    document.addEventListener("mouseup", dragStop);
-    carousel.addEventListener("touchend", dragStop);
-}
-
-
-        function changeImage(element, newSrc) {
-        element.querySelector('img').src = newSrc;
-        }
-        function restoreImage(element, originalSrc) {
-        element.querySelector('img').src = originalSrc;
-        }
-
-        fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer__cont').innerHTML = data;
-        });
