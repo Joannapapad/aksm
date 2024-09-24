@@ -38,15 +38,16 @@ body{
   font-family: Nunito, sans-serif;
 }
 .featured_projects .responsive-container-block {
-  min-height: 75px;
-  height: fit-content;
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 auto;
+    min-height: 300px; /* Adjust based on average content height */
+    height: fit-content; /* Keep if you want it to adjust */
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
 }
+
 
 .featured_projects .container-block {
   min-height: 75px;
