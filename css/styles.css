@@ -1,4 +1,3 @@
-
 html, body {
   height: 100%;
   margin: 0;
@@ -837,19 +836,21 @@ body{
   width: calc(40% - 40px); /* Adjust according to padding and spacing */
 }
 
-/*Separator*/
-
 .separator_backround{
   width: 100%;
   height: 20vh;
-  background: #dfdfdf9e url("../assets/1.webp") no-repeat center center fixed;
+  background: #dfdfdf9e url("../assets/separator_high.png") no-repeat center center fixed;
   background-size: cover;
+}
 
+/* Media query for smaller screens */
+@media (max-width: 800px) {
+  .separator_backround {
+    background-image: url("../assets/separator.jpg"); /* New image for smaller screens */
+  }
 }
 
 /*Project overlay Section*/
-
-
 .project-overlay{
   padding-top: 10%;
   min-height: 100vh;
