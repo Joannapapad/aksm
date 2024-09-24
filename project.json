@@ -134,6 +134,20 @@
         "completionyear": "2024",
         "area": "50m2"
     },
+    { 
+        "id": "2022_032",
+        "title": "Architectural Footprint of Building",
+        "location": "Oinofita, Biotias",
+        "image_front": "assets/portfolio/2024_035_Ballian.ELPE/image_front.jpeg",
+        "description": "",
+        "description2": "",
+        "image1":"assets/portfolio/2024_035_Ballian.ELPE/image1.jpeg",
+        "image2":"assets/portfolio/2024_035_Ballian.ELPE/image_front.jpeg",
+        "typeofproject": "Deformation Monitoring",
+        "typeofproject2":"deformation_monitoring",
+        "completionyear": "2024",
+        "area": "50m2"
+    },
     {
         "id": "2024_034",
         "title": "General Site Topographic Support of 'Hard Rock Hotel & Casino Athens' Project",
@@ -270,7 +284,7 @@
         "image3":"assets/portfolio/2024_013_Ballian_Ant1_MON/image3.jpeg",
         "typeofproject": "Deformation Monitoring",
         "typeofproject2":"deformation_monitoring",
-        "completionyear": "2024",
+        "completionyear": "Ongoing",
         "area": "50m2"
     },
     {
