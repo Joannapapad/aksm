@@ -3,7 +3,6 @@ html, body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body.loaded {
@@ -842,13 +841,27 @@ body{
   width: calc(40% - 40px); /* Adjust according to padding and spacing */
 }
 
-.separator_backround {
-  width: 100%;
-  height: 20vh;
-  background: #dfdfdf9e url("../assets/separator_high.png") no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed; /* Change from fixed to scroll */
-}
+  /* Separator Background Section */
+  .separator_backround {
+    height: 20vh; /* Height of the separator background */
+    position: relative; /* Make it relative for scrolling */
+    overflow: hidden; /* Prevent overflow */
+    z-index: 1; /* Keep it above other content */
+  }
+
+  /* Background image that will move */
+  .separator_bg {
+    background: url('../assets/separator_high.png') no-repeat center center;
+    background-size: cover;
+    position: absolute; /* Allow it to move */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateY(0); /* Initial position */
+    transition: transform 0.3s ease-out; /* Smooth transition */
+  }
+
 
 /* Media query for smaller screens */
 @media (max-width: 800px) {
