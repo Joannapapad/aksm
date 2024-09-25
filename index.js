@@ -14,4 +14,299 @@ const imageUrls = [
 ];
 // Preload images
 preloadImages(imageUrls);
-function updateMedia(){let e=document.getElementById("videoSource"),t=document.getElementById("image1"),s=document.getElementById("image2"),a=document.getElementById("image3"),r=document.getElementById("image4"),n=document.getElementById("image5"),o=document.getElementById("image6"),l=document.getElementById("image7"),i=document.getElementById("image8"),c=document.getElementById("image9"),d=document.getElementById("image10"),g=document.getElementById("image11"),m=document.getElementById("image12");window.innerWidth<800?(e.src="https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video.mp4?alt=media&token=d181133e-6109-44a6-9941-e2cd5c8148fb",t.src="assets/slide_2_main_low.jpg",s.src="assets/slide_3_main_low.jpg",a.src="assets/slide_4_main_low.webp",r.src="assets/aksm_news_5_low.jpg",n.src="assets/aksm_img2_low.jpg",o.src="assets/portfolio/2024_042_Elementengineers.Paros/2024_042_low.jpg",l.src="assets/portfolio/2021_009_Temes.Hilton/2021_009_low.jpg",i.src="assets/portfolio/2022_049_Terna.PwC/2022_049.jpg",c.src="assets/portfolio/2022_062_Terna.Vasiliko.Cyprus/2022_062.jpg",d.src="assets/portfolio/2023_073_Ballian.Noval/2023_073.jpg",g.src="assets/portfolio/2024_039_Metka_Galleria.Riviera/2024_039.jpg",m.src="assets/portfolio/2024_036_Ballian.Avenue_Mon/2024_036.jpg"):(e.src="https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=7efe5d1b-868a-4e36-8026-2b7c4e38f5f1",t.src="assets/slide_2_main_high.jpg",s.src="assets/slide_3_main.jpg",a.src="assets/slide_4_main.webp",r.src="assets/aksm_news_5.jpg",n.src="assets/aksm_img2.jpg",o.src="assets/portfolio/2024_042_Elementengineers.Paros/revit.png",l.src="assets/portfolio/2021_009_Temes.Hilton/image_front.jpg",i.src="assets/portfolio/2022_049_Terna.PwC/image_front.jpg",c.src="assets/portfolio/2022_062_Terna.Vasiliko.Cyprus/image_front.jpg",d.src="assets/portfolio/2023_073_Ballian.Noval/image_front.jpg",g.src="assets/portfolio/2024_039_Metka_Galleria.Riviera/image_front.jpg",m.src="assets/portfolio/2024_036_Ballian.Avenue_Mon/image_front.jpg");let u=e.closest("video");u.load()}fetch("header.html").then(e=>e.text()).then(e=>{document.getElementById("menu-container").innerHTML=e;let t=document.createElement("script");t.src="nav.js",t.defer=!0,document.body.appendChild(t)}),window.addEventListener("load",()=>{document.body.classList.add("loaded")}),window.addEventListener("load",updateMedia),window.addEventListener("resize",updateMedia),document.addEventListener("DOMContentLoaded",function(){let e=document.querySelectorAll(".carousel-slide"),t=0,s=e.length;function a(t){e.forEach((e,s)=>{s===t?(e.style.opacity="1",e.style.zIndex="-1",e.classList.add("active")):(e.style.opacity="0",e.style.zIndex="-2",e.classList.remove("active"))})}setInterval(function e(){a(t=(t+1)%s)},6e3),a(t)});const animateObserver=new IntersectionObserver(e=>{e.forEach(e=>{e.target.classList.toggle("animate",e.isIntersecting)})},{threshold:.3}),elementsToObserve=document.querySelectorAll(".text-left, .services_text-left, .about_services_title, .animated-line-container, .animated-line-container2, .heading, .project, .text-right, .vertical-separator, .services_vertical-separator, .vertical-separator2, .heropanel__content, .vertical-line-container, .customers");elementsToObserve.forEach(e=>animateObserver.observe(e));const counters=[{counterId:"counter1",startCount:0,maxCount:23,interval:50},{counterId:"counter2",startCount:1400,maxCount:2e3,interval:-100},{counterId:"counter3",startCount:0,maxCount:80,interval:10}],counterObserver=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){let{counterId:t,startCount:s,maxCount:a,interval:r}=e.target.dataset;startCountdown(e.target,parseInt(s),parseInt(a),parseInt(r)),counterObserver.unobserve(e.target)}})},{threshold:.3});function startCountdown(e,t,s,a){let r=t;e.textContent=r;let n=setInterval(()=>{r++,e.textContent=r,r>=s&&clearInterval(n)},a)}counters.forEach(e=>{let t=document.getElementById(e.counterId);t&&(t.dataset.startCount=e.startCount,t.dataset.maxCount=e.maxCount,t.dataset.interval=e.interval,counterObserver.observe(t))});const logos=[{src:"assets/constumers/LOGOS/LOGOS/stfa.jpg",alt:"STFA"},{src:"assets/constumers/LOGOS/LOGOS/LOGO_TOSONI.jpg",alt:"tosoni"},{src:"assets/constumers/LOGOS/LOGOS/LOGO_village_roadshow.jpg",alt:"village_cinema"},{src:"assets/constumers/LOGOS/LOGOS/alja.jpg",alt:"alja"},{src:"assets/constumers/LOGOS/LOGOS/l&-T-logo.jpg",alt:"I&T"},{src:"assets/constumers/LOGOS/LOGOS/logo_aktor_en.jpg",alt:"aktor"},{src:"assets/constumers/LOGOS/LOGOS/alysj.jpg",alt:"alysj"},{src:"assets/constumers/LOGOS/EOLFI.jpg",alt:"eolfi"},{src:"assets/constumers/LOGOS/EMEK.JPG",alt:"emek"},{src:"assets/constumers/LOGOS/ELMEC SPORT.jpg",alt:"emelksport"},{src:"assets/constumers/LOGOS/DSTEEL.jpg",alt:"steel"},{src:"assets/constumers/LOGOS/DIMAND.JPG",alt:"dimand"},{src:"assets/constumers/LOGOS/CYCLON.jpg",alt:"cyclon"},{src:"assets/constumers/LOGOS/CORE.JPG",alt:"core"},{src:"assets/constumers/LOGOS/BIC.jpg",alt:"bic"},{src:"assets/constumers/LOGOS/BEMEKEP.JPG",alt:"bemekep"},{src:"assets/constumers/LOGOS/ARKTEAM.JPG",alt:"arkteam"},{src:"assets/constumers/LOGOS/ARCON. CONST..jpg",alt:"arcon"},{src:"assets/constumers/LOGOS/ALUMAN.JPG",alt:"aluman"},{src:"assets/constumers/LOGOS/alstom.jpg",alt:"alstom"},{src:"assets/constumers/LOGOS/ZINON ATH..JPG",alt:"zinon"},{src:"assets/constumers/LOGOS/YPOURGEIO DHMOSIAS TAXIS.JPG",alt:"ypoyrgeio"},{src:"assets/constumers/LOGOS/xalyvourgiki.jpg",alt:"xalivourgiki"},{src:"assets/constumers/LOGOS/TERNA.jpg",alt:"terna"},{src:"assets/constumers/LOGOS/terkenlis1.jpg",alt:"terkenlis"},{src:"assets/constumers/LOGOS/SWLIN. KORINTHOU.jpg",alt:"svlin"},{src:"assets/constumers/LOGOS/sidma ae1.jpg",alt:"sidma"},{src:"assets/constumers/LOGOS/SANYO HELLAS.jpg",alt:"sanyo"},{src:"assets/constumers/LOGOS/SAMIA INTERNATIONAL.JPG",alt:"samia"},{src:"assets/constumers/LOGOS/MOXLOS.jpg",alt:"moxlos"},{src:"assets/constumers/LOGOS/METRON.JPG",alt:"metron"},{src:"assets/constumers/LOGOS/METKA.jpg",alt:"metka"},{src:"assets/constumers/LOGOS/maillis.jpg",alt:"maillis"},{src:"assets/constumers/LOGOS/LEROY MERLIN.jpg",alt:"leroi"},{src:"assets/constumers/LOGOS/KOCH + PARTNERS.JPG",alt:"koch + partners"},{src:"assets/constumers/LOGOS/karenta ae.jpg",alt:"karenta"},{src:"assets/constumers/LOGOS/intrakat.jpg",alt:"intrakat"},{src:"assets/constumers/LOGOS/IMBREGILO.jpg",alt:"IMBREGILO"},{src:"assets/constumers/LOGOS/h & m.jpg",alt:"h&m"},{src:"assets/constumers/LOGOS/FOKAS.JPG",alt:"fokas"},{src:"assets/constumers/LOGOS/FOCAL.JPG",alt:"focal"}];function generateScrollerContent(e){let t=document.querySelector(".scroller__inner");e.forEach(e=>{let s=document.createElement("div");s.classList.add("circle");let a=document.createElement("img");a.setAttribute("loading","lazy"),a.setAttribute("src",e.src),a.setAttribute("alt",e.alt),s.appendChild(a),t.appendChild(s)})}if(generateScrollerContent(logos),!window.matchMedia("(prefers-reduced-motion: reduce)").matches){let e=document.querySelectorAll(".scroller");e.forEach(e=>{e.setAttribute("data-animated",!0);let t=e.querySelector(".scroller__inner");if(t){let s=Array.from(t.children);s.forEach(e=>{let s=e.cloneNode(!0);s.setAttribute("aria-hidden",!0),t.appendChild(s)})}})}const next=document.querySelector(".next"),prev=document.querySelector(".prev"),slider=document.querySelector(".slider"),sections=Array.from(slider.children);let sectionIndex=0,startX,isSwiping=!1,isDragging=!1;function showSlide(e){slider.style.transform=`translateX(-${100*e}%)`,slider.style.transition="transform 0.5s ease"}function nextSlide(){sectionIndex<sections.length-1?sectionIndex++:sectionIndex=0,showSlide(sectionIndex)}function prevSlide(){sectionIndex>0?sectionIndex--:sectionIndex=sections.length-1,showSlide(sectionIndex)}next.addEventListener("click",function(){clearInterval(autoSlideInterval),nextSlide(),autoSlideInterval=setInterval(nextSlide,5e3)}),prev.addEventListener("click",function(){clearInterval(autoSlideInterval),prevSlide(),autoSlideInterval=setInterval(nextSlide,5e3)}),showSlide(sectionIndex);let autoSlideInterval=setInterval(nextSlide,5e3);slider.addEventListener("touchstart",function(e){startX=e.touches[0].pageX,isSwiping=!0,clearInterval(autoSlideInterval)}),slider.addEventListener("touchmove",function(e){if(isSwiping){let t=startX-e.touches[0].pageX;t>50?(nextSlide(),isSwiping=!1,autoSlideInterval=setInterval(nextSlide,5e3)):t<-50&&(prevSlide(),isSwiping=!1,autoSlideInterval=setInterval(nextSlide,5e3))}}),slider.addEventListener("touchend",function(){isSwiping=!1}),slider.addEventListener("mousedown",function(e){startX=e.pageX,isDragging=!0,clearInterval(autoSlideInterval)}),slider.addEventListener("mousemove",function(e){if(isDragging){let t=startX-e.pageX;t>50?(nextSlide(),isDragging=!1,autoSlideInterval=setInterval(nextSlide,5e3)):t<-50&&(prevSlide(),isDragging=!1,autoSlideInterval=setInterval(nextSlide,5e3))}}),slider.addEventListener("mouseup",function(){isDragging=!1}),slider.addEventListener("mouseleave",function(){isDragging=!1});const carousel=document.querySelector(".carousel"),arrowIcons=document.querySelectorAll(".project_wrapper i");if(carousel&&carousel.querySelectorAll("img").length>0){let t=carousel.querySelectorAll("img")[0],s=()=>{let e=carousel.scrollWidth-carousel.clientWidth;arrowIcons[0].style.display=0===carousel.scrollLeft?"none":"block",arrowIcons[1].style.display=carousel.scrollLeft>=e?"none":"block"};arrowIcons.forEach(e=>{e.addEventListener("click",()=>{let a=t.clientWidth+14,r="left"===e.id?-a:a;carousel.scrollLeft+=r,setTimeout(s,60)})}),s()}function changeImage(e,t){e.querySelector("img").src=t}function restoreImage(e,t){e.querySelector("img").src=t}fetch("footer.html").then(e=>e.text()).then(e=>{document.getElementById("footer__cont").innerHTML=e});
+// Load header.html and nav.js sequentially
+fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('menu-container').innerHTML = data;
+
+        const script = document.createElement('script');
+        script.src = 'nav.js';
+        script.defer = true;  // Use defer instead of async
+        document.body.appendChild(script);
+    });
+
+// Add loaded class to body on window load
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+});
+
+// JavaScript for Parallax Effect
+function updateMedia() {
+    const videoElement = document.getElementById('videoSource');
+    const images = Array.from({ length: 12 }, (_, i) => document.getElementById(`image${i + 1}`));
+
+    const isSmallScreen = window.innerWidth < 800;
+    videoElement.src = isSmallScreen
+        ? 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video.mp4?alt=media&token=d181133e-6109-44a6-9941-e2cd5c8148fb'
+        : 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=7efe5d1b-868a-4e36-8026-2b7c4e38f5f1';
+
+    const basePath = isSmallScreen ? 'low' : 'high';
+    const imagesSrc = [
+        'slide_2_main', 'slide_3_main', 'slide_4_main.webp', 
+        'aksm_news_5', 'aksm_img2', 
+        '2024_042_Elementengineers.Paros/revit.png', 
+        '2021_009_Temes.Hilton/image_front.jpg', 
+        '2022_049_Terna.PwC/image_front.jpg', 
+        '2022_062_Terna.Vasiliko.Cyprus/image_front.jpg', 
+        '2023_073_Ballian.Noval/image_front.jpg', 
+        '2024_039_Metka_Galleria.Riviera/image_front.jpg', 
+        '2024_036_Ballian.Avenue_Mon/image_front.jpg'
+    ].map(name => `assets/${name}_${basePath}.jpg`);
+
+    images.forEach((img, index) => {
+        img.src = imagesSrc[index];
+    });
+
+    // Reload the video to apply the new source
+    videoElement.closest('video').load();
+}
+
+// Check screen size on load and resize
+window.addEventListener('load', updateMedia);
+window.addEventListener('resize', updateMedia);
+
+// Carousel Functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.opacity = (i === index) ? '1' : '0';
+            slide.style.zIndex = (i === index) ? '-1' : '-2';
+            slide.classList.toggle('active', i === index);
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    }
+
+    // Automatically change slides every 6 seconds
+    setInterval(nextSlide, 6000);
+    showSlide(currentIndex);
+});
+
+// Intersection Observer for animations
+const animateObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        entry.target.classList.toggle('animate', entry.isIntersecting);
+    });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.text-left, .services_text-left, .about_services_title, .animated-line-container, .animated-line-container2, .heading, .project, .text-right, .vertical-separator, .services_vertical-separator, .vertical-separator2, .heropanel__content, .vertical-line-container, .customers').forEach(element => {
+    animateObserver.observe(element);
+});
+
+// Counter Animation
+const counters = [
+    { counterId: 'counter1', startCount: 0, maxCount: 23, interval: 50 },
+    { counterId: 'counter2', startCount: 1400, maxCount: 2000, interval: -100 },
+    { counterId: 'counter3', startCount: 0, maxCount: 80, interval: 10 }
+];
+
+const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const { startCount, maxCount, interval } = entry.target.dataset;
+            startCountdown(entry.target, parseInt(startCount), parseInt(maxCount), parseInt(interval));
+            counterObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.3 });
+
+counters.forEach(item => {
+    const counter = document.getElementById(item.counterId);
+    if (counter) {
+        counter.dataset.startCount = item.startCount;
+        counter.dataset.maxCount = item.maxCount;
+        counter.dataset.interval = item.interval;
+        counterObserver.observe(counter);
+    }
+});
+
+function startCountdown(counter, startCount, maxCount, interval) {
+    let count = startCount;
+    counter.textContent = count;
+    const countdown = setInterval(() => {
+        count++;
+        counter.textContent = count;
+        if (count >= maxCount) clearInterval(countdown);
+    }, interval);
+}
+
+// Logo Scroller
+const logos = [
+    { src: "assets/constumers/LOGOS/LOGOS/stfa.jpg", alt: "STFA" },
+    { src: "assets/constumers/LOGOS/LOGOS/LOGO_TOSONI.jpg", alt: "tosoni" },
+    { src: "assets/constumers/LOGOS/LOGOS/LOGO_village_roadshow.jpg", alt: "village_cinema" },
+    { src: "assets/constumers/LOGOS/LOGOS/alja.jpg", alt: "alja" },
+    { src: "assets/constumers/LOGOS/LOGOS/l&-T-logo.jpg", alt: "I&T" },
+    { src: "assets/constumers/LOGOS/LOGOS/logo_aktor_en.jpg", alt: "aktor" },
+    { src: "assets/constumers/LOGOS/LOGOS/alysj.jpg", alt: "alysj" },
+    { src: "assets/constumers/LOGOS/EOLFI.jpg", alt: "eolfi" },
+    { src: "assets/constumers/LOGOS/EMEK.JPG", alt: "emek" },
+    { src: "assets/constumers/LOGOS/ELMEC SPORT.jpg", alt: "emelksport" },
+    { src: "assets/constumers/LOGOS/DSTEEL.jpg", alt: "steel" },
+    { src: "assets/constumers/LOGOS/DIMAND.JPG", alt: "dimand" },
+    { src: "assets/constumers/LOGOS/CYCLON.jpg", alt: "cyclon" },
+    { src: "assets/constumers/LOGOS/CORE.JPG", alt: "core" },
+    { src: "assets/constumers/LOGOS/BIC.jpg", alt: "bic" },
+    { src: "assets/constumers/LOGOS/BEMEKEP.JPG", alt: "bemekep" },
+    { src: "assets/constumers/LOGOS/ARKTEAM.JPG", alt: "arkteam" },
+    { src: "assets/constumers/LOGOS/ARCON. CONST..jpg", alt: "arcon" },
+    { src: "assets/constumers/LOGOS/ALUMAN.JPG", alt: "aluman" },
+    { src: "assets/constumers/LOGOS/alstom.jpg", alt: "alstom" },
+    { src: "assets/constumers/LOGOS/ZINON ATH..JPG", alt: "zinon" },
+    { src: "assets/constumers/LOGOS/YPOURGEIO DHMOSIAS TAXIS.JPG", alt: "ypoyrgeio" },
+    { src: "assets/constumers/LOGOS/xalyvourgiki.jpg", alt: "xalivourgiki" },
+    { src: "assets/constumers/LOGOS/TERNA.jpg", alt: "terna" },
+    { src: "assets/constumers/LOGOS/terkenlis1.jpg", alt: "terkenlis" },
+    { src: "assets/constumers/LOGOS/SWLIN. KORINTHOU.jpg", alt: "svlin" },
+    { src: "assets/constumers/LOGOS/sidma ae1.jpg", alt: "sidma" },
+    { src: "assets/constumers/LOGOS/SANYO HELLAS.jpg", alt: "sanyo" },
+    { src: "assets/constumers/LOGOS/SAMIA INTERNATIONAL.JPG", alt: "samia" },
+    { src: "assets/constumers/LOGOS/MOXLOS.jpg", alt: "moxlos" },
+    { src: "assets/constumers/LOGOS/METRON.JPG", alt: "metron" },
+    { src: "assets/constumers/LOGOS/METKA.jpg", alt: "metka" },
+    { src: "assets/constumers/LOGOS/maillis.jpg", alt: "maillis" },
+    { src: "assets/constumers/LOGOS/LEROY MERLIN.jpg", alt: "leroi" },
+    { src: "assets/constumers/LOGOS/KOCH + PARTNERS.JPG", alt: "koch + partners" },
+    { src: "assets/constumers/LOGOS/karenta ae.jpg", alt: "karenta" },
+    { src: "assets/constumers/LOGOS/intrakat.jpg", alt: "intrakat" },
+    { src: "assets/constumers/LOGOS/IMBREGILO.jpg", alt: "IMBREGILO" },
+    { src: "assets/constumers/LOGOS/h & m.jpg", alt: "h&m" },
+    { src: "assets/constumers/LOGOS/FOKAS.JPG", alt: "fokas" },
+    { src: "assets/constumers/LOGOS/FOCAL.JPG", alt: "focal" }
+];
+
+// Function to generate scroller content dynamically
+function generateScrollerContent(logos) {
+    const scrollerInner = document.querySelector(".scroller__inner");
+    logos.forEach(logo => {
+        const circleDiv = document.createElement("div");
+        circleDiv.classList.add("circle");
+
+        const img = document.createElement("img");
+        img.setAttribute("loading", "lazy");
+        img.setAttribute("src", logo.src);
+        img.setAttribute("alt", logo.alt);
+
+        circleDiv.appendChild(img);
+        scrollerInner.appendChild(circleDiv);
+    });
+}
+
+generateScrollerContent(logos);
+
+// Handle scroller animation
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const scrollers = document.querySelectorAll(".scroller");
+    scrollers.forEach(scroller => {
+        scroller.setAttribute("data-animated", true);
+        const scrollerInner = scroller.querySelector(".scroller__inner");
+        if (scrollerInner) {
+            Array.from(scrollerInner.children).forEach(item => {
+                const clone = item.cloneNode(true);
+                clone.setAttribute("aria-hidden", true);
+                scrollerInner.appendChild(clone);
+            });
+        }
+    });
+}
+
+// Slider functionality
+const nextButton = document.querySelector('.next');
+const prevButton = document.querySelector('.prev');
+const slider = document.querySelector('.slider');
+const sections = Array.from(slider.children);
+let sectionIndex = 0;
+
+function showSlide(index) {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+    slider.style.transition = 'transform 0.5s ease'; // Adding smooth transition
+}
+
+function nextSlide() {
+    sectionIndex = (sectionIndex + 1) % sections.length;
+    showSlide(sectionIndex);
+}
+
+function prevSlide() {
+    sectionIndex = (sectionIndex - 1 + sections.length) % sections.length;
+    showSlide(sectionIndex);
+}
+
+let autoSlideInterval = setInterval(nextSlide, 5000);
+
+nextButton.addEventListener('click', () => {
+    clearInterval(autoSlideInterval);
+    nextSlide();
+    autoSlideInterval = setInterval(nextSlide, 5000);
+});
+
+prevButton.addEventListener('click', () => {
+    clearInterval(autoSlideInterval);
+    prevSlide();
+    autoSlideInterval = setInterval(nextSlide, 5000);
+});
+
+// Touch handling for swiping
+let startX;
+slider.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].pageX;
+    clearInterval(autoSlideInterval);
+});
+
+slider.addEventListener('touchmove', (e) => {
+    const moveX = e.touches[0].pageX;
+    const difference = startX - moveX;
+    if (difference > 50) {
+        nextSlide();
+    } else if (difference < -50) {
+        prevSlide();
+    }
+});
+
+slider.addEventListener('mousedown', (e) => {
+    startX = e.pageX;
+    clearInterval(autoSlideInterval);
+});
+
+slider.addEventListener('mousemove', (e) => {
+    if (e.buttons) {
+        const moveX = e.pageX;
+        const difference = startX - moveX;
+        if (difference > 50) {
+            nextSlide();
+        } else if (difference < -50) {
+            prevSlide();
+        }
+    }
+});
+
+// Carousel functionality for moving images only with buttons
+const carousel = document.querySelector(".carousel");
+const arrowIcons = document.querySelectorAll(".project_wrapper i");
+
+if (carousel) {
+    const firstImg = carousel.querySelectorAll("img")[0];
+
+    const showHideIcons = () => {
+        const scrollWidth = carousel.scrollWidth - carousel.clientWidth;
+        arrowIcons[0].style.display = carousel.scrollLeft === 0 ? "none" : "block";
+        arrowIcons[1].style.display = carousel.scrollLeft >= scrollWidth ? "none" : "block";
+    };
+
+    arrowIcons.forEach(icon => {
+        icon.addEventListener("click", () => {
+            carousel.scrollLeft += icon.id === "left" ? -firstImg.clientWidth : firstImg.clientWidth;
+            setTimeout(showHideIcons, 50);
+        });
+    });
+
+    carousel.addEventListener("scroll", showHideIcons);
+    showHideIcons();
+}
