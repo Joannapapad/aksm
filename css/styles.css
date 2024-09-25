@@ -1,4 +1,4 @@
-sehtml, body {
+html, body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -856,6 +856,7 @@ body{
     background-image: url("../assets/separator.jpg"); /* New image for smaller screens */
     background-attachment: scroll; /* Ensure this is also set for mobile */
   }
+}
 /*Project overlay Section*/
 .project-overlay{
   padding-top: 10%;
