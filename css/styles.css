@@ -847,7 +847,7 @@ body{
   height: 20vh;
   background: #dfdfdf9e url("../assets/separator_high.png") no-repeat center center;
   background-size: cover;
-  background-attachment: scroll; /* Change from fixed to scroll */
+  background-attachment: fixed; /* Change from fixed to scroll */
 }
 
 /* Media query for smaller screens */
