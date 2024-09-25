@@ -841,29 +841,13 @@ body{
 .heading.animate .c_line2 {
   width: calc(40% - 40px); /* Adjust according to padding and spacing */
 }
-
-  /* Separator Background Section */
-  .separator_backround {
-    height: 20vh; /* Height of the separator background */
-    position: relative; /* Make it relative for scrolling */
-    overflow: hidden; /* Prevent overflow */
-    z-index: 1; /* Keep it above other content */
-  }
-
-  /* Background image that will move */
-  .separator_bg {
-    background: url('../assets/separator_high.png') no-repeat center center;
-    background-size: cover;
-    position: absolute; /* Allow it to move */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: translateY(0); /* Initial position */
-    transition: transform 0.3s ease-out; /* Smooth transition */
-  }
-
-
+.separator_backround {
+  width: 100%;
+  height: 20vh;
+  background: #dfdfdf9e url("../assets/separator_high.png") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed; /* Change from fixed to scroll */
+}
 /* Media query for smaller screens */
 @media (max-width: 800px) {
   .separator_backround {
