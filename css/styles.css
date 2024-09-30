@@ -766,7 +766,7 @@ body {
 .separator_background {
     width: 100%;
     height: 20vh;
-    background: linear-gradient(180deg, #adb0b6, #3e3d3d);
+background: url("../assets/separator_high.png") center center/cover no-repeat fixed #dfdfdf9e;  
 }
 
 @media (max-width:800px) {
