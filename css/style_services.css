@@ -23,11 +23,7 @@ opacity: 1;
   background: url("../assets/separator_high.png") center center/cover no-repeat fixed #dfdfdf9e;       
 }
 /* Media query for smaller screens */
-@media (max-width: 800px) {
-  .separator3_backround {
-    background: url("../assets/separator.jpg") center center/cover  no-repeat fixed #dfdfdf9e;       
-  }
-}
+
 
 
 .service-container {
