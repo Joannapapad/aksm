@@ -18,23 +18,6 @@ visibility: visible;
 opacity: 1;
 }
 
-
-.scroll_top {
-display: block;
-position: fixed;
-z-index: 9999;
-width: 4vw;
-aspect-ratio: 1;
-background-position: center;
-background-repeat: no-repeat;
-background-size: 5rem;
-background-color: transparent;
-right: 2rem;
-background-size: 4rem 4rem; /* Adjust the background size */
-bottom: 2rem;
-border: 0;
-}
-
 .separator3_backround {
   width: 100%;
   height: 20vh;
