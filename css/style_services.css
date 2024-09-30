@@ -38,16 +38,12 @@ border: 0;
 .separator3_backround {
   width: 100%;
   height: 20vh;
-  background: #dfdfdf9e url("../assets/separator_high.png") no-repeat center center fixed;
-  background-size: cover;
-  object-fit: cover;
-  align-self: center;
+  background: url("../assets/separator_high.png") center center/cover no-repeat fixed #dfdfdf9e;       
 }
-
 /* Media query for smaller screens */
 @media (max-width: 800px) {
   .separator3_backround {
-    background-image: url("../assets/separator.jpg"); /* New image for smaller screens */
+    background: url("../assets/separator.jpg") center center/cover no-repeat fixed #dfdfdf9e;       
   }
 }
 .service-container {
