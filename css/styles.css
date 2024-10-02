@@ -837,6 +837,9 @@ body{
   right: 60%;
   width: 0;
 }
+.head{
+ font-weight:500;
+}
 
 .heading.animate .c_line1,
 .heading.animate .c_line2 {
