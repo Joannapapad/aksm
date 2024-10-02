@@ -17,7 +17,7 @@ body {
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   padding: 0;
-  background: #ffffff9e url("assets/services/const_23.webp") no-repeat center center fixed;
+  background: #ffffff9e url("assets/services/const_23 (3).webp") no-repeat center center fixed;
   background-size: cover;
   z-index: -1; 
   width: 100%;
@@ -383,29 +383,63 @@ hr {
     <h1 class="section-header">Contact Us</h1>
     
     <div class="contact-wrapper">
-    
     <!-- Left contact page --> 
-        <form action="https://api.web3forms.com/submit" method="POST" class="form-horizontal">
+<form id="contactForm" method="POST" class="form-horizontal">
 
-          <!-- Replace with your Access Key -->
-          <input type="hidden" name="access_key" value="0639744f-bb7a-4294-8a20-d009692cd474">
-      
-          <!-- Form Inputs. Each input must have a name="" attribute -->
-          <input type="text" name="name" placeholder="Your Name" class="contact-inputs" required >
-          <input type="email" name="email" placeholder="Your Email" class="contact-inputs" required>
-          <textarea name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
-      
-          <!-- Honeypot Spam Protection -->
-          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-      
-          <!-- Custom Confirmation / Success Page -->
-          <!-- <input type="hidden" name="redirect" value="https://mywebsite.com/thanks.html"> -->
-      
-            <button type="submit">Submit Form</button>
-        
-        </form>
+  <!-- Replace with your Access Key -->
+  <input type="hidden" name="access_key" value="0639744f-bb7a-4294-8a20-d009692cd474">
 
-      
+  <!-- Form Inputs. Each input must have a name="" attribute -->
+  <input type="text" name="name" placeholder="Your Name" class="contact-inputs" required>
+  <input type="email" name="email" placeholder="Your Email" class="contact-inputs" required>
+  <textarea name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
+
+  <!-- Honeypot Spam Protection -->
+  <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+  <!-- Confirmation message div (hidden by default) -->
+  <div id="successMessage" style="display:none; font-family:Arial; color: rgb(94, 93, 93);">
+    Thank You for contacting us!<br> We will come in contact with you as soon as Possible! 
+  </div>
+
+  <!-- Error message div (hidden by default) -->
+  <div id="errorMessage" style="display:none; font-family:Arial; color: red;">
+    Something went wrong, please try again later.
+  </div>
+
+  <button type="submit">Submit Form</button>
+
+</form>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    try {
+      // Use fetch to submit the form data
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (response.ok) {
+        // Show success message
+        document.getElementById('successMessage').style.display = 'block';
+        form.reset(); // Reset form after successful submission
+      } else {
+        // Show error message
+        document.getElementById('errorMessage').style.display = 'block';
+      }
+    } catch (error) {
+      // Show error message if the fetch fails
+      document.getElementById('errorMessage').style.display = 'block';
+    }
+  });
+</script>
+
     <!-- Left contact page --> 
       
         <div class="direct-contact-container">
