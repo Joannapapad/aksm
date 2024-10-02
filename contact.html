@@ -17,7 +17,7 @@ body {
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   padding: 0;
-  background: #ffffff9e url("assets/services/const_23.webp") no-repeat center center fixed;
+  background: #ffffff9e url("assets/services/const_23 (3).webp") no-repeat center center fixed;
   background-size: cover;
   z-index: -1; 
   width: 100%;
@@ -30,9 +30,9 @@ body {
 body.loaded {
   visibility: visible;
   opacity: 1;
+  width: 100%;
+  height: 100%;
 }
-
-
 
 #contact {
   min-height: 100vh;
@@ -45,7 +45,6 @@ body.loaded {
   background-color: #9e959558;
 
 }
-
 
 .section-header {
   text-align: center;
@@ -74,44 +73,67 @@ body.loaded {
 
 .contact-wrapper {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
   margin: 0 auto;
   padding: 80px;
   position: relative;
-  max-width: 1100px;
-
+  max-width: 1200px;
   background-color: #f3f3f3;
 }
 
 .form-horizontal {
+  display: flex;
   min-width: 250px;
   width: 50%;
   font-family: 'Lato';
   font-weight: 400;
-  
-}
-.form-control, 
-textarea {
-  min-width: 250px;
-  width:98%;
-  border: 0;  
-  background: #f3f3f3;
-  border-bottom: 2px solid #000;  
-  margin-bottom: 2em;  
-  font-size: 0.9em;  
-  padding: 0.5em 0.25rem;  
-
+  align-items: start;
+  flex-direction: column;
+  gap: 20px;
 }
 
+.contact-inputs{
+  width: 400px;
+  padding-left: 25px;
+  height:50px;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  color: #f3f3f3;
+  border-radius: 30px;
+  margin: 0;
+  color: #000;
 
-.form-control, 
-textarea:focus {  
-  border: 0;  
-  outline: 0;  
-  border-bottom: 1px solid #000;  
-}  
+}
 
+.form-horizontal textarea{
+  height: 140px;
+  padding-top: 15px;
+  border-radius: 20px;
+  color: #000;
+}
+
+.contact-inputs:focus{
+  border: 2px solid #585252ea;
+}
+
+.contact-inputs::placeholder{
+  color: #a9a9a9;
+}
+
+.form-horizontal button{
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+  font-size: 16px;
+  color: #f3f3f3;
+  gap: 10px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(270deg,#555 ,#585252ea);
+  cursor: pointer;
+}
 
 .send-button {
   margin-top: 15px;
@@ -121,30 +143,6 @@ textarea:focus {
   width: 100%;
   overflow: hidden;
   transition: all .2s ease-in-out;
-}
-
-.alt-send-button {
-  min-width: 250px;
-  height: 34px;
-  text-align: center;
-  transition: all .2s ease-in-out;
-}
-
-.send-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 9px;
-  font: 700 12px 'Lato', sans-serif;
-  letter-spacing: 2px;
-  text-align: center;
-  min-width: 250px;
-  color: #f3f3f3;
-
-}
-
-.alt-send-button:hover {
-  transform: translate3d(0px, -29px, 0px);
 }
 
 /* Begin Right Contact Page */
@@ -182,7 +180,6 @@ textarea:focus {
   color: #bbb;
   text-decoration: none;
 }
-
 
 /* Social Media Icons */
 .social-media-list {
@@ -249,33 +246,23 @@ hr {
 }
 
 
-@media(max-width:850px){
+/* Begin Media Queries*/
+@media (max-width: 850px) {
   #contact {
     padding-top: 0vh;
   }
 
-  .form-group{
-    font-size: 0.6em;
-  }
-  .social-media-list li {
-    height: 50px;
-    width: 50px;
-    line-height: 60px;
-  }
   .contact-text{
     font-size: 0.9em;
   }
   .form-horizontal {
-  min-width: 250px;
-  width: 80%;
-
-  
+    min-width: 150px;
+    width: 80%;
 }
 
+.contact-inputs{
+  width: 90%;
 }
-
-/* Begin Media Queries*/
-@media screen and (max-width: 850px) {
   .contact-wrapper {
     display: flex;
     flex-direction: column;
@@ -290,30 +277,32 @@ hr {
     margin-top: 60px;
     max-width: 400px;
   }    
-  .social-media-list li {
-    height: 60px;
-    width: 60px;
-    line-height: 60px;
+  .social-media-list li{
+    height: 10px;
+    width: 40px;
+    line-height: 50px;
   }
-  .social-media-list li:after {
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
-  }
-  
-}
 
-@media (max-width:850px){
   .section-header{
     font-size: 1.3em;
     padding-top: 3em;
   }
+
+  .contact-icon img{
+    width: 45px;
+  }
+
 }
 @media (max-width:650px){
   .section-header{
     font-size: 1em;
     padding-top: 2em;
   }
+
+  .contact-icon img{
+    width: 45px;
+  }
+
   
 }
 @media screen and (max-width: 569px) {
@@ -322,16 +311,7 @@ hr {
     float: none;
     margin: 0 auto;
   }  
-  .form-control, textarea {
-    
-    margin: 0 auto;
-  }
- 
-  
-  .name, .email, textarea {
-    width: 280px;
-  } 
-  
+
   .direct-contact-container {
     margin-top: 60px;
     max-width: 280px;
@@ -339,29 +319,23 @@ hr {
   .social-media-list {
     left: 0;
   }
-  .social-media-list li {
-    height: 55px;
-    width: 55px;
-    line-height: 55px;
-    font-size: 2rem;
+  .contact-icon img{
+    width: 40px;
   }
-  .social-media-list li:after {
-    width: 55px;
-    height: 55px;
-    line-height: 55px;
-  }
-  
 }
+
 
 
 @media screen and (max-width: 520px) {
   .contact-wrapper {
     padding: 15px;
   }
-  .form-control, textarea {
-    min-width: 280px;
-    width: 100%;
+
+  .contact-inputs {
+    min-width: 200px;
+    width: 90%;  
   }
+
   .send-button {
     width: 100%;
   }
@@ -373,7 +347,9 @@ hr {
     margin-left: 0;
 
   }
-
+  .contact-icon img{
+    width: 30px;
+  }
 }
 </Style>
 
@@ -406,35 +382,29 @@ hr {
 
     <h1 class="section-header">Contact Us</h1>
     
-    <div class="contact-wrapper">   
+    <div class="contact-wrapper">
+    
     <!-- Left contact page --> 
-      
-      <form id="contact-form" class="form-horizontal" role="form" action="https://api.web3forms.com/submit" method="POST">
-         
-        <input type="hidden" name="access_key" value="0639744f-bb7a-4294-8a20-d009692cd474">
+        <form action="https://api.web3forms.com/submit" method="POST" class="form-horizontal">
 
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input type="text" class="form-control" id="name" placeholder="Your Name" name="name" value="" required>
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input type="email" class="form-control" id="email" placeholder="Your Email" name="email" value="" required>
-          </div>
-        </div>
-  
-        <textarea class="form-control" rows="10" placeholder="Your Message" name="message" required></textarea>
+          <!-- Replace with your Access Key -->
+          <input type="hidden" name="access_key" value="0639744f-bb7a-4294-8a20-d009692cd474">
+      
+          <!-- Form Inputs. Each input must have a name="" attribute -->
+          <input type="text" name="name" placeholder="Your Name" class="contact-inputs" required >
+          <input type="email" name="email" placeholder="Your Email" class="contact-inputs" required>
+          <textarea name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
+      
+          <!-- Honeypot Spam Protection -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+      
+          <!-- Custom Confirmation / Success Page -->
+          <!-- <input type="hidden" name="redirect" value="https://mywebsite.com/thanks.html"> -->
+      
+            <button type="submit">Submit Form</button>
         
-        <button class="btn btn-primary send-button" id="submit" type="submit" value="SEND">
-          <div class="alt-send-button">
-            <i class="fa fa-paper-plane"></i><span class="send-text">SEND</span>
-          </div>
-        
-        </button>
-        
-      </form>
+        </form>
+
       
     <!-- Left contact page --> 
       
@@ -443,7 +413,7 @@ hr {
           <ul class="contact-list">
             <li class="list-item"> <i class="fa fa-map-marker fa-2x"></i><span class="contact-text place"><a href="https://www.google.com/maps/search/?api=1&query=392+Mesogion+Avenue+15341,+Agia+Paraskevi,+Athens" target="_blank">392 Mesogion Avenue 15341, <br>Agia Paraskevi, Athens</a></span></li>            
             
-            <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:1-212-555-5555" title="Give me a call">(30) 210 97 02 510</a></span></i></li>
+            <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:30-210-970-2510" title="Give me a call">(30) 210 97 02 510</a></span></i></li>
             
             <li class="list-item"><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:#info@aksm.gr" title="Send me an email">info@aksm.gr</a></span></i></li>
             
@@ -475,15 +445,7 @@ hr {
     </div>
   </section>  
 
-    <script>
-        document.querySelector('#contact-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    e.target.elements.name.value = '';
-    e.target.elements.email.value = '';
-    e.target.elements.message.value = '';
-  });
 
-    </script>
 </body>
 
 </html>
