@@ -888,7 +888,7 @@ body{
 }
 
 .project h2 {
-  
+  font-weight: 500;
   font-size: 2rem;
   position: relative;
   color: #F3F3F3;
