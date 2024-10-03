@@ -43,7 +43,11 @@ body {
     visibility: hidden;
     opacity: 0
 }
-
+.center_message{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .cen {
     display: flex;
     width: 100%;
