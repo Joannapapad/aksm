@@ -1,3 +1,4 @@
+
 body {
     justify-content: center
 }
@@ -616,9 +617,29 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 6%;
+    padding: 12% 2%;
     box-sizing: border-box;
     background: linear-gradient(#fff, #adb0b6)
+}
+
+@media (max-width:1200px){
+  .container_services {
+    padding: 18% 2%;
+
+  }
+}
+@media (max-width:800px){
+  .container_services {
+    padding: 24% 2%;
+
+  }
+}
+
+@media (max-width:600px){
+  .container_services {
+    padding: 33% 2% 40%;
+
+  }
 }
 
 .container_services .heading {
@@ -733,7 +754,7 @@ body {
 .separator_background {
     width: 100%;
     height: 20vh;
-background: url("../assets/separator_high.png") center center/cover no-repeat fixed #dfdfdf9e;  
+    background: url("../assets/separator_high.png") center center/cover no-repeat fixed #dfdfdf9e;  
 }
 
 @media (max-width:800px) {
@@ -745,7 +766,7 @@ background: url("../assets/separator_high.png") center center/cover no-repeat fi
         grid-template-rows: repeat(4, auto)
     }
     .separator_backround {
-        background: linear-gradient(180deg, #adb0b6, #3e3d3d);
+      background: url("../assets/separator.png") center center/cover no-repeat fixed #dfdfdf9e;  
     }
 }
 
@@ -758,6 +779,13 @@ background: url("../assets/separator_high.png") center center/cover no-repeat fi
     align-items: center;
     justify-content: flex-start;
     position: relative
+}
+
+@media (max-width:600px){
+    
+.project-overlay {
+  padding-top:32%;
+}
 }
 
 .project {
@@ -1179,13 +1207,6 @@ background: url("../assets/separator_high.png") center center/cover no-repeat fi
     opacity: 1
 }
 
-.newsletter {
-    position: relative;
-    width: 100%;
-    background: url('') center center/cover no-repeat;
-    padding: 2em 0 6rem;
-    color: #fff
-}
 
 h2 {
     color: #fff;
@@ -1202,226 +1223,7 @@ h2 {
     @include transition-duration(0.5s);
 }
 
-.signup-box {
-    display: block;
-    margin: 0 auto;
-    max-width: 50em;
-    min-width: 30em;
-    height: auto;
-    background: #fff;
-    padding: 8em 2em;
-    border-radius: 8px
-}
 
-.signup-box .signup-form {
-    display: block;
-    margin: 0 auto
-}
-.signup-form input,
-.signup-form label {
-    display: block;
-    padding: 0;
-    width: 100%
-}
-
-.signup-form input:-webkit-autofill {
-    border: 0;
-    border-bottom: 2px solid #000;
-    -webkit-text-fill-color: black;
-    -webkit-box-shadow: 0 0 0 1000px #fff inset
-}
-
-.signup-form input:-webkit-autofill:hover {
-    border: 0;
-    border-bottom: 2px solid #000;
-    -webkit-text-fill-color: black;
-    -webkit-box-shadow: 0 0 0 1000px #fff inset
-}
-
-.signup-form input:-webkit-autofill:focus {
-    border: 0;
-    border-bottom: 2px solid #000;
-    -webkit-text-fill-color: black;
-    -webkit-box-shadow: 0 0 0 1000px #fff inset
-}
-
-.signup-form textarea:-webkit-autofill {
-    border: 0;
-    border-bottom: 2px solid #000;
-    -webkit-text-fill-color: black;
-    -webkit-box-shadow: 0 0 0 1000px #fff inset
-}
-
-.signup-form textarea:-webkit-autofill:hover {
-    border: 0;
-    border-bottom: 2px solid #000;
-    -webkit-text-fill-color: black;
-    -webkit-box-shadow: 0 0 0 1000px #fff inset
-}
-
-.signup-form textarea:-webkit-autofill:focus {
-    border: 0;
-    border-bottom: 2px solid #000;
-    -webkit-text-fill-color: black;
-    -webkit-box-shadow: 0 0 0 1000px #fff inset
-}
-
-.signup-form select:-webkit-autofill {
-    border: 0;
-    border-bottom: 2px solid #000;
-    -webkit-text-fill-color: black;
-    -webkit-box-shadow: 0 0 0 1000px #fff inset
-}
-
-.signup-form select:-webkit-autofill:hover {
-    border: 0;
-    border-bottom: 2px solid #000;
-    -webkit-text-fill-color: black;
-    -webkit-box-shadow: 0 0 0 1000px #fff inset
-}
-
-.signup-form select:-webkit-autofill:focus {
-    border: 0;
-    border-bottom: 2px solid #000;
-    -webkit-text-fill-color: black;
-    -webkit-box-shadow: 0 0 0 1000px #fff inset
-}
-.signup-form label {
-    font-size: 1em;
-    text-transform: uppercase;
-    color: #817c76
-}
-
-.signup-form .signup-input {
-    border: 0;
-    border-bottom: 2px solid #000;
-    margin-bottom: 2em;
-    font-size: 1em;
-    padding: .5em .25rem
-}
-
-.signup-form .signup-input:focus {
-    border: 0;
-    outline: 0;
-    border-bottom: 1px solid #000
-}
-
-.signup-form input[type=submit] {
-    font-size: .9em;
-    display: block;
-    margin: 0 auto;
-    width: max-content;
-    background: #000;
-    padding: 1.25em 2em;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #fff;
-    border: 0;
-    outline: 0;
-    transition: .3s ease-in-out
-}
-
-.signup-form input[type=submit]:hover {
-    background: #333;
-    padding: 1.25em 4em;
-    cursor: pointer
-}
-
-.signup-terms {
-    display: block;
-    margin: 2em 0
-}
-
-.signup-terms input {
-    padding: 0;
-    height: initial;
-    width: initial;
-    margin-bottom: 0;
-    display: none;
-    cursor: pointer
-}
-.signup-terms label {
-    position: relative;
-    cursor: pointer;
-    text-transform: initial
-}
-.signup-terms label a {
-    border-bottom: 1px dashed #fffafb;
-    color: #c51c53;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: .5px;
-    padding: 0 2px
-}
-.signup-terms label:before {
-    content: " ";
-    -webkit-appearance: none;
-    background-color: transparent;
-    border: 3px solid #000;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .05), inset 0 -15px 10px -12px rgba(0, 0, 0, .05);
-    padding: 7px;
-    display: inline-block;
-    position: relative;
-    vertical-align: middle;
-    cursor: pointer;
-    margin-right: 1em
-}
-
-.newsletter_wrapper h3 {
-    text-align: center;
-    font-weight: 400;
-    color: #fff;
-    text-transform: uppercase;
-    white-space: nowrap;
-    font-size: 1vw;
-    z-index: 1000;
-    font-family: 'Titillium Web', sans-serif;
-    text-shadow: 5px 5px 0 rgba(0, 0, 0, .7);
-    @include skew(0,
-    -6.7deg,
-    false);
-    @include transition-property(font-size);
-    @include transition-duration(0.5s);
-}
-.signup-terms input:checked+label:after {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 3px;
-    left: 7px;
-    width: 4px;
-    height: 8px;
-    border: solid #fff;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg)
-}
-
-.signup-terms input:checked~label:before {
-    background: #000
-}
-
-@media only screen and (max-width:18em) {
-    .signup-box {
-        width: 30em
-    }
-}
-
-@media only screen and (max-width:5em) {
-    .signup-box {
-        width: 100%
-    }
-}
-
-.newsletter h2 {
-    color: #fff;
-    margin-bottom: 1em;
-    font-size: 2.5em;
-    font-weight: 300;
-    text-align: center;
-    letter-spacing: 3px;
-    width: 100%;
-    transition: font-size .5s
-}
 
 @media (min-width:1000px) {
     .news-carousel {
@@ -1450,6 +1252,10 @@ h2 {
     .content-right {
         padding: .5rem
     }
+
+    .animated-line-container {
+      padding-top: 35%;
+  }
 }
 
 @media (max-width:400px) {
@@ -1515,16 +1321,7 @@ h2 {
     .b_color {
         margin: 2rem 0
     }
-    .newsletter_wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 2rem 0;
-        position: relative
-    }
-    .newsletter_wrapper img {
-        margin: 0 auto 1rem
-    }
+   
     .vertical-separator,
     .vertical-separator2,
     .vertical-separator3 {
@@ -1566,17 +1363,20 @@ h2 {
 
 @media (max-width:1450px) {
     .about_us {
-        padding: 7% 9%
+        padding: 9% 9%
     }
     .content h1 {
         font-size: 3vw;
         margin-bottom: 5vh
     }
-    .newsletter h2 {
-        font-size: 1.5em
-    }
-}
 
+}
+@media (max-width:600px) {
+  .about_us {
+      padding: 19% 9%
+  }
+
+}
 @media (min-width:1550px) {
     .about_us {
         padding: 9% 11% 2%
