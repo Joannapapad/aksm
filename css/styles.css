@@ -1313,6 +1313,7 @@ h2 {
     @media (max-width:600px) {
         .text-left,
         .text-right {
+            padding: 13% 10%;
             font-size: 1em
         }
         .heropanel__content h1,
@@ -1378,7 +1379,7 @@ h2 {
 }
 @media (max-width:600px) {
   .about_us {
-      padding: 19% 9%
+      padding: 35% 9% 15%
   }
 
 }
