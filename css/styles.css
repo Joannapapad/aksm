@@ -417,7 +417,7 @@ body {
   .project.animate .c_line3,
   .project.animate .c_line4 {
       opacity: 1;
-      width: calc(20% - 40px)
+      width: calc(26% - 40px)
   }
 }
 
