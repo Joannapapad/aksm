@@ -1510,13 +1510,3 @@ h2 {
         font-size: 2vw
     }
 }
-
-@media(max-width:550px) {
-    .signup-box {
-        min-width: 14em;
-        min-height: auto
-    }
-    .signup-form {
-        font-size: .9em;
-    }
-}
