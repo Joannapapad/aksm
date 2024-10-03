@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f3f3;
+
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .confirmation-message {
+            padding: 20px;
+            background-color: #f3f3f3;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-message">
+        <img src="assets/aksm_logo.png" alt="logo" width="50px" style=" font-family:Arial; ">
+
+        <h1>Email Confirmed!</h1>
+        <p>Thank you for confirming your subscription. You will now receive updates from us!</p>
+
+        <a href="https://joannapapad.github.io/aksm/index.html">Return to Website</a>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const email = urlParams.get('email');
+        console.log('Confirmed email:', email);
+        
+    </script>
+</body>
+</html>
