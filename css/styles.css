@@ -277,7 +277,8 @@ body {
 
 .text-right {
     margin-left: 7%;
-    color: #d9d9d9
+    color: #d9d9d9;
+    border-radius: 8px;
 }
 
 .b_color {
