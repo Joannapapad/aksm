@@ -70,6 +70,23 @@
         "area": "50m2"
     },
     {
+        "id": "2023_086",
+        "title": "General topographical support of the project 'New International Airport of Heraklion Crete'",
+        "location": "Kasteli, Crete",
+        "image_front": "assets/portfolio/086_Terna.Kastelli.Xar/image_front.jpg",
+        "main_description":"General topographical support of the project 'New International Airport of Heraklion Crete'",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "image1":"assets/portfolio/086_Terna.Kastelli.Xar/image1.jpg",
+        "image2":"assets/portfolio/086_Terna.Kastelli.Xar/image2.jpg",
+        "image3":"assets/portfolio/086_Terna.Kastelli.Xar/image3.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "Ongoing",
+        "area": "50m2"
+    },
+    {
         "id": "2023_073",
         "title": "General Site Topographic Support of Noval Property Project",
         "location": "Marousi, Athens",
@@ -356,6 +373,10 @@
         "completionyear": "Ongoing",
         "area": "50m2"
     },
+
+
+
+    
     {
         "id": "2023_079",
         "title": "UAV Mapping of a Building",
