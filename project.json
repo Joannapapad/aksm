@@ -255,6 +255,22 @@
         "completionyear": "2024",
         "area": "50m2"
     },
+        {
+        "id": "2024_021_2",
+        "title": "General Topographic Support of a Sklavenitis Store",
+        "location": "Agios Ioannis, Ready",
+        "image_front": "assets/portfolio/2024_021_Skalvenitis.Renti_BSH/image_front.jpg",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "image1":"assets/portfolio/2024_021_Skalvenitis.Renti_BSH/image_front.jpg",
+        "image2":"assets/portfolio/2024_021_Skalvenitis.Renti_BSH/image1.jpg",
+        "image3":"assets/portfolio/2024_021_Skalvenitis.Renti_BSH/image2.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "Ongoing",
+        "area": "50m2"
+    },
     {
         "id": "2024_020",
         "title": "Architectural Footprint of Preheater in Cement Plant",
