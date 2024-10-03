@@ -413,6 +413,14 @@ body {
     width: calc(40% - 40px)
 }
 
+@media (min-width: 1200px) {
+  .project.animate .c_line3,
+  .project.animate .c_line4 {
+      opacity: 1;
+      width: calc(20% - 40px)
+  }
+}
+
 .tag-list {
     display: flex;
     gap: 1rem
