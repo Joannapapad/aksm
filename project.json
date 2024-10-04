@@ -104,6 +104,23 @@
         "area": "50m2"
     },
     {
+        "id": "2023_062",
+        "title": "Monitoring the Construction of a Building",
+        "location": "Perikleous 46, Athens",
+        "image_front": "assets/portfolio/2023_062_Airtec.Perikleous.Mon/image_front.jpg",
+        "main_description":"Aksm has provided deformation monitoring support to the construction of the new green PWC offices building since 2022.",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "image1":"assets/portfolio/2023_062_Airtec.Perikleous.Mon/image_front.jpg",
+        "image2":"assets/portfolio/2023_062_Airtec.Perikleous.Mon/image1.jpg",
+        "image3":"assets/portfolio/2023_062_Airtec.Perikleous.Mon/image3.jpg",
+        "typeofproject": "Deformation Monitoring",
+        "typeofproject2":"deformation_monitoring",
+        "completionyear": "2023",
+        "area": "50m2"
+    },
+    {
         "id": "2024_039",
         "title": "Surveying Galleria Riviera Project",
         "location": "Elliniko, Greece",
