@@ -395,13 +395,26 @@ form.addEventListener('submit', e => {
     return;
   }
 
+  // Check if reCAPTCHA is completed
+  const recaptchaResponse = grecaptcha.getResponse();
+  if (recaptchaResponse.length === 0) {
+    alert('Please complete the reCAPTCHA.');
+    return;
+  }
+
   isSubmitting = true; // Set the flag to true to prevent further submissions
 
-  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+  // Append the origin and reCAPTCHA token to the form data
+  const formData = new FormData(form);
+  formData.append('origin', window.location.origin);
+  formData.append('recaptcha', recaptchaResponse);
+
+  fetch(scriptURL, { method: 'POST', body: formData })
     .then(response => response.json())
     .then(data => {
       if (data.result === 'success') {
         form.reset(); // Clear the form
+        grecaptcha.reset(); // Reset reCAPTCHA
         document.querySelector('.thank-you-message').textContent = "Please verify your subscription through your email!";
         document.querySelector('.thank-you-message').style.display = 'block'; // Show thank you message
       } else {
@@ -409,6 +422,12 @@ form.addEventListener('submit', e => {
         if (data.error === 'Email already exists') {
           document.querySelector('.thank-you-message').textContent = "This email is already subscribed. Please check your inbox.";
           document.querySelector('.thank-you-message').style.display = 'block'; // Show thank you message for duplicates
+        } else if (data.error === 'Invalid request origin') {
+          alert('Unauthorized request origin.');
+        } else if (data.error === 'Invalid email format') {
+          alert('Invalid email format.');
+        } else if (data.error === 'Invalid reCAPTCHA') {
+          alert('reCAPTCHA validation failed. Please try again.');
         } else {
           console.error('Error!', data.error);
           alert('There was an error processing your request. Please try again.');
@@ -429,3 +448,4 @@ function validateEmail(email) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(String(email).toLowerCase());
 }
+
