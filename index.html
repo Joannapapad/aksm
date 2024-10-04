@@ -462,27 +462,29 @@
     </div>
 
 
-        <section class="subscribe">
-          <div class="section-header">
-            <h2>Newsletter</h2>
-            <p>Get Monthly Updates on Aksm by Subscribing to our Newsletter!</p>
+    <section class="subscribe">
+      <div class="section-header">
+        <h2>Newsletter</h2>
+        <p>Get Monthly Updates on Aksm by Subscribing to our Newsletter!</p>
+      </div>
+      <form name="submit-to-google-sheet">
+        <div class="form-row">
+          <div class="col-auto">
+            <input type="email" name="Email" placeholder="Your Email" class="form-control" required>
+            <button type="submit" id="subscribe-button" disabled>Subscribe</button>
+
           </div>
-          <form name="submit-to-google-sheet">
-            <div class="form-row">
-              <div class="col-auto">
-                <input type="email" name="Email" placeholder="Your Email" class="form-control" required>
-                <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div> <!-- Replace with your Site Key -->
-                <button type="submit">Subscribe</button>
-              </div>
+        </div>
+
+            <div class="consent-checkbox">
+              <input type="checkbox" id="consent" required>
+              <label for="consent">I consent to receive emails and updates.</label>
             </div>
-          </form>
-          <div class="center_message">
-            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-          </div>
-          <div class="center_message">
-            <span class="thank-you-message" style="display: none; color: #f3f3f3; justify-content: center;"></span>
-          </div>
-        </section>
+x      </form>
+      <div class="center_message">
+        <span class="thank-you-message" style="display: none; color: #f3f3f3; justify-content: center;"></span>
+      </div>
+    </section>
 
 </div>
 
