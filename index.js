@@ -378,7 +378,15 @@ fetch('footer.html')
 
 const scriptURL = 'https://script.google.com/macros/s/AKfycbwU3MRCwC23AnvYZorqqjv9RNGu62nXYUHrM6PmmDBP6eU396ldQ0ctix0dXUUJbLpR/exec'; // Replace with your actual script URL
 const form = document.forms['submit-to-google-sheet'];
+const subscribeButton = document.getElementById('subscribe-button');
+const consentCheckbox = document.getElementById('consent');
+const messageDisplay = document.querySelector('.thank-you-message'); // Select the message element
 let isSubmitting = false; // Flag to check if form is currently being submitted
+
+// Enable/Disable the submit button based on the checkbox
+consentCheckbox.addEventListener('change', () => {
+  subscribeButton.disabled = !consentCheckbox.checked;
+});
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -391,52 +399,53 @@ form.addEventListener('submit', e => {
   // Client-side validation for email format
   const emailInput = form.elements['Email'].value;
   if (!validateEmail(emailInput)) {
-    alert('Please enter a valid email address.');
+    messageDisplay.textContent = 'Please enter a valid email address.';
+    messageDisplay.style.display = 'block'; // Show error message
     return;
   }
 
-  // Check if reCAPTCHA is completed
-  const recaptchaResponse = grecaptcha.getResponse();
-  if (recaptchaResponse.length === 0) {
-    alert('Please complete the reCAPTCHA.');
+  // Ensure consent is checked before submission
+  if (!consentCheckbox.checked) {
+    messageDisplay.textContent = 'Please provide your consent to receive emails.';
+    messageDisplay.style.display = 'block'; // Show error message
     return;
   }
 
-  isSubmitting = true; // Set the flag to true to prevent further submissions
-
-  // Append the origin and reCAPTCHA token to the form data
+  // Proceed with submission
   const formData = new FormData(form);
-  formData.append('origin', window.location.origin);
-  formData.append('recaptcha', recaptchaResponse);
+  isSubmitting = true; // Set the flag to true to prevent further submissions
+  messageDisplay.style.display = 'none'; // Hide any previous message
 
   fetch(scriptURL, { method: 'POST', body: formData })
     .then(response => response.json())
     .then(data => {
       if (data.result === 'success') {
         form.reset(); // Clear the form
-        grecaptcha.reset(); // Reset reCAPTCHA
-        document.querySelector('.thank-you-message').textContent = "Please verify your subscription through your email!";
-        document.querySelector('.thank-you-message').style.display = 'block'; // Show thank you message
+        messageDisplay.textContent = "Please verify your subscription through your email!";
+        messageDisplay.style.display = 'block'; // Show success message
+        subscribeButton.disabled = true; // Disable button again after resetting the form
       } else {
-        // Check if the error indicates a duplicate email
+        // Handle various errors from the server response
         if (data.error === 'Email already exists') {
-          document.querySelector('.thank-you-message').textContent = "This email is already subscribed. Please check your inbox.";
-          document.querySelector('.thank-you-message').style.display = 'block'; // Show thank you message for duplicates
+          messageDisplay.textContent = "This email is already subscribed. Please check your inbox.";
+          messageDisplay.style.display = 'block';
         } else if (data.error === 'Invalid request origin') {
-          alert('Unauthorized request origin.');
+          messageDisplay.textContent = 'Unauthorized request origin.';
+          messageDisplay.style.display = 'block';
         } else if (data.error === 'Invalid email format') {
-          alert('Invalid email format.');
-        } else if (data.error === 'Invalid reCAPTCHA') {
-          alert('reCAPTCHA validation failed. Please try again.');
+          messageDisplay.textContent = 'Invalid email format.';
+          messageDisplay.style.display = 'block';
         } else {
           console.error('Error!', data.error);
-          alert('There was an error processing your request. Please try again.');
+          messageDisplay.textContent = 'There was an error processing your request. Please try again.';
+          messageDisplay.style.display = 'block';
         }
       }
     })
     .catch(error => {
       console.error('Error!', error.message);
-      alert('There was an error processing your request. Please try again.');
+      messageDisplay.textContent = 'There was an error processing your request. Please try again.';
+      messageDisplay.style.display = 'block';
     })
     .finally(() => {
       isSubmitting = false; // Reset the flag after submission (success or failure)
@@ -448,4 +457,3 @@ function validateEmail(email) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(String(email).toLowerCase());
 }
-
