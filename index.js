@@ -397,6 +397,13 @@ form.addEventListener('submit', e => {
     return; // Ignore further clicks until the current submission is done
   }
 
+  // Check if the consent checkbox is checked
+  if (!consentCheckbox.checked) {
+    messageDisplay.textContent = 'Please check the consent box to proceed.';
+    messageDisplay.style.display = 'block'; // Show consent checkbox error
+    return; // Stop submission if consent is not checked
+  }
+
   // Client-side validation for email format
   const emailInput = form.elements['Email'].value;
   if (!validateEmail(emailInput)) {
@@ -418,10 +425,7 @@ form.addEventListener('submit', e => {
         messageDisplay.textContent = "Please verify your subscription through your email!";
         messageDisplay.style.display = 'block'; // Show success message
         subscribeButton.disabled = true; // Disable button again after resetting the form
-      } else if (!consentCheckbox.checked){
-            messageDisplay.textContent = 'Please check the consent box to proceed.';
-            messageDisplay.style.display = 'block'; // Show consent checkbox error
-      } else{
+      } else {
         // Handle various errors from the server response
         if (data.error === 'Email already exists') {
           messageDisplay.textContent = "This email is already subscribed. Please check your inbox.";
