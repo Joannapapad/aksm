@@ -383,9 +383,16 @@ const consentCheckbox = document.getElementById('consent');
 const messageDisplay = document.querySelector('.thank-you-message'); // Select the message element
 let isSubmitting = false; // Flag to check if form is currently being submitted
 
-// Enable/Disable the submit button based on the checkbox
+// Enable/Disable the submit button based on the checkbox and show a message when it's checked
 consentCheckbox.addEventListener('change', () => {
   subscribeButton.disabled = !consentCheckbox.checked;
+
+  if (consentCheckbox.checked) {
+    messageDisplay.textContent = 'Thank you for providing your consent! You can now subscribe.';
+    messageDisplay.style.display = 'block'; // Show consent message
+  } else {
+    messageDisplay.style.display = 'none'; // Hide message when unchecked
+  }
 });
 
 form.addEventListener('submit', e => {
