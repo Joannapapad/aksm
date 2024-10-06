@@ -387,12 +387,6 @@ let isSubmitting = false; // Flag to check if form is currently being submitted
 consentCheckbox.addEventListener('change', () => {
   subscribeButton.disabled = !consentCheckbox.checked;
 
-  if (consentCheckbox.checked) {
-    messageDisplay.textContent = 'Thank you for providing your consent! You can now subscribe.';
-    messageDisplay.style.display = 'block'; // Show consent message
-  } else {
-    messageDisplay.style.display = 'none'; // Hide message when unchecked
-  }
 });
 
 form.addEventListener('submit', e => {
@@ -413,8 +407,8 @@ form.addEventListener('submit', e => {
 
   // Ensure consent is checked before submission
   if (!consentCheckbox.checked) {
-    messageDisplay.textContent = 'Please provide your consent to receive emails.';
-    messageDisplay.style.display = 'block'; // Show error message
+    messageDisplay.textContent = 'Please check the consent box to proceed.';
+    messageDisplay.style.display = 'block'; // Show consent checkbox error
     return;
   }
 
