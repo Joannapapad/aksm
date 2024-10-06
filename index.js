@@ -421,7 +421,7 @@ form.addEventListener('submit', e => {
       } else if (!consentCheckbox.checked){
             messageDisplay.textContent = 'Please check the consent box to proceed.';
             messageDisplay.style.display = 'block'; // Show consent checkbox error
-      } else if{
+      } else{
         // Handle various errors from the server response
         if (data.error === 'Email already exists') {
           messageDisplay.textContent = "This email is already subscribed. Please check your inbox.";
