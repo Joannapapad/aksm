@@ -825,7 +825,7 @@ h2 {
         background: url("../assets/separator.png") center center/cover no-repeat fixed #dfdfdf9e
     }
 }
-
+      
 .project-overlay {
     padding-top: 10%;
     min-height: 100vh;
@@ -835,6 +835,13 @@ h2 {
     align-items: center;
     justify-content: flex-start;
     position: relative
+}
+
+@media (max-width:600px){
+    
+.project-overlay {
+  padding-top:32%;
+}
 }
 
 .project {
@@ -853,11 +860,11 @@ h2 {
     font-size: 2rem
 }
 
-
-.carousel,
-.subscribe {
-    transform: translateY(50px);
-    opacity: 0
+.c_line3,
+.c_line4,
+.project_wrapper .arrow {
+    position: absolute;
+    transform: translateY(-50%)
 }
 
 .c_line3 {
@@ -879,6 +886,13 @@ h2 {
 }
 
 .line2 {
+    display: flex;
+    justify-content: center
+}
+
+.img__description,
+.port {
+    align-items: center;
     display: flex
 }
 
@@ -912,9 +926,10 @@ h2 {
 }
 
 .port {
-    padding: 6em;
+    padding: 10em;
     min-height: 50vh;
-    max-height: 100vh
+    max-height: 100vh;
+    justify-content: center
 }
 
 .project_wrapper {
@@ -922,42 +937,36 @@ h2 {
     max-width: 1200px;
     position: relative
 }
-.c_line3,
-.c_line4,
-.project_wrapper .arrow{
-    position: absolute;
-    transform: translateY(-50%)
-}
+
 .project_wrapper .arrow {
     top: 50%;
     height: 40px;
     width: 40px;
     color: #343f4f;
     cursor: pointer;
+    text-align: center;
+    justify-content: center;
     line-height: 44px;
     background: #ffffff79;
     border-radius: 50%;
     transition: transform .1s linear;
     z-index: 10
-    position: absolute;
-
 }
 
-
-.project_wrapper .arrow :active {
+.project_wrapper .arrow:active {
     transform: translateY(-50%) scale(.9)
 }
 
-.project_wrapper .arrow :hover {
-    background: #f2f2f2
+.project_wrapper .arrow:hover {
+    background: #f2f2f25a
 }
 
-.project_wrapper .arrow :first-child {
+.project_wrapper .arrow:first-child {
     left: -22px;
     display: none
 }
 
-.project_wrapper .arrow :last-child {
+.project_wrapper .arrow:last-child {
     right: -22px
 }
 
@@ -966,12 +975,12 @@ h2 {
     overflow: hidden;
     white-space: nowrap;
     scroll-behavior: smooth
-    
 }
+
 .arrow img{
     width: 15px;
-    position:relative;
 }
+
 .carousel.dragging {
     cursor: grab;
     scroll-behavior: auto
@@ -980,8 +989,10 @@ h2 {
 .carousel.dragging a {
     pointer-events: none
 }
-
 .carousel {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity .6s ease-out, transform .9s ease-out;
     will-change: opacity, transform
 }
 
@@ -1022,13 +1033,15 @@ h2 {
     opacity: 0;
     transition: opacity .2s, visibility .2s;
     justify-content: center;
+    text-align: center;
     padding: 0 10px
 }
-
 .section-header {
-    margin-bottom: 60px;
-    padding-bottom: 20px
+  margin-bottom: 60px;
+  position: relative;
+  padding-bottom: 20px;
 }
+
 
 .section-header::before {
     content: '';
