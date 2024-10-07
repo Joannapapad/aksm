@@ -853,12 +853,6 @@ h2 {
     font-size: 2rem
 }
 
-.c_line3,
-.c_line4,
-.project_wrapper .arrow{
-    position: absolute;
-    transform: translateY(-50%)
-}
 
 .carousel,
 .subscribe {
@@ -928,14 +922,19 @@ h2 {
     max-width: 1200px;
     position: relative
 }
-
+.c_line3,
+.c_line4,
+.project_wrapper .arrow{
+    position: absolute;
+    transform: translateY(-50%)
+}
 .project_wrapper .arrow {
     top: 50%;
     height: 40px;
     width: 40px;
     color: #343f4f;
     cursor: pointer;
-    line-height: 40px;
+    line-height: 44px;
     background: #ffffff79;
     border-radius: 50%;
     transition: transform .1s linear;
