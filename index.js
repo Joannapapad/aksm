@@ -338,36 +338,36 @@ slider.addEventListener('mouseleave', function() {
     isDragging = false;
 });
     
-// Carousel functionality for moving images only with buttons
 const carousel = document.querySelector(".carousel");
-const arrowIcons = document.querySelectorAll(".project_wrapper i");
+const arrowControls = document.querySelectorAll(".arrow");
 
 if (carousel && carousel.querySelectorAll("img").length > 0) {
     const firstImg = carousel.querySelectorAll("img")[0];
 
-    const showHideIcons = () => {
+    const showHideArrows = () => {
         let scrollWidth = carousel.scrollWidth - carousel.clientWidth;
-        arrowIcons[0].style.display = carousel.scrollLeft === 0 ? "none" : "block";
-        arrowIcons[1].style.display = carousel.scrollLeft >= scrollWidth ? "none" : "block";
+        document.getElementById("left").style.display = carousel.scrollLeft === 0 ? "none" : "block";
+        document.getElementById("right").style.display = carousel.scrollLeft >= scrollWidth ? "none" : "block";
     };
 
-    arrowIcons.forEach(icon => {
-        icon.addEventListener("click", () => {
+    arrowControls.forEach(control => {
+        control.addEventListener("click", () => {
             const firstImgWidth = firstImg.clientWidth + 14; // Adjust for margins if any
-            const scrollAmount = icon.id === "left" ? -firstImgWidth : firstImgWidth;
+            const scrollAmount = control.id === "left" ? -firstImgWidth : firstImgWidth;
             carousel.scrollLeft += scrollAmount;
-            setTimeout(showHideIcons, 60); // Show/hide icons based on scroll position
+            setTimeout(showHideArrows, 60); // Show/hide arrows based on scroll position
         });
     });
 
-    showHideIcons(); 
+    showHideArrows();
 }
 
 function changeImage(element, newSrc) {
-element.querySelector('img').src = newSrc;
+    element.querySelector('img').src = newSrc;
 }
+
 function restoreImage(element, originalSrc) {
-element.querySelector('img').src = originalSrc;
+    element.querySelector('img').src = originalSrc;
 }
 
 fetch('footer.html')
