@@ -855,7 +855,7 @@ h2 {
 
 .c_line3,
 .c_line4,
-.project_wrapper i {
+.project_wrapper .arrow{
     position: absolute;
     transform: translateY(-50%)
 }
