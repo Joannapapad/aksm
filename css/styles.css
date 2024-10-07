@@ -939,7 +939,7 @@ h2 {
     border-radius: 50%;
     transition: transform .1s linear;
     z-index: 10
-    position: relative;
+    position: absolute;
 
 }
 
