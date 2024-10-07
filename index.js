@@ -376,59 +376,84 @@ fetch('footer.html')
     document.getElementById('footer__cont').innerHTML = data;
 });
 
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwU3MRCwC23AnvYZorqqjv9RNGu62nXYUHrM6PmmDBP6eU396ldQ0ctix0dXUUJbLpR/exec'; // Replace with your actual script URL
-  const form = document.forms['submit-to-google-sheet'];
-  const subscribeButton = document.getElementById('subscribe-button');
-  const consentCheckbox = document.getElementById('consent');
-  const messageDisplay = document.querySelector('.thank-you-message');
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwU3MRCwC23AnvYZorqqjv9RNGu62nXYUHrM6PmmDBP6eU396ldQ0ctix0dXUUJbLpR/exec'; // Replace with your actual script URL
+const form = document.forms['submit-to-google-sheet'];
+const subscribeButton = document.getElementById('subscribe-button');
+const consentCheckbox = document.getElementById('consent');
+const messageDisplay = document.querySelector('.thank-you-message'); // Select the message element
+let isSubmitting = false; // Flag to check if form is currently being submitted
 
-  // Enable/Disable the submit button based on checkbox
-  consentCheckbox.addEventListener('change', () => {
-    // Only enable the button if consent is checked
-    subscribeButton.disabled = !consentCheckbox.checked;
-  });
+// Enable/Disable the submit button based on the checkbox
+consentCheckbox.addEventListener('change', () => {
+  subscribeButton.disabled = !consentCheckbox.checked;
+});
 
-  form.addEventListener('submit', e => {
-    e.preventDefault(); // Prevent default form submission
+form.addEventListener('submit', e => {
+  e.preventDefault();
 
-    // Client-side validation for email format
-    const emailInput = form.elements['Email'].value;
-    if (!validateEmail(emailInput)) {
-      messageDisplay.textContent = 'Please enter a valid email address.';
-      messageDisplay.style.display = 'block';
-      return; // Stop form submission
-    }
+  // Check if the form is already being submitted
+  if (isSubmitting) {
+    return; // Ignore further clicks until the current submission is done
+  }
 
-    // Check if the consent checkbox is checked when the form is submitted
-    if (!consentCheckbox.checked) {
-      messageDisplay.textContent = 'You need to check the checkbox in order to subscribe.';
-      messageDisplay.style.display = 'block'; // Show the message
-      return; // Stop form submission
-    }
+  // Client-side validation for email format
+  const emailInput = form.elements['Email'].value;
+  if (!validateEmail(emailInput)) {
+    messageDisplay.textContent = 'Please enter a valid email address.';
+    messageDisplay.style.display = 'block'; // Show error message
+    return;
+  }
 
-    // Hide any previous message
-    messageDisplay.style.display = 'none';
+  // Ensure consent is checked before submission
+  if (!consentCheckbox.checked) {
+    messageDisplay.textContent = 'Please provide your consent to receive emails.';
+    messageDisplay.style.display = 'block'; // Show error message
+    return;
+  }
 
-    // Proceed with form submission
-    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-      .then(response => response.json())
-      .then(data => {
-        if (data.result === 'success') {
-          form.reset(); // Clear the form
-          subscribeButton.disabled = true; // Disable button again after resetting
-          messageDisplay.textContent = "Please verify your subscription through your email!";
+  // Proceed with submission
+  const formData = new FormData(form);
+  isSubmitting = true; // Set the flag to true to prevent further submissions
+  messageDisplay.style.display = 'none'; // Hide any previous message
+
+  fetch(scriptURL, { method: 'POST', body: formData })
+    .then(response => response.json())
+    .then(data => {
+      if (data.result === 'success') {
+        form.reset(); // Clear the form
+        messageDisplay.textContent = "Please verify your subscription through your email!";
+        messageDisplay.style.display = 'block'; // Show success message
+        subscribeButton.disabled = true; // Disable button again after resetting the form
+      } else {
+        // Handle various errors from the server response
+        if (data.error === 'Email already exists') {
+          messageDisplay.textContent = "This email is already subscribed. Please check your inbox.";
+          messageDisplay.style.display = 'block';
+        } else if (data.error === 'Invalid request origin') {
+          messageDisplay.textContent = 'Unauthorized request origin.';
+          messageDisplay.style.display = 'block';
+        } else if (data.error === 'Invalid email format') {
+          messageDisplay.textContent = 'Invalid email format.';
+          messageDisplay.style.display = 'block';
+        } else {
+          console.error('Error!', data.error);
+          messageDisplay.textContent = 'There was an error processing your request. Please try again.';
           messageDisplay.style.display = 'block';
         }
-      })
-      .catch(error => {
-        console.error('Error!', error.message);
-        messageDisplay.textContent = 'There was an error processing your request. Please try again.';
-        messageDisplay.style.display = 'block';
-      });
-  });
+      }
+    })
+    .catch(error => {
+      console.error('Error!', error.message);
+      messageDisplay.textContent = 'There was an error processing your request. Please try again.';
+      messageDisplay.style.display = 'block';
+    })
+    .finally(() => {
+      isSubmitting = false; // Reset the flag after submission (success or failure)
+    });
+});
 
-  // Simple email validation function
-  function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
-  }
+// Simple email validation function
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(String(email).toLowerCase());
+}
