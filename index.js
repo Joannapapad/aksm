@@ -388,6 +388,20 @@ console.log("Form initialization complete.");
 form.addEventListener('input', () => {
     subscribeButton.disabled = !form.checkValidity();
 });
+
+subscribeButton.addEventListener('click', (e) => {
+    if (subscribeButton.disabled) {
+        // Prevent the default action and display a message
+        e.preventDefault();
+        if (!consentCheckbox.checked) {
+            messageDisplay.textContent = 'You need to check the consent box in order to subscribe.';
+        } else {
+            messageDisplay.textContent = 'Please enter a valid email address.';
+        }
+        messageDisplay.style.display = 'block'; // Show error message
+    }
+});
+
 form.addEventListener('submit', e => {
     e.preventDefault(); // Prevent form from submitting immediately
     console.log("Form submitted."); // Debugging: Check when form submission is triggered
