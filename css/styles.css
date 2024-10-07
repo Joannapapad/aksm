@@ -939,6 +939,8 @@ h2 {
     border-radius: 50%;
     transition: transform .1s linear;
     z-index: 10
+    position: relative;
+
 }
 
 
@@ -964,9 +966,11 @@ h2 {
     overflow: hidden;
     white-space: nowrap;
     scroll-behavior: smooth
+    
 }
 .arrow img{
     width: 15px;
+    position:relative;
 }
 .carousel.dragging {
     cursor: grab;
