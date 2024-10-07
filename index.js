@@ -383,107 +383,84 @@ const consentCheckbox = document.getElementById('consent');
 const messageDisplay = document.querySelector('.thank-you-message');
 let isSubmitting = false; // Flag to check if form is currently being submitted
 
-console.log("Form initialization complete."); // Debugging: Check if the form is being initialized
-
-
-fetch(scriptURL, { method: 'POST', body: formData })
-  .then(response => {
-    console.log("Server responded:", response);
-    return response.text();  // Debugging: Check full response text
-  })
-  .then(text => {
-    console.log("Response text:", text); // Check the full response text from server
-    const data = JSON.parse(text);
-    console.log("Parsed data:", data);  // Proceed with handling the data
-    // Remaining logic...
-  })
-  .catch(error => {
-    console.error('Error in fetch request:', error.message); // Network or server error
-  });
-
-
+console.log("Form initialization complete.");
 
 form.addEventListener('submit', e => {
-  e.preventDefault(); // Prevent form from submitting immediately
-  console.log("Form submitted."); // Debugging: Check when form submission is triggered
+    e.preventDefault(); // Prevent form from submitting immediately
+    console.log("Form submitted."); // Debugging: Check when form submission is triggered
 
-  // Check if the form is already being submitted
-  if (isSubmitting) {
-    console.log("Form is already being submitted, ignoring this click."); // Debugging: Prevent multiple submissions
-    return; // Ignore further clicks until the current submission is done
-  }
+    // Check if the form is already being submitted
+    if (isSubmitting) {
+        console.log("Form is already being submitted, ignoring this click.");
+        return; // Ignore further clicks until the current submission is done
+    }
 
-  // Client-side validation for email format
-  const emailInput = form.elements['Email'].value;
-  console.log("Email entered:", emailInput); // Debugging: Output entered email
+    const emailInput = form.elements['Email'].value;
+    console.log("Email entered:", emailInput); // Debugging: Output entered email
 
-  if (!validateEmail(emailInput)) {
-    console.log("Invalid email format:", emailInput); // Debugging: Invalid email format
-    messageDisplay.textContent = 'Please enter a valid email address.';
-    messageDisplay.style.display = 'block'; // Show error message
-    return;
-  }
+    if (!validateEmail(emailInput)) {
+        console.log("Invalid email format:", emailInput); // Debugging: Invalid email format
+        messageDisplay.textContent = 'Please enter a valid email address.';
+        messageDisplay.style.display = 'block'; // Show error message
+        return;
+    }
 
-  // Check if the consent checkbox is checked
-  if (!consentCheckbox.checked) {
-    console.log("Consent checkbox not checked."); // Debugging: Consent checkbox issue
-    messageDisplay.textContent = 'You need to check the consent box in order to subscribe.';
-    messageDisplay.style.display = 'block'; // Show error message
-    return; // Block submission if consent is not provided
-  }
+    if (!consentCheckbox.checked) {
+        console.log("Consent checkbox not checked."); // Debugging: Consent checkbox issue
+        messageDisplay.textContent = 'You need to check the consent box in order to subscribe.';
+        messageDisplay.style.display = 'block'; // Show error message
+        return; // Block submission if consent is not provided
+    }
 
-  console.log("Consent checkbox checked. Proceeding with form submission."); // Debugging: Consent is valid
+    console.log("Consent checkbox checked. Proceeding with form submission."); // Debugging: Consent is valid
 
-  // Proceed with submission if consent is provided and email is valid
-  const formData = new FormData(form);
-  isSubmitting = true; // Set the flag to true to prevent further submissions
-  messageDisplay.style.display = 'none'; // Hide any previous message
+    const formData = new FormData(form);
+    isSubmitting = true; // Set the flag to true to prevent further submissions
+    messageDisplay.style.display = 'none'; // Hide any previous message
 
-  console.log("Sending form data to server..."); // Debugging: Sending data
+    console.log("Sending form data to server..."); // Debugging: Sending data
 
-  fetch(scriptURL, { method: 'POST', body: formData })
-    .then(response => {
-      console.log("Server responded:", response); // Debugging: Check server response
-      return response.json();
-    })
-    .then(data => {
-      console.log("Response data:", data); // Debugging: Output server response data
+    fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => {
+            console.log("Server responded:", response); // Debugging: Check server response
+            return response.json();
+        })
+        .then(data => {
+            console.log("Response data:", data); // Debugging: Output server response data
 
-      if (data.result === 'success') {
-        form.reset(); // Clear the form
-        messageDisplay.textContent = "Please verify your subscription through your email!";
-        messageDisplay.style.display = 'block'; // Show success message
-        console.log("Form submitted successfully!"); // Debugging: Success
-      } else {
-        console.log("Server returned an error:", data.error); // Debugging: Error from the server
+            if (data.result === 'success') {
+                form.reset(); // Clear the form
+                messageDisplay.textContent = "Please verify your subscription through your email!";
+                messageDisplay.style.display = 'block'; // Show success message
+                console.log("Form submitted successfully!"); // Debugging: Success
+            } else {
+                console.log("Server returned an error:", data.error); // Debugging: Error from the server
 
-        // Handle various errors from the server response
-        if (data.error === 'Email already exists') {
-          messageDisplay.textContent = "This email is already subscribed. Please check your inbox.";
-          messageDisplay.style.display = 'block';
-        } else {
-          messageDisplay.textContent = 'There was an error processing your request. Please try again.';
-          messageDisplay.style.display = 'block';
-        }
-      }
-    })
-    .catch(error => {
-      console.error('Error in fetch request:', error.message); // Debugging: Network or server error
-      messageDisplay.textContent = 'There was an error processing your request. Please try again.';
-      messageDisplay.style.display = 'block';
-    })
-    .finally(() => {
-      isSubmitting = false; // Reset the flag after submission (success or failure)
-      console.log("Submission complete, isSubmitting flag reset."); // Debugging: Flag reset after submission
-    });
+                // Handle various errors from the server response
+                if (data.error === 'Email already exists') {
+                    messageDisplay.textContent = "This email is already subscribed. Please check your inbox.";
+                    messageDisplay.style.display = 'block';
+                } else {
+                    messageDisplay.textContent = 'There was an error processing your request. Please try again.';
+                    messageDisplay.style.display = 'block';
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error in fetch request:', error.message); // Debugging: Network or server error
+            messageDisplay.textContent = 'There was an error processing your request. Please try again.';
+            messageDisplay.style.display = 'block';
+        })
+        .finally(() => {
+            isSubmitting = false; // Reset the flag after submission (success or failure)
+            console.log("Submission complete, isSubmitting flag reset."); // Debugging: Flag reset after submission
+        });
 });
 
 // Simple email validation function
 function validateEmail(email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const isValid = re.test(String(email).toLowerCase());
-  console.log("Email validation result for", email, ":", isValid); // Debugging: Email validation result
-  return isValid;
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValid = re.test(String(email).toLowerCase());
+    console.log("Email validation result for", email, ":", isValid); // Debugging: Email validation result
+    return isValid;
 }
-
-
