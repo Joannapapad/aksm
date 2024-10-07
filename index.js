@@ -384,24 +384,13 @@ const messageDisplay = document.querySelector('.thank-you-message');
 let isSubmitting = false; // Flag to check if form is currently being submitted
 
 console.log("Form initialization complete.");
+
 // Enable the subscribe button when the form is valid
 form.addEventListener('input', () => {
     subscribeButton.disabled = !form.checkValidity();
 });
 
-subscribeButton.addEventListener('click', (e) => {
-    if (subscribeButton.disabled) {
-        // Prevent the default action and display a message
-        e.preventDefault();
-        if (!consentCheckbox.checked) {
-            messageDisplay.textContent = 'You need to check the consent box in order to subscribe.';
-        } else {
-            messageDisplay.textContent = 'Please enter a valid email address.';
-        }
-        messageDisplay.style.display = 'block'; // Show error message
-    }
-});
-
+// Event listener for form submission
 form.addEventListener('submit', e => {
     e.preventDefault(); // Prevent form from submitting immediately
     console.log("Form submitted."); // Debugging: Check when form submission is triggered
@@ -415,6 +404,7 @@ form.addEventListener('submit', e => {
     const emailInput = form.elements['Email'].value;
     console.log("Email entered:", emailInput); // Debugging: Output entered email
 
+    // Validate email format
     if (!validateEmail(emailInput)) {
         console.log("Invalid email format:", emailInput); // Debugging: Invalid email format
         messageDisplay.textContent = 'Please enter a valid email address.';
@@ -422,6 +412,7 @@ form.addEventListener('submit', e => {
         return;
     }
 
+    // Check if the consent checkbox is checked
     if (!consentCheckbox.checked) {
         console.log("Consent checkbox not checked."); // Debugging: Consent checkbox issue
         messageDisplay.textContent = 'You need to check the consent box in order to subscribe.';
