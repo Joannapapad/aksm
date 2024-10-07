@@ -385,8 +385,23 @@ let isSubmitting = false; // Flag to check if form is currently being submitted
 
 console.log("Form initialization complete."); // Debugging: Check if the form is being initialized
 
-// Remove the disable/enable logic for the button
-// We'll always allow the user to click the button, but handle consent internally
+
+fetch(scriptURL, { method: 'POST', body: formData })
+  .then(response => {
+    console.log("Server responded:", response);
+    return response.text();  // Debugging: Check full response text
+  })
+  .then(text => {
+    console.log("Response text:", text); // Check the full response text from server
+    const data = JSON.parse(text);
+    console.log("Parsed data:", data);  // Proceed with handling the data
+    // Remaining logic...
+  })
+  .catch(error => {
+    console.error('Error in fetch request:', error.message); // Network or server error
+  });
+
+
 
 form.addEventListener('submit', e => {
   e.preventDefault(); // Prevent form from submitting immediately
