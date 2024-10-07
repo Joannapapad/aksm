@@ -467,16 +467,19 @@
         <h2>Newsletter</h2>
         <p>Get Monthly Updates on Aksm by Subscribing to our Newsletter!</p>
       </div>
-        <form name="submit-to-google-sheet" id="subscribe-form">
-          <input type="email" name="Email" id="email-input" placeholder="Enter your email" required>
-          <div>
-            <input type="checkbox" id="consent" name="consent">
-            <label for="consent">I agree to the terms and conditions</label>
-          </div>
-          <button type="submit" id="subscribe-button" disabled>Subscribe</button>
-          <div class="thank-you-message" style="display: none;"></div>
-        </form>
-      <div class="center_message">
+         <form name="submit-to-google-sheet">
+                <div class="form-row">
+                  <div class="col-auto">
+                    <input type="email" name="Email" placeholder="Your Email" class="form-control" required>
+                    <button type="submit" id="subscribe-button" disabled>Subscribe</button>
+                  </div>
+                </div>
+                    <div class="consent-checkbox">
+                      <input type="checkbox" id="consent" required>
+                      <label for="consent">I consent to receive emails and updates.</label>
+                    </div>
+              </form>
+          <div class="center_message">
         <span class="thank-you-message" style="display: none; color: #f3f3f3; justify-content: center;"></span>
       </div>
     </section>
