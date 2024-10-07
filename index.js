@@ -385,6 +385,7 @@ let isSubmitting = false; // Flag to check if form is currently being submitted
 
 console.log("Form initialization complete.");
 
+subscribeButton.disabled = false;
 // Event listener for form submission
 form.addEventListener('submit', e => {
     e.preventDefault(); // Prevent form from submitting immediately
