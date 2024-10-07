@@ -34,3 +34,6 @@ body{justify-content:center;font-family:Arial,Helvetica,sans-serif;background-co
     background-position: center; /* Centers the background image */
     background-repeat: no-repeat; /* Prevents the background image from repeating */
 }
+.box-1{
+    margin:2em;
+}
