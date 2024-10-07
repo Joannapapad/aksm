@@ -388,69 +388,81 @@ fetch('footer.html')
     subscribeButton.disabled = !consentCheckbox.checked;
   });
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
+form.addEventListener('submit', e => {
+  e.preventDefault();
 
-    // Check if the form is already being submitted
-    if (isSubmitting) {
-      return; // Ignore further clicks until the current submission is done
-    }
+  // Log to see if the form submission event is firing
+  console.log('Form submission event triggered.');
 
-    // Client-side validation for email format
-    const emailInput = form.elements['Email'].value;
-    if (!validateEmail(emailInput)) {
-      messageDisplay.textContent = 'Please enter a valid email address.';
-      messageDisplay.style.display = 'block'; // Show error message
-      return;
-    }
+  // Check if the form is already being submitted
+  if (isSubmitting) {
+    console.log('Form is already being submitted. Ignoring subsequent clicks.');
+    return; 
+  }
 
-    // Ensure consent is checked before submission
-    if (!consentCheckbox.checked) {
-      messageDisplay.textContent = 'You need to check the consent box in order to subscribe.';
-      messageDisplay.style.display = 'block'; // Show error message
-      return;
-    }
+  // Client-side validation for email format
+  const emailInput = form.elements['Email'].value;
+  console.log('Email entered:', emailInput);
 
-    // Proceed with submission
-    const formData = new FormData(form);
-    isSubmitting = true; // Set the flag to true to prevent further submissions
-    messageDisplay.style.display = 'none'; // Hide any previous message
+  if (!validateEmail(emailInput)) {
+    console.log('Invalid email format.');
+    messageDisplay.textContent = 'Please enter a valid email address.';
+    messageDisplay.style.display = 'block'; // Show error message
+    return;
+  } else {
+    console.log('Valid email format.');
+  }
 
-    fetch(scriptURL, { method: 'POST', body: formData })
-      .then(response => response.json())
-      .then(data => {
-        if (data.result === 'success') {
-          form.reset(); // Clear the form
-          messageDisplay.textContent = "Please verify your subscription through your email!";
-          messageDisplay.style.display = 'block'; // Show success message
-          subscribeButton.disabled = true; // Disable button again after resetting the form
+  // Ensure consent is checked before submission
+  if (!consentCheckbox.checked) {
+    console.log('Consent checkbox is not checked.');
+    messageDisplay.textContent = 'You need to check the consent box in order to subscribe.';
+    messageDisplay.style.display = 'block'; // Show error message
+    return;
+  } else {
+    console.log('Consent checkbox is checked.');
+  }
+
+  // Proceed with submission
+  console.log('Proceeding with form submission...');
+  const formData = new FormData(form);
+  isSubmitting = true; // Set the flag to true to prevent further submissions
+  messageDisplay.style.display = 'none'; // Hide any previous message
+
+  fetch(scriptURL, { method: 'POST', body: formData })
+    .then(response => response.json())
+    .then(data => {
+      if (data.result === 'success') {
+        form.reset(); // Clear the form
+        messageDisplay.textContent = "Please verify your subscription through your email!";
+        messageDisplay.style.display = 'block'; // Show success message
+        subscribeButton.disabled = true; // Disable button again after resetting the form
+      } else {
+        console.log('Server responded with an error:', data.error);
+        if (data.error === 'Email already exists') {
+          messageDisplay.textContent = "This email is already subscribed. Please check your inbox.";
+          messageDisplay.style.display = 'block';
+        } else if (data.error === 'Invalid request origin') {
+          messageDisplay.textContent = 'Unauthorized request origin.';
+          messageDisplay.style.display = 'block';
+        } else if (data.error === 'Invalid email format') {
+          messageDisplay.textContent = 'Invalid email format.';
+          messageDisplay.style.display = 'block';
         } else {
-          // Handle various errors from the server response
-          if (data.error === 'Email already exists') {
-            messageDisplay.textContent = "This email is already subscribed. Please check your inbox.";
-            messageDisplay.style.display = 'block';
-          } else if (data.error === 'Invalid request origin') {
-            messageDisplay.textContent = 'Unauthorized request origin.';
-            messageDisplay.style.display = 'block';
-          } else if (data.error === 'Invalid email format') {
-            messageDisplay.textContent = 'Invalid email format.';
-            messageDisplay.style.display = 'block';
-          } else {
-            console.error('Error!', data.error);
-            messageDisplay.textContent = 'There was an error processing your request. Please try again.';
-            messageDisplay.style.display = 'block';
-          }
+          messageDisplay.textContent = 'There was an error processing your request. Please try again.';
+          messageDisplay.style.display = 'block';
         }
-      })
-      .catch(error => {
-        console.error('Error!', error.message);
-        messageDisplay.textContent = 'There was an error processing your request. Please try again.';
-        messageDisplay.style.display = 'block';
-      })
-      .finally(() => {
-        isSubmitting = false; // Reset the flag after submission (success or failure)
-      });
-  });
+      }
+    })
+    .catch(error => {
+      console.error('Error in form submission:', error.message);
+      messageDisplay.textContent = 'There was an error processing your request. Please try again.';
+      messageDisplay.style.display = 'block';
+    })
+    .finally(() => {
+      isSubmitting = false; // Reset the flag after submission (success or failure)
+    });
+});
 
   // Simple email validation function
   function validateEmail(email) {
