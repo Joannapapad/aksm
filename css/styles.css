@@ -1004,6 +1004,11 @@ h2 {
     position: relative;
     vertical-align: top
 }
+@media (max-width:1200px){
+    .carousel a {
+    height: 450px;
+    }
+}
 
 .carousel a:first-child {
     margin-left: 0
