@@ -314,9 +314,9 @@ flex-direction: column;
 }
 
 .content-left .content-text .center {
-text-align: center;
+text-align: justify;
 color: #000;
-font-size: 1.8rem;
+font-size: 2rem;
 }
 
 .vertical-line-container {
