@@ -1426,9 +1426,11 @@ h2 {
     .content-left .content-text .center {
         font-size: 1.6rem
     }
-    .content-left,
-    .content-right {
+    .content-left {
         padding: .5rem
+    }
+    .content-right {
+        padding: 1rem
     }
     .animated-line-container {
         padding-top: 35%
