@@ -258,7 +258,7 @@ overflow: hidden;
 
 .carousel-prev, .carousel-next {
     border: none;
-    color: white;
+    background-color: #f3f3f36b;
     border-radius: 20px;
     padding: 10px 15px; /* Increase size for easier clicking */
     cursor: pointer;
