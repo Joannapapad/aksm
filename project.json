@@ -1,7 +1,7 @@
 [
     {
         "id": "2024_042",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model Of Building",
         "location": "Paros, Greece",
         "image_front": "assets/portfolio/2024_042_Elementengineers.Paros/revit.png",
         "main_description":"3D Depiction of a Building in Paros, along with the point cloud model, the plain view and the section of the building AKSM studied.",
@@ -23,7 +23,7 @@
         "title": "Renovation and extension of ex Hilton Hotel Building",
         "location": "Vasilisis Sofias, Greece",
         "image_front": "assets/portfolio/2021_009_Temes.Hilton/image_front.jpg",
-        "main_description":"Aksm has provided topographic support to the renovation of the ex hilton hotel since 2021.",
+        "main_description":"Aksm has provided topographic support to the renovation of the ex hilton hotel.",
         "description": "",
         "description2": "",
         "description3": "",
@@ -54,10 +54,10 @@
     },
     {
         "id": "2022_062",
-        "title": "General Site Topographic Support of Project 'SUPPLY AND INSTALLATION OF UNIT 6 CCGT AT VASILIKOS POWER STATION PHASE V'",
+        "title": "'SUPPLY AND INSTALLATION OF UNIT 6 CCGT AT VASILIKOS POWER STATION PHASE V'",
         "location": "Vasiliko, Cyprus",
         "image_front": "assets/portfolio/2022_062_Terna.Vasiliko.Cyprus/image_front.jpg",
-        "main_description":"General Site Topographic Support of Project 'SUPPLY AND INSTALLATION OF UNIT 6 CCGT AT VASILIKOS POWER STATION PHASE V' since 2022.",
+        "main_description":"Surveying and Consulting services concerning the completion of Project 'SUPPLY AND INSTALLATION OF UNIT 6 CCGT AT VASILIKOS POWER STATION PHASE V' since 2022.",
         "description": "",
         "description2": "",
         "description3": "",
@@ -71,10 +71,10 @@
     },
     {
         "id": "2023_086",
-        "title": "General topographical support of the project 'New International Airport of Heraklion Crete'",
+        "title": "'New International Airport of Heraklion Crete'",
         "location": "Kasteli, Crete",
         "image_front": "assets/portfolio/2023_086_Terna.Kastelli.Xar/image_front.jpg",
-        "main_description":"General topographical support of the project 'New International Airport of Heraklion Crete'",
+        "main_description":"Surveying and Consulting services concerning the completion of Project 'New International Airport of Heraklion Crete'",
         "description": "",
         "description2": "",
         "description3": "",
@@ -88,7 +88,7 @@
     },
     {
         "id": "2023_073",
-        "title": "General Site Topographic Support of Noval Property Project",
+        "title": "Noval Property Project",
         "location": "Marousi, Athens",
         "image_front": "assets/portfolio/2023_073_Ballian.Noval/image_front.jpg",
         "main_description":"Assistance in the construction of a three-storey office building with a solar patio and four basement buildings b extension of an existing building (building a) shaping of the surrounding area and reconstruction of the facades of the existing building. Aksm has porvided assistance to the project since 2023.",
@@ -169,7 +169,7 @@
     },
     { 
         "id": "2022_032",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model of Building",
         "location": "Oinofita, Biotias",
         "image_front": "assets/portfolio/2022_032_Elval.NeaThermi_Xar/image_front.jpeg",
         "description": "",
@@ -183,7 +183,7 @@
     },
     {
         "id": "2024_034",
-        "title": "General Site Topographic Support of 'Hard Rock Hotel & Casino Athens' Project",
+        "title": "'Hard Rock Hotel & Casino Athens' Project",
         "location": "Elliniko, Greece",
         "image_front": "assets/portfolio/2024_034_Terna.Casino/image_front.JPG",
         "main_description":"The 'Hard Rock Hotel & Casino Athens' Project is an original Integrated Tourist Complex that is being built in Elliniko. Aksm is providing genenral topographic support with it's equipment and skilled professionals",
@@ -202,7 +202,7 @@
     },
     {
         "id": "2024_032",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model of Building",
         "location": "Korai 4, Attica",
         "image_front": "assets/portfolio/2024_032_Dimand.Korai4/revit.png",
         "description": "POINT CLOUD",
@@ -254,7 +254,7 @@
     },
     {
         "id": "2024_021",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model of Building",
         "location": "Ready, Attica",
         "image_front": "assets/portfolio/2024_021_Skalvenitis.Renti_BSH/revit.png",
         "description": "POINT CLOUD",
@@ -272,7 +272,7 @@
     },
         {
         "id": "2024_021_2",
-        "title": "General Topographic Support of a Sklavenitis Store",
+        "title": "Sklavenitis Store",
         "location": "Agios Ioannis, Ready",
         "image_front": "assets/portfolio/2024_021_Skalvenitis.Renti_BSH/image_front.jpg",
         "description": "",
@@ -288,7 +288,7 @@
     },
     {
         "id": "2024_020",
-        "title": "Architectural Footprint of Preheater in Cement Plant",
+        "title": "Preheater in Cement Plant",
         "location": "Thessaloniki",
         "image_front": "assets/portfolio/2024_020_Τitan.Thessaloniki_Preheater/revit.png",
         "description": "3D VIEW",
@@ -304,10 +304,10 @@
     },
     {
         "id": "2024_018",
-        "title": "General Site Topographic Support of Project 'ΑTH4 Data Center'",
+        "title": "'ΑTH4 Data Center'",
         "location": "Marousi, Athens",
         "image_front": "assets/portfolio/2024_018_Terna.DataCenter/image_front.jpg",
-        "main_description":"General Site Topographic Support of Project 'ΑTH4 Data Center'",
+        "main_description":"Surveying and Consulting services concerning the completion of Project 'ΑTH4 Data Center'",
         "description": "",
         "description2": "",
         "description3": "",
@@ -349,10 +349,10 @@
     },
     {
         "id": "2024_009",
-        "title": "General topographical support of the Riviera Tower project",
+        "title": "The Riviera Tower project",
         "location": "Elliniko, Athens",
         "image_front": "assets/portfolio/2024_009_RivieraTower.BBI/image_front.png",
-        "main_description":"General topographical support of the Riviera Tower project",
+        "main_description":"Surveying and Consulting services concerning the completion of the Riviera Tower project",
         "description": "",
         "description2": "",
         "image1":"assets/portfolio/2024_009_RivieraTower.BBI/image_front.png",
@@ -364,7 +364,7 @@
     },
     {
         "id": "2024_004",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model of Building",
         "location": "Panepistimiou, Attica",
         "image_front": "assets/portfolio/2024_004_PiraeusBank.Panepistimiou/revit.png",
         "description": "POINT CLOUD",
@@ -382,7 +382,7 @@
     },
     {
         "id": "2024_003",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model of Building",
         "location": "Kolokotroni",
         "image_front": "assets/portfolio/2024_003_Panagiotidis.Kolokotroni/revit.png",
         "description": "POINT CLOUD",
@@ -400,10 +400,10 @@
     },
     {
         "id": "2024_001",
-        "title": "General topographical support of the Grid project",
+        "title": "The Grid project",
         "location": "Marousi, Athens",
         "image_front": "assets/portfolio/2024_001_Terna.Grid_Xar/image_front.jpg",
-        "main_description":"General topographical support of The Grid project, the new green office complex in Marousi.",
+        "main_description":"Surveying and Consulting services concerning the completion of The Grid project, the new green office complex in Marousi.",
         "description": "",
         "description2": "",
         "description3": "",
@@ -469,7 +469,7 @@
     },
     {
         "id": "2023_027",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model of Building",
         "location": "Sygrou, Athens",
         "image_front":"assets/portfolio/2023_027_Chrisochoidis_Sygrou6/revit.png",
         "description": "POINT CLOUD",
@@ -485,7 +485,7 @@
     },
     {
         "id": "2023_022",
-        "title": "Architectural Footprint of a Museum",
+        "title": "3D Model of a Museum",
         "location": "Zakinthos",
         "image_front":"assets/portfolio/2023_22_Kizis Zakynthos/revit.png",
         "description": "POINT CLOUD",
@@ -503,7 +503,7 @@
     },
     {
         "id": "2023_021",
-        "title": "Architectural Footprint of a Hotel Complex MongoBay",
+        "title": "3D Model of a Hotel Complex MongoBay",
         "location": "Haniotis, Chalkidiki",
         "image_front":"assets/portfolio/2023_021_MargoBay/revit.png",
         "description": "POINT CLOUD",
@@ -521,7 +521,7 @@
     },
     {
         "id": "2023_009",
-        "title": "Architectural Footprint of Sklavenitis",
+        "title": "3D Model of Sklavenitis",
         "location": "Porto Rafti, Attica",
         "image_front":"assets/portfolio/2023_009_Sklavenitis.Porto Rafti/revit.png",
         "description": "POINT CLOUD",
@@ -572,7 +572,7 @@
     },
     {
         "id": "2022_045",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model of Building",
         "location": "Syros",
         "image_front":"assets/portfolio/2022_045_Block.Syros_BIM/revit.png",
         "description": "POINT CLOUD",
@@ -588,7 +588,7 @@
     },
     {
         "id": "2022_002",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model of Building",
         "location": "Lefka Palace, Spetses",
         "image_front":"assets/portfolio/2022_002_Block.Spetses/revit.png",
         "description": "3D VIEW",
@@ -636,7 +636,7 @@
     }, 
     {
         "id": "2021_003",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model of Building",
         "location": "Lykourgou kai Sokratous, Athens",
         "image_front":"assets/portfolio/2021_003_Focal.Lykourgou_BIM/revit.png",
         "description": "3D VIEW",
@@ -652,7 +652,7 @@
     },
     {
         "id": "2021_015",
-        "title": "Architectural Footprint of Plant Rooom",
+        "title": "3D Model of Plant Rooom",
         "location": "Athens International Airport",
         "image_front":"assets/portfolio/2021_015_AIA.Plant Room/revit.png",
         "video1":"https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/portfolio%2F2021_015%2F2021_015_high.mp4?alt=media&token=63af329b-c1e9-4fc2-a270-38dda8533291",
@@ -672,7 +672,7 @@
     },
     {
         "id": "2021_073",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model of Building",
         "location": "Nea Peramos, Athens",
         "image_front":"assets/portfolio/2021_073_Dimand.Softex Nea Peramos/revit.png",
         "description": "3D VIEW",
@@ -717,7 +717,7 @@
     },
     {
         "id": "2020_091",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model of Building",
         "location": "Lykavittou, Attica",
         "image_front":"assets/portfolio/2020_091_Melka.Lykavittou/revit.png",
         "description": "POINT CLOUD",
@@ -735,7 +735,7 @@
     },   
     {
         "id": "2020_096",
-        "title": "Architectural Footprint of Building",
+        "title": "3D Model of Building",
         "location": "Elliniko, Attica",
         "image_front":"assets/portfolio/2020_096_Gologiannis.Elliniko_BIM/revit.png",
         "description": "POINT CLOUD",
@@ -751,7 +751,7 @@
     },   
     {
         "id": "2020_101",
-        "title": "Architectural Footprint of a Hotel",
+        "title": "3D Model of a Hotel",
         "location": "Hotel La Residence, Mykonos",
         "image_front":"assets/portfolio/2020_101_BlackHawk_LaResidence/revit.png",
         "description": "POINT CLOUD",
@@ -769,7 +769,7 @@
     },   
     {
         "id": "2019_077",
-        "title": "Architectural Footprint of a Building",
+        "title": "3D Model of a Building",
         "location": "Areopagitou, Athens",
         "image_front":"assets/portfolio/2019_077_Temes.Areopagitou/revit.png",
         "description": "POINT CLOUD",
