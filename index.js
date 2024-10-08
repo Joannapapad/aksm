@@ -90,7 +90,7 @@ const animateObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.3 });
 
 // Select the elements to observe, now including .carousel
-const elementsToObserve = document.querySelectorAll('.text-left, .services_text-left, .subscribe,.about_services_title, .animated-line-container, .animated-line-container2, .heading, .project, .text-right, .vertical-separator, .services_vertical-separator, .vertical-separator2, .heropanel__content, .vertical-line-container, .customers, .row a, .carousel'); 
+const elementsToObserve = document.querySelectorAll('.text-left, .services_text-left, .subscribe,.about_services_title, .animated-line-container, .animated-line-container2, .heading, .project, .text-right, .vertical-separator, .services_vertical-separator, .vertical-separator2, .heropanel__content, .vertical-line-container, .customers, .row a'); 
 
 // Observe all selected elements
 elementsToObserve.forEach(element => animateObserver.observe(element));
