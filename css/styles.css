@@ -1132,6 +1132,10 @@ h2 {
     .subscribe {
         width: 80%
     }
+    .port{
+        padding:3em;
+    }
+    
 }
 
 .col-auto,
