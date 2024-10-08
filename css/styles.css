@@ -1193,6 +1193,9 @@ h2 {
     .carousel a {
         width: calc(100% / 2)
     }
+    .port{
+        padding:3em;
+    }
 }
 
 @media screen and (max-width:900px) {
