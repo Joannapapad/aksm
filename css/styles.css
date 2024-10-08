@@ -694,6 +694,9 @@ h2 {
     .container_services {
         padding: 18% 2%
     }
+    .port{
+        padding:3em;
+    }
 }
 
 .container_services .heading {
@@ -1307,7 +1310,7 @@ h2 {
         font-size: 2.2em
     }
     .port {
-        padding: 25% 7%
+        padding: 17% 7%
     }
     #contact {
         padding: 0
