@@ -192,7 +192,28 @@ padding-right: 3em;
   color: #bbb;
   text-decoration: none;
 }
+.animated-line-container3 {
+  padding-top: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;  
+}
 
+.animated-line3 {
+  width: 0;
+  height: 3px;
+  background-color: #817C76;
+  opacity: 0;
+  transition: width 2s ease-out, opacity 0.5s ease-out;
+  position: relative;
+}
+
+.animated-line-container3.animate .animated-line3 {
+  width: 20%; /* Adjust width as needed */
+  opacity: 1;
+}
 /* Social Media Icons */
 .social-media-list {
   position: relative;
@@ -405,7 +426,7 @@ hr {
 
 <div class="heading-container con" style="padding-top: 4em;">
                 <h1 class="head">Contact us</h1>
-                <div class="animated-line-container2">
+                <div class="animated-line-container3">
                     <div class="animated-line3"></div>
                 </div>
                 <p>Send us a message and we will come into contact as soon as possible!</p>
