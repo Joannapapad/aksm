@@ -206,9 +206,11 @@ a {
 .about_us {
     padding-top: 5%;
     padding-left: 5%;
-    padding-right: 5%
+    padding-right: 5%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
-
 .heading-contai {
     width: 100%;
     text-transform: uppercase;
@@ -273,7 +275,8 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 5%;
-    position: relative
+    position: relative;
+    max-width: 1000px;
 }
 
 .text-left,
@@ -1337,7 +1340,7 @@ h2 {
     }
 }
 
-@media only screen and (max-width:1150px) {
+@media only screen and (max-width:1150px), (max-height:650px) {
     .flex_container {
         flex-direction: column;
         align-items: center;
