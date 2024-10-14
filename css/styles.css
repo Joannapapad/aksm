@@ -844,7 +844,7 @@ h2 {
     position: relative
 }
 
-@media (max-width:600px), (max-height: 600px) {
+@media (max-width:600px) {
     
 .project-overlay {
   padding-top:32%;
@@ -1011,7 +1011,7 @@ h2 {
     position: relative;
     vertical-align: top
 }
-@media (max-width:1200px){
+@media (max-width:1200px), (max-height:600px){
     .carousel a {
     height: 450px;
     }
@@ -1171,7 +1171,7 @@ h2 {
     background: #f3f3f313
 }
 
-@media (max-width:670px) {
+@media (max-width:670px), (max-height:600px)
     .form-control {
         width: 85%;
         min-width: 100px
@@ -1357,7 +1357,7 @@ h2 {
     .text-right {
         order: -1
     }
-    @media (max-width:600px) , (max-height: 600px){
+    @media (max-width:600px) {
         .text-left,
         .text-right {
             padding: 13% 10%;
@@ -1423,7 +1423,7 @@ h2 {
     }
 }
 
-@media (max-width:600px) , (max-height: 600px){
+@media (max-width:600px){
     .container_services {
         padding: 33% 2% 40%
     }
