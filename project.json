@@ -236,6 +236,23 @@
         "area": "50m2"
     },
     {
+        "id": "2024_030",
+        "title": "Intertrade",
+        "location": "Acharnes",
+        "image_front": "assets/portfolio/2024_031/image_front.JPG",
+        "main_description":"",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "image1":"assets/portfolio/2024_031/image1.png",
+        "image2":"assets/portfolio/2024_031/image2.png",
+        "image3":"assets/portfolio/2024_031/image3.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "2024",
+        "area": "50m2"
+    },
+    {
         "id": "2024_024",
         "title": "Monitoring of Supply Tank",
         "location": "Thessaloniki",
