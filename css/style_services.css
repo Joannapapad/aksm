@@ -164,6 +164,7 @@ min-width: 270px;
   margin-bottom: 2rem;
   font-size: 1.3em;
   color: #817C76;
+  max-width: 1000px;
 }
 
 .services_wrapper {
