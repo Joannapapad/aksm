@@ -76,7 +76,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 slide.classList.remove('active');
             }
         });
-
+        if (index >= 0) {
+            setTimeout(() => {
+                categoryTextElement.style.opacity = '0'; // Fade out text
+            }, 5500); // Time to wait before fading out text
+        }
     }
 
     function nextSlide() {
