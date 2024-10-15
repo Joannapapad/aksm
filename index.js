@@ -9,24 +9,37 @@ function setVideoSource() {
     const videoSource = document.getElementById('videoSource');
     const videoElement = document.getElementById('dynamicVideo');
 
+    // Store the current source for comparison
+    const currentSource = videoSource.src;
+
     // Check screen width and assign video source accordingly
     if (window.innerWidth < 600) {
         // Set the mobile video source
-        videoSource.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_low.mp4?alt=media&token=332280e9-1399-4646-81fe-c73daf2d4b5a'; // Replace with your mobile video URL
+        videoSource.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_low.mp4?alt=media&token=332280e9-1399-4646-81fe-c73daf2d4b5a';
     } else {
         // Set the desktop video source
         videoSource.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=7efe5d1b-868a-4e36-8026-2b7c4e38f5f1';
     }
 
-    // Load the new video source
-    videoElement.load();
+    // Only load if the source has changed
+    if (currentSource !== videoSource.src) {
+        videoElement.load(); // Load the new video source
+
+        // Attempt to play the video after loading the new source
+        videoElement.play().catch(error => {
+            console.warn('Video play failed:', error);
+            // Optionally, you could show a play button or an overlay here
+        });
+    }
 }
 
 // Set the video source on page load
 window.onload = setVideoSource;
 
-// Optionally, you can also change it on window resize
+// Optionally, change it on window resize
 window.onresize = setVideoSource;
+
+
     // Load header.html and nav.js sequentially
 fetch('header.html')
     .then(response => response.text())
