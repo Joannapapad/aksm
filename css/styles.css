@@ -183,6 +183,7 @@ a {
     .logo_big {
         width: 14em;
         padding: 14vh
+        padding-bottom: 5vh ;
     }
     .category-text{
     font-size: 1.2em;
@@ -1625,6 +1626,8 @@ h2 {
     .logo_big {
         width: 14vh;
         padding: 14vh
+        padding-bottom: 5vh ;
+
     }
     .content h1 {
         font-size:1.8em;
