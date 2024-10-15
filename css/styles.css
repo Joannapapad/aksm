@@ -165,9 +165,14 @@ a {
     width: 19em;
     min-width: 10em;
     top: 50%;
-    padding: 10vh
+    padding: 10vh;
+    padding-bottom: 5vh ;
 }
 
+.category-text{
+    padding:2rem;
+    font-size:2em;
+}
 @media(max-width:1600px) {
     .logo_big {
         width: 14em;
