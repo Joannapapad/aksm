@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     function getParameterByName(name) {
         const urlParams = new URLSearchParams(window.location.search);
+        console.log('Loaded Project ID:', projectId); // Log the project ID to the console
         return urlParams.get(name);
     }
 
