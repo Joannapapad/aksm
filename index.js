@@ -77,12 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Fade out text when moving to the next slide
-        if (index > 0) {
-            setTimeout(() => {
-                categoryTextElement.style.opacity = '0'; // Fade out text
-            }, 5800); // Time to wait before fading out text
-        }
     }
 
     function nextSlide() {
