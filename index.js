@@ -58,55 +58,64 @@ window.addEventListener('load', () => {
 });
     // JavaScript for Parallax Effect
 
-document.addEventListener('DOMContentLoaded', function () {
-    const slides = document.querySelectorAll('.carousel-slide');
-    let currentIndex = 0;
-    const totalSlides = slides.length;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const slides = document.querySelectorAll('.carousel-slide');
+        let currentIndex = 0;
+        const totalSlides = slides.length;
     
-    const categories = [
-        "Scan2Bim",   // Slide 1
-        "Construction Surveying",  // Slide 2
-       // "Industrial Surveying",  // Slide 3
-        "Deformation Monitoring",   // Slide 4
-        "UAV Mapping"   // Slide 5
-    ];
-
-    const categoryTextElement = document.getElementById('categoryText');
-
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            if (i === index) {
-                slide.style.opacity = '1'; // Make the active slide visible
-                slide.style.zIndex = '1'; // Active slide gets z-index 1
-                slide.classList.add('active');
-                
-                // Update category text and fade it in
-                categoryTextElement.textContent = categories[index]; // Update text
-                categoryTextElement.style.opacity = '1'; // Fade in text
-            } else {
-                slide.style.opacity = '0'; // Hide other slides
-                slide.style.zIndex = '0'; // Other slides get z-index 0
-                slide.classList.remove('active');
+        // Category names and corresponding URLs
+        const categories = [
+            "Scan2Bim",  // Slide 1
+            "Construction Surveying",  // Slide 2
+            // "Industrial Surveying",  // Slide 3
+            "Deformation Monitoring",   // Slide 4
+            "UAV Mapping"   // Slide 5
+        ];
+    
+        const categoryUrls = {
+            "Scan2Bim": "services.html#scan2bim-section",
+            "Construction Surveying": "services.html#ci_surveying",
+            "Deformation Monitoring": "services.html#deformation-monitoring",
+            "UAV Mapping": "services.html#UVA_mapping"
+        };
+    
+        const categoryTextElement = document.getElementById('categoryText');
+    
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.style.opacity = '1'; // Make the active slide visible
+                    slide.style.zIndex = '1'; // Active slide gets z-index 1
+                    slide.classList.add('active');
+                    
+                    // Update category text and fade it in
+                    categoryTextElement.textContent = categories[index]; // Update text
+                    categoryTextElement.style.opacity = '1'; // Fade in text
+                } else {
+                    slide.style.opacity = '0'; // Hide other slides
+                    slide.style.zIndex = '0'; // Other slides get z-index 0
+                    slide.classList.remove('active');
+                }
+            });
+    
+            if (index >= 0) {
+                setTimeout(() => {
+                    categoryTextElement.style.opacity = '0'; // Fade out text
+                }, 5500); // Time to wait before fading out text
             }
-        });
-        if (index >= 0) {
-            setTimeout(() => {
-                categoryTextElement.style.opacity = '0'; // Fade out text
-            }, 5500); // Time to wait before fading out text
         }
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides; // Cycle through slides
+    
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides; // Cycle through slides
+            showSlide(currentIndex);
+        }
+    
+        // Automatically change slides every 6 seconds
+        setInterval(nextSlide, 6000);
+    
+        // Initialize the first slide as active
         showSlide(currentIndex);
-    }
-
-    // Automatically change slides every 6 seconds
-    setInterval(nextSlide, 6000);
-
-    // Initialize the first slide as active
-    showSlide(currentIndex);
-});
 
     // Counter Animation
     const counters = [
