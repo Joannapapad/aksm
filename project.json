@@ -364,21 +364,7 @@
         "completionyear": "2024",
         "area": "50m2"
     },
-    {
-        "id": "2024_009",
-        "title": "The Riviera Tower project",
-        "location": "Elliniko, Athens",
-        "image_front": "assets/portfolio/2024_009_RivieraTower.BBI/image_front.png",
-        "main_description":"Surveying and Consulting services concerning the completion of the Riviera Tower project",
-        "description": "",
-        "description2": "",
-        "image1":"assets/portfolio/2024_009_RivieraTower.BBI/image_front.png",
-        "image2":"assets/portfolio/2024_009_RivieraTower.BBI/image2.jpg",
-        "typeofproject": "Construction Surveying",
-        "typeofproject2":"const_ind_surv",
-        "completionyear": "2024",
-        "area": "50m2"
-    },
+
     {
         "id": "2024_004",
         "title": "3D Model of Building",
