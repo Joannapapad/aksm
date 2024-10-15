@@ -116,6 +116,7 @@ window.addEventListener('load', () => {
     
         // Initialize the first slide as active
         showSlide(currentIndex);
+    });
 
     // Counter Animation
     const counters = [
