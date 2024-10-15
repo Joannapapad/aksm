@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
         "Scan2Bim",   // Slide 1
         "Construction Surveying",  // Slide 2
        // "Industrial Surveying",  // Slide 3
-        "Deformation Monitoring";   // Slide 4
+        "Deformation Monitoring",   // Slide 4
         "UAV Mapping"   // Slide 5
     ];
 
