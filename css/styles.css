@@ -172,11 +172,20 @@ a {
 .category-text{
     padding:2rem;
     font-size:2em;
+    letter-spacing: 2px;
+    text-align: center; /* Center the text */
+    margin-bottom: 10px; /* Space between text and hr line */
+    opacity: 0; /* Start hidden */
+    transition: opacity 0.5s; /* Fade in/out effect */
 }
+    
 @media(max-width:1600px) {
     .logo_big {
         width: 14em;
         padding: 14vh
+    }
+    .category-text{
+    font-size: 1.2em;
     }
 }
 
