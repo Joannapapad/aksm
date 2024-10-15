@@ -45,25 +45,44 @@ window.addEventListener('load', () => {
 });
     // JavaScript for Parallax Effect
 
-
-
 document.addEventListener('DOMContentLoaded', function () {
     const slides = document.querySelectorAll('.carousel-slide');
     let currentIndex = 0;
     const totalSlides = slides.length;
+    
+    // Define categories for each slide
+    const categories = [
+        "Category for Video Slide",   // Slide 1
+        "Category for Image Slide 1",  // Slide 2
+        "Category for Image Slide 2",  // Slide 3
+        "Category for Image Slide 3"   // Slide 4
+    ];
+
+    const categoryTextElement = document.getElementById('categoryText');
 
     function showSlide(index) {
         slides.forEach((slide, i) => {
             if (i === index) {
                 slide.style.opacity = '1'; // Make the active slide visible
-                slide.style.zIndex = '-1'; // Active slide gets z-index -1
+                slide.style.zIndex = '1'; // Active slide gets z-index 1
                 slide.classList.add('active');
+                
+                // Update category text and fade it in
+                categoryTextElement.textContent = categories[index]; // Update text
+                categoryTextElement.style.opacity = '1'; // Fade in text
             } else {
                 slide.style.opacity = '0'; // Hide other slides
-                slide.style.zIndex = '-2'; // Other slides get z-index -2
+                slide.style.zIndex = '0'; // Other slides get z-index 0
                 slide.classList.remove('active');
             }
         });
+
+        // Fade out text when moving to the next slide
+        if (index > 0) {
+            setTimeout(() => {
+                categoryTextElement.style.opacity = '0'; // Fade out text
+            }, 4000); // Time to wait before fading out text
+        }
     }
 
     function nextSlide() {
@@ -71,13 +90,12 @@ document.addEventListener('DOMContentLoaded', function () {
         showSlide(currentIndex);
     }
 
-    // Automatically change slides every 5 seconds
+    // Automatically change slides every 6 seconds
     setInterval(nextSlide, 6000);
 
     // Initialize the first slide as active
     showSlide(currentIndex);
 });
-
 
     // Counter Animation
     const counters = [
