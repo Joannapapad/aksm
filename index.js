@@ -50,12 +50,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentIndex = 0;
     const totalSlides = slides.length;
     
-    // Define categories for each slide
     const categories = [
-        "Category for Video Slide",   // Slide 1
-        "Category for Image Slide 1",  // Slide 2
-        "Category for Image Slide 2",  // Slide 3
-        "Category for Image Slide 3"   // Slide 4
+        "Scan2Bim",   // Slide 1
+        "Construction Surveying",  // Slide 2
+       // "Industrial Surveying",  // Slide 3
+        "Deformation Monitoring";   // Slide 4
+        "UAV Mapping"   // Slide 5
     ];
 
     const categoryTextElement = document.getElementById('categoryText');
