@@ -171,10 +171,10 @@ a {
 
 .category-text{
     padding:2rem;
+    
     font-size:2em;
     letter-spacing: 2px;
     text-align: center; /* Center the text */
-    margin-bottom: 10px; /* Space between text and hr line */
     opacity: 0; /* Start hidden */
     transition: opacity 0.5s; /* Fade in/out effect */
 }
@@ -186,7 +186,9 @@ a {
         padding-bottom: 5vh ;
     }
     .category-text{
-    font-size: 1.2em;
+        font-size: 1.2em;
+        padding-bottom: 1rem;
+
     }
 }
 
