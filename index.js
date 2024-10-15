@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (index > 0) {
             setTimeout(() => {
                 categoryTextElement.style.opacity = '0'; // Fade out text
-            }, 4000); // Time to wait before fading out text
+            }, 5800); // Time to wait before fading out text
         }
     }
 
