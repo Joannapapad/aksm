@@ -116,7 +116,18 @@ window.addEventListener('load', () => {
     
         // Initialize the first slide as active
         showSlide(currentIndex);
+    
+        // Event listener for clicking on the category text
+        categoryTextElement.addEventListener('click', () => {
+            const currentCategory = categories[currentIndex];
+            const targetUrl = categoryUrls[currentCategory];
+    
+            if (targetUrl) {
+                window.location.href = targetUrl; // Redirect to the corresponding URL
+            }
+        });
     });
+    
 
     // Counter Animation
     const counters = [
