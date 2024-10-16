@@ -600,6 +600,7 @@ h2 {
     align-items: center;
     width: 100%;
     position: relative;
+    padding-top:2%;
 }
 
 .animated-line4 {
@@ -609,7 +610,7 @@ h2 {
     opacity: 0;
     transition: width 2s ease-out, opacity 0.5s ease-out;
     position: relative;
-    padding-top:2%;
+
 }
 
 .heading-container .animated-line-container4.animate .animated-line4 {
