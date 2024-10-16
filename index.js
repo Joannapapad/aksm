@@ -253,32 +253,27 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     });
 }
 
-
- // Slider functionality
+// Slider functionality
 const next = document.querySelector('.next');
 const prev = document.querySelector('.prev');
 const slider = document.querySelector('.slider');
-const sections = Array.from(slider.children);
-let sectionIndex = 0;
-let startX;
-let isSwiping = false;
-let isDragging = false;
+const sections = Array.from(slider.children); // Get all the child sections
+let sectionIndex = 0; // Initialize the current section index
 
 function showSlide(index) {
     slider.style.transform = `translateX(-${index * 100}%)`;
     slider.style.transition = 'transform 0.5s ease'; // Adding smooth transition
 }
+
 // Function to move to the next slide
 function nextSlide() {
-    sectionIndex++; // Increment the index to move to the next slide
-    // Logic to wrap around if the index exceeds the total number of slides
+    sectionIndex = (sectionIndex + 1) % sections.length; // Wrap around to first slide if at last
     showSlide(sectionIndex);
 }
 
 // Function to move to the previous slide
 function prevSlide() {
-    sectionIndex--; // Decrement the index to move to the previous slide
-    // Logic to wrap around if the index goes below 0
+    sectionIndex = (sectionIndex - 1 + sections.length) % sections.length; // Wrap around to last slide if at first
     showSlide(sectionIndex);
 }
 
