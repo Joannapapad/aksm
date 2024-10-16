@@ -166,26 +166,21 @@ function initializeHoverAndTabFunctionality() {
 
         $allLinks.hide(500); // Hide all initially
 
-        // Determine which projects to show based on active tab and dropdown selection
+        // Build the filter class based on active tab and dropdown selection
         let filterClass = '';
 
-        // If the active tab is "all", we include all projects that match the dropdown selection
+        // Check for all projects
         if (activeTab === 'all') {
-            if (selectedValue === 'ongoing') {
-                filterClass = '.const_ind_surv_ongoing'; // Ongoing projects
-            } else if (selectedValue === 'finished') {
-                filterClass = '.const_ind_surv_finished'; // Finished projects
-            } else {
-                $allLinks.show(500); // Show all projects
-                return; // Exit function
-            }
+            filterClass = ''; // Show all if "All" tab is selected
         } else {
-            filterClass = `.${activeTab}`; // Filter by tab
-            if (selectedValue === 'ongoing') {
-                filterClass += '.const_ind_surv_ongoing'; // Add ongoing filter
-            } else if (selectedValue === 'finished') {
-                filterClass += '.const_ind_surv_finished'; // Add finished filter
-            }
+            filterClass = `.${activeTab}`; // Filter by the selected tab
+        }
+
+        // Append status filter based on dropdown selection
+        if (selectedValue === 'ongoing') {
+            filterClass += '.ongoing'; // Add ongoing filter
+        } else if (selectedValue === 'finished') {
+            filterClass += '.finished'; // Add finished filter
         }
 
         // Show the filtered projects
