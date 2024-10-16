@@ -914,121 +914,41 @@ function initializeCarousel(carouselId) {
     const slider = carousel.querySelector('.carousel-slider2');
     const sections = Array.from(slider.children);
     let sectionIndex = 0;
-    let isSwiping = false;
-    let isDragging = false;
-    let startX = 0;
-    let startY = 0;
 
     slider.style.willChange = 'transform';
 
+    // Function to show a specific slide
     function showSlide(index) {
         slider.style.transform = `translateX(-${index * 100}%)`;
     }
 
+    // Function to move to the next slide
     function nextSlide() {
-        sectionIndex = (sectionIndex + 1) % sections.length;
+        sectionIndex = (sectionIndex + 1) % sections.length; // Wrap around to the first slide if at the end
         showSlide(sectionIndex);
     }
 
+    // Function to move to the previous slide
     function prevSlide() {
-        sectionIndex = (sectionIndex - 1 + sections.length) % sections.length;
+        sectionIndex = (sectionIndex - 1 + sections.length) % sections.length; // Wrap around to the last slide if at the beginning
         showSlide(sectionIndex);
     }
 
+    // Handle the "next" button click
     nextButton.addEventListener('click', function() {
         console.log('Next button clicked');
-        clearInterval(autoSlideInterval);
-        nextSlide();
-        autoSlideInterval = setInterval(nextSlide, 5000);
+        nextSlide(); // Move to the next slide
     });
 
+    // Handle the "prev" button click
     prevButton.addEventListener('click', function() {
         console.log('Prev button clicked');
-        clearInterval(autoSlideInterval);
-        prevSlide();
-        autoSlideInterval = setInterval(nextSlide, 5000);
+        prevSlide(); // Move to the previous slide
     });
 
+    // Initially show the first slide
     showSlide(sectionIndex);
 
-    let autoSlideInterval = setInterval(nextSlide, 5000);
-
-    function throttle(callback, limit) {
-        let waiting = false;
-        return function () {
-            if (!waiting) {
-                callback.apply(this, arguments);
-                waiting = true;
-                setTimeout(function () {
-                    waiting = false;
-                }, limit);
-            }
-        };
-    }
-
-    slider.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].pageX;
-        startY = e.touches[0].pageY;
-        isSwiping = true;
-        clearInterval(autoSlideInterval);
-    }, { passive: true });
-
-    slider.addEventListener('touchmove', throttle(function(e) {
-        if (isSwiping) {
-            let moveX = e.touches[0].pageX;
-            let moveY = e.touches[0].pageY;
-            let horizontalDifference = startX - moveX;
-            let verticalDifference = startY - moveY;
-
-            if (Math.abs(horizontalDifference) > Math.abs(verticalDifference)) {
-                if (Math.abs(horizontalDifference) > 80) {
-                    if (horizontalDifference > 0) {
-                        nextSlide();
-                    } else {
-                        prevSlide();
-                    }
-                    isSwiping = false;
-                }
-            } else {
-                isSwiping = false;
-            }
-        }
-    }, 100), { passive: true });
-
-    slider.addEventListener('mousedown', function(e) {
-        startX = e.pageX;
-        isDragging = true;
-        clearInterval(autoSlideInterval);
-    });
-
-    slider.addEventListener('mousemove', throttle(function(e) {
-        if (isDragging) {
-            let moveX = e.pageX;
-            let difference = startX - moveX;
-
-            if (Math.abs(difference) > 50) {
-                if (difference > 0) {
-                    nextSlide();
-                } else {
-                    prevSlide();
-                }
-                isDragging = false;
-                autoSlideInterval = setInterval(nextSlide, 5000);
-            }
-        }
-    }, 100));
-
-    slider.addEventListener('touchend', function() {
-        isSwiping = false;
-    });
-
-    slider.addEventListener('mouseup', function() {
-        isDragging = false;
-    });
-
-    slider.addEventListener('mouseleave', function() {
-        isDragging = false;
-    });
 }
 
 // Initialize carousels
@@ -1036,7 +956,6 @@ initializeCarousel('carousel1');
 initializeCarousel('carousel22');
 initializeCarousel('carousel3');
 initializeCarousel('carousel4');
-
 
     </script>
 </body>
