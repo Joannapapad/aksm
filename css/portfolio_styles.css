@@ -110,6 +110,43 @@ body{
   justify-content: center;
   align-items: center;
 }
+/* Style for the tab group */
+.tab-group {
+    position: relative;
+    margin-bottom: 10px; /* Space between main tab and subtabs */
+}
+
+/* Style for subtabs */
+.subtabs {
+    display: none; /* Hidden by default */
+    margin-left: 20px; /* Indent subtabs */
+}
+
+.subtab {
+    cursor: pointer;
+    padding: 5px 0;
+    color: #68645e;
+}
+
+.subtab:hover {
+    color: #ff6600;
+}
+
+/* Show subtabs when the tab-group has the 'active' class */
+.tab-group.active .subtabs {
+    display: block;
+}
+
+/* Active state styles */
+.tab-active {
+    color: #ff6600; /* Example active color */
+    border-bottom: 2px solid #ff6600; /* Example active indicator */
+}
+
+/* Optional: Transition for smooth display of subtabs */
+.subtabs p {
+    transition: color 0.3s;
+}
 
 .featured_projects .responsive-container-block.desc {
   position: absolute;
