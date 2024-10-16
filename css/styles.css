@@ -416,6 +416,7 @@ h2 {
 }
 
 .animated-line,
+.animated-line4,
 .btn-one,
 .circle,
 .customers,
@@ -1275,7 +1276,7 @@ h2 {
     transform: scale(.1, 1)
 }
 
-.animated-line-container {
+.animated-line-container, .animated-line-container4 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1284,7 +1285,7 @@ h2 {
     padding-top: 15%
 }
 
-.animated-line {
+.animated-line,.animated-line4 {
     width: 0;
     height: 2px;
     background-color: #f3f3f3;
@@ -1292,7 +1293,7 @@ h2 {
     transition: width 2s ease-out, opacity .5s ease-out
 }
 
-.animated-line-container.animate .animated-line {
+.animated-line-container.animate .animated-line, .animated-line-container4.animate .animated-line4 {
     width: 60%;
     opacity: 1
 }
@@ -1466,7 +1467,7 @@ h2 {
     .content-right {
         padding: 1rem
     }
-    .animated-line-container {
+    .animated-line-container, .animated-line-container4 {
         padding-top: 35%
     }
     .about_us {
