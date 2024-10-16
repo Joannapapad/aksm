@@ -56,8 +56,8 @@
 }
 @media(max-width:1300px){
     .menu_maker{
-    display: block;
-}
+        display: block;
+    }
 }
         
     </style>
@@ -191,25 +191,26 @@
             });
         
 function initializeHoverAndTabFunctionality() {
+    const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
+    const $allLinks = $portfolioContainer.find(".link-wrapper");
+    const $tabs = $portfolioContainer.find(".tab");
+
     // Hide description and overlay initially
-    $("[unique-script-id='w-w-dm-id'] .img .desc, [unique-script-id='w-w-dm-id'] .img .overlay").hide();
+    $portfolioContainer.find(".img .desc, .img .overlay").hide();
 
     // Use CSS for hover effects
-    $("[unique-script-id='w-w-dm-id'] .img").hover(
-        function() {
+    $portfolioContainer.find(".img").hover(
+        function () {
             $(this).find('.overlay, .desc').stop(true, true).fadeIn(200);
         },
-        function() {
+        function () {
             $(this).find('.overlay, .desc').stop(true, true).fadeOut(200);
         }
     );
 
     // Handle main tab clicks
-    $("[unique-script-id='w-w-dm-id'] .tab").click(function() {
+    $tabs.click(function () {
         const value = $(this).attr('data-filter');
-
-        // Use one hide and one show for improved performance
-        const $allLinks = $("[unique-script-id='w-w-dm-id'] .link-wrapper");
 
         // Hide all projects initially
         $allLinks.hide(500);
@@ -222,15 +223,15 @@ function initializeHoverAndTabFunctionality() {
         }
 
         // Set active class
-        $(".tab").removeClass('tab-active');
+        $tabs.removeClass('tab-active');
         $(this).addClass('tab-active');
     });
 
     // Filter based on dropdown selection
-    $('#project-status').change(function() {
+    $('#project-status').change(function () {
         const selectedValue = $(this).val();
 
-        const $allLinks = $("[unique-script-id='w-w-dm-id'] .link-wrapper");
+        // Hide all projects initially
         $allLinks.hide(500);
 
         // Show projects based on dropdown selection
@@ -254,21 +255,20 @@ function initializeHoverAndTabFunctionality() {
 
     // If there is a filter parameter, set the corresponding tab as active and show the projects
     if (filter) {
-        const targetTab = $(`.tab[data-filter="${filter}"]`);
+        const targetTab = $tabs.filter(`[data-filter="${filter}"]`);
         if (targetTab.length) {
             targetTab.click(); // Trigger tab click to show appropriate projects
         }
     } else {
         // Default behavior if no filter parameter
-        $('.tab[data-filter="all"]').addClass('tab-active');
+        $tabs.filter('[data-filter="all"]').addClass('tab-active');
     }
 }
 
 // Call the function to initialize functionality
-$(document).ready(function() {
+$(document).ready(function () {
     initializeHoverAndTabFunctionality();
 });
-
 
     </script>
 </body>
