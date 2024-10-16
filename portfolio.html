@@ -24,6 +24,7 @@
     display: none; /* Hidden by default */
     position: absolute;
     top: 100%;
+    width: 100%;
     left: 0;
     background-color: #f3f3f3; /* Adjust as needed */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -136,31 +137,35 @@
                 console.error('Error fetching footer:', error);
             });
 
-        // Function to generate project HTML content
-        function generateProjectHTML(project) {
-            let projectClass = project.typeofproject2;
-
-            // Determine the subcategory class based on the project's status
-            if (project.typeofproject2 === 'const_ind_surv') {
-                if (project.status === 'ongoing') {
-                    projectClass += ' const_ind_surv_ongoing';
-                } else if (project.status === 'finished') {
-                    projectClass += ' const_ind_surv_finished';
+            function generateProjectHTML(project) {
+                let projectClass = project.typeofproject2;
+            
+                // Determine the subcategory class based on the project's status
+                if (project.typeofproject2 === 'const_ind_surv') {
+                    if (project.status === 'ongoing') {
+                        projectClass += ' const_ind_surv_ongoing';
+                    } else if (project.status === 'finished') {
+                        projectClass += ' const_ind_surv_finished';
+                    }
                 }
-            }
-            return `
-                <a href="project_details.html?id=${project.id}" class="link-wrapper ${projectClass}">
-                    <div class="responsive-container-block img ${projectClass}" id="${project.id}">
-                        <img class="im image-block" src="${project.image_front}" alt="${project.title}">
-                        <div class="responsive-container-block overlay overlay-visible"></div>
-                        <div class="responsive-container-block desc">
-                            <p class="text-blk title">${project.title}, ${project.location}</p>
-                            <p class="text-blk info">Completed in ${project.completionyear || 'Ongoing'} <br>${project.typeofproject.toUpperCase()}</p>
+            
+                return `
+                    <a href="project_details.html?id=${project.id}" class="link-wrapper ${projectClass}">
+                        <div class="responsive-container-block img ${projectClass}" id="${project.id}">
+                            <img class="im image-block" src="${project.image_front}" alt="${project.title}">
+                            <div class="responsive-container-block overlay overlay-visible"></div>
+                            <div class="responsive-container-block desc">
+                                <p class="text-blk title">${project.title}, ${project.location}</p>
+                                <p class="text-blk info">
+                                    ${project.status === 'ongoing' ? 'Ongoing Project' : 'Completed in: ' + project.completionyear}
+                                    <br>${project.typeofproject.toUpperCase()}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            `;
-    }
+                    </a>
+                `;
+            }
+
 
         // Fetch and display projects
         fetch('project.json')
@@ -179,8 +184,7 @@
             .catch(error => {
                 console.error('Error fetching projects:', error);
             });
-
- function initializeHoverAndTabFunctionality() {
+function initializeHoverAndTabFunctionality() {
     // Hide description and overlay initially
     $("[unique-script-id='w-w-dm-id'] .img .desc").hide();
     $("[unique-script-id='w-w-dm-id'] .img .overlay").hide();
@@ -211,7 +215,7 @@
     });
 
     // Handle subtab clicks
-    $("[unique-script-id='w-w-dm-id'] .subtab").click(function() {
+    $("[unique-script-id='w-w-dm-id'] .subtab").click(function(event) {
         const filterValue = $(this).attr('data-filter');
 
         // Hide all projects
@@ -223,6 +227,23 @@
         // Set active class
         $(".tab, .subtab").removeClass('tab-active');
         $(this).addClass('tab-active');
+
+        // Prevent event from bubbling up to the document
+        event.stopPropagation();
+
+        // Hide subtabs after selecting
+        $('.subtabs').hide();
+    });
+
+    // Handle clicks outside the submenu
+    $(document).click(function(event) {
+        const target = $(event.target);
+
+        // Check if the click is outside the tab group
+        if (!target.closest('.tab-group').length) {
+            // Hide the submenu
+            $('.subtabs').hide();
+        }
     });
 
     // Function to get query parameter value by name
@@ -248,7 +269,6 @@
         $('.tab[data-filter="all"]').addClass('tab-active');
     }
 }
-
     </script>
 </body>
 </html>
