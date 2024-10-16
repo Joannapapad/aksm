@@ -102,7 +102,7 @@ window.addEventListener('load', () => {
             if (index >= 0) {
                 setTimeout(() => {
                     categoryTextElement.style.opacity = '0'; // Fade out text
-                }, 5500); // Time to wait before fading out text
+                }, 5800); // Time to wait before fading out text
             }
         }
     
@@ -293,22 +293,16 @@ function prevSlide() {
 next.addEventListener('click', function() {
     clearInterval(autoSlideInterval); // Pause auto-sliding
     nextSlide(); // Move to the next slide
-    autoSlideInterval = setInterval(nextSlide, 5000); // Resume auto-sliding
 });
 
 // Handle the "prev" button click
 prev.addEventListener('click', function() {
     clearInterval(autoSlideInterval); // Pause auto-sliding
     prevSlide(); // Move to the previous slide
-    autoSlideInterval = setInterval(nextSlide, 5000); // Resume auto-sliding
 });
 
 // Initially show the first slide
 showSlide(sectionIndex);
-
-// Auto-slide functionality (every 5 seconds)
-let autoSlideInterval = setInterval(nextSlide, 5000);
-
 // Touch handling for swiping
 slider.addEventListener('touchstart', function(e) {
     startX = e.touches[0].pageX;
