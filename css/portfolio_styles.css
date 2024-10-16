@@ -25,17 +25,21 @@ body{
 .menu_maker {
   display: flex;
   flex-direction: column; /* Row direction by default */
-    width: 100%;
-
+  width: 100%;
 }
+
+
+
 
 /* Styles for the tabs */
 .tabs {
   display: flex; /* Align tabs in a row */
   margin-right: 15px; /* Space between tabs */
   align-items: center;
+  justify-content: space-evenly;
 }
 
+/* Dropdown filter styles */
 .filter-dropdown {
   display: flex;
   align-items: center; /* Center align dropdown vertically */
@@ -169,7 +173,7 @@ body{
 }
 
 .featured_projects .responsive-container-block.opt-cont {
-  justify-content: space-evenly;
+  width: 100%;
   align-items: center;
   margin: 20px 0 5px;
 }
@@ -189,9 +193,10 @@ body{
 
 
 /* Active state styles */
-.tab-active {
-  color: #ff6600; /* Example active color */
+.tab-active{
+  color: #817C76; /* Example active color */
   border-bottom: 2px solid #817C76; /* Example active indicator */
+  width: auto;
 }
 
 .featured_projects .text-blk.title {
@@ -346,6 +351,7 @@ body{
 
   .featured_projects .responsive-container-block.opt-cont {
     flex-direction: column;
+
   }
 
   .featured_projects .text-blk.info {
@@ -398,6 +404,8 @@ body{
 
   .featured_projects .responsive-container-block.opt-cont {
     flex-direction: column;
+    justify-content: space-between;
+
   }
 
   .featured_projects .responsive-container-block.img.hidden {
