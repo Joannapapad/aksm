@@ -117,12 +117,6 @@ body{
     border-bottom: 2px solid #ff6600; /* Example active indicator */
 }
 
-.responsive-container-block.opt-cont {
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-between; /* Space between tabs and dropdown */
-    align-items: center; /* Center align items vertically */
-    margin-bottom: 20px; /* Space below the tab and filter section */
-}
 
 .tab-active {
     font-weight: bold; /* Highlight active tab */
