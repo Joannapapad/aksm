@@ -177,7 +177,7 @@ a {
     letter-spacing: 2px;
     text-align: center; /* Center the text */
     opacity: 0; /* Start hidden */
-    transition: opacity 0.5s; /* Fade in/out effect */
+    transition: opacity 0.2s; /* Fade in/out effect */
 }
     
 @media(max-width:1600px) {
