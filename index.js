@@ -295,65 +295,6 @@ prev.addEventListener('click', function() {
 // Initially show the first slide
 showSlide(sectionIndex);
 
-// Touch handling for swiping
-slider.addEventListener('touchstart', function(e) {
-    startX = e.touches[0].pageX;
-    isSwiping = true;
-    clearInterval(autoSlideInterval); // Pause auto-sliding
-});
-
-slider.addEventListener('touchmove', function(e) {
-    if (isSwiping) {
-        let moveX = e.touches[0].pageX;
-        let difference = startX - moveX;
-
-        if (difference > 50) {
-            nextSlide();
-            isSwiping = false;
-            autoSlideInterval = setInterval(nextSlide, 5000); // Resume auto-sliding
-        } else if (difference < -50) {
-            prevSlide();
-            isSwiping = false;
-            autoSlideInterval = setInterval(nextSlide, 5000); // Resume auto-sliding
-        }
-    }
-});
-
-slider.addEventListener('touchend', function() {
-    isSwiping = false;
-});
-
-// Mouse handling for dragging
-slider.addEventListener('mousedown', function(e) {
-    startX = e.pageX;
-    isDragging = true;
-    clearInterval(autoSlideInterval); // Pause auto-sliding
-});
-
-slider.addEventListener('mousemove', function(e) {
-    if (isDragging) {
-        let moveX = e.pageX;
-        let difference = startX - moveX;
-
-        if (difference > 50) {
-            nextSlide();
-            isDragging = false;
-            autoSlideInterval = setInterval(nextSlide, 5000); // Resume auto-sliding
-        } else if (difference < -50) {
-            prevSlide();
-            isDragging = false;
-            autoSlideInterval = setInterval(nextSlide, 5000); // Resume auto-sliding
-        }
-    }
-});
-
-slider.addEventListener('mouseup', function() {
-    isDragging = false;
-});
-
-slider.addEventListener('mouseleave', function() {
-    isDragging = false;
-});
     
 const carousel = document.querySelector(".carousel");
 const arrowControls = document.querySelectorAll(".arrow");
