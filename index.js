@@ -268,41 +268,33 @@ function showSlide(index) {
     slider.style.transform = `translateX(-${index * 100}%)`;
     slider.style.transition = 'transform 0.5s ease'; // Adding smooth transition
 }
-
+// Function to move to the next slide
 function nextSlide() {
-    // Increment sectionIndex and loop back if needed
-    if (sectionIndex < sections.length - 1) {
-        sectionIndex++;
-    } else {
-        sectionIndex = 0;
-    }
+    sectionIndex++; // Increment the index to move to the next slide
+    // Logic to wrap around if the index exceeds the total number of slides
     showSlide(sectionIndex);
 }
 
+// Function to move to the previous slide
 function prevSlide() {
-    // Decrement sectionIndex and loop back if needed
-    if (sectionIndex > 0) {
-        sectionIndex--;
-    } else {
-        sectionIndex = sections.length - 1;
-    }
+    sectionIndex--; // Decrement the index to move to the previous slide
+    // Logic to wrap around if the index goes below 0
     showSlide(sectionIndex);
 }
 
 // Handle the "next" button click
 next.addEventListener('click', function() {
-    clearInterval(autoSlideInterval); // Pause auto-sliding
     nextSlide(); // Move to the next slide
 });
 
 // Handle the "prev" button click
 prev.addEventListener('click', function() {
-    clearInterval(autoSlideInterval); // Pause auto-sliding
     prevSlide(); // Move to the previous slide
 });
 
 // Initially show the first slide
 showSlide(sectionIndex);
+
 // Touch handling for swiping
 slider.addEventListener('touchstart', function(e) {
     startX = e.touches[0].pageX;
