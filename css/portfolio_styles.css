@@ -188,7 +188,7 @@ body{
 /* Active state styles */
 .tab-active {
   color: #ff6600; /* Example active color */
-  border-bottom: 2px solid #ff6600; /* Example active indicator */
+  border-bottom: 2px solid #817C76; /* Example active indicator */
 }
 
 .featured_projects .text-blk.title {
