@@ -13,52 +13,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <style>
-  /* Style for the tab group */
-.tab-group {
-    position: relative;
-    margin-bottom: 10px; /* Space between main tab and subtabs */
-}
-
-/* Style for subtabs */
-.subtabs {
-    display: none; /* Hidden by default */
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    left: 0;
-    background-color: #f3f3f3; /* Adjust as needed */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-/* Show subtabs on hover */
-.tab-group:hover .subtabs {
-    display: block;
-}
-
-/* Style for subtabs */
-.subtab {
-    cursor: pointer;
-    padding: 8px 16px;
-    color: #817c76;
-    white-space: nowrap;
-}
-
-.subtab:hover {
-    background-color: #f1f1f1;
-    color: #817c76;
-}
-
-/* Active state styles */
-.tab-active {
-    color: #ff6600; /* Example active color */
-    border-bottom: 2px solid #817c76; /* Example active indicator */
-}
-
-/* Optional: Transition for smooth display of subtabs */
-.subtabs p {
-    transition: color 0.3s;
-}
+        .filter-dropdown {
+            display: inline-block;
+            margin-left: 10px; /* Space between the tab and dropdown */
+        }
+        
+        .filter-dropdown select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 
     </style>
 </head>
@@ -105,18 +69,23 @@
                 <p class="text-blk tab tab-active" data-filter="all">All</p>
                 <p class="text-blk tab" data-filter="scan2bim">SCAN2BIM</p>
                 
-                <!-- Main Tab with Subtabs -->
                 <div class="tab-group">
                     <p class="text-blk tab main-tab" data-filter="const_ind_surv">CONSTRUCTION & INDUSTRIAL SURVEYING</p>
                     <div class="subtabs">
                         <p class="text-blk subtab" data-filter="const_ind_surv_ongoing">Ongoing Projects</p>
                         <p class="text-blk subtab" data-filter="const_ind_surv_finished">Finished Projects</p>
                     </div>
+                    <!-- Dropdown Filter -->
+                    <div class="filter-dropdown">
+                        <label for="project-status">Filter by:</label>
+                        <select id="project-status">
+                            <option value="all">All Projects</option>
+                            <option value="ongoing">Ongoing Projects</option>
+                            <option value="finished">Finished Projects</option>
+                        </select>
+                    </div>
                 </div>
-                
-                <p class="text-blk tab" data-filter="deformation_monitoring">DEFORMATION MONITORING</p>
-                <p class="text-blk tab" data-filter="uav_mapping">UAV MAPPING</p>
-            </div>
+
 
             <div class="responsive-container-block content" id="portfolio-container">
                 <!-- Project content will be dynamically inserted here -->
@@ -184,6 +153,7 @@
             .catch(error => {
                 console.error('Error fetching projects:', error);
             });
+        
 function initializeHoverAndTabFunctionality() {
     // Hide description and overlay initially
     $("[unique-script-id='w-w-dm-id'] .img .desc").hide();
@@ -246,6 +216,25 @@ function initializeHoverAndTabFunctionality() {
         }
     });
 
+    // Filter based on dropdown selection
+    $('#project-status').change(function() {
+        const selectedValue = $(this).val();
+
+        // Hide all projects initially
+        $("[unique-script-id='w-w-dm-id'] .link-wrapper").hide(500);
+
+        if (selectedValue === 'ongoing') {
+            // Show only ongoing projects
+            $("[unique-script-id='w-w-dm-id'] .link-wrapper.const_ind_surv_ongoing").show(500);
+        } else if (selectedValue === 'finished') {
+            // Show only finished projects
+            $("[unique-script-id='w-w-dm-id'] .link-wrapper.const_ind_surv_finished").show(500);
+        } else {
+            // Show all projects if "All Projects" is selected
+            $("[unique-script-id='w-w-dm-id'] .link-wrapper").show(500);
+        }
+    });
+
     // Function to get query parameter value by name
     function getQueryParam(param) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -269,6 +258,7 @@ function initializeHoverAndTabFunctionality() {
         $('.tab[data-filter="all"]').addClass('tab-active');
     }
 }
+
     </script>
 </body>
 </html>
