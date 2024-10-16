@@ -92,34 +92,35 @@
                 console.error('Error fetching footer:', error);
             });
 
-            function generateProjectHTML(project) {
-                let projectClass = project.typeofproject2;
-            
-                // Determine the subcategory class based on the project's status
-                if (project.typeofproject2 === 'const_ind_surv') {
-                    if (project.status === 'ongoing') {
-                        projectClass += ' const_ind_surv_ongoing';
-                    } else if (project.status === 'finished') {
-                        projectClass += ' const_ind_surv_finished';
-                    }
+        function generateProjectHTML(project) {
+            let projectClass = project.typeofproject2;
+        
+            // Determine the subcategory class based on the project's status
+            if (project.typeofproject2 === 'const_ind_surv') {
+                if (project.status === 'ongoing') {
+                    projectClass += ' const_ind_surv_ongoing';
+                } else if (project.status === 'finished') {
+                    projectClass += ' const_ind_surv_finished';
                 }
-            
-                return `
-                    <a href="project_details.html?id=${project.id}" class="link-wrapper ${projectClass}">
-                        <div class="responsive-container-block img ${projectClass}" id="${project.id}">
-                            <img class="im image-block" src="${project.image_front}" alt="${project.title}">
-                            <div class="responsive-container-block overlay overlay-visible"></div>
-                            <div class="responsive-container-block desc">
-                                <p class="text-blk title">${project.title}, ${project.location}</p>
-                                <p class="text-blk info">
-                                    ${project.status === 'ongoing' ? 'Ongoing Project' : 'Completed in: ' + project.completionyear}
-                                    <br>${project.typeofproject.toUpperCase()}
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                `;
             }
+        
+            return `
+                <a href="project_details.html?id=${project.id}" class="link-wrapper ${projectClass}">
+                    <div class="responsive-container-block img ${projectClass}" id="${project.id}">
+                        <img class="im image-block" src="${project.image_front}" alt="${project.title}">
+                        <div class="responsive-container-block overlay overlay-visible"></div>
+                        <div class="responsive-container-block desc">
+                            <p class="text-blk title">${project.title}, ${project.location}</p>
+                            <p class="text-blk info">
+                                ${project.status === 'ongoing' ? 'Ongoing Project' : 'Completed in: ' + project.completionyear}
+                                <br>${project.typeofproject.toUpperCase()}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            `;
+}
+
 
 
         // Fetch and display projects
@@ -158,40 +159,49 @@ function initializeHoverAndTabFunctionality() {
         }
     );
 
-    // Handle main tab clicks
-    $tabs.click(function () {
-        const value = $(this).attr('data-filter');
+    // Function to filter projects based on active tab and dropdown
+    function filterProjects() {
+        const activeTab = $tabs.filter('.tab-active').attr('data-filter');
+        const selectedValue = $('#project-status').val();
 
-        // Hide all projects initially
-        $allLinks.hide(500);
+        $allLinks.hide(500); // Hide all initially
 
-        // Show projects based on the selected tab
-        if (value === 'all') {
-            $allLinks.show(500);
+        // Determine which projects to show based on active tab and dropdown selection
+        let filterClass = '';
+
+        // If the active tab is "all", we include all projects that match the dropdown selection
+        if (activeTab === 'all') {
+            if (selectedValue === 'ongoing') {
+                filterClass = '.const_ind_surv_ongoing'; // Ongoing projects
+            } else if (selectedValue === 'finished') {
+                filterClass = '.const_ind_surv_finished'; // Finished projects
+            } else {
+                $allLinks.show(500); // Show all projects
+                return; // Exit function
+            }
         } else {
-            $allLinks.filter(`.${value}`).show(500);
+            filterClass = `.${activeTab}`; // Filter by tab
+            if (selectedValue === 'ongoing') {
+                filterClass += '.const_ind_surv_ongoing'; // Add ongoing filter
+            } else if (selectedValue === 'finished') {
+                filterClass += '.const_ind_surv_finished'; // Add finished filter
+            }
         }
 
-        // Set active class
+        // Show the filtered projects
+        $allLinks.filter(filterClass).show(500);
+    }
+
+    // Handle main tab clicks
+    $tabs.click(function () {
         $tabs.removeClass('tab-active');
         $(this).addClass('tab-active');
+        filterProjects(); // Call the filter function when tab changes
     });
 
     // Filter based on dropdown selection
     $('#project-status').change(function () {
-        const selectedValue = $(this).val();
-
-        // Hide all projects initially
-        $allLinks.hide(500);
-
-        // Show projects based on dropdown selection
-        if (selectedValue === 'ongoing') {
-            $allLinks.filter('.const_ind_surv_ongoing').show(500);
-        } else if (selectedValue === 'finished') {
-            $allLinks.filter('.const_ind_surv_finished').show(500);
-        } else {
-            $allLinks.show(500); // Show all projects if "All Projects" is selected
-        }
+        filterProjects(); // Call the filter function when dropdown changes
     });
 
     // Function to get query parameter value by name
