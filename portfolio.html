@@ -13,16 +13,44 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
     <style>
-        .filter-dropdown {
-            display: inline-block;
-            margin-left: 10px; /* Space between the tab and dropdown */
-        }
-        
-        .filter-dropdown select {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+.responsive-container-block.opt-cont {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between tabs and dropdown */
+    align-items: center; /* Center align items vertically */
+    margin-bottom: 20px; /* Space below the tab and filter section */
+}
+
+.tabs {
+    display: flex; /* Align tabs in a row */
+}
+
+.tab {
+    margin-right: 15px; /* Space between tabs */
+    cursor: pointer; /* Change cursor on hover */
+    padding: 10px; /* Add some padding */
+}
+
+.tab-active {
+    font-weight: bold; /* Highlight active tab */
+    color: #ff6600; /* Active color */
+}
+
+.filter-dropdown {
+    display: flex;
+    align-items: center; /* Center align dropdown vertically */
+}
+
+.filter-dropdown label {
+    margin-right: 5px; /* Space between label and dropdown */
+}
+
+.filter-dropdown select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px; /* Consistent font size */
+}
+
 
     </style>
 </head>
@@ -65,27 +93,25 @@
                 <p>Aksm has contributed to a variety of projects</p>
             </div>
 
-            <div class="responsive-container-block opt-cont">
+        <div class="responsive-container-block opt-cont">
+            <div class="tabs">
                 <p class="text-blk tab tab-active" data-filter="all">All</p>
                 <p class="text-blk tab" data-filter="scan2bim">SCAN2BIM</p>
-                
-                <div class="tab-group">
-                    <p class="text-blk tab main-tab" data-filter="const_ind_surv">CONSTRUCTION & INDUSTRIAL SURVEYING</p>
-                    <div class="subtabs">
-                        <p class="text-blk subtab" data-filter="const_ind_surv_ongoing">Ongoing Projects</p>
-                        <p class="text-blk subtab" data-filter="const_ind_surv_finished">Finished Projects</p>
-                    </div>
-                    <!-- Dropdown Filter -->
-                    <div class="filter-dropdown">
-                        <label for="project-status">Filter by:</label>
-                        <select id="project-status">
-                            <option value="all">All Projects</option>
-                            <option value="ongoing">Ongoing Projects</option>
-                            <option value="finished">Finished Projects</option>
-                        </select>
-                    </div>
-                </div>
-
+                <p class="text-blk tab" data-filter="const_ind_surv">CONSTRUCTION & INDUSTRIAL SURVEYING</p>
+                <p class="text-blk tab" data-filter="deformation_monitoring">DEFORMATION MONITORING</p>
+                <p class="text-blk tab" data-filter="uav_mapping">UAV MAPPING</p>
+            </div>
+            
+            <!-- Dropdown Filter on the side -->
+            <div class="filter-dropdown">
+                <label for="project-status">Filter by:</label>
+                <select id="project-status">
+                    <option value="all">All Projects</option>
+                    <option value="ongoing">Ongoing Projects</option>
+                    <option value="finished">Finished Projects</option>
+                </select>
+            </div>
+        </div>
 
             <div class="responsive-container-block content" id="portfolio-container">
                 <!-- Project content will be dynamically inserted here -->
@@ -168,52 +194,23 @@ function initializeHoverAndTabFunctionality() {
         $(this).find('.desc').fadeOut();
     });
 
-    // Handle main tabs without subtabs
-    $("[unique-script-id='w-w-dm-id'] .tab:not(.main-tab)").click(function() {
+    // Handle main tab clicks
+    $("[unique-script-id='w-w-dm-id'] .tab").click(function() {
         const value = $(this).attr('data-filter');
 
+        // Hide all projects initially
+        $("[unique-script-id='w-w-dm-id'] .link-wrapper").hide(500);
+
+        // Show projects based on the selected tab
         if (value === 'all') {
             $("[unique-script-id='w-w-dm-id'] .link-wrapper").show(500);
         } else {
-            $("[unique-script-id='w-w-dm-id'] .link-wrapper").hide(500);
             $("[unique-script-id='w-w-dm-id'] .link-wrapper." + value).show(500);
         }
 
         // Set active class
-        $(".tab, .subtab").removeClass('tab-active');
+        $(".tab").removeClass('tab-active');
         $(this).addClass('tab-active');
-    });
-
-    // Handle subtab clicks
-    $("[unique-script-id='w-w-dm-id'] .subtab").click(function(event) {
-        const filterValue = $(this).attr('data-filter');
-
-        // Hide all projects
-        $("[unique-script-id='w-w-dm-id'] .link-wrapper").hide(500);
-
-        // Show only the projects matching the filter
-        $("[unique-script-id='w-w-dm-id'] .link-wrapper." + filterValue).show(500);
-
-        // Set active class
-        $(".tab, .subtab").removeClass('tab-active');
-        $(this).addClass('tab-active');
-
-        // Prevent event from bubbling up to the document
-        event.stopPropagation();
-
-        // Hide subtabs after selecting
-        $('.subtabs').hide();
-    });
-
-    // Handle clicks outside the submenu
-    $(document).click(function(event) {
-        const target = $(event.target);
-
-        // Check if the click is outside the tab group
-        if (!target.closest('.tab-group').length) {
-            // Hide the submenu
-            $('.subtabs').hide();
-        }
     });
 
     // Filter based on dropdown selection
@@ -223,11 +220,10 @@ function initializeHoverAndTabFunctionality() {
         // Hide all projects initially
         $("[unique-script-id='w-w-dm-id'] .link-wrapper").hide(500);
 
+        // Show projects based on dropdown selection
         if (selectedValue === 'ongoing') {
-            // Show only ongoing projects
             $("[unique-script-id='w-w-dm-id'] .link-wrapper.const_ind_surv_ongoing").show(500);
         } else if (selectedValue === 'finished') {
-            // Show only finished projects
             $("[unique-script-id='w-w-dm-id'] .link-wrapper.const_ind_surv_finished").show(500);
         } else {
             // Show all projects if "All Projects" is selected
@@ -247,17 +243,19 @@ function initializeHoverAndTabFunctionality() {
     // If there is a filter parameter, set the corresponding tab as active and show the projects
     if (filter) {
         const targetTab = $(`.tab[data-filter="${filter}"]`);
-        const targetSubtab = $(`.subtab[data-filter="${filter}"]`);
-        if (targetSubtab.length) {
-            targetSubtab.click(); // Trigger subtab click to show appropriate projects
-        } else if (targetTab.length) {
-            targetTab.click(); // Trigger main tab click to show appropriate projects
+        if (targetTab.length) {
+            targetTab.click(); // Trigger tab click to show appropriate projects
         }
     } else {
         // Default behavior if no filter parameter
         $('.tab[data-filter="all"]').addClass('tab-active');
     }
 }
+
+// Call the function to initialize functionality
+$(document).ready(function() {
+    initializeHoverAndTabFunctionality();
+});
 
     </script>
 </body>
