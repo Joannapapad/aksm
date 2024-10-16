@@ -172,7 +172,8 @@ a {
 .category-text{
     padding:2rem;
     cursor: pointer;
-    font-size:2em;
+    font-size:2.3em;
+    font-weight:600;
     letter-spacing: 2px;
     text-align: center; /* Center the text */
     opacity: 0; /* Start hidden */
