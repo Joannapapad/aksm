@@ -16,7 +16,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished",
     },
     {
         "id": "2021_009",
@@ -33,7 +34,9 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
+
     },
     {
         "id": "2022_049",
@@ -50,7 +53,8 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
     },
     {
         "id": "2022_062",
@@ -67,7 +71,8 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
     },
     {
         "id": "2023_086",
@@ -84,7 +89,8 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
     },
     {
         "id": "2023_073",
@@ -101,7 +107,8 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
     },
     {
         "id": "2023_062",
@@ -132,7 +139,8 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
     },
     {
         "id": "2024_036",
@@ -147,7 +155,8 @@
         "typeofproject": "Deformation Monitoring",
         "typeofproject2":"deformation_monitoring",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
     },
     { 
         "id": "2024_035",
@@ -198,7 +207,8 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
     },
     {
         "id": "2024_032",
@@ -250,7 +260,8 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
     },
     {
         "id": "2024_024",
@@ -301,7 +312,8 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
     },
     {
         "id": "2024_020",
@@ -334,7 +346,8 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
     },
     {
         "id": "2024_013",
@@ -349,7 +362,8 @@
         "typeofproject": "Deformation Monitoring",
         "typeofproject2":"deformation_monitoring",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
     },
     {
         "id": "2024_013_2",
@@ -416,12 +430,10 @@
         "typeofproject": "Deformation Monitoring & Construction Surveying",
         "typeofproject2":"deformation_monitoring const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"ongoing",
     },
 
-
-
-    
     {
         "id": "2023_079",
         "title": "UAV Mapping of a Building",
@@ -520,7 +532,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2023",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished",
     },
     {
         "id": "2023_009",
@@ -538,7 +551,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2023",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished",
     },
     {
         "id": "2023_007",
@@ -553,7 +567,8 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2023",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished",
     },
     {
         "id": "2023_006",
@@ -571,7 +586,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2023",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished",
     },
     {
         "id": "2022_045",
@@ -587,7 +603,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2022",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished",
     },
     {
         "id": "2022_002",
@@ -603,7 +620,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2022",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished",
     },
     {
         "id": "2021_041",
@@ -617,8 +635,9 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2021",
-        "area": "50m2"
-    }, 
+        "area": "50m2",
+        "status":"finished",
+    },
     {
         "id": "2021_036",
         "title": "UAV Mapping of an Area",
@@ -635,8 +654,9 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2021",
-        "area": "50m2"
-    }, 
+        "area": "50m2",
+        "status":"finished",
+    },
     {
         "id": "2021_003",
         "title": "3D Model of Building",
@@ -651,7 +671,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2021",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished",
     },
     {
         "id": "2021_015",
@@ -671,7 +692,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2021",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished",
     },
     {
         "id": "2021_073",
@@ -687,7 +709,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2021",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished",
     },
     {
         "id": "2021_025",
@@ -701,8 +724,9 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2021",
-        "area": "50m2"
-    }, 
+        "area": "50m2",
+        "status":"finished",
+    },
     {
         "id": "2020_105",
         "title": "UAV Mapping of an Building",
@@ -716,7 +740,8 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2020",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished",
     },
     {
         "id": "2020_091",
