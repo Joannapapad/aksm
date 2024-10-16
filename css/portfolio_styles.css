@@ -110,32 +110,7 @@ body{
   justify-content: center;
   align-items: center;
 }
-/* Style for the tab group */
-.tab-group {
-    position: relative;
-    margin-bottom: 10px; /* Space between main tab and subtabs */
-}
 
-/* Style for subtabs */
-.subtabs {
-    display: none; /* Hidden by default */
-    margin-left: 20px; /* Indent subtabs */
-}
-
-.subtab {
-    cursor: pointer;
-    padding: 5px 0;
-    color: #68645e;
-}
-
-.subtab:hover {
-    color: #ff6600;
-}
-
-/* Show subtabs when the tab-group has the 'active' class */
-.tab-group.active .subtabs {
-    display: block;
-}
 
 /* Active state styles */
 .tab-active {
@@ -143,9 +118,41 @@ body{
     border-bottom: 2px solid #ff6600; /* Example active indicator */
 }
 
-/* Optional: Transition for smooth display of subtabs */
-.subtabs p {
-    transition: color 0.3s;
+.responsive-container-block.opt-cont {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between tabs and dropdown */
+    align-items: center; /* Center align items vertically */
+    margin-bottom: 20px; /* Space below the tab and filter section */
+}
+
+.tab-active {
+    font-weight: bold; /* Highlight active tab */
+    color: #ff6600; /* Active color */
+}
+
+.filter-dropdown {
+    display: flex;
+    align-items: center; /* Center align dropdown vertically */
+}
+
+.filter-dropdown label {
+    margin-right: 5px; /* Space between label and dropdown */
+}
+
+.filter-dropdown select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px; /* Consistent font size */
+}
+.menu_maker{
+    display: flex;
+    flex-direction: column;
+}
+@media(max-width:1300px){
+    .menu_maker{
+        display: block;
+    }
 }
 
 .featured_projects .responsive-container-block.desc {
