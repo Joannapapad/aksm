@@ -147,7 +147,6 @@
                     projectClass += ' const_ind_surv_finished';
                 }
             }
-
             return `
                 <a href="project_details.html?id=${project.id}" class="link-wrapper ${projectClass}">
                     <div class="responsive-container-block img ${projectClass}" id="${project.id}">
@@ -155,12 +154,12 @@
                         <div class="responsive-container-block overlay overlay-visible"></div>
                         <div class="responsive-container-block desc">
                             <p class="text-blk title">${project.title}, ${project.location}</p>
-                            <p class="text-blk info">Completed Project ${project.completionyear || 'Ongoing'} <br>${project.typeofproject.toUpperCase()}</p>
+                            <p class="text-blk info">Completed in ${project.completionyear || 'Ongoing'} <br>${project.typeofproject.toUpperCase()}</p>
                         </div>
                     </div>
                 </a>
             `;
-        }
+
 
         // Fetch and display projects
         fetch('project.json')
