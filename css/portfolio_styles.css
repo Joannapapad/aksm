@@ -36,10 +36,11 @@ body{
   align-items: center;
 }
 
-/* Dropdown filter styles */
 .filter-dropdown {
   display: flex;
   align-items: center; /* Center align dropdown vertically */
+  padding: 0 0  1em 2em;
+
 }
 /* Media query for screens smaller than 1300px */
 @media (max-width: 1300px) {
