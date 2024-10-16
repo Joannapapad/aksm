@@ -50,13 +50,22 @@
                 <p>Aksm has contributed to a variety of projects</p>
             </div>
 
-            <div class="responsive-container-block opt-cont">
-                <p class="text-blk tab tab-active" data-filter="all">All</p>
-                <p class="text-blk tab" data-filter="scan2bim">SCAN2BIM</p>
-                <p class="text-blk tab" data-filter="const_ind_surv">CONSTRUCTION & INDUSTRIAL SURVEYING</p>
-                <p class="text-blk tab" data-filter="deformation_monitoring">DEFORMATION MONITORING</p>
-                <p class="text-blk tab" data-filter="uav_mapping">UAV MAPPING</p>
+        <div class="responsive-container-block opt-cont">
+            <p class="text-blk tab tab-active" data-filter="all">All</p>
+            <p class="text-blk tab" data-filter="scan2bim">SCAN2BIM</p>
+            
+            <!-- Main Tab with Subtabs -->
+            <div class="tab-group">
+                <p class="text-blk tab main-tab" data-filter="const_ind_surv">CONSTRUCTION & INDUSTRIAL SURVEYING</p>
+                <div class="subtabs">
+                    <p class="text-blk subtab" data-filter="const_ind_surv_ongoing">Ongoing Projects</p>
+                    <p class="text-blk subtab" data-filter="const_ind_surv_finished">Finished Projects</p>
+                </div>
             </div>
+            
+            <p class="text-blk tab" data-filter="deformation_monitoring">DEFORMATION MONITORING</p>
+            <p class="text-blk tab" data-filter="uav_mapping">UAV MAPPING</p>
+        </div>
 
             <div class="responsive-container-block content" id="portfolio-container">
                 <!-- Project content will be dynamically inserted here -->
