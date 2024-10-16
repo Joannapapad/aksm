@@ -25,6 +25,8 @@ body{
 .menu_maker {
   display: flex;
   flex-direction: column; /* Row direction by default */
+    width: 100%;
+
 }
 
 /* Styles for the tabs */
