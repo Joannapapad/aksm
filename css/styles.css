@@ -594,10 +594,15 @@ h2 {
     transform: translateY(-50%);
     z-index: 1000
 }
-.animated-line-container4.animate .animated-line4 {
-    width: 20%;
-    opacity: 1;
+.animated-line-container4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    padding-top: 15%
 }
+
 .animated-line4 {
     width: 0;
     height: 3px;
@@ -606,6 +611,12 @@ h2 {
     transition: width 2s ease-out, opacity 0.5s ease-out;
     position: relative;
 }
+
+.heading-container .animated-line-container4.animate .animated-line4 {
+    width: 20%;
+    opacity: 1;
+}
+x
 .next,
 .prev {
     background: #f3f3f3cc;
