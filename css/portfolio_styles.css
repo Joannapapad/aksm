@@ -163,7 +163,7 @@ body{
   padding: 10px;
 }
 
-.featured_projects .responsive-container-block.opt-cont {
+.featured_projects .responsive-container-block.opt-cont .menu_maker{
   justify-content: space-evenly;
   align-items: center;
   margin: 20px 0 5px;
