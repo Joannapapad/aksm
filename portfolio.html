@@ -92,33 +92,31 @@
                 console.error('Error fetching footer:', error);
             });
 
-        function generateProjectHTML(project) {
-            let projectClass = project.typeofproject2;
-        
-            // Determine the subcategory class based on the project's status
-            if (project.typeofproject2 === 'const_ind_surv') {
-                if (project.status === 'ongoing') {
-                    projectClass += ' const_ind_surv_ongoing';
-                } else if (project.status === 'finished') {
-                    projectClass += ' const_ind_surv_finished';
-                }
-            }
-        
-            return `
-                <a href="project_details.html?id=${project.id}" class="link-wrapper ${projectClass}">
-                    <div class="responsive-container-block img ${projectClass}" id="${project.id}">
-                        <img class="im image-block" src="${project.image_front}" alt="${project.title}">
-                        <div class="responsive-container-block overlay overlay-visible"></div>
-                        <div class="responsive-container-block desc">
-                            <p class="text-blk title">${project.title}, ${project.location}</p>
-                            <p class="text-blk info">
-                                ${project.status === 'ongoing' ? 'Ongoing Project' : 'Completed in: ' + project.completionyear}
-                                <br>${project.typeofproject.toUpperCase()}
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            `;
+function generateProjectHTML(project) {
+    let projectClass = project.typeofproject2;
+
+    // Determine the subcategory class based on the project's status
+    if (project.status === 'ongoing') {
+        projectClass += ' ongoing'; // Add status class directly
+    } else if (project.status === 'finished') {
+        projectClass += ' finished'; // Add status class directly
+    }
+
+    return `
+        <a href="project_details.html?id=${project.id}" class="link-wrapper ${projectClass}">
+            <div class="responsive-container-block img ${projectClass}" id="${project.id}">
+                <img class="im image-block" src="${project.image_front}" alt="${project.title}">
+                <div class="responsive-container-block overlay overlay-visible"></div>
+                <div class="responsive-container-block desc">
+                    <p class="text-blk title">${project.title}, ${project.location}</p>
+                    <p class="text-blk info">
+                        ${project.status === 'ongoing' ? 'Ongoing Project' : 'Completed in: ' + project.completionyear}
+                        <br>${project.typeofproject.toUpperCase()}
+                    </p>
+                </div>
+            </div>
+        </a>
+    `;
 }
 
 
@@ -159,45 +157,35 @@ function initializeHoverAndTabFunctionality() {
         }
     );
 
-    // Function to filter projects based on active tab and dropdown
-    function filterProjects() {
-        const activeTab = $tabs.filter('.tab-active').attr('data-filter');
-        const selectedValue = $('#project-status').val();
+function filterProjects() {
+    const activeTab = $tabs.filter('.tab-active').attr('data-filter');
+    const selectedValue = $('#status').val();
 
-        $allLinks.hide(500); // Hide all initially
+    $allLinks.hide(500); // Hide all initially
 
-        // Build the filter class based on active tab and dropdown selection
-        let filterClass = '';
+    let filterClass = '';
 
-        // Check for all projects
-        if (activeTab === 'all') {
-            filterClass = ''; // Show all if "All" tab is selected
-        } else {
-            filterClass = `.${activeTab}`; // Filter by the selected tab
-        }
-
-        // Append status filter based on dropdown selection
-        if (selectedValue === 'ongoing') {
-            filterClass += '.ongoing'; // Add ongoing filter
-        } else if (selectedValue === 'finished') {
-            filterClass += '.finished'; // Add finished filter
-        }
-
-        // Show the filtered projects
-        $allLinks.filter(filterClass).show(500);
+    // Check for "All" tab
+    if (activeTab === 'all') {
+        filterClass = ''; // Show all projects if "All" is selected
+    } else {
+        filterClass = `.${activeTab}`; // Filter by the active tab
     }
 
-    // Handle main tab clicks
-    $tabs.click(function () {
-        $tabs.removeClass('tab-active');
-        $(this).addClass('tab-active');
-        filterProjects(); // Call the filter function when tab changes
-    });
+    // Append the status filter based on dropdown selection
+    if (selectedValue === 'ongoing') {
+        filterClass += '.ongoing'; // Add ongoing status filter
+    } else if (selectedValue === 'finished') {
+        filterClass += '.finished'; // Add finished status filter
+    }
 
-    // Filter based on dropdown selection
-    $('#project-status').change(function () {
-        filterProjects(); // Call the filter function when dropdown changes
-    });
+    // If no filter class is set, show all projects
+    if (filterClass === '') {
+        $allLinks.show(500); // Show all projects if no filter is applied
+    } else {
+        $allLinks.filter(filterClass).show(500); // Show filtered projects
+    }
+}
 
     // Function to get query parameter value by name
     function getQueryParam(param) {
