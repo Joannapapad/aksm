@@ -147,7 +147,7 @@ function initializeHoverAndTabFunctionality() {
     // Hide description and overlay initially
     $portfolioContainer.find(".img .desc, .img .overlay").hide();
 
-    // Use CSS for hover effects
+    // Hover effects
     $portfolioContainer.find(".img").hover(
         function () {
             $(this).find('.overlay, .desc').stop(true, true).fadeIn(200);
@@ -157,55 +157,52 @@ function initializeHoverAndTabFunctionality() {
         }
     );
 
-function filterProjects() {
-    const activeTab = $tabs.filter('.tab-active').attr('data-filter');
-    const selectedValue = $('#status').val();
+    // Filter projects based on active tab and dropdown
+    function filterProjects() {
+        const activeTab = $tabs.filter('.tab-active').attr('data-filter');
+        const selectedValue = $('#project-status').val();
 
-    $allLinks.hide(500); // Hide all initially
+        $allLinks.hide(500); // Hide all initially
 
-    let filterClass = '';
+        let filterClass = '';
 
-    // Check for "All" tab
-    if (activeTab === 'all') {
-        filterClass = ''; // Show all projects if "All" is selected
-    } else {
-        filterClass = `.${activeTab}`; // Filter by the active tab
-    }
-
-    // Append the status filter based on dropdown selection
-    if (selectedValue === 'ongoing') {
-        filterClass += '.ongoing'; // Add ongoing status filter
-    } else if (selectedValue === 'finished') {
-        filterClass += '.finished'; // Add finished status filter
-    }
-
-    // If no filter class is set, show all projects
-    if (filterClass === '') {
-        $allLinks.show(500); // Show all projects if no filter is applied
-    } else {
-        $allLinks.filter(filterClass).show(500); // Show filtered projects
-    }
-}
-
-    // Function to get query parameter value by name
-    function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
-
-    // Get the filter query parameter
-    const filter = getQueryParam('filter');
-
-    // If there is a filter parameter, set the corresponding tab as active and show the projects
-    if (filter) {
-        const targetTab = $tabs.filter(`[data-filter="${filter}"]`);
-        if (targetTab.length) {
-            targetTab.click(); // Trigger tab click to show appropriate projects
+        // Check for "All" tab
+        if (activeTab === 'all') {
+            filterClass = ''; // Show all projects if "All" is selected
+        } else {
+            filterClass = `.${activeTab}`; // Filter by the active tab
         }
-    } else {
-        // Default behavior if no filter parameter
-        $tabs.filter('[data-filter="all"]').addClass('tab-active');
+
+        // Append the status filter based on dropdown selection
+        if (selectedValue === 'ongoing') {
+            filterClass += '.ongoing'; // Add ongoing status filter
+        } else if (selectedValue === 'finished') {
+            filterClass += '.finished'; // Add finished status filter
+        }
+
+        // If no filter class is set, show all projects
+        if (filterClass === '') {
+            $allLinks.show(500); // Show all projects if no filter is applied
+        } else {
+            $allLinks.filter(filterClass).show(500); // Show filtered projects
+        }
     }
+
+    // Handle main tab clicks
+    $tabs.click(function () {
+        $tabs.removeClass('tab-active');
+        $(this).addClass('tab-active');
+        filterProjects(); // Filter when tab changes
+    });
+
+    // Filter based on dropdown selection
+    $('#project-status').change(function () {
+        filterProjects(); // Filter when dropdown changes
+    });
+
+    // Set default tab and load projects on page load
+    $tabs.filter('[data-filter="all"]').addClass('tab-active');
+    filterProjects(); // Call filter on page load
 }
 
 // Call the function to initialize functionality
