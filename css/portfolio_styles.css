@@ -139,6 +139,7 @@ body{
   width: 33.3%;
   height: auto;
   max-height: 400px;
+  max-width: 600px;
   padding: 2px;
   margin: 0;
   display: inline-block;
