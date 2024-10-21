@@ -1,12 +1,12 @@
 [
     {
         "id": "2024_042",
-        "title": "3D Model Of Building",
+        "title": "Atlantis Hotel",
         "location": "Paros, Greece",
         "image_front": "assets/portfolio/2024_042_Elementengineers.Paros/revit.png",
-        "main_description":"3D Depiction of a Building in Paros, along with the point cloud model, the plain view and the section of the building AKSM studied.",
+        "main_description":"Architectural and Structural Data Collection - Hotel Complex Renovation",
         "description": "POINT CLOUD",
-        "description2": "3D VIEW",
+        "description2": "3D MODEL",
         "description3": "PLAN VIEW",
         "description4": "SECTION",
         "image1":"assets/portfolio/2024_042_Elementengineers.Paros/cloud_rem.png",
@@ -17,6 +17,8 @@
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
         "area": "50m2",
+        "LOD": "350",
+        "partners": "Element engineers",
         "status":"finished"
     },
     {
