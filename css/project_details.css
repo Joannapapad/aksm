@@ -15,7 +15,15 @@ div[class*=box] {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
-  
+  hr{
+    width: 40%;
+  }
+
+  .project-info{
+    display: flex;
+    width: auto;
+
+  }
   .btn {
     line-height: 50px;
     height: 50px;
@@ -87,7 +95,9 @@ div[class*=box] {
     height: 100%;
     position: relative;
 }
-
+.project-text p{
+    padding: 20px;
+}
 .center {
     display: flex;
     justify-content: center;
@@ -101,24 +111,11 @@ div[class*=box] {
     display: flex;
     flex-direction: column; /* Stack elements vertically by default */
     padding: 20px;
-    padding-top:0;
     background: rgba(0, 0, 0, 0.7);
     color: white;
     z-index: 100;
     width: 100%;
     box-sizing: border-box;
-}
-
-/* Ensure Description Stays on Top */
-.project-summary .desc {
-    order: 1; /* Keep the description at the top */
-    margin-bottom: 10px;
-    max-width: 500px;
-}
-
-/* Project Info Below */
-.project-summary .project-info {
-    order: 2;
 }
 
 /* Default layout for larger screens */
@@ -133,13 +130,6 @@ div[class*=box] {
         background: rgba(0, 0, 0, 0.8);
     }
 
-    .project-summary .desc {
-        order: 1; /* Keep description at the top */
-    }
-
-    .project-summary .project-info {
-        order: 2; /* Keep details at the bottom */
-    }
 }
 
 /* Handle Small Width and Height Cases */
@@ -150,24 +140,24 @@ div[class*=box] {
         padding: 10px;
     }
 
-    /* Make sure all elements are within the same div */
-    .project-summary .desc, .project-summary .project-info {
-        order: 1; /* Stack them together */
-    }
-
     .project-summary .project-info {
         margin-top: 10px;
+    }
+    .project-text p{
+        padding: 0;
     }
 }
 
 .project-text {
     font-size: 1.3em;
-    text-align: center;
+    text-align: start;
     padding: 1em;
-    border: 1px solid #000; /* Add border */
+    max-width: 400px;
+    border: 1px solid #ffffff; /* Add border */
     border-radius: 8px; 
-
+    
 }
+
 
 .desc{
     max-width: 60%;
@@ -411,6 +401,33 @@ div[class*=box] {
         background-position: 200% 0;
     }
 }
+@media (min-width: 700px) and (min-height: 650px) {
+    .project-info {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        margin: 10px;
+        width: 100%;
+        max-width: 400px;
+        background: #817C76;
+        color: white;
+        z-index: 100;
+        border-radius: 10px;
+    }
+    .desc{
+        position: relative;
+    }
+
+}
+
+@media(max-height: 850px) {
+    .project-text p{
+        padding: 0;
+    }
+    hr{
+        display: none;
+    }
+}
 
 @media (max-width:2000px){
     .heading-container {
@@ -437,14 +454,26 @@ div[class*=box] {
 
 }
 
+@media (max-width:1750px){
+    .project-summary p{
+        padding: 10px;
+    }
+    .project-text{
+        width:300px;
+    }
+    .project-info {
+
+        max-width: 300px;
+
+    }
+  }
+
 
 @media(min-width:1600px){
     .project-text {
         font-size: 1.1em;
         text-align: center;
-        padding: 1em;
-        border: 3px solid #000; /* Add border */
-        border-radius: 8px; 
+        width: 100%;
     
     }
 
@@ -515,11 +544,13 @@ div[class*=box] {
     }
     .project-text {
         font-size: 1.1em;
-        text-align: center;
+        text-align: start;
         padding: 1em;
         border: 1px solid #000; /* Add border */
         border-radius: 8px; 
-    
+    }
+    hr{
+        width: 70%; 
     }
     .heading-container h1 {
         font-size: 1.3em;
@@ -527,24 +558,6 @@ div[class*=box] {
     }
     .heading-container  {
         padding-top: 0;
-    }
-
-}
-@media (min-width: 700px) and (min-height: 500px) {
-    .project-info {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%; /* Adjust to fit the screen width */
-        max-width: 400px; /* You can tweak this width as needed */
-        margin: 10px;
-        background: #817C76;
-        color: white;
-        z-index: 100;
-        border-radius: 10px;
-    }
-    .desc{
-        position: relative;
     }
 
 }
