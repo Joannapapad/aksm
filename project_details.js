@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Helper function to get URL parameters
     function getParameterByName(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
@@ -21,26 +22,36 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.appendChild(closeButton);
         document.body.appendChild(modal);
         
+        // Disable scrolling
+        document.body.style.overflow = 'hidden';
+        
+        // Close the modal when the close button is clicked
         closeButton.addEventListener('click', () => {
-            document.body.removeChild(modal);
+            closeModal(modal);
         });
         
+        // Close the modal when clicking outside the image
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
-                document.body.removeChild(modal);
+                closeModal(modal);
             }
         });
     }
 
+    // Function to close the modal and re-enable scrolling
+    function closeModal(modal) {
+        document.body.removeChild(modal);
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    }
+
+    // Loading header and footer HTML files
     fetch('header.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('menu-container').innerHTML = data;
-
             const script = document.createElement('script');
             script.src = 'nav.js';
             document.body.appendChild(script);
-
             loadProjectDetails();
         })
         .catch(error => {
@@ -54,13 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             const footerElement = document.getElementById('footer__cont');
             footerElement.innerHTML = data;
-            footerElement.style.backgroundColor = '#fff'; // Change the background color to white
+            footerElement.style.backgroundColor = '#fff'; // Change background color to white
         })
         .catch(error => console.error('Error loading footer:', error));
 
+    // Load project details based on the project ID in the URL
     function loadProjectDetails() {
         const projectId = getParameterByName('id');
-        console.log('Loaded Project ID:', projectId); // Log the project ID to the console
+        console.log('Loaded Project ID:', projectId);
 
         fetch('project.json')
             .then(response => response.json())
