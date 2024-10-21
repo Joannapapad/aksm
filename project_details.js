@@ -76,10 +76,15 @@ document.addEventListener("DOMContentLoaded", () => {
                                     <h1 class="head">${project.title}</h1>
                                     <p>${project.typeofproject}</p>
                                 </div>
+
+                                <div class="project-text desc" style="border:0;"><p><strong>Description:</strong> ${project.main_description}</p></div>
+
                                 <div class="project-info">
                                     <div class="project-text">
+                                        <p><strong>LOD:</strong> ${project.LOD}</p>
                                         <p><strong>Location:</strong> ${project.location}</p>
-                                        <p><strong>Completion Year:</strong> ${project.completionyear}</p>
+                                        <p><strong>Completion:</strong> ${project.completionyear}</p>
+                                        <p><strong>Area:</strong> ${project.area}</p>
                                     </div>
                                 </div>
                             </div>
@@ -91,14 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     `;
 
                     const imgTextHtml = [];
-
-                    if (project.main_description) {
-                        imgTextHtml.push(`
-                            <div class="img_text_flex">
-                                <p>${project.main_description}</p>
-                            </div>
-                        `);
-                    }
 
                                         // Handle video1 and video2
                     if (project.video1 && project.video2) {
@@ -113,8 +110,39 @@ document.addEventListener("DOMContentLoaded", () => {
                         `);
                     }
                     
+                    if(project.typeofproject2 == "scan2bim"){
+                        imgTextHtml.push(`
+                            <div class="img_text_flex">
+                                <!-- Left Image with Description -->
+                                <div class="img_text img_left">
+                                    <p class="description">${project.description}</p>
+                                    <img class="detail_proj_image clickable-image" src="${project.image1}" alt="Project Image Left">
+                                </div>
+
+                                <!-- Right Image with Description -->
+                                <div class="img_text img_right">
+                                    <p class="description">${project.description2}</p>
+                                    <img class="detail_proj_image clickable-image" src="${project.image2}" alt="Project Image Right">
+                                </div>
+                            </div>
+                            <div class="img_text_flex">
+                                <!-- Left Image with Description -->
+                                <div class="img_text img_left">
+                                    <p class="description">${project.description3}</p>
+                                    <img class="detail_proj_image clickable-image" src="${project.image3}" alt="Project Image Left">
+                                </div>
+
+                                <!-- Right Image with Description -->
+                                <div class="img_text img_right">
+                                    <p class="description">${project.description4}</p>
+                                    <img class="detail_proj_image clickable-image" src="${project.image4}" alt="Project Image Right">
+                                </div>
+                            </div>
+                        `);
+                    }
+
                     // Add image1
-                    if (project.image1) {
+                    if (project.image1 && project.typeofproject2 != "scan2bim") {
                         imgTextHtml.push(`
                             <div class="img_text_flex">
                                 <img class="detail_proj_image clickable-image" src="${project.image1}" alt="Project Image">
@@ -124,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
                     // Add image2
-                    if (project.image2) {
+                    if (project.image2 && project.typeofproject2 != "scan2bim") {
                         imgTextHtml.push(`
                             <div class="img_text_flex right">
                                 <img class="detail_proj_image clickable-image" src="${project.image2}" alt="Project Image">
@@ -134,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
                     // Add image3
-                    if (project.image3) {
+                    if (project.image3 && project.typeofproject2 != "scan2bim") {
                         imgTextHtml.push(`
                             <div class="img_text_flex">
                                 <img class="detail_proj_image clickable-image" src="${project.image3}" alt="Project Image">
@@ -144,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
                     // Add image4
-                    if (project.image4) {
+                    if (project.image4 && project.typeofproject2 != "scan2bim") {
                         imgTextHtml.push(`
                             <div class="img_text_flex right">
                                 <img class="detail_proj_image clickable-image" src="${project.image4}" alt="Project Image">
@@ -154,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
                     // Add image5
-                    if (project.image5) {
+                    if (project.image5 && project.typeofproject2 != "scan2bim") {
                         imgTextHtml.push(`
                             <div class="img_text_flex">
                                 <img class="detail_proj_image clickable-image" src="${project.image5}" alt="Project Image">
