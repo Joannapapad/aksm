@@ -95,13 +95,13 @@ document.addEventListener("DOMContentLoaded", () => {
                                     <div class="project-text">
                                         <p><strong>Description:</strong> ${project.main_description}</p>
                                         <hr>
+                                        <p><strong>Area:</strong> ${project.area}</p>
+                                        <hr>
                                         <p><strong>LOD:</strong> ${project.LOD}</p>
                                         <hr>
                                         <p><strong>Location:</strong> ${project.location}</p>
                                         <hr>
                                         <p><strong>Completion:</strong> ${project.completionyear}</p>
-                                        <hr>
-                                        <p><strong>Area:</strong> ${project.area}</p>
                                     </div>
                                 </div>
                             </div>
