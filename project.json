@@ -176,7 +176,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     { 
         "id": "2022_032",
@@ -190,7 +191,8 @@
         "typeofproject": "Deformation Monitoring",
         "typeofproject2":"deformation_monitoring",
         "completionyear": "2024",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     {
         "id": "2024_034",
@@ -228,7 +230,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     {
         "id": "2024_031",
@@ -245,7 +248,8 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2024",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     {
         "id": "2024_030",
@@ -280,7 +284,8 @@
         "typeofproject": "Deformation Monitoring",
         "typeofproject2":"deformation_monitoring",
         "completionyear": "2024",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     {
         "id": "2024_021",
@@ -298,7 +303,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
         {
         "id": "2024_021_2",
@@ -331,7 +337,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     {
         "id": "2024_018",
@@ -378,7 +385,8 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2024",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
 
     {
@@ -397,7 +405,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     {
         "id": "2024_003",
@@ -415,7 +424,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     {
         "id": "2024_001",
@@ -450,7 +460,8 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2023",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     {
         "id": "2023_056",
@@ -467,7 +478,8 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2023",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     {
         "id": "2023_051",
@@ -482,7 +494,8 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2023",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     {
         "id": "2023_027",
@@ -498,7 +511,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2023",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     {
         "id": "2023_022",
@@ -516,7 +530,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2023",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },
     {
         "id": "2023_021",
@@ -761,7 +776,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2020",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },   
     {
         "id": "2020_096",
@@ -777,7 +793,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2020",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },   
     {
         "id": "2020_101",
@@ -795,7 +812,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2020",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
     },   
     {
         "id": "2019_077",
@@ -813,6 +831,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2019",
-        "area": "50m2"
+        "area": "50m2",
+        "status":"finished"
+
     }
 ]
