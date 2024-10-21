@@ -89,14 +89,14 @@ document.addEventListener("DOMContentLoaded", () => {
                                     <p>${project.typeofproject}</p>
                                 </div>
 
-                                <div class="project-text desc" style="border:0;"><p><strong>Description:</strong> ${project.main_description}</p></div>
+                                <div class="project-text desc" style="border:0;"><p><strong>Description<br></strong> ${project.main_description}</p></div>
 
                                 <div class="project-info">
                                     <div class="project-text">
-                                        <p><strong>Location:</strong> ${project.location}</p>
-                                        <p><strong>LOD:</strong> ${project.LOD}</p>
-                                        <p><strong>Completion:</strong> ${project.completionyear}</p>
-                                        <p><strong>Area:</strong> ${project.area}</p>
+                                        <p><strong>Location<br></strong> ${project.location}</p>
+                                        <p><strong>LOD<br></strong> ${project.LOD}</p>
+                                        <p><strong>Completion<br></strong> ${project.completionyear}</p>
+                                        <p><strong>Area<br></strong> ${project.area}</p>
                                     </div>
                                 </div>
                             </div>
