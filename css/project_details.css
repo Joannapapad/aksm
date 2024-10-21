@@ -96,6 +96,68 @@ div[class*=box] {
     width: 100%;
     height: auto;
 }
+/* Project Summary Default Layout */
+.project-summary {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically by default */
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Ensure Description Stays on Top */
+.project-summary .desc {
+    order: 1; /* Keep the description at the top */
+    margin-bottom: 10px;
+    max-width: 500px;
+}
+
+/* Project Info Below */
+.project-summary .project-info {
+    order: 2;
+}
+
+/* Default layout for larger screens */
+@media (min-width: 600px) and (min-height: 500px) {
+    .project-summary {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%; /* Adjust to fit the screen width */
+        max-width: 400px; /* Optional: control the width */
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .project-summary .desc {
+        order: 1; /* Keep description at the top */
+    }
+
+    .project-summary .project-info {
+        order: 2; /* Keep details at the bottom */
+    }
+}
+
+/* Handle Small Width and Height Cases */
+@media (max-width: 600px), (max-height: 500px) {
+    .project-summary {
+        position: static;
+        display: block; /* Stack elements in one div */
+        padding: 10px;
+    }
+
+    /* Make sure all elements are within the same div */
+    .project-summary .desc, .project-summary .project-info {
+        order: 1; /* Stack them together */
+    }
+
+    .project-summary .project-info {
+        margin-top: 10px;
+    }
+}
 
 .project-text {
     font-size: 1.3em;
@@ -104,6 +166,10 @@ div[class*=box] {
     border: 1px solid #000; /* Add border */
     border-radius: 8px; 
 
+}
+
+.desc{
+    max-width: 60%;
 }
 
 .detail_proj_video{
@@ -174,6 +240,9 @@ div[class*=box] {
     box-sizing: border-box; /* Include padding in width */
     text-align: center;
 }
+.img_text{
+    margin: 15px;
+}
 
 .right {
     flex-direction: row-reverse;
@@ -225,7 +294,6 @@ div[class*=box] {
 
 .project-summary {
     padding: 2em;
-    padding-top:0;
     width: 100%;
     max-width: 1200px;
     background-color: #ffffffe9;
@@ -322,6 +390,16 @@ div[class*=box] {
 .close-button:hover {
     color: #bbb;
 }
+.project-summary {
+    position: static; /* Default for smaller screens */
+    padding: 20px;
+    color: black;
+    z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
 
 
 @keyframes shimmer {
@@ -448,6 +526,24 @@ div[class*=box] {
     }
     .heading-container  {
         padding-top: 0;
+    }
+
+}
+@media (min-width: 700px) and (min-height: 500px) {
+    .project-info {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%; /* Adjust to fit the screen width */
+        max-width: 400px; /* You can tweak this width as needed */
+        margin: 10px;
+        background: #817C76;
+        color: white;
+        z-index: 100;
+        border-radius: 10px;
+    }
+    .desc{
+        position: relative;
     }
 
 }
