@@ -29,8 +29,6 @@ body{
 }
 
 
-
-
 /* Styles for the tabs */
 .tabs {
   display: flex; /* Align tabs in a row */
@@ -96,8 +94,8 @@ body{
 
 
 .featured_projects .container-block {
-  min-height: 75px;
-  height: fit-content;
+  min-height: 300px; /* As already done, ensure space is reserved */
+  height: auto; 
   width: 100%;
   padding: 10px;
   display: block;
@@ -105,6 +103,8 @@ body{
 
 .featured_projects .responsive-container-block.bg {
   max-width: 1500px;
+  min-height: 500px; /* Reserve sufficient space */
+
   margin: 0;
   height: auto;
 }
@@ -123,7 +123,9 @@ body{
 .featured_projects .im {
   width: 100%;
   background-color: #666666;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Use the appropriate aspect ratio for your images */
+
 }
 
 .featured_projects .responsive-container-block.img {
@@ -150,6 +152,7 @@ body{
   position: absolute;
   height: 100%;
   width: 100%;
+  min-height: 300px; /* Ensure minimum space is reserved */
   margin: 10px;
   top: 0;
   left: 0;
