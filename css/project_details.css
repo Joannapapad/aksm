@@ -401,6 +401,14 @@ div[class*=box] {
         background-position: 200% 0;
     }
 }
+@media(max-height: 850px) {
+    .project-text p{
+        padding: 0;
+    }
+    hr{
+        display: none;
+    }
+}
 @media (min-width: 700px) and (min-height: 650px) {
     .project-info {
         position: fixed;
@@ -418,15 +426,6 @@ div[class*=box] {
         position: relative;
     }
 
-}
-
-@media(max-height: 850px) {
-    .project-text p{
-        padding: 0;
-    }
-    hr{
-        display: none;
-    }
 }
 
 @media (max-width:2000px){
