@@ -7,10 +7,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="stylesheet" href="css/portfolio_styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
     <script src="nav.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <style>
+     /* Styles for the tabs */
+.featured_projects .text-blk.tab {
+  font-size: 20px;
+  line-height: 10.1px;
+  display: flex;
+  align-items: center;
+  color: #999999;
+  font-weight: 500;
+  margin-bottom: 2vh;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Active state styles for main tabs */
+.tab-active {
+  color: #817C76; /* Example active color */
+  border-bottom: 2px solid #817C76; /* Active indicator for main tabs */
+  width: auto;
+}
+
+/* Styles for the subtabs */
+.featured_projects .dropdown-content p {
+  color: #999999; /* Default color for subtabs */
+  text-align: center;
+}
+
+/* Active state styles for subtabs */
+.subtab.tab-active {
+  color: #817C76; /* Example active color for active subtab */
+  border-bottom: none; /* No border for active subtabs */
+}
+
+/* Remove border for all subtabs */
+.dropdown-content p {
+  border-bottom: none; /* Ensure no border for subtabs */
+  font-size: 1.1em;
+  padding: 15px;
+
+}
+
+/* Hover effect for subtabs */
+.dropdown-content p:hover {
+  background-color: #d4d1d1; /* Change background color on hover */
+}
+/* Styles for dropdown content */
+.dropdown-content {
+    display: none; /* Default to hidden */
+    position: absolute;
+    background-color: #f3f3f3;
+    min-width: 200px;
+    z-index: 1;
     
+}
+
+/* Always show dropdown content on small screens */
+@media (max-width: 1300px) {
+    .dropdown-content {
+        display: block; /* Show dropdown by default */
+        position: static; /* Change position to static to avoid overlapping issues */
+        margin-top: 10px; /* Add some spacing if needed */
+    }
+
+    .dropdown {
+        position: relative; /* Keep position relative for proper stacking */
+    }
+
+    /* Ensure tabs are stacked correctly */
+    .tabs {
+        flex-direction: column; /* Change to column direction for small screens */
+    }
+
+    /* Optionally, you might want to add some spacing between tabs */
+    .tab {
+        margin-bottom: 10px; /* Space between tabs */
+    }
+}
+
+    </style>
 </head>
 <body>
     <div id="menu-container"></div>
@@ -26,10 +104,10 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('menu-container').innerHTML = data;
-                // Removed dynamic loading of nav.js
-            })
-            .catch(error => {
-                console.error('Error fetching header:', error);
+
+                const script = document.createElement('script');
+                script.src = 'nav.js';
+                document.body.appendChild(script);
             });
 
         window.addEventListener('load', () => {
@@ -51,27 +129,26 @@
                 <p>Aksm has contributed to a variety of projects</p>
             </div>
 
-        <div class="responsive-container-block opt-cont">
-            <div class="menu_maker">
-                <div class="tabs">
-                    <p class="text-blk tab tab-active" data-filter="all">All</p>
-                    <p class="text-blk tab" data-filter="scan2bim">SCAN2BIM</p>
-                    <p class="text-blk tab" data-filter="const_ind_surv">CONSTRUCTION & INDUSTRIAL SURVEYING</p>
-                    <p class="text-blk tab" data-filter="deformation_monitoring">DEFORMATION MONITORING</p>
-                    <p class="text-blk tab" data-filter="uav_mapping">UAV MAPPING</p>
-                </div>
-                
-                <!-- Dropdown Filter on the side -->
-                <div class="filter-dropdown">
-                    <label for="project-status">Filter by:</label>
-                    <select id="project-status">
-                        <option value="all">All Projects</option>
-                        <option value="ongoing">Ongoing Projects</option>
-                        <option value="finished">Finished Projects</option>
-                    </select>
+            <div class="responsive-container-block opt-cont">
+                <div class="menu_maker">
+                    <div class="tabs">
+                        <p class="text-blk tab tab-active" data-filter="all">All</p>
+                        <p class="text-blk tab" data-filter="scan2bim">SCAN2BIM</p>
+
+                        <!-- Dropdown Menu -->
+                        <div class="dropdown">
+                            <p class="text-blk tab" data-filter="const_ind_surv">CONSTRUCTION & INDUSTRIAL SURVEYING</p>
+                            <div class="dropdown-content">
+                                <p class="subtab" data-filter="ongoing">Ongoing Projects</p>
+                                <p class="subtab" data-filter="finished">Completed Projects</p>
+                            </div>
+                        </div>
+
+                        <p class="text-blk tab" data-filter="deformation_monitoring">DEFORMATION MONITORING</p>
+                        <p class="text-blk tab" data-filter="uav_mapping">UAV MAPPING</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
             <div class="responsive-container-block content" id="portfolio-container">
                 <!-- Project content will be dynamically inserted here -->
@@ -81,135 +158,135 @@
 
     <div id="footer__cont"></div>
 
-    <script>
-        // Fetch and insert the footer
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer__cont').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error fetching footer:', error);
-            });
-
-function generateProjectHTML(project) {
-    let projectClass = project.typeofproject2;
-
-    // Determine the subcategory class based on the project's status
-    if (project.status === 'ongoing') {
-        projectClass += ' ongoing'; // Add status class directly
-    } else if (project.status === 'finished') {
-        projectClass += ' finished'; // Add status class directly
-    }
-
-    return `
-        <a href="project_details.html?id=${project.id}" class="link-wrapper ${projectClass}">
-            <div class="responsive-container-block img ${projectClass}" id="${project.id}">
-                <img class="im image-block" src="${project.image_front}" alt="${project.title}">
-                <div class="responsive-container-block overlay overlay-visible"></div>
-                <div class="responsive-container-block desc">
-                    <p class="text-blk title">${project.title}, ${project.location}</p>
-                    <p class="text-blk info">
-                        ${project.status === 'ongoing' ? 'Ongoing Project' : 'Completed in: ' + project.completionyear}
-                        <br>${project.typeofproject.toUpperCase()}
-                    </p>
-                </div>
-            </div>
-        </a>
-    `;
-}
-
-
-
-        // Fetch and display projects
-        fetch('project.json')
-            .then(response => response.json())
-            .then(projects => {
-                const container = document.getElementById('portfolio-container');
-
-                // Insert projects into the DOM
-                projects.forEach(project => {
-                    container.innerHTML += generateProjectHTML(project);
-                });
-
-                // Initialize hover and tab functionality
-                initializeHoverAndTabFunctionality();
-            })
-            .catch(error => {
-                console.error('Error fetching projects:', error);
-            });
-        
-function initializeHoverAndTabFunctionality() {
+<script>
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer__cont').innerHTML = data;
+        });
+    
+        function initializeHoverAndTabFunctionality(projects) {
     const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
     const $allLinks = $portfolioContainer.find(".link-wrapper");
-    const $tabs = $portfolioContainer.find(".tab");
 
     // Hide description and overlay initially
-    $portfolioContainer.find(".img .desc, .img .overlay").hide();
+    $portfolioContainer.find(".img .desc").hide();
+    $portfolioContainer.find(".img .overlay").hide();
 
-    // Hover effects
+    // Hover effects for project images
     $portfolioContainer.find(".img").hover(
         function () {
-            $(this).find('.overlay, .desc').stop(true, true).fadeIn(200);
+            $(this).find('.overlay, .desc').fadeIn();
         },
         function () {
-            $(this).find('.overlay, .desc').stop(true, true).fadeOut(200);
+            $(this).find('.overlay, .desc').fadeOut();
         }
     );
 
-    // Filter projects based on active tab and dropdown
-    function filterProjects() {
-        const activeTab = $tabs.filter('.tab-active').attr('data-filter');
-        const selectedValue = $('#project-status').val();
+    // Main tab click handling
+    $portfolioContainer.find(".tab").click(function () {
+        const value = $(this).attr('data-filter');
 
-        $allLinks.hide(500); // Hide all initially
+        // Remove active state from all tabs
+        $portfolioContainer.find(".tab").removeClass('tab-active');
+        $portfolioContainer.find(".subtab").removeClass('tab-active'); // Reset subtab active state
+        $(this).addClass('tab-active'); // Set active state for clicked tab
 
-        let filterClass = '';
+        // Hide all projects initially
+        $allLinks.hide();
 
-        // Check for "All" tab
-        if (activeTab === 'all') {
-            filterClass = ''; // Show all projects if "All" is selected
+        // Show projects based on selected tab
+        if (value === 'all') {
+            $allLinks.show(500);
         } else {
-            filterClass = `.${activeTab}`; // Filter by the active tab
+            // Show projects matching the clicked tab's filter
+            $allLinks.filter(`.${value}`).show(500);
         }
 
-        // Append the status filter based on dropdown selection
-        if (selectedValue === 'ongoing') {
-            filterClass += '.ongoing'; // Add ongoing status filter
-        } else if (selectedValue === 'finished') {
-            filterClass += '.finished'; // Add finished status filter
-        }
+        // Hide dropdown content if any subtab or another tab is clicked
+        $portfolioContainer.find('.dropdown-content').hide();
+    });
 
-        // If no filter class is set, show all projects
-        if (filterClass === '') {
-            $allLinks.show(500); // Show all projects if no filter is applied
-        } else {
-            $allLinks.filter(filterClass).show(500); // Show filtered projects
-        }
-    }
+    // Subtab click handling for dropdown
+    $portfolioContainer.find(".subtab").click(function (event) {
+        event.stopPropagation(); // Prevent the event from bubbling up to the parent elements
+        const selectedValue = $(this).attr('data-filter');
+        const status = selectedValue === 'ongoing' ? 'ongoing' : 'finished';
 
-    // Handle main tab clicks
-    $tabs.click(function () {
-        $tabs.removeClass('tab-active');
+        // Set the active state for the clicked subtab
+        $portfolioContainer.find(".subtab").removeClass('tab-active');
         $(this).addClass('tab-active');
-        filterProjects(); // Filter when tab changes
+
+        // Ensure parent dropdown tab is still highlighted
+        $portfolioContainer.find(".tab[data-filter='const_ind_surv']").addClass('tab-active');
+
+        $allLinks.hide(); // Hide all links initially
+
+        // Show projects based on status (ongoing/finished) and type (const_ind_surv)
+        $allLinks.each(function () {
+            const projectId = $(this).attr('id');
+            const projectData = projects.find(item => item.id === projectId);
+            // Ensure that the project is of type const_ind_surv
+            if (projectData && projectData.status === status && projectData.typeofproject2 === 'const_ind_surv') {
+                $(this).show(500); // Show the matching projects
+            }
+        });
+
+        // Hide the dropdown content after selection
+        $portfolioContainer.find('.dropdown-content').hide();
     });
 
-    // Filter based on dropdown selection
-    $('#project-status').change(function () {
-        filterProjects(); // Filter when dropdown changes
+    // Open the dropdown when hovering over the parent tab
+    $portfolioContainer.find('.dropdown').hover(
+        function () {
+            $(this).find('.dropdown-content').show();
+        },
+        function () {
+            $(this).find('.dropdown-content').hide();
+        }
+    );
+
+    // Click event for touch devices to toggle dropdown visibility
+    $portfolioContainer.find('.dropdown > .tab').click(function (event) {
+        event.stopPropagation(); // Prevent the event from bubbling up to the parent elements
+        $(this).siblings('.dropdown-content').toggle(); // Toggle the dropdown content visibility
     });
 
-    // Set default tab and load projects on page load
-    $tabs.filter('[data-filter="all"]').addClass('tab-active');
-    filterProjects(); // Call filter on page load
+    // Close dropdown if clicked outside
+    $(document).click(function () {
+        $portfolioContainer.find('.dropdown-content').hide(); // Hide dropdown when clicking outside
+    });
 }
 
-// Call the function to initialize functionality
-$(document).ready(function () {
-    initializeHoverAndTabFunctionality();
-});
 
-    </script>
+
+        fetch('project.json')
+        .then(response => response.json())
+        .then(projects => {
+            const container = $('#portfolio-container');
+
+            // Generate project HTML and append it to the container
+            projects.forEach(project => {
+                const projectHTML = `
+                    <a href="project_details.html?id=${project.id}" class="link-wrapper ${project.typeofproject2}" id="${project.id}">
+                        <div class="responsive-container-block img ${project.typeofproject2}">
+                            <img class="im image-block" src="${project.image_front}">
+                            <div class="responsive-container-block overlay overlay-visible"></div>
+                            <div class="responsive-container-block desc">
+                                <p class="text-blk title">${project.title}, ${project.location}</p>
+                                <p class="text-blk info">Completed Project ${project.completionyear} <br>${project.typeofproject.toUpperCase()}</p>
+                            </div>
+                        </div>
+                    </a>`;
+                container.append(projectHTML);
+            });
+
+            // Initialize hover and tab functionality after projects are loaded
+            initializeHoverAndTabFunctionality(projects);
+        });
+
+    
+</script>
+
 </body>
 </html>
