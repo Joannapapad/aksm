@@ -566,7 +566,7 @@
         "typeofproject2":"scan2bim",
         "completionyear": "2023",
         "LOD": "300",
-        "partner":"Hotel Investment Partners";
+        "partner":"Hotel Investment Partners",
         "area": "1.800 m2",
         "status":"finished"
     },
@@ -587,7 +587,7 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "LOD": "300",
-        "partner":"Sklavenitis";
+        "partner":"Sklavenitis",
         "completionyear": "2023",
         "area": "50m2",
         "status":"finished"
