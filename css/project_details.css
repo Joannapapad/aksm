@@ -33,7 +33,10 @@ div[class*=box] {
     font-size:20px;
     font-weight: 400;
   }
-  
+  .project-text strong{
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
   .btn-three {
     color: #817C76;
     transition: all 0.5s;
