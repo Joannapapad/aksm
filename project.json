@@ -4,7 +4,7 @@
         "title": "Atlantis Hotel",
         "location": "Paros, Greece",
         "image_front": "assets/portfolio/2024_042_Elementengineers.Paros/revit.png",
-        "main_description":"Architectural and Structural Data Collection - Hotel Complex Renovation",
+        "main_description":"Hotel Complex Renovation - Architectural and Structural Data Collection",
         "description": "POINT CLOUD",
         "description2": "3D MODEL",
         "description3": "PLAN VIEW",
@@ -23,7 +23,7 @@
     },
     {
         "id": "2021_009",
-        "title": "Renovation and extension of ex Hilton Hotel Building",
+        "title": "The Ilisian",
         "location": "Vasilisis Sofias, Greece",
         "image_front": "assets/portfolio/2021_009_Temes.Hilton/image_front.jpg",
         "main_description":"Aksm has provided topographic support to the renovation of the ex hilton hotel.",
@@ -36,7 +36,7 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2",
+        "area": " 19.000 m2",
         "status":"ongoing"
 
     },
@@ -162,11 +162,12 @@
     },
     { 
         "id": "2024_035",
-        "title": "Architectural Footprint of Building",
-        "location": "ΕΛΠΕ",
+        "title": "Office Complex",
+        "location": "ELPE",
         "image_front": "assets/portfolio/2024_035_Ballian.ELPE/revit.png",
+        "main_description":"Office Complex Renovation - Architectural and Structural Data Collection",
         "description": "POINT CLOUD",
-        "description2": "3D VIEW",
+        "description2": "3D MODEL",
         "description3": "PLAN VIEW",
         "description4": "SECTION",
         "image1":"assets/portfolio/2024_035_Ballian.ELPE/cloud_final.png",
@@ -176,7 +177,9 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
+        "partner": "Balliand",
         "area": "50m2",
+        "LOD", "300"
         "status":"finished"
     },
     { 
@@ -216,11 +219,12 @@
     },
     {
         "id": "2024_032",
-        "title": "3D Model of Building",
+        "title": "Office Complex",
         "location": "Korai 4, Attica",
         "image_front": "assets/portfolio/2024_032_Dimand.Korai4/revit.png",
+        "main_description":"Office Complex Renovation - Architectural and Structural Data Collection",
         "description": "POINT CLOUD",
-        "description2": "3D VIEW",
+        "description2": "3D MODEL",
         "description3": "PLAN VIEW",
         "description4": "SECTION",
         "image1":"assets/portfolio/2024_032_Dimand.Korai4/cloud_final.png",
@@ -230,7 +234,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
-        "area": "50m2",
+        "partner": "Dimand",
+        "area": "14.817,43 m2",
         "status":"finished"
     },
     {
@@ -289,11 +294,11 @@
     },
     {
         "id": "2024_021",
-        "title": "3D Model of Building",
-        "location": "Ready, Attica",
+        "title": "XBSH Factory Complex",
+        "location": "Renti, Attica",
         "image_front": "assets/portfolio/2024_021_Skalvenitis.Renti_BSH/revit.png",
         "description": "POINT CLOUD",
-        "description2": "3D VIEW",
+        "description2": "3D MODEL",
         "description3": "PLAN VIEW",
         "description4": "SECTION",
         "image1":"assets/portfolio/2024_021_Skalvenitis.Renti_BSH/cloud_final.png",
@@ -303,7 +308,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
-        "area": "50m2",
+        "LOD":"350",
+        "area": "50.000 m2",
         "status":"finished"
     },
         {
@@ -320,7 +326,7 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2",
+        "area": "50.000 m2",
         "status":"ongoing"
     },
     {
@@ -391,11 +397,12 @@
 
     {
         "id": "2024_004",
-        "title": "3D Model of Building",
+        "title": "Office Complex",
         "location": "Panepistimiou, Attica",
         "image_front": "assets/portfolio/2024_004_PiraeusBank.Panepistimiou/revit.png",
+        "main_description":"Office Complex Renovation - Architectural and Structural Data Collection",
         "description": "POINT CLOUD",
-        "description2": "3D VIEW",
+        "description2": "3D MODEL",
         "description3": "PLAN VIEW",
         "description4": "SECTION",
         "image1":"assets/portfolio/2024_004_PiraeusBank.Panepistimiou/cloud_final.png",
@@ -405,14 +412,16 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
-        "area": "50m2",
+        "LOD":"350",
+        "area": "1650.10 m2",
         "status":"finished"
     },
     {
         "id": "2024_003",
-        "title": "3D Model of Building",
+        "title": "Office Complex",
         "location": "Kolokotroni",
         "image_front": "assets/portfolio/2024_003_Panagiotidis.Kolokotroni/revit.png",
+        "main_description":"Office Complex Renovation - Architectural and Structural Data Collection",
         "description": "POINT CLOUD",
         "description2": "3D VIEW",
         "description3": "PLAN VIEW",
@@ -424,7 +433,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
-        "area": "50m2",
+        "LOD":"350",
+        "area": "8.450 m2",
         "status":"finished"
     },
     {
@@ -499,9 +509,10 @@
     },
     {
         "id": "2023_027",
-        "title": "3D Model of Building",
+        "title": "Office Complex",
         "location": "Sygrou, Athens",
         "image_front":"assets/portfolio/2023_027_Chrisochoidis_Sygrou6/revit.png",
+        "main_description":"Office Complex Renovation - Architectural and Structural Data Collection",
         "description": "POINT CLOUD",
         "description2": "3D VIEW",
         "description3": "PLAN VIEW",
@@ -511,14 +522,16 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2023",
+        "LOD":"350",
         "area": "50m2",
         "status":"finished"
     },
     {
         "id": "2023_022",
-        "title": "3D Model of a Museum",
+        "title": "Museum Complex",
         "location": "Zakinthos",
         "image_front":"assets/portfolio/2023_22_Kizis Zakynthos/revit.png",
+        "main_description":"Museum Complex Renovation - Architectural and Structural Data Collection",
         "description": "POINT CLOUD",
         "description2": "3D VIEW",
         "description3": "PLAN VIEW",
@@ -554,11 +567,11 @@
     },
     {
         "id": "2023_009",
-        "title": "3D Model of Sklavenitis",
+        "title": "Sklavenitis",
         "location": "Porto Rafti, Attica",
         "image_front":"assets/portfolio/2023_009_Sklavenitis.Porto Rafti/revit.png",
         "description": "POINT CLOUD",
-        "description2": "3D VIEW",
+        "description2": "3D MODEL",
         "description3": "PLAN VIEW",
         "description4": "SECTION",
         "image1":"assets/portfolio/2023_009_Sklavenitis.Porto Rafti/cloud_final.png",
