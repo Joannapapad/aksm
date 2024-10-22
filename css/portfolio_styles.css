@@ -1,292 +1,572 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="assets/aksm_logo.png">
-    <meta name="description" content="Explore AKSM's portfolio, showcasing our expertise in surveying, scan2bim and UAV mapping. Discover a range of completed projects, from buildings, towers, malls to cultural centers, reflecting our commitment to quality, safety, and innovation.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="css/portfolio_styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
-    <script src="nav.js" defer></script>
-
-    <style>
-     /* Styles for the tabs */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F3F3F3;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    opacity: 0;
+    visibility:hidden;
+  }
+  
+  body.loaded {
+    visibility: visible;
+    opacity: 1;
+  }
+/* Default styles for larger screens */
+.menu_maker {
+  display: flex;
+  flex-direction: column; /* Row direction by default */
+  width: 100%;
+}
+/* Styles for the tabs */
+.tabs {
+  display: flex; /* Align tabs in a row */
+  margin-right: 15px; /* Space between tabs */
+  align-items: center;
+  justify-content: space-evenly;
+}
+/* Dropdown filter styles */
+.filter-dropdown {
+  display: flex;
+  align-items: center; /* Center align dropdown vertically */
+  padding: 0 0  1em 2em;
+}
+/* Media query for screens smaller than 1300px */
+@media (max-width: 1300px) {
+  .menu_maker {
+      display: block; /* Change to block display */
+  }
+  .tabs {
+      display: flex;
+      flex-direction: column; /* Change to column direction */
+      margin: 0; /* Reset margin to avoid spacing issues */
+  }
+  /* Optionally, you might want to add some spacing between tabs */
+  .tab {
+      margin-bottom: 10px; /* Space between tabs */
+  }
+  .filter-dropdown {
+      display: block; /* Ensure dropdown remains a block element */
+      margin-top: 10px; /* Add some spacing above the dropdown */
+  }
+}
+.featured_projects .text-blk {
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  line-height: 25px;
+  margin-top: 40px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+.featured_projects * {
+  font-family: Nunito, sans-serif;
+}
+.featured_projects .responsive-container-block {
+    min-height: 300px; /* Adjust based on average content height */
+    height: fit-content; /* Keep if you want it to adjust */
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
+.featured_projects .container-block {
+  min-height: 300px; /* As already done, ensure space is reserved */
+  height: auto; 
+  width: 100%;
+  padding: 10px;
+  display: block;
+}
+.featured_projects .responsive-container-block.bg {
+  max-width: 1500px;
+  min-height: 500px; /* Reserve sufficient space */
+  margin: 0;
+  height: auto;
+}
+.featured_projects .container-block.bg {
+  max-width: 1500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.featured_projects .responsive-container-block.content {
+  justify-content: space-evenly;
+}
+.featured_projects .im {
+  width: 100%;
+  background-color: #666666;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Use the appropriate aspect ratio for your images */
+}
+.featured_projects .responsive-container-block.img {
+  width: 100%;
+  position: relative;
+  height: 100%;
+  padding: 2px;
+  margin: 0;
+}
+.link-wrapper {
+  position: relative;
+  width: 33.3%;
+  height: auto;
+  max-height: 400px;
+  max-width: 600px;
+  padding: 2px;
+  margin: 0;
+  display: inline-block;
+  vertical-align: top;
+}
+.featured_projects .responsive-container-block.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  min-height: 300px; /* Ensure minimum space is reserved */
+  margin: 10px;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.featured_projects .responsive-container-block.desc {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  background-color: #817c76c8; /* Adjust opacity as needed */
+  padding: 10px;
+}
+.featured_projects .responsive-container-block.opt-cont {
+  width: 100%;
+  align-items: center;
+  margin: 20px 0 5px;
+}
 .featured_projects .text-blk.tab {
   font-size: 20px;
   line-height: 10.1px;
-  display: flex;
-  align-items: center;
-  color: #999999;
-  font-weight: 500;
-  margin-bottom: 2vh;
-  cursor: pointer;
+@@ -195,512 +24,269 @@ body{
   text-align: center;
 }
 
-/* Active state styles for main tabs */
-.tab-active {
+/* Active state styles */
+.tab-active{
   color: #817C76; /* Example active color */
-  border-bottom: 2px solid #817C76; /* Active indicator for main tabs */
+  border-bottom: 2px solid #817C76; /* Example active indicator */
   width: auto;
 }
 
-/* Styles for the subtabs */
-.featured_projects .dropdown-content p {
-  color: #999999; /* Default color for subtabs */
+.featured_projects .text-blk.title {
+  font-size: 23px;
+  font-weight: 600;
+  padding: 10px;
+}
+.featured_projects .text-blk.info {
+  font-size: 20px;
+  padding: 10px;
+}
+@media(max-width:1600px){
+.featured_projects .text-blk.tab {
+  font-size: 16px;
+}
+}
+.featured_projects .text-blk.heading {
+  font-size: 25px;
+  line-height: 34.1px;
+  color: #817C76;
+  font-weight: 700;
+  padding-top: 10px;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  border-bottom-width: 5px;
+  border-bottom-style: solid;
+  border-bottom-color: #817C76;
+}
+.featured_projects .tab:hover {
+  cursor: pointer;
+}
+.featured_projects .bg {
+  padding: 0 0 0 0;
+  margin: 0 auto 0 auto;
+}
+.featured_projects .content {
+  padding: 0 0 0 0;
+}
+.featured_projects .opt-cont {
+  min-height: auto;
+  padding: 0 0 0 0;
+}
+@media (max-width: 1024px) {
+  .featured_projects .text-blk.info {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
+}
+@media (max-width: 1300px) {
+  .featured_projects .container-block.bg {
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  .featured_projects .im {
+    width: 100%;
+    height: 100%;
+  }
+.link-wrapper {
+  width: 50%;
+  position: relative;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+.featured_projects .responsive-container-block.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 10px;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.featured_projects .responsive-container-block.desc {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  background-color: #817c76a7; /* Adjust opacity as needed */
+  padding: 10px;
+}
+  .featured_projects .responsive-container-block.img.hide {
+    display: contents;
+  }
+  .featured_projects .responsive-container-block.img.hide.hidden {
+    display: none;
+  }
+  .featured_projects .responsive-container-block.opt-cont {
+    flex-direction: column;
+  }
+}
+@media (max-width: 768px) {
+  .featured_projects .im {
+    width: 100%;
+  }
+  .link-wrapper {
+    width: 60%;
+  }
+  .featured_projects .responsive-container-block.img.hide {
+    display: none;
+  }
+  .featured_projects .responsive-container-block.img.hide.hidden {
+    display: none;
+  }
+  .featured_projects .responsive-container-block.opt-cont {
+    flex-direction: column;
+  }
+  .featured_projects .text-blk.info {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    line-height: 15px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+  }
+  .featured_projects .text-blk.title {
+    font-size: 13px;
+    line-height: 10px;
+    padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+  }
+  .featured_projects .responsive-container-block.opt-cont {
+    margin-top: 30px;
+    margin-right: 0px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+  }
+  .featured_projects .text-blk .tab{
+    font-size: 0.5rem;
+  }
+}
+@media (max-width: 500px) {
+  .featured_projects .im {
+    width: 100%;
+  }
+  .featured_projects .im {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
+  .link-wrapper {
+    width: 100%;
+  }
+  .featured_projects .responsive-container-block.opt-cont {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .featured_projects .responsive-container-block.img.hidden {
+    display: none;
+  }
+  .featured_projects .text-blk.info {
+    font-size: 15px;
+    line-height: 22px;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+  }
+  .featured_projects .text-blk.title {
+    font-size: 17px;
+    line-height: 22px;
+    padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+  }
+}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&amp;display=swap');
+*,
+*:before,
+*:after {
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+body {
+margin: 0;
+}
+.wk-desk-1 {
+width: 8.333333%;
+}
+.wk-desk-2 {
+width: 16.666667%;
+}
+.wk-desk-3 {
+width: 25%;
+}
+.wk-desk-4 {
+width: 33.333333%;
+}
+.wk-desk-5 {
+width: 41.666667%;
+}
+.wk-desk-6 {
+width: 50%;
+}
+.wk-desk-7 {
+width: 58.333333%;
+}
+.wk-desk-8 {
+width: 66.666667%;
+}
+.wk-desk-9 {
+width: 75%;
+}
+.wk-desk-10 {
+width: 83.333333%;
+}
+.wk-desk-11 {
+width: 91.666667%;
+}
+.wk-desk-12 {
+width: 100%;
+}
+@media (max-width: 1024px) {
+.wk-ipadp-1 {
+  width: 8.333333%;
+}
+.wk-ipadp-2 {
+  width: 16.666667%;
+}
+.wk-ipadp-3 {
+  width: 25%;
+}
+.wk-ipadp-4 {
+  width: 33.333333%;
+}
+.wk-ipadp-5 {
+  width: 41.666667%;
+}
+.wk-ipadp-6 {
+  width: 50%;
+}
+.wk-ipadp-7 {
+  width: 58.333333%;
+}
+.wk-ipadp-8 {
+  width: 66.666667%;
+}
+.wk-ipadp-9 {
+  width: 75%;
+}
+.wk-ipadp-10 {
+  width: 83.333333%;
+}
+.wk-ipadp-11 {
+  width: 91.666667%;
+}
+.wk-ipadp-12 {
+  width: 100%;
+}
+}
+@media (max-width: 768px) {
+.wk-tab-1 {
+  width: 8.333333%;
+}
+.wk-tab-2 {
+  width: 16.666667%;
+}
+.wk-tab-3 {
+  width: 25%;
+}
+.wk-tab-4 {
+  width: 33.333333%;
+}
+.wk-tab-5 {
+  width: 41.666667%;
+}
+.wk-tab-6 {
+  width: 50%;
+}
+.wk-tab-7 {
+  width: 58.333333%;
+}
+.wk-tab-8 {
+  width: 66.666667%;
+}
+.wk-tab-9 {
+  width: 75%;
+}
+.wk-tab-10 {
+  width: 83.333333%;
+}
+.wk-tab-11 {
+  width: 91.666667%;
+}
+.wk-tab-12 {
+  width: 100%;
+}
+}
+@media (max-width: 500px) {
+.wk-mobile-1 {
+  width: 8.333333%;
+}
+.wk-mobile-2 {
+  width: 16.666667%;
+}
+.wk-mobile-3 {
+  width: 25%;
+}
+.wk-mobile-4 {
+  width: 33.333333%;
+}
+.wk-mobile-5 {
+  width: 41.666667%;
+}
+.wk-mobile-6 {
+  width: 50%;
+}
+.wk-mobile-7 {
+  width: 58.333333%;
+}
+.wk-mobile-8 {
+  width: 66.666667%;
+}
+.wk-mobile-9 {
+  width: 75%;
+}
+.wk-mobile-10 {
+  width: 83.333333%;
+}
+.wk-mobile-11 {
+  width: 91.666667%;
+}
+.wk-mobile-12 {
+  width: 100%;
+}
+}
+.heading-container {
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding-top: 10vh;
+  text-align: center;
+  margin-bottom: 10px;
+  line-height: 1.1em;
+}
+
+.content-image-1 {
+  width: 100%; /* or a specific width like 300px */
+  height: auto; /* or a specific height like 200px */
+  object-fit: contain; /* or 'contain', 'fill', 'none', 'scale-down' */
+  display: block; /* Ensures proper layout */
+}
+
+.heading-container p {
+  text-align: center;
+  width: 100%;
+  padding-top: 3vh;
+  font-size: 1.2em;
+}
+
+.head {
+  font-size: 2.5em;
+  margin: 0;
+  padding: 10px;
   text-align: center;
 }
 
-/* Active state styles for subtabs */
-.subtab.tab-active {
-  color: #817C76; /* Example active color for active subtab */
-  border-bottom: none; /* No border for active subtabs */
+.animated-line-container2 {
+  padding-top: 2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;  
+}
+.animated-line2 {
+  width: 0;
+  height: 3px;
+  background-color: #817C76;
+  opacity: 0;
+  transition: width 2s ease-out, opacity 0.5s ease-out;
+  position: relative;
 }
 
-/* Remove border for all subtabs */
-.dropdown-content p {
-  border-bottom: none; /* Ensure no border for subtabs */
-  font-size: 1.1em;
-  padding: 15px;
-
+.animated-line-container2.animate .animated-line2 {
+  width: 20%; /* Adjust width as needed */
+  opacity: 1;
 }
-
-/* Hover effect for subtabs */
-.dropdown-content p:hover {
-  background-color: #d4d1d1; /* Change background color on hover */
-}
-/* Styles for dropdown content */
-.dropdown-content {
-    display: none; /* Default to hidden */
-    position: absolute;
-    background-color: #f3f3f3;
-    min-width: 200px;
-    z-index: 1;
-    
-}
-
-/* Always show dropdown content on small screens */
-@media (max-width: 1300px) {
-    .dropdown-content {
-        display: block; /* Show dropdown by default */
-        position: static; /* Change position to static to avoid overlapping issues */
-        margin-top: 10px; /* Add some spacing if needed */
-    }
-
-    .dropdown {
-        position: relative; /* Keep position relative for proper stacking */
-    }
-
-    /* Ensure tabs are stacked correctly */
-    .tabs {
-        flex-direction: column; /* Change to column direction for small screens */
-    }
-
-    /* Optionally, you might want to add some spacing between tabs */
-    .tab {
-        margin-bottom: 10px; /* Space between tabs */
-    }
-}
-
-    </style>
-</head>
-<body>
-    <div id="menu-container"></div>
-
-    <div class="center_esp">
-        <a href="https://www.aksm.gr/wp-content/uploads/2023/12/aksm_antagonistikotita_webEN.pdf" target="_blank">
-            <img src="assets/espa.webp" class="logo_espa" alt="espa banner">
-        </a>
-    </div>
-
-    <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu-container').innerHTML = data;
-
-                const script = document.createElement('script');
-                script.src = 'nav.js';
-                document.body.appendChild(script);
-            });
-
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-        });
-    </script>
-
-    <a href="index.html">
-        <img src="assets/aksm_logo.png" class="logo_header" alt="AKSM Logo">
-    </a>
-
-    <div class="featured_projects" unique-script-id="w-w-dm-id">
-        <div class="container-block bg">
-            <div class="heading-container">
-                <h1 class="head">Portfolio</h1>
-                <div class="animated-line-container2">
-                    <div class="animated-line2"></div>
-                </div>
-                <p>Aksm has contributed to a variety of projects</p>
-            </div>
-
-            <div class="responsive-container-block opt-cont">
-                <div class="menu_maker">
-                    <div class="tabs">
-                        <p class="text-blk tab tab-active" data-filter="all">All</p>
-                        <p class="text-blk tab" data-filter="scan2bim">SCAN2BIM</p>
-
-                        <!-- Dropdown Menu -->
-                        <div class="dropdown">
-                            <p class="text-blk tab" data-filter="const_ind_surv">CONSTRUCTION & INDUSTRIAL SURVEYING</p>
-                            <div class="dropdown-content">
-                                <p class="subtab" data-filter="ongoing">Ongoing Projects</p>
-                                <p class="subtab" data-filter="finished">Completed Projects</p>
-                            </div>
-                        </div>
-
-                        <p class="text-blk tab" data-filter="deformation_monitoring">DEFORMATION MONITORING</p>
-                        <p class="text-blk tab" data-filter="uav_mapping">UAV MAPPING</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="responsive-container-block content" id="portfolio-container">
-                <!-- Project content will be dynamically inserted here -->
-            </div>
-        </div>
-    </div>
-
-    <div id="footer__cont"></div>
-
-<script>
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer__cont').innerHTML = data;
-        });
-    
-        function initializeHoverAndTabFunctionality(projects) {
-    const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
-    const $allLinks = $portfolioContainer.find(".link-wrapper");
-
-    // Hide description and overlay initially
-    $portfolioContainer.find(".img .desc").hide();
-    $portfolioContainer.find(".img .overlay").hide();
-
-    // Hover effects for project images
-    $portfolioContainer.find(".img").hover(
-        function () {
-            $(this).find('.overlay, .desc').fadeIn();
-        },
-        function () {
-            $(this).find('.overlay, .desc').fadeOut();
-        }
-    );
-
-    // Main tab click handling
-    $portfolioContainer.find(".tab").click(function () {
-        const value = $(this).attr('data-filter');
-
-        // Remove active state from all tabs
-        $portfolioContainer.find(".tab").removeClass('tab-active');
-        $portfolioContainer.find(".subtab").removeClass('tab-active'); // Reset subtab active state
-        $(this).addClass('tab-active'); // Set active state for clicked tab
-
-        // Hide all projects initially
-        $allLinks.hide();
-
-        // Show projects based on selected tab
-        if (value === 'all') {
-            $allLinks.show(500);
-        } else {
-            // Show projects matching the clicked tab's filter
-            $allLinks.filter(`.${value}`).show(500);
-        }
-
-        // Hide dropdown content if any subtab or another tab is clicked
-        $portfolioContainer.find('.dropdown-content').hide();
-    });
-
-    // Subtab click handling for dropdown
-    $portfolioContainer.find(".subtab").click(function (event) {
-        event.stopPropagation(); // Prevent the event from bubbling up to the parent elements
-        const selectedValue = $(this).attr('data-filter');
-        const status = selectedValue === 'ongoing' ? 'ongoing' : 'finished';
-
-        // Set the active state for the clicked subtab
-        $portfolioContainer.find(".subtab").removeClass('tab-active');
-        $(this).addClass('tab-active');
-
-        // Ensure parent dropdown tab is still highlighted
-        $portfolioContainer.find(".tab[data-filter='const_ind_surv']").addClass('tab-active');
-
-        $allLinks.hide(); // Hide all links initially
-
-        // Show projects based on status (ongoing/finished) and type (const_ind_surv)
-        $allLinks.each(function () {
-            const projectId = $(this).attr('id');
-            const projectData = projects.find(item => item.id === projectId);
-            // Ensure that the project is of type const_ind_surv
-            if (projectData && projectData.status === status && projectData.typeofproject2 === 'const_ind_surv') {
-                $(this).show(500); // Show the matching projects
-            }
-        });
-
-        // Hide the dropdown content after selection
-        $portfolioContainer.find('.dropdown-content').hide();
-    });
-
-    // Open the dropdown when hovering over the parent tab
-    $portfolioContainer.find('.dropdown').hover(
-        function () {
-            $(this).find('.dropdown-content').show();
-        },
-        function () {
-            $(this).find('.dropdown-content').hide();
-        }
-    );
-
-    // Click event for touch devices to toggle dropdown visibility
-    $portfolioContainer.find('.dropdown > .tab').click(function (event) {
-        event.stopPropagation(); // Prevent the event from bubbling up to the parent elements
-        $(this).siblings('.dropdown-content').toggle(); // Toggle the dropdown content visibility
-    });
-
-    // Close dropdown if clicked outside
-    $(document).click(function () {
-        $portfolioContainer.find('.dropdown-content').hide(); // Hide dropdown when clicking outside
-    });
-}
-
-
-
-        fetch('project.json')
-        .then(response => response.json())
-        .then(projects => {
-            const container = $('#portfolio-container');
-
-            // Generate project HTML and append it to the container
-            projects.forEach(project => {
-                const projectHTML = `
-                    <a href="project_details.html?id=${project.id}" class="link-wrapper ${project.typeofproject2}" id="${project.id}">
-                        <div class="responsive-container-block img ${project.typeofproject2}">
-                            <img class="im image-block" src="${project.image_front}">
-                            <div class="responsive-container-block overlay overlay-visible"></div>
-                            <div class="responsive-container-block desc">
-                                <p class="text-blk title">${project.title}, ${project.location}</p>
-                                <p class="text-blk info">Completed Project ${project.completionyear} <br>${project.typeofproject.toUpperCase()}</p>
-                            </div>
-                        </div>
-                    </a>`;
-                container.append(projectHTML);
-            });
-
-            // Initialize hover and tab functionality after projects are loaded
-            initializeHoverAndTabFunctionality(projects);
-        });
-
-    
-</script>
-
-</body>
-</html>
