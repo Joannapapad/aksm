@@ -52,12 +52,13 @@ body{
       flex-direction: column; /* Change to column direction */
       margin: 0; /* Reset margin to avoid spacing issues */
   }
-
   /* Optionally, you might want to add some spacing between tabs */
   .tab {
       margin-bottom: 10px; /* Space between tabs */
   }
-
+  .featured_projects .text-blk.tab {
+    font-size: 15px;
+  }
 
 }
 .featured_projects .text-blk {
