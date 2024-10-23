@@ -47,6 +47,15 @@ body{
       display: block; /* Change to block display */
   }
 
+
+}
+
+/* Media query for screens smaller than 1300px */
+@media (max-width: 900px) {
+  .menu_maker {
+      display: block; /* Change to block display */
+  }
+
   .tabs {
       display: flex;
       flex-direction: column; /* Change to column direction */
@@ -55,9 +64,6 @@ body{
   /* Optionally, you might want to add some spacing between tabs */
   .tab {
       margin-bottom: 10px; /* Space between tabs */
-  }
-  .featured_projects .text-blk.tab {
-    font-size: 15px;
   }
 
 }
@@ -322,10 +328,6 @@ body{
 
   .featured_projects .responsive-container-block.img.hide.hidden {
     display: none;
-  }
-
-  .featured_projects .responsive-container-block.opt-cont {
-    flex-direction: column;
   }
 
 }
