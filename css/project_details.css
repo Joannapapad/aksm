@@ -408,7 +408,7 @@ div[class*=box] {
 @media (min-width: 700px) and (min-height: 650px) {
     .project-info {
         position: fixed;
-        bottom: 0;
+        top: 35%;
         left: 0;
         margin: 10px;
         width: 100%;
