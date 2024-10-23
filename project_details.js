@@ -191,54 +191,60 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         }      
 
+    function updateProjectInfoPosition() {
+        const projectInfo = document.querySelector('.project-info');
+        const footer = document.getElementById('footer__cont');
 
-        function updateProjectInfoPosition() {
-            const projectInfo = document.querySelector('.project-info');
-            const footer = document.getElementById('footer__cont');
-        
-            // Check if projectInfo and footer elements exist
-            if (!projectInfo || !footer) {
-                console.error('Error: Missing project-info or footer elements.');
-                return; // Exit the function if elements don't exist
-            }
-        
-            if (window.innerWidth >= 700 && window.innerHeight >= 650) {
-                // Get the bottom position of the project-info and the top of the footer
-                const projectInfoBottom = projectInfo.getBoundingClientRect().bottom;
-                const footerTop = footer.getBoundingClientRect().top;
-                const footerOffsetTop = footer.offsetTop;
-        
-                if (projectInfoBottom >= footerTop) {
-                    // Set to absolute position when it touches the footer
-                    if (!projectInfo.classList.contains('absolute')) {
-                        projectInfo.classList.remove('fixed');
-                        projectInfo.classList.add('absolute');
-                        projectInfo.style.top = `${footerOffsetTop - projectInfo.offsetHeight - 10}px`; // Ensure it stays above the footer
-                    }
-                } else {
-                    // Return to fixed position when scrolling up
-                    if (!projectInfo.classList.contains('fixed')) {
-                        projectInfo.classList.remove('absolute');
-                        projectInfo.classList.add('fixed');
-                        projectInfo.style.top = '35%'; // Restore the fixed position
-                    }
+        // Check if projectInfo and footer elements exist
+        if (!projectInfo || !footer) {
+            console.error('Error: Missing project-info or footer elements.');
+            return; // Exit the function if elements don't exist
+        }
+
+        if (window.innerWidth >= 700 && window.innerHeight >= 650) {
+            const projectInfoBottom = projectInfo.getBoundingClientRect().bottom;
+            const footerTop = footer.getBoundingClientRect().top;
+            const footerOffsetTop = footer.offsetTop;
+
+            if (projectInfoBottom >= footerTop) {
+                if (!projectInfo.classList.contains('absolute')) {
+                    projectInfo.classList.remove('fixed');
+                    projectInfo.classList.add('absolute');
+                    projectInfo.style.top = `${footerOffsetTop - projectInfo.offsetHeight - 10}px`; 
                 }
             } else {
-                // For smaller screens or if media query is not met, reset the position
-                projectInfo.style.position = 'static';
+                if (!projectInfo.classList.contains('fixed')) {
+                    projectInfo.classList.remove('absolute');
+                    projectInfo.classList.add('fixed');
+                    projectInfo.style.top = '35%'; 
+                }
             }
+        } else {
+            projectInfo.style.position = 'static';
         }
-        
-        // Run the update function on scroll
-        window.addEventListener('scroll', updateProjectInfoPosition);
-        
-        // Run it once on page load
-        updateProjectInfoPosition();
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            window.addEventListener('scroll', updateProjectInfoPosition);
-            updateProjectInfoPosition(); // Run it once on page load
-        });
+    }
 
-    
+    // Set up a Mutation Observer to watch for changes in the DOM
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.addedNodes.length) {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('project-info')) {
+                        // Run the position update function when the element is added
+                        updateProjectInfoPosition();
+                    }
+                });
+            }
+        });
+    });
+
+    // Observe the body or a specific container where project-info will be added
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+    });
+
+    // Run the update function on scroll
+    window.addEventListener('scroll', updateProjectInfoPosition);
+
 });
