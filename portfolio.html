@@ -11,7 +11,20 @@
     <script src="nav.js" defer></script>
 
     <style>
+/* Styles for the tabs */
+.featured_projects .text-blk.tab {
+  font-size: 20px;
+  line-height: 10.1px;
+  display: flex;
+  align-items: center;
+  color: #999999;
+  font-weight: 500;
+  margin-bottom: 2vh;
+  cursor: pointer;
+  text-align: center;
+}
 
+/* Active state styles for main tabs */
 .tab-active {
   color: #817C76; /* Example active color */
   border-bottom: 2px solid #817C76; /* Active indicator for main tabs */
@@ -63,7 +76,17 @@
 
 /* Media query for small screens */
 @media (max-width: 1300px) {
-
+  .featured_projects .text-blk.tab {
+    font-size: 20px; /* Keep this the same for smaller screens */
+    line-height: 10.1px;
+    display: flex;
+    align-items: center;
+    color: #999999;
+    font-weight: 500;
+    margin-bottom: 2vh;
+    cursor: pointer;
+    text-align: center;
+  }
 
   .dropdown-content {
     display: block; /* Show dropdown by default for small screens */
@@ -154,134 +177,137 @@
     </div>
 
     <div id="footer__cont"></div>
+    <script>
 
-<script>
+
 document.addEventListener('DOMContentLoaded', function () {
     const dropdowns = document.querySelectorAll('.dropdown');
 
-    dropdowns.forEach(dropdown => {
-        const tab = dropdown.querySelector('.text-blk.tab');
-        const dropdownContent = dropdown.querySelector('.dropdown-content');
+    // Function to save the active tab to localStorage
+    function setActiveTab(filterValue) {
+        localStorage.setItem('activeTab', filterValue);
+    }
 
-        // Hide dropdown on load
-        dropdownContent.style.display = 'none';
+    // Function to retrieve the active tab from localStorage
+    function getActiveTab() {
+        return localStorage.getItem('activeTab') || 'all'; // Default to 'all' if nothing is stored
+    }
 
-        // Show dropdown on tab click (for touch screens)
-        tab.addEventListener('click', function (event) {
-            event.stopPropagation(); // Prevent the click event from bubbling up
-            dropdownContent.style.display = dropdownContent.style.display === 'none' || dropdownContent.style.display === '' ? 'block' : 'none';
+    // Function to trigger the tab click and display content
+    function triggerTab(tabFilter) {
+        const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
+        const $allLinks = $portfolioContainer.find(".link-wrapper");
+
+        // Simulate the tab click based on the stored tab
+        $portfolioContainer.find(`.tab[data-filter="${tabFilter}"]`).click();
+    }
+
+    // Function to close all dropdowns (reset their visibility)
+    function closeDropdowns() {
+        document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+            dropdown.style.display = 'none'; // Ensure all dropdowns are hidden on page load
         });
+    }
 
-        // Hide dropdown if clicking outside
-        document.addEventListener('click', function () {
-            dropdownContent.style.display = 'none'; // Hide on outside click
-        });
-    });
-});
+    // Initialize tabs and subtabs with active class and functionality
+    function initializeTabs(projects) {
+        const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
+        const $allLinks = $portfolioContainer.find(".link-wrapper");
 
+        // Hide description and overlay initially
+        $portfolioContainer.find(".img .desc").hide();
+        $portfolioContainer.find(".img .overlay").hide();
 
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer__cont').innerHTML = data;
-        });
-    
-        function initializeHoverAndTabFunctionality(projects) {
-    const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
-    const $allLinks = $portfolioContainer.find(".link-wrapper");
-
-    // Hide description and overlay initially
-    $portfolioContainer.find(".img .desc").hide();
-    $portfolioContainer.find(".img .overlay").hide();
-
-    // Hover effects for project images
-    $portfolioContainer.find(".img").hover(
-        function () {
-            $(this).find('.overlay, .desc').fadeIn();
-        },
-        function () {
-            $(this).find('.overlay, .desc').fadeOut();
-        }
-    );
-
-    // Main tab click handling
-    $portfolioContainer.find(".tab").click(function () {
-        const value = $(this).attr('data-filter');
-
-        // Remove active state from all tabs
-        $portfolioContainer.find(".tab").removeClass('tab-active');
-        $portfolioContainer.find(".subtab").removeClass('tab-active'); // Reset subtab active state
-        $(this).addClass('tab-active'); // Set active state for clicked tab
-
-        // Hide all projects initially
-        $allLinks.hide();
-
-        // Show projects based on selected tab
-        if (value === 'all') {
-            $allLinks.show(500);
-        } else {
-            // Show projects matching the clicked tab's filter
-            $allLinks.filter(`.${value}`).show(500);
-        }
-
-        // Hide dropdown content if any subtab or another tab is clicked
-        $portfolioContainer.find('.dropdown-content').hide();
-    });
-
-    // Subtab click handling for dropdown
-    $portfolioContainer.find(".subtab").click(function (event) {
-        event.stopPropagation(); // Prevent the event from bubbling up to the parent elements
-        const selectedValue = $(this).attr('data-filter');
-        const status = selectedValue === 'ongoing' ? 'ongoing' : 'finished';
-
-        // Set the active state for the clicked subtab
-        $portfolioContainer.find(".subtab").removeClass('tab-active');
-        $(this).addClass('tab-active');
-
-        // Ensure parent dropdown tab is still highlighted
-        $portfolioContainer.find(".tab[data-filter='const_ind_surv']").addClass('tab-active');
-
-        $allLinks.hide(); // Hide all links initially
-
-        // Show projects based on status (ongoing/finished) and type (const_ind_surv)
-        $allLinks.each(function () {
-            const projectId = $(this).attr('id');
-            const projectData = projects.find(item => item.id === projectId);
-            // Ensure that the project is of type const_ind_surv
-            if (projectData && projectData.status === status && projectData.typeofproject2 === 'const_ind_surv') {
-                $(this).show(500); // Show the matching projects
+        // Hover effects for project images
+        $portfolioContainer.find(".img").hover(
+            function () {
+                $(this).find('.overlay, .desc').fadeIn();
+            },
+            function () {
+                $(this).find('.overlay, .desc').fadeOut();
             }
+        );
+
+        // Main tab click handling
+        $portfolioContainer.find(".tab").click(function () {
+            const value = $(this).attr('data-filter');
+
+            // Remove active state from all tabs
+            $portfolioContainer.find(".tab").removeClass('tab-active');
+            $portfolioContainer.find(".subtab").removeClass('tab-active'); // Reset subtab active state
+            $(this).addClass('tab-active'); // Set active state for clicked tab
+
+            // Save the active tab in localStorage
+            setActiveTab(value);
+
+            // Hide all projects initially
+            $allLinks.hide();
+
+            // Show projects based on selected tab
+            if (value === 'all') {
+                $allLinks.show(500);
+            } else {
+                // Show projects matching the clicked tab's filter
+                $allLinks.filter(`.${value}`).show(500);
+            }
+
+            // Hide dropdown content if any subtab or another tab is clicked
+            $portfolioContainer.find('.dropdown-content').hide();
         });
 
-        // Hide the dropdown content after selection
-        $portfolioContainer.find('.dropdown-content').hide();
-    });
+        // Subtab click handling for dropdown
+        $portfolioContainer.find(".subtab").click(function (event) {
+            event.stopPropagation(); // Prevent the event from bubbling up to the parent elements
+            const selectedValue = $(this).attr('data-filter');
+            const status = selectedValue === 'ongoing' ? 'ongoing' : 'finished';
 
-    // Open the dropdown when hovering over the parent tab
-    $portfolioContainer.find('.dropdown').hover(
-        function () {
-            $(this).find('.dropdown-content').show();
-        },
-        function () {
-            $(this).find('.dropdown-content').hide();
-        }
-    );
+            // Set the active state for the clicked subtab
+            $portfolioContainer.find(".subtab").removeClass('tab-active');
+            $(this).addClass('tab-active');
 
-    // Click event for touch devices to toggle dropdown visibility
-    $portfolioContainer.find('.dropdown > .tab').click(function (event) {
-        event.stopPropagation(); // Prevent the event from bubbling up to the parent elements
-        $(this).siblings('.dropdown-content').toggle(); // Toggle the dropdown content visibility
-    });
+            // Ensure parent dropdown tab is still highlighted
+            $portfolioContainer.find(".tab[data-filter='const_ind_surv']").addClass('tab-active');
 
-    // Close dropdown if clicked outside
-    $(document).click(function () {
-        $portfolioContainer.find('.dropdown-content').hide(); // Hide dropdown when clicking outside
-    });
-}
+            $allLinks.hide(); // Hide all links initially
 
+            // Show projects based on status (ongoing/finished) and type (const_ind_surv)
+            $allLinks.each(function () {
+                const projectId = $(this).attr('id');
+                const projectData = projects.find(item => item.id === projectId);
+                // Ensure that the project is of type const_ind_surv
+                if (projectData && projectData.status === status && projectData.typeofproject2 === 'const_ind_surv') {
+                    $(this).show(500); // Show the matching projects
+                }
+            });
 
+            // Hide the dropdown content after selection
+            $portfolioContainer.find('.dropdown-content').hide();
+        });
 
-        fetch('project.json')
+        // Open the dropdown when hovering over the parent tab
+        $portfolioContainer.find('.dropdown').hover(
+            function () {
+                $(this).find('.dropdown-content').show();
+            },
+            function () {
+                $(this).find('.dropdown-content').hide();
+            }
+        );
+
+        // Click event for touch devices to toggle dropdown visibility
+        $portfolioContainer.find('.dropdown > .tab').click(function (event) {
+            event.stopPropagation(); // Prevent the event from bubbling up to the parent elements
+            $(this).siblings('.dropdown-content').toggle(); // Toggle the dropdown content visibility
+        });
+
+        // Close dropdown if clicked outside
+        $(document).click(function () {
+            $portfolioContainer.find('.dropdown-content').hide(); // Hide dropdown when clicking outside
+        });
+    }
+
+    // Fetch the project data and initialize everything
+    fetch('project.json')
         .then(response => response.json())
         .then(projects => {
             const container = $('#portfolio-container');
@@ -303,11 +329,23 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             // Initialize hover and tab functionality after projects are loaded
-            initializeHoverAndTabFunctionality(projects);
+            initializeTabs(projects);
+
+            // Trigger the last active tab on page load
+            const activeTab = getActiveTab();
+            triggerTab(activeTab);
+
+            // Close dropdowns by default
+            closeDropdowns(); // Ensure dropdowns are closed when page loadsa
         });
+});
 
-    
+fetch('footer.html')
+.then(response => response.text())
+.then(data => {
+    document.getElementById('footer__cont').innerHTML = data;
+});
 </script>
-
+        
 </body>
 </html>
