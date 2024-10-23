@@ -189,5 +189,35 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.error('Error loading project.json', error);
                     document.getElementById('project-details-container').innerHTML = '<p>Failed to load project details.</p>';
                 });
-        }        
+        }      
+        function updateProjectInfoPosition() {
+        const projectInfo = document.querySelector('.project-info');
+        const footer = document.getElementById('footer__cont');
+
+        if (window.innerWidth >= 700 && window.innerHeight >= 650) {
+            // Calculate the positions
+            const projectInfoBottom = projectInfo.getBoundingClientRect().bottom;
+            const footerTop = footer.getBoundingClientRect().top;
+            const footerOffsetTop = footer.offsetTop;
+
+            if (projectInfoBottom >= footerTop) {
+                // Set position to absolute and place it right above the footer
+                projectInfo.style.position = 'absolute';
+                projectInfo.style.top = `${footerOffsetTop - projectInfo.offsetHeight - 10}px`; // Keeps 10px gap
+            } else {
+                // Set position back to fixed when it's not overlapping
+                projectInfo.style.position = 'fixed';
+                projectInfo.style.top = '35%'; // Restore fixed position
+            }
+        } else {
+            // For smaller screens or if media query is not met
+            projectInfo.style.position = 'static'; // Reset to static if needed for smaller screens
+        }
+    }
+
+    // Run the update function on scroll
+    window.addEventListener('scroll', updateProjectInfoPosition);
+
+    // Run it once on page load
+    updateProjectInfoPosition();
 });
