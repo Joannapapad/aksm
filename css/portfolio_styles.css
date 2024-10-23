@@ -42,7 +42,7 @@ body{
 
 
 /* Media query for screens smaller than 1300px */
-@media (max-width: 1300px) {
+@media (max-width: 900px) {
   .menu_maker {
       display: block; /* Change to block display */
   }
