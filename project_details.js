@@ -190,28 +190,36 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById('project-details-container').innerHTML = '<p>Failed to load project details.</p>';
                 });
         }      
-        function updateProjectInfoPosition() {
+
+
+    function updateProjectInfoPosition() {
         const projectInfo = document.querySelector('.project-info');
         const footer = document.getElementById('footer__cont');
 
         if (window.innerWidth >= 700 && window.innerHeight >= 650) {
-            // Calculate the positions
+            // Get the bottom position of the project-info and the top of the footer
             const projectInfoBottom = projectInfo.getBoundingClientRect().bottom;
             const footerTop = footer.getBoundingClientRect().top;
             const footerOffsetTop = footer.offsetTop;
 
             if (projectInfoBottom >= footerTop) {
-                // Set position to absolute and place it right above the footer
-                projectInfo.style.position = 'absolute';
-                projectInfo.style.top = `${footerOffsetTop - projectInfo.offsetHeight - 10}px`; // Keeps 10px gap
+                // Set to absolute position when it touches the footer
+                if (!projectInfo.classList.contains('absolute')) {
+                    projectInfo.classList.remove('fixed');
+                    projectInfo.classList.add('absolute');
+                    projectInfo.style.top = `${footerOffsetTop - projectInfo.offsetHeight - 10}px`; // Ensure it stays above the footer
+                }
             } else {
-                // Set position back to fixed when it's not overlapping
-                projectInfo.style.position = 'fixed';
-                projectInfo.style.top = '35%'; // Restore fixed position
+                // Return to fixed position when scrolling up
+                if (!projectInfo.classList.contains('fixed')) {
+                    projectInfo.classList.remove('absolute');
+                    projectInfo.classList.add('fixed');
+                    projectInfo.style.top = '35%'; // Restore the fixed position
+                }
             }
         } else {
-            // For smaller screens or if media query is not met
-            projectInfo.style.position = 'static'; // Reset to static if needed for smaller screens
+            // For smaller screens or if media query is not met, reset the position
+            projectInfo.style.position = 'static';
         }
     }
 
@@ -220,4 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Run it once on page load
     updateProjectInfoPosition();
+
+
+    
 });
