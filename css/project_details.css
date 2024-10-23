@@ -125,7 +125,7 @@ div[class*=box] {
 @media (min-width: 600px) and (min-height: 500px) {
     .project-summary {
         position: fixed;
-        bottom: 0;
+        top: 35%;
         left: 0;
         width: 100%; /* Adjust to fit the screen width */
         max-width: 400px; /* Optional: control the width */
