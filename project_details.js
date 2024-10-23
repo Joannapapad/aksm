@@ -166,25 +166,33 @@ document.addEventListener("DOMContentLoaded", () => {
                         });
                     }
                     
-
-                    // Handle non-scan2bim images
-                    if (project.typeofproject2 !== "scan2bim") {
-                        ['image1', 'image2', 'image3', 'image4', 'image5'].forEach((img, idx) => {
-                            if (project[img]) {
-                                imgTextHtml.push(`
-                                    <div class="img_text_flex ${idx % 2 === 1 ? 'right' : ''}">
-                                        <img class="detail_proj_image clickable-image" src="${project[img]}" alt="Project Image">
-                                        <p>${project['description' + (idx + 1)] || ''}</p>
-                                    </div>
-                                `);
-                            }
-                        });
-                    }
-
-                    // Add image-text container only if there's content
-                    if (imgTextHtml.length > 0) {
-                        projectHtml += `<div class="img_text_container">${imgTextHtml.join('')}</div>`;
-                    }
+                if (project.typeofproject2 !== "scan2bim") {
+                    const imagesDescriptions = [
+                        { image: project.image1, description: project.description },
+                        { image: project.image2, description: project.description2 },
+                        { image: project.image3, description: project.description3 },
+                        { image: project.image4, description: project.description4 },
+                        { image: project.image5, description: project.description5 }
+                    ];
+                
+                    // Only add images and descriptions if the image exists
+                    imagesDescriptions.forEach((item, index) => {
+                        if (item.image) {
+                            imgTextHtml.push(`
+                                <div class="img_text_flex ${index % 2 === 1 ? 'right' : ''}">
+                                    <img class="detail_proj_image clickable-image" src="${item.image}" alt="Project Image">
+                                    <p>${item.description || ''}</p>
+                                </div>
+                            `);
+                        }
+                    });
+                }
+                
+                // Add image-text container only if there's content
+                if (imgTextHtml.length > 0) {
+                    projectHtml += `<div class="img_text_container">${imgTextHtml.join('')}</div>`;
+                }
+    
 
                     document.getElementById('project-details-container').innerHTML = projectHtml;
 
