@@ -158,35 +158,43 @@
 
     <div id="footer__cont"></div>
     <script>
-
-
 document.addEventListener('DOMContentLoaded', function () {
     const dropdowns = document.querySelectorAll('.dropdown');
 
-    // Function to save the active tab to localStorage
+    // Function to save the active main tab to localStorage
     function setActiveTab(filterValue) {
         localStorage.setItem('activeTab', filterValue);
     }
 
-    // Function to retrieve the active tab from localStorage
+    // Function to save the active subtab to localStorage
+    function setActiveSubTab(subtabValue) {
+        localStorage.setItem('activeSubTab', subtabValue);
+    }
+
+    // Function to retrieve the active main tab from localStorage
     function getActiveTab() {
         return localStorage.getItem('activeTab') || 'all'; // Default to 'all' if nothing is stored
     }
 
+    // Function to retrieve the active subtab from localStorage
+    function getActiveSubTab() {
+        return localStorage.getItem('activeSubTab'); // Returns null if no subtab is stored
+    }
+
     // Function to trigger the tab click and display content
-    function triggerTab(tabFilter) {
+    function triggerTab(tabFilter, subtabFilter = null) {
         const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
         const $allLinks = $portfolioContainer.find(".link-wrapper");
 
-        // Simulate the tab click based on the stored tab
-        $portfolioContainer.find(`.tab[data-filter="${tabFilter}"]`).click();
-    }
+        // Simulate the main tab click based on the stored tab
+        const $mainTab = $portfolioContainer.find(`.tab[data-filter="${tabFilter}"]`);
+        $mainTab.click();
 
-    // Function to close all dropdowns (reset their visibility)
-    function closeDropdowns() {
-        document.querySelectorAll('.dropdown-content').forEach(dropdown => {
-            dropdown.style.display = 'none'; // Ensure all dropdowns are hidden on page load
-        });
+        // If there is an active subtab, simulate its click too
+        if (subtabFilter) {
+            const $subTab = $portfolioContainer.find(`.subtab[data-filter="${subtabFilter}"]`);
+            $subTab.click();
+        }
     }
 
     // Initialize tabs and subtabs with active class and functionality
@@ -212,12 +220,14 @@ document.addEventListener('DOMContentLoaded', function () {
         $portfolioContainer.find(".tab").click(function () {
             const value = $(this).attr('data-filter');
 
-            // Remove active state from all tabs
+            // Remove active state from all tabs and subtabs
             $portfolioContainer.find(".tab").removeClass('tab-active');
             $portfolioContainer.find(".subtab").removeClass('tab-active'); // Reset subtab active state
-            $(this).addClass('tab-active'); // Set active state for clicked tab
 
-            // Save the active tab in localStorage
+            // Set active state for clicked tab
+            $(this).addClass('tab-active');
+
+            // Save the active main tab in localStorage
             setActiveTab(value);
 
             // Hide all projects initially
@@ -246,7 +256,11 @@ document.addEventListener('DOMContentLoaded', function () {
             $(this).addClass('tab-active');
 
             // Ensure parent dropdown tab is still highlighted
-            $portfolioContainer.find(".tab[data-filter='const_ind_surv']").addClass('tab-active');
+            $portfolioContainer.find(".tab").removeClass('tab-active'); // Clear all main tabs
+            $portfolioContainer.find(".tab[data-filter='const_ind_surv']").addClass('tab-active'); // Keep dropdown parent active
+
+            // Save the subtab in localStorage
+            setActiveSubTab(selectedValue);
 
             $allLinks.hide(); // Hide all links initially
 
@@ -311,20 +325,22 @@ document.addEventListener('DOMContentLoaded', function () {
             // Initialize hover and tab functionality after projects are loaded
             initializeTabs(projects);
 
-            // Trigger the last active tab on page load
+            // Trigger the last active tab and subtab on page load
             const activeTab = getActiveTab();
-            triggerTab(activeTab);
+            const activeSubTab = getActiveSubTab();
+            triggerTab(activeTab, activeSubTab);
 
             // Close dropdowns by default
-            closeDropdowns(); // Ensure dropdowns are closed when page loadsa
+            closeDropdowns(); // Ensure dropdowns are closed when page loads
         });
 });
 
 fetch('footer.html')
-.then(response => response.text())
-.then(data => {
-    document.getElementById('footer__cont').innerHTML = data;
-});
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('footer__cont').innerHTML = data;
+    });
+
 </script>
         
 </body>
