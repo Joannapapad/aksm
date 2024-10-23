@@ -158,6 +158,7 @@
 
     <div id="footer__cont"></div>
     <script>
+
 document.addEventListener('DOMContentLoaded', function () {
     const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -179,6 +180,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to retrieve the active subtab from localStorage
     function getActiveSubTab() {
         return localStorage.getItem('activeSubTab'); // Returns null if no subtab is stored
+    }
+
+    // Function to close all dropdowns
+    function closeDropdowns() {
+        const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
+        $portfolioContainer.find('.dropdown-content').hide(); // Hide all dropdowns
     }
 
     // Function to trigger the tab click and display content
@@ -296,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Close dropdown if clicked outside
         $(document).click(function () {
-            $portfolioContainer.find('.dropdown-content').hide(); // Hide dropdown when clicking outside
+            closeDropdowns(); // Use the closeDropdowns function to hide dropdowns
         });
     }
 
@@ -335,11 +342,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 
-fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer__cont').innerHTML = data;
-    });
 
 </script>
         
