@@ -16,9 +16,9 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
-        "area": "50m2",
+        "area": "1050 m2",
         "LOD": "350",
-        "partners": "Element engineers",
+        "partners": "Elpar AE",
         "status":"finished"
     },
     {
@@ -178,7 +178,6 @@
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
         "partner": "Balliand",
-        "area": "50m2",
         "LOD": "300",
         "status":"finished"
     },
@@ -525,7 +524,7 @@
         "typeofproject2":"scan2bim",
         "completionyear": "2023",
         "LOD":"350",
-        "area": "50m2",
+        "area": "2.250 m2",
         "status":"finished"
     },
     {
@@ -591,7 +590,7 @@
         "LOD": "300",
         "partner":"Sklavenitis",
         "completionyear": "2023",
-        "area": "50m2",
+        "area": "2.000 m2",
         "status":"finished"
     },
     {
@@ -629,7 +628,7 @@
         "completionyear": "2023",
         "LOD": "300",
         "partner":"Redex",
-        "area": "50m2",
+        "area": "9.500 m2",
         "status":"finished"
     },
     {
@@ -649,7 +648,7 @@
         "completionyear": "2022",
         "LOD": "300",
         "partner":"Block",
-        "area": "50m2",
+        "area": "460 m2",
         "status":"finished"
     },
     {
@@ -668,6 +667,7 @@
         "typeofproject2":"scan2bim",
         "completionyear": "2022",
         "partner":"Block",
+        "LOD": "300",
         "area": "17.730 m2",
         "status":"finished"
     },
@@ -707,11 +707,11 @@
     },
     {
         "id": "2021_003",
-        "title": "3D Model of Building",
+        "title": "Office Complex",
         "location": "Lykourgou kai Sokratous, Athens",
         "image_front":"assets/portfolio/2021_003_Focal.Lykourgou_BIM/revit.png",
-        
-        "description": "3D VIEW",
+        "main_description": "Office Complex Renovation - Architectural and Structural Data Collection",
+        "description": "3D MODEL",
         "description2": "PLAN VIEW",
         "description3": "SECTION",
         "image1":"assets/portfolio/2021_003_Focal.Lykourgou_BIM/revit_final.png",
@@ -720,15 +720,17 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2021",
-        "area": "50m2",
+        "LOD": "300",
+        "area": "8.900 m2",
         "status":"finished"
     },
    
     {
         "id": "2021_073",
-        "title": "3D Model of Building",
+        "title": "Athinaiki Xartopoiia",
         "location": "Nea Peramos, Athens",
         "image_front":"assets/portfolio/2021_073_Dimand.Softex Nea Peramos/revit.png",
+        "main_description": "Building Complex Renovation - Architectural and Structural Data Collection",
         "description": "3D VIEW",
         "description2": "PLAN VIEW",
         "description3": "SECTION",
@@ -737,8 +739,9 @@
         "image3":"assets/portfolio/2021_073_Dimand.Softex Nea Peramos/section_final.png",
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
+        "LOD": "300",
         "completionyear": "2021",
-        "area": "50m2",
+        "area": "20.000 m2",
         "status":"finished"
     },
     {
@@ -819,10 +822,10 @@
     },   
     {
         "id": "2020_096",
-        "title": "Building Complex",
+        "title": "Hangar C",
         "location": "Elliniko, Attica",
         "image_front":"assets/portfolio/2020_096_Gologiannis.Elliniko_BIM/revit.png",
-        "main_description":"Plant Room Renovation - Architectural and Structural Data Collection",
+        "main_description":"Diathriteo ypostego Hangar C Surveying - Architectural and Structural Data Collection",
         "description": "POINT CLOUD",
         "description2": "3D MODEL",
         "description3": "SECTION",
@@ -832,7 +835,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2020",
-        "area": "50m2",
+        "partner":"DETA Consulting Engineers IKE",
+        "area": " m2",
         "status":"finished"
     },   
     {
@@ -857,7 +861,7 @@
     },   
     {
         "id": "2019_077",
-        "title": "3D Model of a Building",
+        "title": "Katoikia",
         "location": "Areopagitou, Athens",
         "image_front":"assets/portfolio/2019_077_Temes.Areopagitou/revit.png",
         "description": "POINT CLOUD",
@@ -871,7 +875,8 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2019",
-        "area": "50m2",
+        "partner","Xristos Kostantakopoulos",
+        "area": "1.100 m2",
         "status":"finished"
 
     }
