@@ -115,7 +115,46 @@ document.addEventListener("DOMContentLoaded", () => {
         
                         // Check the project type
                         if (project.typeofproject2 === "scan2bim") {
-                            // Logic for Scan2BIM projects if needed
+                                 // Scan2BIM projects: handle multiple image and description pairs with flexible layout
+                        const imageDescriptionPairs = [
+                            { image: project.image1, description: project.description },
+                            { image: project.image2, description: project.description2 },
+                            { image: project.image3, description: project.description3 },
+                            { image: project.image4, description: project.description4 }
+                        ];
+
+                        for (let i = 0; i < imageDescriptionPairs.length; i += 2) {
+                            const leftPair = imageDescriptionPairs[i];
+                            const rightPair = imageDescriptionPairs[i + 1];
+
+                            // If both images and descriptions are available, show in a flex row
+                            if (leftPair.image && leftPair.description && rightPair?.image && rightPair?.description) {
+                                imgTextHtml.push(`
+                                    <div class="img_text_flex">
+                                        <div class="img_text img_left">
+                                            <p class="description">${leftPair.description}</p>
+                                            <img class="detail_proj_image clickable-image" src="${leftPair.image}" alt="Project Image Left">
+                                        </div>
+                                        <div class="img_text img_right">
+                                            <p class="description">${rightPair.description}</p>
+                                            <img class="detail_proj_image clickable-image" src="${rightPair.image}" alt="Project Image Right">
+                                        </div>
+                                    </div>
+                                `);
+                            }
+                            // If only the left image and description exist
+                            else if (leftPair.image && leftPair.description) {
+                                imgTextHtml.push(`
+                                    <div class="img_text_flex">
+                                        <div class="img_text img_left">
+                                            <p class="description">${leftPair.description}</p>
+                                            <img class="detail_proj_image clickable-image" src="${leftPair.image}" alt="Project Image Left">
+                                        </div>
+                                    </div>
+                                `);
+                            }
+                        }
+                            
                         } else {
                             // Non-scan2bim projects
                             imagesDescriptions.forEach((item, index) => {
