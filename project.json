@@ -485,7 +485,7 @@
         "description3": "",
         "image1":"assets/portfolio/2023_056_Aquila_Almiros (drone)/image1.jpg",
         "image2":"assets/portfolio/2023_056_Aquila_Almiros (drone)/image2.png",
-        "image2":"assets/portfolio/2023_056_Aquila_Almiros (drone)/image3.png",
+        "image3":"assets/portfolio/2023_056_Aquila_Almiros (drone)/image3.png",
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2023",
@@ -875,7 +875,7 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2019",
-        "partner","Xristos Kostantakopoulos",
+        "partner":"Xristos Kostantakopoulos",
         "area": "1.100 m2",
         "status":"finished"
 
