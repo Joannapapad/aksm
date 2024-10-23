@@ -221,7 +221,7 @@ body{
   padding: 10px;
 }
 
-@media(max-width:1600px){
+@media(max-width:1300px){
 .featured_projects .text-blk.tab {
   font-size: 14px;
 
