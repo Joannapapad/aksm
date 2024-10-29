@@ -5,6 +5,9 @@ body {
     padding: 0;
 }
 
+.project-info2{
+    display: none;
+}
 
 div[class*=box] {
     height: 33.33%;
@@ -157,7 +160,8 @@ div[class*=box] {
     padding: 1em;
     max-width: 400px;
     border: 1px solid #ffffff; /* Add border */
-    border-radius: 8px; 
+    border-radius: 8px;
+     
     
 }
 
@@ -411,14 +415,27 @@ div[class*=box] {
         top: 35%;
         left: 0;
         margin: 10px;
-        width: 100%;
-        max-width: 400px;
-        background: #817C76;
+        display: none;
+    }
+    .project-info2 {
+        display: block;
+        position: -webkit-sticky; /* For Safari */
+        position: sticky;
+        bottom: 0;
+        padding-bottom: 20px;
+        z-index: 10; /* Adjust if needed */
+        background-color: white; /* Or set to the desired background color */
+        padding-left: 20px;
         color: white;
         z-index: 99;
         border-radius: 10px;
+        width: 100%;
+        max-width: 400px;
     }
+    .project-text{
+        background: #817C76;
 
+    }
     .desc{
         position: relative;
     }
@@ -564,3 +581,4 @@ div[class*=box] {
     }
 
 }
+
