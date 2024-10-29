@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     function getParameterByName(name) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -89,16 +90,77 @@ document.addEventListener("DOMContentLoaded", () => {
                         { image: project.image5, description: project.description5 }
                     ];
 
-                    imagesDescriptions.forEach((item, index) => {
-                        if (item.image) {
+
+                    // Add videos based on screen width
+                    if (project.video1 || project.video2) {
+                        const videoSource = window.innerWidth <= 800 ? project.video2 : project.video1;
+                        if (videoSource) {
                             imgTextHtml.push(`
-                                <div class="img_text_flex ${index % 2 === 1 ? 'right' : ''}">
-                                    <img class="detail_proj_image clickable-image" src="${item.image}" alt="Project Image">
-                                    <p>${item.description || ''}</p>
+                                <div class="center vid">
+                                    <video class="detail_proj_video" autoplay muted loop controls>
+                                        <source src="${videoSource}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
                                 </div>
                             `);
                         }
-                    });
+                    }
+
+                    // Check the project type
+                    if (project.typeofproject2 === "scan2bim") {
+                             // Scan2BIM projects: handle multiple image and description pairs with flexible layout
+                    const imageDescriptionPairs = [
+                        { image: project.image1, description: project.description },
+                        { image: project.image2, description: project.description2 },
+                        { image: project.image3, description: project.description3 },
+                        { image: project.image4, description: project.description4 }
+                    ];
+
+                    for (let i = 0; i < imageDescriptionPairs.length; i += 2) {
+                        const leftPair = imageDescriptionPairs[i];
+                        const rightPair = imageDescriptionPairs[i + 1];
+
+                        // If both images and descriptions are available, show in a flex row
+                        if (leftPair.image && leftPair.description && rightPair?.image && rightPair?.description) {
+                            imgTextHtml.push(`
+                                <div class="img_text_flex">
+                                    <div class="img_text img_left">
+                                        <p class="description">${leftPair.description}</p>
+                                        <img class="detail_proj_image clickable-image" src="${leftPair.image}" alt="Project Image Left">
+                                    </div>
+                                    <div class="img_text img_right">
+                                        <p class="description">${rightPair.description}</p>
+                                        <img class="detail_proj_image clickable-image" src="${rightPair.image}" alt="Project Image Right">
+                                    </div>
+                                </div>
+                            `);
+                        }
+                        // If only the left image and description exist
+                        else if (leftPair.image && leftPair.description) {
+                            imgTextHtml.push(`
+                                <div class="img_text_flex">
+                                    <div class="img_text img_left">
+                                        <p class="description">${leftPair.description}</p>
+                                        <img class="detail_proj_image clickable-image" src="${leftPair.image}" alt="Project Image Left">
+                                    </div>
+                                </div>
+                            `);
+                        }
+                    }
+
+                    } else {
+                        // Non-scan2bim projects
+                        imagesDescriptions.forEach((item, index) => {
+                            if (item.image) {
+                                imgTextHtml.push(`
+                                    <div class="img_text_flex ${index % 2 === 1 ? 'right' : ''}">
+                                        <img class="detail_proj_image clickable-image" src="${item.image}" alt="Project Image">
+                                        <p>${item.description || ''}</p>
+                                    </div>
+                                `);
+                            }
+                        });
+                    }
 
                     // Join images and descriptions HTML
                     projectHtml += `<div class="img_text_container">${imgTextHtml.join('')}</div>`;
