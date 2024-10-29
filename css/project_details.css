@@ -425,7 +425,6 @@ div[class*=box] {
         bottom: 0;
         padding-bottom: 20px;
         z-index: 10; /* Adjust if needed */
-        background-color: white; /* Or set to the desired background color */
         padding-left: 20px;
         color: white;
         z-index: 99;
