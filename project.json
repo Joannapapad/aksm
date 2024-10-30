@@ -73,7 +73,6 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2",
         "status":"ongoing"
     },
     {
@@ -109,7 +108,6 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2",
         "status":"ongoing"
     },
     {
@@ -127,7 +125,6 @@
         "typeofproject": "Deformation Monitoring",
         "typeofproject2":"deformation_monitoring",
         "completionyear": "2023",
-        "area": "50m2"
     },
     {
         "id": "2024_039",
@@ -141,7 +138,6 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2",
         "status":"ongoing"
     },
     {
@@ -157,7 +153,6 @@
         "typeofproject": "Deformation Monitoring",
         "typeofproject2":"deformation_monitoring",
         "completionyear": "Ongoing",
-        "area": "50m2",
         "status":"ongoing"
     },
     { 
@@ -193,7 +188,6 @@
         "typeofproject": "Deformation Monitoring",
         "typeofproject2":"deformation_monitoring",
         "completionyear": "2024",
-        "area": "50m2",
         "status":"finished"
     },
     {
@@ -213,7 +207,6 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2",
         "status":"ongoing"
     },
     {
@@ -253,7 +246,6 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2024",
-        "area": "50m2",
         "status":"finished"
     },
     {
@@ -271,7 +263,6 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2",
         "status":"ongoing"
     },
     {
@@ -289,7 +280,6 @@
         "typeofproject": "Deformation Monitoring",
         "typeofproject2":"deformation_monitoring",
         "completionyear": "2024",
-        "area": "50m2",
         "status":"finished"
     },
     {
@@ -362,7 +352,6 @@
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2",
         "status":"ongoing"
     },
     {
@@ -378,7 +367,6 @@
         "typeofproject": "Deformation Monitoring",
         "typeofproject2":"deformation_monitoring",
         "completionyear": "Ongoing",
-        "area": "50m2",
         "status":"ongoing"
     },
     {
@@ -392,7 +380,6 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2024",
-        "area": "50m2",
         "status":"finished"
     },
 
@@ -453,7 +440,6 @@
         "typeofproject": "Deformation Monitoring & Construction Surveying",
         "typeofproject2":"deformation_monitoring const_ind_surv",
         "completionyear": "Ongoing",
-        "area": "50m2",
         "status":"ongoing"
     },
 
@@ -471,7 +457,6 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2023",
-        "area": "50m2",
         "status":"finished"
     },
     {
@@ -489,7 +474,6 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2023",
-        "area": "50m2",
         "status":"finished"
     },
     {
@@ -505,7 +489,6 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2023",
-        "area": "50m2",
         "status":"finished"
     },
     {
@@ -546,7 +529,7 @@
         "completionyear": "2023",
         "partner":"Kizi Architectural Studio",
         "LOD":"300",
-        "area": "2000 m2",
+        "area": "2.000 m2",
         "status":"finished"
     },
     {
@@ -606,7 +589,6 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2023",
-        "area": "50m2",
         "status":"finished"
     },
     {
@@ -683,7 +665,6 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2021",
-        "area": "50m2",
         "status":"finished"
     },
     {
@@ -702,7 +683,6 @@
         "typeofproject": "UAV Mapping",
         "typeofproject2":"uav_mapping",
         "completionyear": "2021",
-        "area": "50m2",
         "status":"finished"
     },
     {
@@ -856,7 +836,7 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2020",
-        "area": "4018,51 m2",
+        "area": "4.018,51 m2",
         "status":"finished"
     },   
     {
