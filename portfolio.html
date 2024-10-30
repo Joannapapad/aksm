@@ -206,7 +206,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function initializeTabs(projects) {
+  // Initialize tabs and subtabs with active classes and functionality
+  function initializeTabs(projects) {
         const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
         const $allLinks = $portfolioContainer.find(".link-wrapper");
 
@@ -234,15 +235,20 @@ document.addEventListener('DOMContentLoaded', function () {
             setActiveTab(value);
 
             // Hide all projects initially
-            $allLinks.hide();
+            $allLinks.hide(0);
 
-            // Show all projects if "all" is selected
-            if (value === 'all') {
-                $allLinks.show(500);
-            } else {
-                // Otherwise, filter by the selected tab's class
-                $allLinks.filter(`.${value}`).show(500);
-            }
+        // Show all projects if "all" is selected
+        if (value === 'all') {
+            $allLinks.hide(0).removeClass('animate');  // Instantly hide and reset animation class
+            setTimeout(() => $allLinks.show(0).addClass('animate'), 0); // Instantly show with animation
+        } else {
+            // Hide all initially, then show filtered projects with animation
+            $allLinks.hide(0).removeClass('animate');
+            setTimeout(() => {
+                $allLinks.filter(`.${value}`).show(0).addClass('animate');
+            }, 0);
+        }
+
             $portfolioContainer.find('.dropdown-content').hide();
         });
 
@@ -262,14 +268,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
             setActiveSubTab(selectedValue);
 
-            $allLinks.hide();
+            $allLinks.hide(0).removeClass('animate'); // Instantly hide all, reset animation
+
             $allLinks.each(function () {
                 const projectId = $(this).attr('id');
                 const projectData = projects.find(item => item.id === projectId);
                 if (projectData && projectData.status === status && projectData.typeofproject2 === 'const_ind_surv') {
-                    $(this).show(500);
+                    $(this).show(0).addClass('animate'); // Instantly show with animation
                 }
             });
+
 
             $portfolioContainer.find('.dropdown-content').hide();
         });
@@ -293,53 +301,57 @@ document.addEventListener('DOMContentLoaded', function () {
             closeDropdowns();
         });
     }
-
-    // Intersection Observer for animations
     function setupIntersectionObserver() {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate'); // Add animation class
-                    observer.unobserve(entry.target); // Unobserve once animated
-                }
-            });
-        }, { threshold: 0.1 }); // Trigger animation when 10% of project is visible
-
-        // Observe all projects
-        const projectsToObserve = document.querySelectorAll('.link-wrapper');
-        projectsToObserve.forEach(project => observer.observe(project));
-    }
-
-    // Fetch project data and initialize the page
-    fetch('project.json')
-        .then(response => response.json())
-        .then(projects => {
-            const container = $('#portfolio-container');
-            projects.forEach(project => {
-                const projectHTML = `
-                    <a href="project_details.html?id=${project.id}" class="link-wrapper ${project.typeofproject2}" id="${project.id}">
-                        <div class="responsive-container-block img ${project.typeofproject2}">
-                            <img class="im image-block" src="${project.image_front}">
-                            <div class="responsive-container-block overlay overlay-visible"></div>
-                            <div class="responsive-container-block desc">
-                                <p class="text-blk title">${project.title}, ${project.location}</p>
-                                <p class="text-blk info">Completed Project ${project.completionyear} <br>${project.typeofproject.toUpperCase()}</p>
-                            </div>
-                        </div>
-                    </a>`;
-                container.append(projectHTML);
-            });
-
-            initializeTabs(projects);
-            setupIntersectionObserver(); // Initialize observer after adding projects
-
-            // Trigger the default or last active tab and subtab
-            const activeTab = getActiveTab();
-            const activeSubTab = activeTab === 'const_ind_surv' ? getActiveSubTab() : null;
-            triggerTab(activeTab, activeSubTab);
-
-            closeDropdowns();
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate'); // Add the animation class on entry
+            } else {
+                entry.target.classList.remove('animate'); // Remove it on exit to reset animation
+            }
         });
+    }, { threshold: 0.1 }); // Trigger when 10% of the project is in view
+
+    // Select all project items for observation
+    const projectsToObserve = document.querySelectorAll('.link-wrapper');
+    projectsToObserve.forEach(project => observer.observe(project));
+}
+
+fetch('project.json')
+    .then(response => response.json())
+    .then(projects => {
+        const container = $('#portfolio-container');
+        projects.forEach(project => {
+    const projectStatusText = project.isCompleted 
+        ? `Completed in ${project.completionyear}` 
+        : `Project Status: Ongoing`;
+
+    const projectHTML = `
+        <a href="project_details.html?id=${project.id}" class="link-wrapper ${project.typeofproject2}" id="${project.id}">
+            <div class="responsive-container-block img ${project.typeofproject2}">
+                <img class="im image-block" src="${project.image_front}">
+                <div class="responsive-container-block overlay overlay-visible"></div>
+                <div class="responsive-container-block desc">
+                    <p class="text-blk title">${project.title}, ${project.location}</p>
+                    <p class="text-blk info">${projectStatusText} <br>${project.typeofproject.toUpperCase()}</p>
+                </div>
+            </div>
+        </a>`;
+    container.append(projectHTML);
+});
+
+
+        initializeTabs(projects);
+        setupIntersectionObserver(); // Initialize observer after adding projects
+
+        // Trigger the default or last active tab and subtab
+        const activeTab = getActiveTab();
+        const activeSubTab = activeTab === 'const_ind_surv' ? getActiveSubTab() : null;
+        triggerTab(activeTab, activeSubTab);
+
+        closeDropdowns();
+    });
+
 });
 
 fetch('footer.html')
@@ -347,7 +359,6 @@ fetch('footer.html')
     .then(data => {
         document.getElementById('footer__cont').innerHTML = data;
     });
-
 </script>
         
 </body>
