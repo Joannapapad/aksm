@@ -90,22 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         { image: project.image5, description: project.description5 }
                     ];
 
-
-                    // Add videos based on screen width
-                    if (project.video1 || project.video2) {
-                        const videoSource = window.innerWidth <= 800 ? project.video2 : project.video1;
-                        if (videoSource) {
-                            imgTextHtml.push(`
-                                <div class="center vid">
-                                    <video class="detail_proj_video" autoplay muted loop controls>
-                                        <source src="${videoSource}" type="video/mp4">
-                                        Your browser does not support the video tag.
-                                    </video>
-                                </div>
-                            `);
-                        }
-                    }
-
                     // Check the project type
                     if (project.typeofproject2 === "scan2bim") {
                              // Scan2BIM projects: handle multiple image and description pairs with flexible layout
