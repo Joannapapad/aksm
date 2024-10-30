@@ -640,6 +640,26 @@
         "status":"finished"
     },
     {
+        "id": "2022_012",
+        "title": "Agia Napa Marina",
+        "location": "Agia Napa, Cyprus",
+        "image_front": "assets/portfolio/2022_012_Apostolides_AyiaNapa/image1.jpg",
+        "main_description":"Equipment and personel provision - As-built surveys - Setting Out - Drawing Preparation - Class Detection.",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "description4": "",
+        "image1":"assets/portfolio/2022_012_Apostolides_AyiaNapa/image1.jpg",
+        "image2":"assets/portfolio/2022_012_Apostolides_AyiaNapa/image2.jpg",
+        "image3":"assets/portfolio/2022_012_Apostolides_AyiaNapa/image3.jpg",
+        "image4":"assets/portfolio/2022_012_Apostolides_AyiaNapa/image4.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "2022",
+        "partner": "Apostolides",
+        "status":"finished"
+    },
+    {
         "id": "2022_045",
         "title": "Hotel Complex",
         "location": "Syros",
@@ -925,6 +945,24 @@
         "typeofproject2":"const_ind_surv",
         "completionyear": "2018",
         "partner": "Ermonassa",
+        "status":"finished"
+    },
+    {
+        "id": "2012_084_1",
+        "title": "The Mall Athens",
+        "location": "Marousi, Athens",
+        "image_front": "assets/portfolio/2012_084_Mall Athens & Golden Hall/image1.png",
+        "main_description":"Equipment and personel provision - As-built surveys - Setting Out - Drawing Preparation - Class Detection.",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "image1":"assets/portfolio/2012_084_Mall Athens & Golden Hall/image1.png",
+        "image2":"assets/portfolio/2012_084_Mall Athens & Golden Hall/image2.jpg",
+        "image3":"assets/portfolio/2012_084_Mall Athens & Golden Hall/image3.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "2012",
+        "partner": "Terkenlis",
         "status":"finished"
     }
 ]
