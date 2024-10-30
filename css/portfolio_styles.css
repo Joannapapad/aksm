@@ -6,7 +6,6 @@ html, body {
 }
 
 body{
-
     font-family: Arial, Helvetica, sans-serif;
     background-color: #F3F3F3;
     justify-content: center;
@@ -20,17 +19,24 @@ body{
     visibility: visible;
     opacity: 1;
   }
-
 /* Default styles for larger screens */
 .menu_maker {
   display: flex;
   flex-direction: column; /* Row direction by default */
   width: 100%;
 }
+/* Initially hide projects */
+.link-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
 
-
-
-
+/* Animation class to fade-in and slide-up */
+.link-wrapper.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* Styles for the tabs */
 .tabs {
