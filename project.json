@@ -344,7 +344,7 @@
     },
     {
         "id": "2024_020",
-        "title": "Plant",
+        "title": "Kamari Plant",
         "location": "Kamari",
         "image_front": "assets/portfolio/2022_076_Titan.Kamari/revit.png",
         "description": "3D MODEL",
@@ -352,12 +352,14 @@
         "description3": "SECTION",
         "video1":"https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/titan_high.mp4?alt=media&token=00f6bb72-2161-4ac4-90fc-38cc53d59c0e",
         "video2":"https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/titan_low.mp4?alt=media&token=5a8b1704-4002-4034-8467-a56ad99260f2",
+        "main_description":"Architectural and Structural Data Collection",
         "image1":"assets/portfolio/2022_076_Titan.Kamari/revit_final.png",
         "image2":"assets/portfolio/2022_076_Titan.Kamari/plan_view_final.png",
         "image3":"assets/portfolio/2022_076_Titan.Kamari/section_final.png",
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2022",
+        "LOD":"500",
         "area": "8.300 m2",
         "status":"finished"
     },
