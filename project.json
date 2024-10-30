@@ -888,5 +888,23 @@
         "area": "1.100 m2",
         "status":"finished"
 
+    },
+    {
+        "id": "2018_017",
+        "title": "Stavros Niarchos Foundation – Cultural Center",
+        "location": "Kallithea, Attica",
+        "image_front": "assets/portfolio/2018_017_Ballian_SNFCC/image1-min.jpg",
+        "main_description":"Equipment and personel provision - As-built surveys - Setting Out - Drawing Preparation - Class Detection.",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "image1":"assets/portfolio/2018_017_Ballian_SNFCC/image2-min.jpg",
+        "image2":"assets/portfolio/2018_017_Ballian_SNFCC/image3-min.jpg",
+        "image3":"assets/portfolio/2018_017_Ballian_SNFCC/image4-min.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "2018",
+        "partner": "Ballian",
+        "status":"finished"
     }
 ]
