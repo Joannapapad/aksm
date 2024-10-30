@@ -1405,6 +1405,13 @@ h2 {
     .text-right {
         order: -1
     }
+        .btn {
+        height: 50px;
+        width: 150px;
+    }
+    .btn-one span {
+        font-size: 15px;
+    }
     @media (max-width:600px) {
         .text-left,
         .text-right {
