@@ -158,62 +158,61 @@
 
     <div id="footer__cont"></div>
     <script>
-
 document.addEventListener('DOMContentLoaded', function () {
     const dropdowns = document.querySelectorAll('.dropdown');
 
-    // Function to save the active main tab to localStorage
+    // Save the active main tab to localStorage
     function setActiveTab(filterValue) {
         localStorage.setItem('activeTab', filterValue);
     }
 
-    // Function to save the active subtab to localStorage
+    // Save the active subtab to localStorage
     function setActiveSubTab(subtabValue) {
         localStorage.setItem('activeSubTab', subtabValue);
     }
 
-    // Function to retrieve the active main tab from localStorage
+    // Retrieve the active main tab, defaulting to 'all' if not set
     function getActiveTab() {
-        return localStorage.getItem('activeTab') || 'all'; // Default to 'all' if nothing is stored
+        return localStorage.getItem('activeTab') || 'all';
     }
 
-    // Function to retrieve the active subtab from localStorage
+    // Retrieve the active subtab
     function getActiveSubTab() {
-        return localStorage.getItem('activeSubTab'); // Returns null if no subtab is stored
+        return localStorage.getItem('activeSubTab');
     }
 
-    // Function to close all dropdowns
+    // Close all dropdowns
     function closeDropdowns() {
         const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
-        $portfolioContainer.find('.dropdown-content').hide(); // Hide all dropdowns
+        $portfolioContainer.find('.dropdown-content').hide();
     }
 
-    // Function to trigger the tab click and display content
+    // Trigger the specified tab and subtab
     function triggerTab(tabFilter, subtabFilter = null) {
         const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
-        const $allLinks = $portfolioContainer.find(".link-wrapper");
-
-        // Simulate the main tab click based on the stored tab
         const $mainTab = $portfolioContainer.find(`.tab[data-filter="${tabFilter}"]`);
-        $mainTab.click();
 
-        // If there is an active subtab, simulate its click too
-        if (subtabFilter) {
-            const $subTab = $portfolioContainer.find(`.subtab[data-filter="${subtabFilter}"]`);
-            $subTab.click();
+        // Click only the main tab if "all" is selected
+        if (tabFilter === "all") {
+            $portfolioContainer.find(".tab").removeClass('tab-active');
+            $mainTab.addClass('tab-active').click();
+        } else {
+            $mainTab.click();
+            // Simulate subtab click if provided
+            if (subtabFilter) {
+                const $subTab = $portfolioContainer.find(`.subtab[data-filter="${subtabFilter}"]`);
+                $subTab.click();
+            }
         }
     }
 
-    // Initialize tabs and subtabs with active class and functionality
     function initializeTabs(projects) {
         const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
         const $allLinks = $portfolioContainer.find(".link-wrapper");
 
-        // Hide description and overlay initially
         $portfolioContainer.find(".img .desc").hide();
         $portfolioContainer.find(".img .overlay").hide();
 
-        // Hover effects for project images
         $portfolioContainer.find(".img").hover(
             function () {
                 $(this).find('.overlay, .desc').fadeIn();
@@ -223,69 +222,59 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         );
 
-        // Main tab click handling
+        // Handle main tab clicks
         $portfolioContainer.find(".tab").click(function () {
             const value = $(this).attr('data-filter');
 
-            // Remove active state from all tabs and subtabs
-            $portfolioContainer.find(".tab").removeClass('tab-active');
-            $portfolioContainer.find(".subtab").removeClass('tab-active'); // Reset subtab active state
+            // Clear active state from all tabs and subtabs
+            $portfolioContainer.find(".tab, .subtab").removeClass('tab-active');
 
-            // Set active state for clicked tab
+            // Set active state for clicked main tab
             $(this).addClass('tab-active');
-
-            // Save the active main tab in localStorage
             setActiveTab(value);
 
             // Hide all projects initially
             $allLinks.hide();
 
-            // Show projects based on selected tab
+            // Show all projects if "all" is selected
             if (value === 'all') {
                 $allLinks.show(500);
             } else {
-                // Show projects matching the clicked tab's filter
+                // Otherwise, filter by the selected tab's class
                 $allLinks.filter(`.${value}`).show(500);
             }
-
-            // Hide dropdown content if any subtab or another tab is clicked
             $portfolioContainer.find('.dropdown-content').hide();
         });
 
-        // Subtab click handling for dropdown
+        // Subtab click handling only for "const_ind_surv"
         $portfolioContainer.find(".subtab").click(function (event) {
-            event.stopPropagation(); // Prevent the event from bubbling up to the parent elements
+            event.stopPropagation();
             const selectedValue = $(this).attr('data-filter');
             const status = selectedValue === 'ongoing' ? 'ongoing' : 'finished';
 
-            // Set the active state for the clicked subtab
+            // Activate subtab
             $portfolioContainer.find(".subtab").removeClass('tab-active');
             $(this).addClass('tab-active');
 
-            // Ensure parent dropdown tab is still highlighted
-            $portfolioContainer.find(".tab").removeClass('tab-active'); // Clear all main tabs
-            $portfolioContainer.find(".tab[data-filter='const_ind_surv']").addClass('tab-active'); // Keep dropdown parent active
+            // Ensure parent tab remains active for "const_ind_surv"
+            $portfolioContainer.find(".tab").removeClass('tab-active');
+            $portfolioContainer.find(".tab[data-filter='const_ind_surv']").addClass('tab-active');
 
-            // Save the subtab in localStorage
             setActiveSubTab(selectedValue);
 
-            $allLinks.hide(); // Hide all links initially
-
-            // Show projects based on status (ongoing/finished) and type (const_ind_surv)
+            $allLinks.hide();
             $allLinks.each(function () {
                 const projectId = $(this).attr('id');
                 const projectData = projects.find(item => item.id === projectId);
-                // Ensure that the project is of type const_ind_surv
                 if (projectData && projectData.status === status && projectData.typeofproject2 === 'const_ind_surv') {
-                    $(this).show(500); // Show the matching projects
+                    $(this).show(500);
                 }
             });
 
-            // Hide the dropdown content after selection
             $portfolioContainer.find('.dropdown-content').hide();
         });
 
-        // Open the dropdown when hovering over the parent tab
+        // Hover effect for dropdowns
         $portfolioContainer.find('.dropdown').hover(
             function () {
                 $(this).find('.dropdown-content').show();
@@ -295,25 +284,37 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         );
 
-        // Click event for touch devices to toggle dropdown visibility
         $portfolioContainer.find('.dropdown > .tab').click(function (event) {
-            event.stopPropagation(); // Prevent the event from bubbling up to the parent elements
-            $(this).siblings('.dropdown-content').toggle(); // Toggle the dropdown content visibility
+            event.stopPropagation();
+            $(this).siblings('.dropdown-content').toggle();
         });
 
-        // Close dropdown if clicked outside
         $(document).click(function () {
-            closeDropdowns(); // Use the closeDropdowns function to hide dropdowns
+            closeDropdowns();
         });
     }
 
-    // Fetch the project data and initialize everything
+    // Intersection Observer for animations
+    function setupIntersectionObserver() {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate'); // Add animation class
+                    observer.unobserve(entry.target); // Unobserve once animated
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger animation when 10% of project is visible
+
+        // Observe all projects
+        const projectsToObserve = document.querySelectorAll('.link-wrapper');
+        projectsToObserve.forEach(project => observer.observe(project));
+    }
+
+    // Fetch project data and initialize the page
     fetch('project.json')
         .then(response => response.json())
         .then(projects => {
             const container = $('#portfolio-container');
-
-            // Generate project HTML and append it to the container
             projects.forEach(project => {
                 const projectHTML = `
                     <a href="project_details.html?id=${project.id}" class="link-wrapper ${project.typeofproject2}" id="${project.id}">
@@ -329,24 +330,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 container.append(projectHTML);
             });
 
-            // Initialize hover and tab functionality after projects are loaded
             initializeTabs(projects);
+            setupIntersectionObserver(); // Initialize observer after adding projects
 
-            // Trigger the last active tab and subtab on page load
+            // Trigger the default or last active tab and subtab
             const activeTab = getActiveTab();
-            const activeSubTab = getActiveSubTab();
+            const activeSubTab = activeTab === 'const_ind_surv' ? getActiveSubTab() : null;
             triggerTab(activeTab, activeSubTab);
 
-            // Close dropdowns by default
-            closeDropdowns(); // Ensure dropdowns are closed when page loads
+            closeDropdowns();
         });
 });
+
 fetch('footer.html')
     .then(response => response.text())
     .then(data => {
         document.getElementById('footer__cont').innerHTML = data;
     });
-
 
 </script>
         
