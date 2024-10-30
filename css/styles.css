@@ -183,7 +183,7 @@ a {
 @media(max-width:1600px) {
     .logo_big {
         width: 14em;
-        padding: 14vh
+        padding: 14vh;
         padding-bottom: 5vh ;
     }
     .category-text{
@@ -287,7 +287,9 @@ a {
 :root {
     --default-padding: 4rem
 }
-
+.box-1 {
+    margin: 2em
+}
 .flex_container {
     display: flex;
     justify-content: space-between;
@@ -1412,6 +1414,9 @@ h2 {
     .btn-one span {
         font-size: 15px;
     }
+    .box-1 {
+        margin: 0.3em;
+    }    
     @media (max-width:600px) {
         .text-left,
         .text-right {
@@ -1654,13 +1659,12 @@ h2 {
     background-repeat: no-repeat
 }
 
-.box-1 {
-    margin: 2em
-}
+
+
 @media(max-height:650px) and (min-width:850px){
     .logo_big {
         width: 14vh;
-        padding: 14vh
+        padding: 14vh;
         padding-bottom: 5vh ;
 
     }
