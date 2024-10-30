@@ -45,6 +45,77 @@ body{
   align-items: center;
   justify-content: space-evenly;
 }
+.tab-active {
+  color: #817C76; /* Example active color */
+  border-bottom: 2px solid #817C76; /* Active indicator for main tabs */
+  width: auto;
+}
+
+/* Styles for the subtabs */
+.featured_projects .dropdown-content p {
+  color: #999999; /* Default color for subtabs */
+  text-align: center;
+}
+
+/* Active state styles for subtabs */
+.subtab.tab-active {
+  color: #817C76; /* Example active color for active subtab */
+  border-bottom: none; /* No border for active subtabs */
+}
+
+/* Remove border for all subtabs */
+.dropdown-content p {
+  border-bottom: none; /* Ensure no border for subtabs */
+  font-size: 1.1em;
+  padding: 15px;
+  cursor: pointer;
+}
+
+/* Dropdown structure */
+.dropdown {
+  position: relative; /* Important for positioning the absolute dropdown */
+}
+
+/* Dropdown content */
+.dropdown-content {
+  display: none; /* Keep it hidden by default */
+  position: absolute; /* Position absolutely */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center it properly */
+  top: 100%; /* Position it directly below the tab */
+  background-color: #f3f3f3;
+  max-width: 350px; /* Set a max-width */
+  z-index: 1; /* Ensure it appears above other content */
+  padding: 0; /* Remove padding if necessary */
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block; /* Show dropdown when hovering */
+}
+
+/* Media query for small screens */
+@media (max-width: 900px) {
+
+
+  .dropdown-content {
+    display: block; /* Show dropdown by default for small screens */
+    position: relative; /* Change to relative to take up space in the menu */
+    background-color: #f3f3f3; /* Ensure consistent background color */
+    min-width: 200px; /* Set a minimum width */
+    margin-top: 0; /* No top margin, as it will take up space in the flow */
+  }
+
+  /* Styles for the subtabs */
+  .featured_projects .dropdown-content p {
+    padding: 10px; /* Adjust padding if necessary */
+  }
+
+  /* Optionally, you might want to add some spacing between tabs */
+  .tab {
+    margin-bottom: 10px; /* Space between tabs */
+  }
+}
 
 
 /* Media query for screens smaller than 1300px */
@@ -232,6 +303,12 @@ body{
   font-size: 14px;
 
 }
+
+.dropdown-content p {
+  font-size: 14px;
+  padding: 12px;
+}
+
 }
 
 .featured_projects .text-blk.heading {
