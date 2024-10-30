@@ -322,7 +322,7 @@ fetch('project.json')
     .then(projects => {
         const container = $('#portfolio-container');
         projects.forEach(project => {
-    const projectStatusText = project.isCompleted 
+    const projectStatusText = project.status === "finished" 
         ? `Completed in ${project.completionyear}` 
         : `Project Status: Ongoing`;
 
