@@ -899,12 +899,32 @@
         "description2": "",
         "description3": "",
         "image1":"assets/portfolio/2018_017_Ballian_SNFCC/image2-min.jpg",
-        "image2":"assets/portfolio/2018_017_Ballian_SNFCC/image3-min.jpg",
+        "image2":"assets/portfolio/2018_017_Ballian_SNFCC/image3-min.JPG",
         "image3":"assets/portfolio/2018_017_Ballian_SNFCC/image4-min.jpg",
         "typeofproject": "Construction Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "2018",
         "partner": "Ballian",
+        "status":"finished"
+    },
+    {
+        "id": "2018_010",
+        "title": "AEK Stadium",
+        "location": "Nea Filadelfia, Attica",
+        "image_front": "assets/portfolio/2018_010_Ermonassa_AEK/image1.jpg",
+        "video1":"https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/aek.mp4?alt=media&token=b3d30c83-22f8-48ae-9170-0677e2de3fca",
+        "video2":"https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/aek_low.mp4?alt=media&token=b42b02ee-e2c6-4da1-ab38-a6d6f1b95883",
+        "main_description":"Equipment and personel provision - As-built surveys - Setting Out - Drawing Preparation - Class Detection.",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "image1":"assets/portfolio/2018_010_Ermonassa_AEK/image1.jpg",
+        "image2":"assets/portfolio/2018_010_Ermonassa_AEK/image2.jpg",
+        "image3":"assets/portfolio/2018_010_Ermonassa_AEK/image3.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "2018",
+        "partner": "Ermonassa",
         "status":"finished"
     }
 ]
