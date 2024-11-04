@@ -58,6 +58,7 @@
         "typeofproject2":"scan2bim",
         "completionyear": "2022",
         "partner": "Temes",
+        "LOD": "350",
         "area": " 19.000 m2",
         "status":"finished"
     },
@@ -634,7 +635,7 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2023",
-        "LOD": "300",
+        "LOD": "200",
         "partner":"Redex",
         "area": "9.500 m2",
         "status":"finished"
@@ -864,6 +865,7 @@
         "typeofproject2":"scan2bim",
         "completionyear": "2020",
         "partner":"DETA Consulting Engineers IKE",
+        "LOD": "350",
         "area": " m2",
         "status":"finished"
     },   
@@ -883,6 +885,7 @@
         "image4":"assets/portfolio/2020_101_BlackHawk_LaResidence/section_final.png",
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
+        "LOD": "350",
         "completionyear": "2020",
         "area": "4.018,51 m2",
         "status":"finished"
@@ -904,6 +907,7 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2019",
+        "LOD": "350",
         "partner":"Xristos Kostantakopoulos",
         "area": "1.100 m2",
         "status":"finished"
