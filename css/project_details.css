@@ -145,9 +145,7 @@ div[class*=box] {
         display: block; /* Stack elements in one div */
         padding: 10px;
     }
-    .project-text{
-        background-color: #f3f3f36f;
-    }
+
     .project-summary .project-info {
         margin-top: 10px;
     }
@@ -164,7 +162,8 @@ div[class*=box] {
     border: 1px solid #ffffff; /* Add border */
     border-radius: 8px;
      
-    
+    background-color: #f3f3f36f;
+        
 }
 
 
@@ -424,7 +423,7 @@ div[class*=box] {
         position: sticky;
         bottom: 0;
         padding-bottom: 20px;
-        z-index: 10; /* Adjust if needed */
+        z-index: 100; /* Adjust if needed */
         padding-left: 20px;
         color: white;
         z-index: 99;
@@ -432,9 +431,10 @@ div[class*=box] {
         width: 100%;
         max-width: 400px;
     }
-    .project-text{
+    .project-info2 
+        .project-text{
         background: #817C76;
-
+        text-align: start;
     }
     .desc{
         position: relative;
@@ -553,7 +553,7 @@ div[class*=box] {
     }
     .project-text {
         font-size: 1.1em;
-        text-align: start;
+        text-align: center;
         padding: 1em;
         border: 1px solid #000; /* Add border */
         border-radius: 8px; 
@@ -570,4 +570,3 @@ div[class*=box] {
     }
 
 }
-
