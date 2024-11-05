@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     function getParameterByName(name) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -8,31 +7,115 @@ document.addEventListener("DOMContentLoaded", () => {
     function openImageInFullscreen(src) {
         const modal = document.createElement('div');
         modal.classList.add('image-modal');
-        
+
         const image = document.createElement('img');
         image.src = src;
         image.classList.add('fullscreen-image');
-        
+
         const closeButton = document.createElement('span');
         closeButton.innerHTML = '&times;';
         closeButton.classList.add('close-button');
-        
+
         modal.appendChild(image);
         modal.appendChild(closeButton);
         document.body.appendChild(modal);
         
         document.body.style.overflow = 'hidden';
-        
+
         closeButton.addEventListener('click', () => closeModal(modal));
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal(modal);
         });
+
+        // Initialize zoom level and position
+        let scale = 1;
+        let posX = 0;
+        let posY = 0;
+        let isDragging = false;
+        let startX, startY;
+
+        // Zoom with scroll for desktop
+        modal.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            scale += event.deltaY * -0.001;  // Adjust zoom speed here
+            scale = Math.min(Math.max(1, scale), 3);  // Limit zoom range from 1x to 3x
+            applyTransform();
+        });
+
+        // Drag image to pan for desktop
+        image.addEventListener('mousedown', (event) => {
+            isDragging = true;
+            startX = event.clientX - posX;
+            startY = event.clientY - posY;
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            if (isDragging) {
+                posX = event.clientX - startX;
+                posY = event.clientY - startY;
+                applyTransform();
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Touch events for mobile (pinch-to-zoom and pan)
+        let initialDistance = null;
+        
+        modal.addEventListener('touchstart', (event) => {
+            if (event.touches.length === 2) {
+                initialDistance = calculateDistance(event.touches);
+            } else if (event.touches.length === 1) {
+                isDragging = true;
+                startX = event.touches[0].clientX - posX;
+                startY = event.touches[0].clientY - posY;
+            }
+        });
+
+        modal.addEventListener('touchmove', (event) => {
+            if (event.touches.length === 2) {
+                event.preventDefault();
+                const currentDistance = calculateDistance(event.touches);
+                if (initialDistance) {
+                    const scaleChange = currentDistance / initialDistance;
+                    scale = Math.min(Math.max(1, scale * scaleChange), 3);
+                    initialDistance = currentDistance;
+                    applyTransform();
+                }
+            } else if (event.touches.length === 1 && isDragging) {
+                posX = event.touches[0].clientX - startX;
+                posY = event.touches[0].clientY - startY;
+                applyTransform();
+            }
+        });
+
+        modal.addEventListener('touchend', () => {
+            initialDistance = null;
+            isDragging = false;
+        });
+
+        // Helper function to apply transformations
+        function applyTransform() {
+            image.style.transform = `scale(${scale}) translate(${posX / scale}px, ${posY / scale}px)`;
+        }
+
+        // Helper function to calculate distance between two touch points
+        function calculateDistance(touches) {
+            const [touch1, touch2] = touches;
+            return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+            );
+        }
     }
 
     function closeModal(modal) {
         document.body.removeChild(modal);
         document.body.style.overflow = 'auto';
     }
+
 
     function loadProjectDetails() {
         const projectId = getParameterByName('id');
