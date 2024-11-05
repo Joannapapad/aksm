@@ -132,7 +132,6 @@ div[class*=box] {
         top: 35%;
         left: 0;
         width: 100%; /* Adjust to fit the screen width */
-        max-width: 400px; /* Optional: control the width */
         padding: 20px;
         background: rgba(0, 0, 0, 0.8);
     }
@@ -146,7 +145,9 @@ div[class*=box] {
         display: block; /* Stack elements in one div */
         padding: 10px;
     }
-
+    .project-text{
+        background-color: #f3f3f36f;
+    }
     .project-summary .project-info {
         margin-top: 10px;
     }
@@ -294,8 +295,7 @@ div[class*=box] {
 .project-summary {
     padding: 2em;
     width: 100%;
-    max-width: 1200px;
-    background-color: #ffffffe9;
+    background-color: #ffffffbb;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -449,16 +449,6 @@ div[class*=box] {
   
   }
 
-/* Responsive adjustments */
-
-
-@media (min-width: 1400px) {
-    .project-summary {
-        width: 60%;
-        margin:  auto;
-    }
-}
-
 
 @media (max-width:2000px){
   .heading-container {
@@ -559,7 +549,6 @@ div[class*=box] {
 
 @media (min-width: 708px) {
     .project-summary {
-        width: 80%;
         margin: auto;
     }
     .project-text {
