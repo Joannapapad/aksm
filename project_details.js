@@ -46,7 +46,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Create HTML for project background and summary
                     let projectHtml = `
                         <div class="project-details-container">
-                            <div class="project-background" style="background: url('${project.image_front || ''}') no-repeat center center fixed; background-size: cover;">
+                            <div class="project-background" 
+                                style="
+                                    background-image: url('${project.image_front || ''}');
+                                    background-repeat: no-repeat;
+                                    background-position: center center;
+                                    background-attachment: fixed;
+                                    background-size: cover;
+                                    z-index: -1;
+                                    display: flex;
+                                    align-items: center;
+                                    flex-direction: column;
+                                    width: 100%;
+                                    height: 100%;
+                                    box-sizing: border-box;
+                                ">
                                 <div class="project-summary">
                                     <div class="heading-container">
                                         <h1 class="head">${project.title}</h1>
