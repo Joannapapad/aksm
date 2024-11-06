@@ -36,7 +36,9 @@ body{
   opacity: 1;
   transform: translateY(0);
 }
-
+.overlay, .desc {
+  display: none;
+}
 /* Styles for the tabs */
 .tabs {
   display: flex; /* Align tabs in a row */
