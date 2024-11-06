@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+    if ("ontouchstart" in window) {
+        document.addEventListener("click", (event) => {
+            const hoverText = document.querySelector(".hover-text");  // Update with your hover text class
+            if (hoverText) {
+                hoverText.style.display = "none";  // Hides hover text on tap
+            }
+        });
+    }
+
     function getParameterByName(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
