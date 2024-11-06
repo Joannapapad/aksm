@@ -493,6 +493,22 @@ body{
   }
 
 }
+@media (max-width: 768px) {
+  .featured_projects .responsive-container-block.overlay,
+  .featured_projects .responsive-container-block.desc {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  /* When class 'show-overlay' is added, display overlay */
+  .featured_projects .responsive-container-block.show-overlay .desc,
+  .featured_projects .responsive-container-block.show-overlay .overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
+}
 
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&amp;display=swap');
