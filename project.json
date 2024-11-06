@@ -1086,6 +1086,25 @@
         "status":"finished"
     },
     {
+        "id": "2009_066",
+        "title": "Wet Flue – Gas Desulphurization (WFGD) Unit at Unit III of P.P.C. S.A.",
+        "location": "  Megalopolis, Arkadia",
+        "image_front": "assets/portfolio/2009_066_Monitoring_Wfgd/finished.jpg",
+        "main_description":"Construction of new Wet Flue – Gas Desulphurization (WFGD) Unit at Unit III of P.P.C.",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "description4": "",
+        "image1":"assets/portfolio/2009_066_Monitoring_Wfgd/image1.jpg",
+        "image2":"assets/portfolio/2009_066_Monitoring_Wfgd/image2.jpg",
+        "image3":"assets/portfolio/2009_066_Monitoring_Wfgd/image3.png",
+        "image4":"assets/portfolio/2009_066_Monitoring_Wfgd/finished.jpg",
+        "typeofproject": "Deformation Monitoring",
+        "typeofproject2":"deformation_monitoring",
+        "completionyear": "2009",
+        "status":"finished"
+    },
+    {
         "id": "2006_doha",
         "title": "Doha 2006 Asian Games",
         "location": "Doha, Qatar",
