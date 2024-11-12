@@ -930,6 +930,25 @@
 
     },
     {
+        "id": "2018_doha_metro",
+        "title": "Doha Metro Gold Line",
+        "location": "Doha, Qatar",
+        "image_front": "assets/portfolio/2018_doha_metro/image_front.jpg",
+        "main_description":"Equipment and personel provision - As-built surveys - Setting Out - Drawing Preparation - Class Detection.",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "description4": "",
+        "image1":"assets/portfolio/2018_doha_metro/image1.jpg",
+        "image2":"assets/portfolio/2018_doha_metro/image2.jpg",
+        "image3":"assets/portfolio/2018_doha_metro/image3.jpg",
+        "image4":"assets/portfolio/2018_doha_metro/finished.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "2018",
+        "status":"finished"
+    },
+    {
         "id": "2018_017",
         "title": "Stavros Niarchos Foundation – Cultural Center",
         "location": "Kallithea, Attica",
