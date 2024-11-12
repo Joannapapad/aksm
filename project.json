@@ -1066,6 +1066,23 @@
         "status":"finished"
     },
     {
+        "id": "2013_three_story_bioclimatic",
+        "title": "Bioclimatic Building",
+        "location": "Marousi, Athens",
+        "image_front": "assets/portfolio/2013_three_story_bioclimatic/image1.jpg",
+        "main_description":"Construction of a three-storey bioclimatic building with a store, three apartments and three underground parking lots - Equipment and personel provision - As-built surveys - Setting Out - Drawing Preparation - Class Detection.",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "image1":"assets/portfolio/2013_three_story_bioclimatic/image1.jpg",
+        "image2":"assets/portfolio/2013_three_story_bioclimatic/image2.jpg",
+        "image3":"assets/portfolio/2013_three_story_bioclimatic/image3.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "2013",
+        "status":"finished"
+    },
+    {
         "id": "2012_084_1",
         "title": "The Mall Athens",
         "location": "Marousi, Athens",
@@ -1106,6 +1123,25 @@
         "status":"finished"
     },
     {
+        "id": "2010_gas_compression_station",
+        "title": "Gas Compression Station",
+        "location": "Nea Mesimvria, Thessaloniki",
+        "image_front": "assets/portfolio/2010_gas_compression_station/image1.jpg",
+        "main_description":"Equipment and personel provision - As-built surveys - Setting Out - Drawing Preparation - Class Detection.",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "description4": "",
+        "image1":"assets/portfolio/2010_gas_compression_station/image1.jpg",
+        "image2":"assets/portfolio/2010_gas_compression_station/image2.jpg",
+        "image3":"assets/portfolio/2010_gas_compression_station/image3.jpg",
+        "image4":"assets/portfolio/2010_gas_compression_station/finished.jpg",
+        "typeofproject": "Construction Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "2010",
+        "status":"finished"
+    },
+    {
         "id": "2009_066",
         "title": "Wet Flue – Gas Desulphurization (WFGD) Unit at Unit III of P.P.C. S.A.",
         "location": "  Megalopolis, Arkadia",
@@ -1125,25 +1161,6 @@
         "status":"finished"
     },
     {
-        "id": "2006_doha",
-        "title": "Doha 2006 Asian Games",
-        "location": "Doha, Qatar",
-        "image_front": "assets/portfolio/doha_2006games/image_front.jpg",
-        "main_description":"Eastern Structural Steel Work for the Doha 2006 Asian Games Ceremonies - Equipment and personel provision - As-built surveys - Setting Out - Drawing Preparation - Class Detection.",
-        "description": "",
-        "description2": "",
-        "description3": "",
-        "description4": "",
-        "image1":"assets/portfolio/doha_2006games/image_front.jpg",
-        "image2":"assets/portfolio/doha_2006games/image1.jpg",
-        "image3":"assets/portfolio/doha_2006games/image2.jpg",
-        "image4":"assets/portfolio/doha_2006games/image3.jpg",
-        "typeofproject": "Industrial Surveying",
-        "typeofproject2":"const_ind_surv",
-        "completionyear": "2006",
-        "status":"finished"
-    },
-    {
         "id": "2007_047",
         "title": "Minion Multi Store",
         "location": "Patision Avenue, Athens",
@@ -1160,6 +1177,25 @@
         "typeofproject": "Industrial Surveying",
         "typeofproject2":"const_ind_surv",
         "completionyear": "2007",
+        "status":"finished"
+    },
+    {
+        "id": "2006_doha",
+        "title": "Doha 2006 Asian Games",
+        "location": "Doha, Qatar",
+        "image_front": "assets/portfolio/doha_2006games/image_front.jpg",
+        "main_description":"Eastern Structural Steel Work for the Doha 2006 Asian Games Ceremonies - Equipment and personel provision - As-built surveys - Setting Out - Drawing Preparation - Class Detection.",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "description4": "",
+        "image1":"assets/portfolio/doha_2006games/image_front.jpg",
+        "image2":"assets/portfolio/doha_2006games/image1.jpg",
+        "image3":"assets/portfolio/doha_2006games/image2.jpg",
+        "image4":"assets/portfolio/doha_2006games/image3.jpg",
+        "typeofproject": "Industrial Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "2006",
         "status":"finished"
     },
     {
