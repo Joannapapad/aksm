@@ -204,6 +204,7 @@
         "typeofproject": "Scan2Bim",
         "typeofproject2":"scan2bim",
         "completionyear": "2024",
+        "area":"5.500m2",
         "partner": "Balliand",
         "LOD": "300",
         "status":"finished"
@@ -693,7 +694,7 @@
         "completionyear": "2022",
         "LOD": "300",
         "partner":"Block",
-        "area": "460 m2",
+        "area": "1.030 m2",
         "status":"finished"
     },
     {
@@ -882,7 +883,7 @@
         "completionyear": "2020",
         "partner":"DETA Consulting Engineers IKE",
         "LOD": "350",
-        "area": " m2",
+        "area": "3.600 m2",
         "status":"finished"
     },   
     {
