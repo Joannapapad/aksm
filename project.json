@@ -1143,6 +1143,25 @@
         "status":"finished"
     },
     {
+        "id": "2005_097",
+        "title": "Ilida Building Complex",
+        "location": "Marousi, Attica",
+        "image_front": "assets/portfolio/2005_097_EUROM_ILIDA_MHKO/image1.jpg",
+        "main_description":"Equipment and personel provision - As-built surveys - Setting Out - Drawing Preparation - Class Detection.",
+        "description": "",
+        "description2": "",
+        "description3": "",
+        "description4": "",
+        "image1":"assets/portfolio/2005_097_EUROM_ILIDA_MHKO/image1.jpg",
+        "image2":"assets/portfolio/2005_097_EUROM_ILIDA_MHKO/image2.jpg",
+        "image3":"assets/portfolio/2005_097_EUROM_ILIDA_MHKO/image3.png",
+        "image4":"assets/portfolio/2005_097_EUROM_ILIDA_MHKO/finished.jpg",
+        "typeofproject": "Industrial Surveying",
+        "typeofproject2":"const_ind_surv",
+        "completionyear": "2006",
+        "status":"finished"
+    },
+    {
         "id": "2005_081",
         "title": "RM2 Unit and Spooler Unit Construction And Extension",
         "location": "Halivourgiki S.A, Elefsina, Attica",
