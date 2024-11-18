@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeBim - Site Under Construction</title>
+    <meta name="description" content="WEBIM by A. Karditsas - Our website is under construction. Stay tuned for updates!">
+    <!-- Load Lottie Script (formerly Bodymovin) from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+
+    <style>
+        /* Set up the full-screen video background */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* The video background */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure video covers entire screen */
+            z-index: -1; /* Send video to the background */
+        }
+
+        /* Main container styling for content */
+        .content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height of viewport */
+            background-color: rgba(240, 248, 255, 0.836); /* Background color for content area */
+            z-index: 1; /* Content appears over video */
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 40px;
+            letter-spacing: 5px;
+            color: #4d4e4f;
+            padding-top: 5vh;
+            transition: transform 0.3s ease; /* Smooth transition on hover */
+        }
+
+        h1:hover {
+            transform: scale(1.1); /* Scale effect on hover */
+            color: #1f6dbc; /* Change color on hover */
+        }
+
+        .message {
+            font-size: 1.5rem;
+            color: #666;
+            margin-top: 20px;
+            transition: color 0.3s ease; /* Smooth transition for color change */
+        }
+
+        .message:hover {
+            color: #1f6dbc; /* Change text color on hover */
+        }
+
+        /* Button hover effect */
+        .contact-info a {
+            text-decoration: none;
+            color: #1f6dbc;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #ff6f61;
+            transform: scale(1.1); /* Slight scaling effect on hover */
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 800px) {
+            h1 {
+                font-size: 24px;
+                padding-top: 10vh;
+            }
+
+            .message {
+                font-size: 1.2rem;
+                margin-top: 15px;
+            }
+            .contact-info p{
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Adjust button styling for smaller screens */
+            .contact-info a {
+                font-size: 1rem;
+                padding: 10px;
+                border: 2px solid #1f6dbc;
+                border-radius: 2px;
+                text-transform: uppercase;
+                display: inline-block;
+                margin-top: 20px;
+            }
+
+            .contact-info a:hover {
+                background-color: #1f6dbc;
+                color: white;
+            }
+        }
+
+        /* Additional small-screen styling */
+        @media (max-width: 480px) {
+            .content {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "WEBIM",
+          "url": "webim.gr",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "contact@yourwebsite.com",
+            "contactType": "Customer Service",
+            "name": "A. Karditsas"
+          }
+        }
+    </script>
+
+    <!-- Video Background -->
+    <video autoplay loop muted class="video-background">
+        <source src="https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=7efe5d1b-868a-4e36-8026-2b7c4e38f5f1" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h1>WEBIM</h1>
+
+        <!-- Lottie Animation Container -->
+        <div id="lottie-animation" style="width: 100%; max-width: 400px; margin-bottom: 20px;"></div>
+
+        <p class="message">We are currently building our website. We'll be up and running soon!</p>
+
+        <div class="contact-info">
+            <p>Have questions? <a href="mailto:contact@yourwebsite.com" id="contact-button">Contact us</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Lottie Animation Setup
+        window.onload = function () {
+            if (typeof lottie !== 'undefined') {
+                var animation = lottie.loadAnimation({
+                    container: document.getElementById('lottie-animation'), // DOM element
+                    renderer: 'svg', // Use SVG rendering
+                    loop: true, // Loop the animation
+                    autoplay: false, // Do not autoplay initially
+                    path: 'https://lottie.host/d1eb2fd5-ec24-4a60-9289-526c4a522eba/zvnjEG2Dt8.json', // The URL of the animation
+                });
+
+                // Start animation when the user clicks the "Contact us" button
+                document.getElementById('contact-button').addEventListener('click', function() {
+                    animation.play(); // Play the animation when clicked
+                });
+
+                // Check if animation is loaded
+                animation.addEventListener('DOMLoaded', function() {
+                    console.log('Lottie animation loaded successfully!');
+                });
+
+                // Error handling for Lottie animation loading failure
+                animation.addEventListener('error', function (error) {
+                    console.error('Error loading Lottie animation:', error);
+                });
+            } else {
+                console.error('Lottie (bodymovin) is not loaded correctly');
+            }
+        };
+    </script>
+
+</body>
+</html>
