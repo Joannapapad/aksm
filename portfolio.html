@@ -81,6 +81,11 @@
     <div id="footer__cont"></div>
     
     <script>
+    document.querySelectorAll('.link-wrapper').forEach((element) => {
+  element.addEventListener('click', function() {
+    this.querySelector('.responsive-container-block').classList.toggle('show-overlay');
+  });
+});
 document.addEventListener('DOMContentLoaded', function () {
     const dropdowns = document.querySelectorAll('.dropdown');
 
