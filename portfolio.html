@@ -79,13 +79,8 @@
     </div>
 
     <div id="footer__cont"></div>
+    
     <script>
-        document.querySelectorAll('.link-wrapper').forEach((element) => {
-  element.addEventListener('click', function() {
-    this.querySelector('.responsive-container-block').classList.toggle('show-overlay');
-  });
-});
-
 document.addEventListener('DOMContentLoaded', function () {
     const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -134,8 +129,29 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-  // Initialize tabs and subtabs with active classes and functionality
-  function initializeTabs(projects) {
+    // Function to get query parameters from URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Handle redirection by checking URL query parameters
+    function handleRedirection() {
+        const tab = getQueryParam('tab'); // Get 'tab' parameter
+        const subtab = getQueryParam('subtab'); // Get 'subtab' parameter
+
+        if (tab) {
+            triggerTab(tab, subtab); // Trigger the specified tab and subtab
+        } else {
+            // Trigger the last active tab if no query parameter is present
+            const activeTab = getActiveTab();
+            const activeSubTab = activeTab === 'const_ind_surv' ? getActiveSubTab() : null;
+            triggerTab(activeTab, activeSubTab);
+        }
+    }
+
+    // Initialize tabs and subtabs with active classes and functionality
+    function initializeTabs(projects) {
         const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
         const $allLinks = $portfolioContainer.find(".link-wrapper");
 
@@ -165,17 +181,17 @@ document.addEventListener('DOMContentLoaded', function () {
             // Hide all projects initially
             $allLinks.hide(0);
 
-        // Show all projects if "all" is selected
-        if (value === 'all') {
-            $allLinks.hide(0).removeClass('animate');  // Instantly hide and reset animation class
-            setTimeout(() => $allLinks.show(0).addClass('animate'), 0); // Instantly show with animation
-        } else {
-            // Hide all initially, then show filtered projects with animation
-            $allLinks.hide(0).removeClass('animate');
-            setTimeout(() => {
-                $allLinks.filter(`.${value}`).show(0).addClass('animate');
-            }, 0);
-        }
+            // Show all projects if "all" is selected
+            if (value === 'all') {
+                $allLinks.hide(0).removeClass('animate');  // Instantly hide and reset animation class
+                setTimeout(() => $allLinks.show(0).addClass('animate'), 0); // Instantly show with animation
+            } else {
+                // Hide all initially, then show filtered projects with animation
+                $allLinks.hide(0).removeClass('animate');
+                setTimeout(() => {
+                    $allLinks.filter(`.${value}`).show(0).addClass('animate');
+                }, 0);
+            }
 
             $portfolioContainer.find('.dropdown-content').hide();
         });
@@ -206,7 +222,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-
             $portfolioContainer.find('.dropdown-content').hide();
         });
 
@@ -229,25 +244,13 @@ document.addEventListener('DOMContentLoaded', function () {
             closeDropdowns();
         });
     }
-    function setupIntersectionObserver() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate'); // Add the animation class on entry
-            } else {
-                entry.target.classList.remove('animate'); // Remove it on exit to reset animation
-            }
-        });
-    }, { threshold: 0.1 }); // Trigger when 10% of the project is in view
 
-    // Select all project items for observation
-    const projectsToObserve = document.querySelectorAll('.link-wrapper');
-    projectsToObserve.forEach(project => observer.observe(project));
-}
+    fetch('project.json')
+        .then(response => response.json())
+        .then(projects => {
+            initializeTabs(projects);
+            handleRedirection(); // Handle redirection and trigger tabs
 
-fetch('project.json')
-    .then(response => response.json())
-    .then(projects => {
         const container = $('#portfolio-container');
         projects.forEach(project => {
     const projectStatusText = project.status === "finished" 
