@@ -226,24 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $portfolioContainer.find('.dropdown-content').hide();
         });
 
-        function setupIntersectionObserver() {
-    const targets = document.querySelectorAll('.link-wrapper');
-    const observerOptions = {
-        root: null,
-        threshold: 0.1,
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Stop observing after revealing
-            }
-        });
-    }, observerOptions);
-
-    targets.forEach(target => observer.observe(target));
-}
+    
 
 
         // Hover effect for dropdowns
@@ -294,7 +277,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         initializeTabs(projects);
-        setupIntersectionObserver(); // Initialize observer after adding projects
 
         // Trigger the default or last active tab and subtab
         const activeTab = getActiveTab();
