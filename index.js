@@ -190,7 +190,7 @@ window.addEventListener('load', () => {
         { src: "assets/constumers/LOGOS/ZINON ATH..JPG", alt: "zinon" },
         { src: "assets/constumers/LOGOS/YPOURGEIO DHMOSIAS TAXIS.JPG", alt: "ypoyrgeio" },
         { src: "assets/constumers/LOGOS/xalyvourgiki.jpg", alt: "xalivourgiki" },
-        { src: "assets/constumers/LOGOS/TERNA.jpg", alt: "terna" },
+        { src: "assets/constumers/LOGOS/terna.png", alt: "terna" },
         { src: "assets/constumers/LOGOS/terkenlis1.jpg", alt: "terkenlis" },
         { src: "assets/constumers/LOGOS/SWLIN. KORINTHOU.jpg", alt: "svlin" },
         { src: "assets/constumers/LOGOS/sidma ae1.jpg", alt: "sidma" },
