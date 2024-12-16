@@ -183,7 +183,7 @@ window.addEventListener('load', () => {
         { src: "assets/customers/fraport.jpg", alt: "fraport" },
         { src: "assets/customers/noval.jpg", alt: "noval" },
         { src: "assets/customers/eyau.jpg", alt: "eyau" },
-        { src: "assets/customers/mitilinaios.jpg", alt: "mitilinaios" },
+        { src: "assets/customers/metka.jpg", alt: "metka" },
         { src: "assets/customers/dimand.jpg", alt: "dimand" },
         { src: "assets/customers/peraiosbank.jpg", alt: "peraiosbank" }
 
