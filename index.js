@@ -167,25 +167,25 @@ window.addEventListener('load', () => {
     }
 
     const logos = [
-        { src: "assets/constumers/titan.jpg", alt: "titan" },
-        { src: "assets/constumers/elval.jpg", alt: "elval" },
-        { src: "assets/constumers/temes.jpg", alt: "temes" },
-        { src: "assets/constumers/terna.jpg", alt: "terna" },
-        { src: "assets/constumers/elemka.jpg", alt: "elemka" },
-        { src: "assets/constumers/ballian.jpg", alt: "ballian" },
-        { src: "assets/constumers/redex.jpg", alt: "redex" },
-        { src: "assets/constumers/lafarge.jpg", alt: "lafarge" },
-        { src: "assets/constumers/AIA.jpg", alt: "AIA" },
-        { src: "assets/constumers/ioniki.jpg", alt: "ioniki" },
-        { src: "assets/constumers/vitael.jpg", alt: "vitael" },
-        { src: "assets/constumers/sklavenitis.jpg", alt: "sklavenitis" },
-        { src: "assets/constumers/metlen.jpg", alt: "metlen" },
-        { src: "assets/constumers/fraport.jpg", alt: "fraport" },
-        { src: "assets/constumers/noval.jpg", alt: "noval" },
-        { src: "assets/constumers/eyau.jpg", alt: "eyau" },
-        { src: "assets/constumers/mitilinaios.jpg", alt: "mitilinaios" },
-        { src: "assets/constumers/dimand.jpg", alt: "dimand" },
-        { src: "assets/constumers/peraiosbank.jpg", alt: "peraiosbank" }
+        { src: "assets/customers/titan.jpg", alt: "titan" },
+        { src: "assets/customers/elval.jpg", alt: "elval" },
+        { src: "assets/customers/temes.jpg", alt: "temes" },
+        { src: "assets/customers/terna.jpg", alt: "terna" },
+        { src: "assets/customers/elemka.jpg", alt: "elemka" },
+        { src: "assets/customers/ballian.jpg", alt: "ballian" },
+        { src: "assets/customers/redex.jpg", alt: "redex" },
+        { src: "assets/customers/lafarge.jpg", alt: "lafarge" },
+        { src: "assets/customers/AIA.jpg", alt: "AIA" },
+        { src: "assets/customers/ioniki.jpg", alt: "ioniki" },
+        { src: "assets/customers/vitael.jpg", alt: "vitael" },
+        { src: "assets/customers/sklavenitis.jpg", alt: "sklavenitis" },
+        { src: "assets/customers/metlen.jpg", alt: "metlen" },
+        { src: "assets/customers/fraport.jpg", alt: "fraport" },
+        { src: "assets/customers/noval.jpg", alt: "noval" },
+        { src: "assets/customers/eyau.jpg", alt: "eyau" },
+        { src: "assets/customers/mitilinaios.jpg", alt: "mitilinaios" },
+        { src: "assets/customers/dimand.jpg", alt: "dimand" },
+        { src: "assets/customers/peraiosbank.jpg", alt: "peraiosbank" }
 
     ];
     
