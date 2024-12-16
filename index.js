@@ -190,7 +190,6 @@ window.addEventListener('load', () => {
         { src: "assets/constumers/LOGOS/ZINON ATH..JPG", alt: "zinon" },
         { src: "assets/constumers/LOGOS/YPOURGEIO DHMOSIAS TAXIS.JPG", alt: "ypoyrgeio" },
         { src: "assets/constumers/LOGOS/xalyvourgiki.jpg", alt: "xalivourgiki" },
-        { src: "assets/constumers/LOGOS/terna.png", alt: "terna" },
         { src: "assets/constumers/LOGOS/terkenlis1.jpg", alt: "terkenlis" },
         { src: "assets/constumers/LOGOS/SWLIN. KORINTHOU.jpg", alt: "svlin" },
         { src: "assets/constumers/LOGOS/sidma ae1.jpg", alt: "sidma" },
@@ -207,7 +206,31 @@ window.addEventListener('load', () => {
         { src: "assets/constumers/LOGOS/IMBREGILO.jpg", alt: "IMBREGILO" },
         { src: "assets/constumers/LOGOS/h & m.jpg", alt: "h&m" },
         { src: "assets/constumers/LOGOS/FOKAS.JPG", alt: "fokas" },
-        { src: "assets/constumers/LOGOS/FOCAL.JPG", alt: "focal" }
+        { src: "assets/constumers/LOGOS/FOCAL.JPG", alt: "focal" },
+
+        
+        { src: "assets/constumers/LOGOS/titan.jpg", alt: "titan" },
+        { src: "assets/constumers/LOGOS/elval.jpg", alt: "elval" },
+        { src: "assets/constumers/LOGOS/temes.jpg", alt: "temes" },
+        { src: "assets/constumers/LOGOS/terna.png", alt: "terna" },
+        { src: "assets/constumers/LOGOS/elemka.jpg", alt: "elemka" },
+        { src: "assets/constumers/LOGOS/ballian.jpg", alt: "ballian" },
+        { src: "assets/constumers/LOGOS/redex.jpg", alt: "redex" },
+        { src: "assets/constumers/LOGOS/lafarge.jpg", alt: "lafarge" },
+        { src: "assets/constumers/LOGOS/AIA.jpg", alt: "AIA" },
+        { src: "assets/constumers/LOGOS/ioniki.jpg", alt: "ioniki" },
+        { src: "assets/constumers/LOGOS/vitael.jpg", alt: "vitael" },
+        { src: "assets/constumers/LOGOS/sklavenitis.jpg", alt: "sklavenitis" },
+        { src: "assets/constumers/LOGOS/metlen.jpg", alt: "metlen" },
+        { src: "assets/constumers/LOGOS/fraport.jpg", alt: "fraport" },
+        { src: "assets/constumers/LOGOS/noval.jpg", alt: "noval" },
+        { src: "assets/constumers/LOGOS/metlen.jpg", alt: "metlen" },
+        { src: "assets/constumers/LOGOS/metlen.jpg", alt: "metlen" },
+        { src: "assets/constumers/LOGOS/metlen.jpg", alt: "metlen" },
+        { src: "assets/constumers/LOGOS/metlen.jpg", alt: "metlen" },
+        { src: "assets/constumers/LOGOS/metlen.jpg", alt: "metlen" },
+
+
     ];
     
 // Function to generate scroller content dynamically
