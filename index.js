@@ -167,25 +167,25 @@ window.addEventListener('load', () => {
     }
 
     const logos = [
-        { src: "assets/constumers/LOGOS/titan.jpg", alt: "titan" },
-        { src: "assets/constumers/LOGOS/elval.jpg", alt: "elval" },
-        { src: "assets/constumers/LOGOS/temes.jpg", alt: "temes" },
-        { src: "assets/constumers/LOGOS/terna.png", alt: "terna" },
-        { src: "assets/constumers/LOGOS/elemka.jpg", alt: "elemka" },
-        { src: "assets/constumers/LOGOS/ballian.jpg", alt: "ballian" },
-        { src: "assets/constumers/LOGOS/redex.jpg", alt: "redex" },
-        { src: "assets/constumers/LOGOS/lafarge.jpg", alt: "lafarge" },
-        { src: "assets/constumers/LOGOS/AIA.jpg", alt: "AIA" },
-        { src: "assets/constumers/LOGOS/ioniki.jpg", alt: "ioniki" },
-        { src: "assets/constumers/LOGOS/vitael.jpg", alt: "vitael" },
-        { src: "assets/constumers/LOGOS/sklavenitis.jpg", alt: "sklavenitis" },
-        { src: "assets/constumers/LOGOS/metlen.jpg", alt: "metlen" },
-        { src: "assets/constumers/LOGOS/fraport.jpg", alt: "fraport" },
-        { src: "assets/constumers/LOGOS/noval.jpg", alt: "noval" },
-        { src: "assets/constumers/LOGOS/eyau.jpg", alt: "eyau" },
-        { src: "assets/constumers/LOGOS/mitilinaios.jpg", alt: "mitilinaios" },
-        { src: "assets/constumers/LOGOS/dimand.jpg", alt: "dimand" },
-        { src: "assets/constumers/LOGOS/peraiosbank.jpg", alt: "peraiosbank" }
+        { src: "assets/constumers/titan.jpg", alt: "titan" },
+        { src: "assets/constumers/elval.jpg", alt: "elval" },
+        { src: "assets/constumers/temes.jpg", alt: "temes" },
+        { src: "assets/constumers/terna.png", alt: "terna" },
+        { src: "assets/constumers/elemka.jpg", alt: "elemka" },
+        { src: "assets/constumers/ballian.jpg", alt: "ballian" },
+        { src: "assets/constumers/redex.jpg", alt: "redex" },
+        { src: "assets/constumers/lafarge.jpg", alt: "lafarge" },
+        { src: "assets/constumers/AIA.jpg", alt: "AIA" },
+        { src: "assets/constumers/ioniki.jpg", alt: "ioniki" },
+        { src: "assets/constumers/vitael.jpg", alt: "vitael" },
+        { src: "assets/constumers/sklavenitis.jpg", alt: "sklavenitis" },
+        { src: "assets/constumers/metlen.jpg", alt: "metlen" },
+        { src: "assets/constumers/fraport.jpg", alt: "fraport" },
+        { src: "assets/constumers/noval.jpg", alt: "noval" },
+        { src: "assets/constumers/eyau.jpg", alt: "eyau" },
+        { src: "assets/constumers/mitilinaios.jpg", alt: "mitilinaios" },
+        { src: "assets/constumers/dimand.jpg", alt: "dimand" },
+        { src: "assets/constumers/peraiosbank.jpg", alt: "peraiosbank" }
 
     ];
     
