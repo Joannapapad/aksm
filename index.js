@@ -170,7 +170,7 @@ window.addEventListener('load', () => {
         { src: "assets/constumers/titan.jpg", alt: "titan" },
         { src: "assets/constumers/elval.jpg", alt: "elval" },
         { src: "assets/constumers/temes.jpg", alt: "temes" },
-        { src: "assets/constumers/terna.png", alt: "terna" },
+        { src: "assets/constumers/terna.jpg", alt: "terna" },
         { src: "assets/constumers/elemka.jpg", alt: "elemka" },
         { src: "assets/constumers/ballian.jpg", alt: "ballian" },
         { src: "assets/constumers/redex.jpg", alt: "redex" },
