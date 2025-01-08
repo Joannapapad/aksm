@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meet Our Team</title>
+<script src="nav.js"></script>
+<link rel="icon" href="assets/aksm_logo.png">
+<link rel="preload" href="assets/aksm_logo.webp" as="image">
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f4f4;
+        color: #333;
+        width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    #menu-container {
+        width: 100%;
+    }
+
+    .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dynamically adjust columns */
+    gap: 20px;
+    width: 100%; /* Make the grid container take full width */
+    max-width: 1200px; /* Restrict the grid to a maximum width */
+    padding: 20px;
+    border-radius: 10px;
+    justify-items: center; /* Center grid items within each column */
+}
+
+
+    
+    .team-container{
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 90%;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .team-member {
+        text-align: center;
+        padding: 20px;
+        width: 200px;
+        background: #e9e9e9;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.231);
+        transition: transform 0.3s ease;  /* Smooth scaling */
+    }
+
+    .team-member:hover{
+        transform: scale(1.02);  /* Scale effect on hover */
+
+    }
+
+    .team-member img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
+
+    .team-member h3 {
+        font-size: 1.2em;
+        margin: 10px 0 5px;
+    }
+
+    .team-member p {
+        font-size: 0.9em;
+        color: #666;
+    }
+
+    .submenu {
+        width: 100%;
+        max-width: 1200px;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .submenu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .submenu ul li {
+        margin-bottom: 10px;
+    }
+
+    .submenu ul li a {
+        display: block;
+        text-decoration: none;
+        color: #000000;
+        font-size: 1em;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .submenu ul li a:hover,
+    .submenu ul li a.tab-active {
+        color: #817C76; /* Example active color */
+        border-bottom: 2px solid #817C76; /* Active indicator for main tabs */
+        width: auto;
+        background-color: #817c761f;
+    }
+
+    /* Pointer cursor for tabs */
+    .submenu ul li a {
+        cursor: pointer;
+    }
+
+</style>
+
+
+</style>
+</head>
+<body>
+<div id="menu-container"></div>
+
+<!-- Logo -->
+<a href="index.html">
+    <img src="assets/aksm_logo.png" class="logo_header">
+</a>
+<div class="heading-container">
+    <h1 class="head">Meet Our Team</h1>
+    <div class="animated-line-container2">
+        <div class="animated-line2"></div>
+    </div>
+</div>
+
+<div class="submenu">
+    <ul>
+        <li><a class="tab tab-active" data-filter="construction-team">Construction Team</a></li>
+        <li><a class="tab" data-filter="bim-team">BIM Team</a></li>
+        <li><a class="tab" data-filter="management-team">Management Team</a></li>
+    </ul>
+</div>
+
+<section class="team-container" id="construction-team">
+    <h2>Construction Team</h2>
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="John Doe">
+            <h3>John Doe</h3>
+            <p>Construction Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="John Doe">
+            <h3>John Doe</h3>
+            <p>Construction Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="John Doe">
+            <h3>John Doe</h3>
+            <p>Construction Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="John Doe">
+            <h3>John Doe</h3>
+            <p>Construction Manager</p>
+        </div>
+    </div>
+
+</section>
+
+<section class="team-container" id="bim-team">
+    <h2>BIM Team</h2>
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Jane Smith">
+            <h3>Despoina Pirouni</h3>
+            <p>BIM Specialist</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Jane Smith">
+            <h3>Nena Panagou</h3>
+            <p>BIM Specialist</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Jane Smith">
+            <h3>Sophia Sagia</h3>
+            <p>BIM Specialist</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Jane Smith">
+            <h3>Maria Gkeli</h3>
+            <p>BIM Specialist</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Jane Smith">
+            <h3>Julia Lagkousi</h3>
+            <p>BIM Specialist</p>
+        </div>
+    </div>
+</section>
+
+<section class="team-container" id="management-team">
+    <h2>Management Team</h2>
+    <div class="team-grid">
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Michael Brown">
+            <h3>Alexandros Karditsas</h3>
+            <p>Project Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Michael Brown">
+            <h3>Elena Amvrosiadou</h3>
+            <p>Project Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Michael Brown">
+            <h3>Julia Zachari</h3>
+            <p>Project Manager</p>
+        </div>
+    </div>
+    </section>
+
+<script>
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('menu-container').innerHTML = data;
+
+            const script = document.createElement('script');
+            script.src = 'nav.js';
+            document.body.appendChild(script);
+        });
+
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const tabs = document.querySelectorAll('.tab');
+    const teamSections = document.querySelectorAll('.team-container');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            const filter = tab.getAttribute('data-filter');
+
+            teamSections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            const activeSection = document.querySelector(`#${filter}`);
+            if (activeSection) {
+                activeSection.style.display = 'flex';
+            }
+
+            tabs.forEach(t => t.classList.remove('tab-active'));
+            tab.classList.add('tab-active');
+        });
+    });
+
+    const defaultTab = document.querySelector('.tab[data-filter="construction-team"]');
+    if (defaultTab) {
+        defaultTab.click();
+    }
+});
+
+
+</script>
+</body>
+
+</html>
