@@ -19,3 +19,6 @@
             border-radius: 5px;
             padding-top: 40px;
         }
+.scroller{
+    max-width: 1200px;
+}
