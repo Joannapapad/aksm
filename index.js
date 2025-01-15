@@ -173,6 +173,18 @@ window.addEventListener('load', () => {
         { src: "assets/customers/terna.jpg", alt: "terna" },
         { src: "assets/customers/elemka.jpg", alt: "elemka" },
         { src: "assets/customers/ballian.jpg", alt: "ballian" },
+
+
+        { src: "assets/customers/atlantis.jpg", alt: "atlantis" },
+        { src: "assets/customers/metalsystems.jpg", alt: "metalsystems" },
+        { src: "assets/customers/unispace.jpg", alt: "unispace" },
+        { src: "assets/customers/bic.jpg", alt: "bic" },
+        { src: "assets/customers/adark.jpg", alt: "adark" },
+        { src: "assets/customers/eurohub.jpg", alt: "eurohub" },
+        { src: "assets/customers/adark.jpg", alt: "adark" },
+        { src: "assets/customers/arka.jpg", alt: "arka" },
+        { src: "assets/customers/ethnokat.jpg", alt: "ethnokat" },
+        
         { src: "assets/customers/redex.jpg", alt: "redex" },
         { src: "assets/customers/lafarge.jpg", alt: "lafarge" },
         { src: "assets/customers/AIA.jpg", alt: "AIA" },
