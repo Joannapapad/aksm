@@ -22,3 +22,8 @@
 .scroller{
     max-width: 1200px;
 }
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
