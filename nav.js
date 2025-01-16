@@ -10,55 +10,66 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // General Intersection Observer for animations
-    if (!window.animateObserver) { // Use a global check to prevent reinitialization
-        window.animateObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
+// General Intersection Observer for animations
+if (!window.animateObserver) { // Use a global check to prevent reinitialization
+    const animationDelay = 200; // Delay (in milliseconds) to smooth toggling
+
+    window.animateObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            // Add a delay to ensure smooth transitions between states
+            if (entry.isIntersecting) {
+                clearTimeout(entry.target.animationTimeout); // Clear previous timeout if any
+                entry.target.animationTimeout = setTimeout(() => {
                     entry.target.classList.add('animate');
-                    // Optionally unobserve to improve performance
-                    animateObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.7 });
+                }, animationDelay); // Add a slight delay for the "in" state
+            } else {
+                clearTimeout(entry.target.animationTimeout); // Clear any potential timeout
+                entry.target.animationTimeout = setTimeout(() => {
+                    entry.target.classList.remove('animate');
+                }, animationDelay); // Add a slight delay for the "out" state
+            }
+        });
+    }, { threshold: [0.3, 0.7] }); // Adjust threshold values to reduce toggle jitter
 
-        // Function to observe elements dynamically
-        const observeElements = () => {
-            const elementsToObserve = document.querySelectorAll(`
-                .text-left,
-                .link-wrapper,
-                .services_text-left,
-                .subscribe,
-                .about_services_title,
-                .animated-line-container,
-                .carousel,
-                .animated-line-container3,
-                .animated-line-container2,
-                .animated-line-container4,
-                .heading,
-                .project,
-                .text-right,
-                .vertical-separator,
-                .services_vertical-separator,
-                .vertical-separator2,
-                .heropanel__content,
-                .vertical-line-container,
-                .customers,
-                .row a
-            `);
+    // Function to observe elements dynamically
+    const observeElements = () => {
+        const elementsToObserve = document.querySelectorAll(`
+            .text-left,
+            .link-wrapper,
+            .services_text-left,
+            .subscribe,
+            .about_services_title,
+            .animated-line-container,
+            .carousel,
+            .animated-line-container3,
+            .animated-line-container2,
+            .animated-line-container4,
+            .heading,
+            .project,
+            .text-right,
+            .vertical-separator,
+            .services_vertical-separator,
+            .vertical-separator2,
+            .heropanel__content,
+            .vertical-line-container,
+            .customers,
+            .row a
+        `);
 
-            // Attach observer to each element
-            elementsToObserve.forEach(element => {
-                if (!element.classList.contains('animate')) { // Avoid re-observing animated elements
-                    animateObserver.observe(element);
-                }
-            });
-        };
+        // Attach observer to each element
+        elementsToObserve.forEach(element => {
+            if (!element.animateObserved) { // Avoid re-observing elements already being tracked
+                window.animateObserver.observe(element);
+                element.animateObserved = true; // Mark the element as observed
+            }
+        });
+    };
 
-        // Observe elements on initial load
-        observeElements();
+    // Observe elements on initial load
+    observeElements();
 
-        // If you dynamically add new content later, reapply observations:
-        document.addEventListener('contentloaded', observeElements); // Custom event example
-    }
+    // If you dynamically add new content later, reapply observations
+    document.addEventListener('contentloaded', observeElements); // Custom event for dynamically loaded content
+}
+
 });
