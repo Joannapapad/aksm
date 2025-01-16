@@ -53,3 +53,6 @@
 .text-right{
     background-color: var(--dim-gray);
 }
+.vertical-line-container p {
+    margin-top: 0;
+}
