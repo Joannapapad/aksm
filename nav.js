@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     animateObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.7 });
 
         // Function to observe elements dynamically
         const observeElements = () => {
