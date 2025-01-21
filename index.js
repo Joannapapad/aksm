@@ -132,7 +132,7 @@ window.addEventListener('load', () => {
     // Counter Animation
     const counters = [
         { counterId: 'counter1', startCount: 0, maxCount: 23, interval: 50 },
-        { counterId: 'counter2', startCount: 1400, maxCount: 3000, interval: -100 },
+        { counterId: 'counter2', startCount: 2000, maxCount: 3000, interval: -100 },
         { counterId: 'counter3', startCount: 0, maxCount: 80, interval: 10 }
     ];
 
@@ -281,30 +281,44 @@ prev.addEventListener('click', function() {
 // Initially show the first slide
 showSlide(sectionIndex);
 
-    
-const carousel = document.querySelector(".carousel");
-const arrowControls = document.querySelectorAll(".arrow");
+    // Generic function to handle the slide transitions for the slider
+    function initSlider(sliderContainerSelector, prevBtnSelector, nextBtnSelector) {
+        const slider = document.querySelector(sliderContainerSelector);
+        const prevBtn = document.querySelector(prevBtnSelector);
+        const nextBtn = document.querySelector(nextBtnSelector);
 
-if (carousel && carousel.querySelectorAll("img").length > 0) {
-    const firstImg = carousel.querySelectorAll("img")[0];
+        if (slider && prevBtn && nextBtn) {
+            const firstChild = slider.firstElementChild; // Get the first slide item
+            const slideWidth = firstChild.offsetWidth + 12; // Slide width including gap
+            let scrollPosition = 0; // Initialize scroll position
 
-    const showHideArrows = () => {
-        let scrollWidth = carousel.scrollWidth - carousel.clientWidth;
-        document.getElementById("left").style.display = carousel.scrollLeft === 0 ? "none" : "block";
-        document.getElementById("right").style.display = carousel.scrollLeft >= scrollWidth ? "none" : "block";
-    };
+            const updateButtons = () => {
+                const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+                prevBtn.style.display = scrollPosition > 0 ? "block" : "none";
+                nextBtn.style.display = scrollPosition < maxScrollLeft ? "block" : "none";
+            };
 
-    arrowControls.forEach(control => {
-        control.addEventListener("click", () => {
-            const firstImgWidth = firstImg.clientWidth + 14; // Adjust for margins if any
-            const scrollAmount = control.id === "left" ? -firstImgWidth : firstImgWidth;
-            carousel.scrollLeft += scrollAmount;
-            setTimeout(showHideArrows, 60); // Show/hide arrows based on scroll position
-        });
-    });
+            // Event listeners for buttons
+            nextBtn.addEventListener("click", () => {
+                scrollPosition = Math.min(scrollPosition + slideWidth, slider.scrollWidth - slider.clientWidth);
+                slider.scrollTo({ left: scrollPosition, behavior: "smooth" });
+                updateButtons();
+            });
 
-    showHideArrows();
-}
+            prevBtn.addEventListener("click", () => {
+                scrollPosition = Math.max(scrollPosition - slideWidth, 0);
+                slider.scrollTo({ left: scrollPosition, behavior: "smooth" });
+                updateButtons();
+            });
+
+            // Initialize button visibility
+            updateButtons();
+        }
+    }
+
+    // Initialize "Project Carousel" slider
+    initSlider(".carousel", "#left", "#right");
+
 
 function changeImage(element, newSrc) {
     element.querySelector('img').src = newSrc;
