@@ -31,50 +31,71 @@
         width: 100%;
     }
 
-    .team-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dynamically adjust columns */
-        gap: 12px;
-        width: 100%; /* Make the grid container take full width */
-        max-width: 1200px; /* Restrict the grid to a maximum width */
-        padding: 20px;
-        border-radius: 10px;
-        justify-items: center; /* Center grid items within each column */
-    }
+    .team-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
 
+.team-grid {
+    display: flex; /* Change to flexbox for horizontal layout */
+    gap: 12px; /* Space between cards */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling effect */
+    padding: 20px 0;
+    width: 100%; /* Ensure the slider takes full width */
+    max-width: 1200px; /* Restrict the slider width */
+}
 
-    
-    .team-container{
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        width: 90%;
-        max-width: 1100px;
-        margin: 40px auto;
-        padding: 20px;
-        border-radius: 10px;
-    }
+/* Optional: Hide the default scrollbar */
+.team-grid::-webkit-scrollbar {
+    height: 8px;
+}
 
-    .team-member {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        width: 220px;
-        height: 300px;
-        background: #f8f8f8;
-        border-radius: 5px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.250);
-        transition: transform 0.3s ease;  /* Smooth scaling */
-    }
+.team-grid::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
 
-    .team-member:hover{
-        transform: scale(1.02);  /* Scale effect on hover */
+.team-grid::-webkit-scrollbar-track {
+    background-color: transparent;
+}
 
-    }
+.team-member {
+    flex: 0 0 auto; /* Prevent shrinking and set fixed width */
+    width: 220px;
+    height: 300px;
+    background: #f8f8f8;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.team-member:hover {
+    transform: scale(1.02); /* Scale effect on hover */
+}
+.tab{
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 3px;
+}
+
+.tab img{
+    width: 150px;
+    padding-bottom: 10px;
+}
 
     .team-member img {
         width: 130px;
@@ -103,17 +124,18 @@
         padding: 10px;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         z-index: 1000;
         align-items: center;
         justify-content: center;
     }
     .submenu ul {
         list-style: none;
+        flex-wrap: wrap;
         margin: 0;
         padding: 0;
         display: flex; /* Make the list horizontal */
         justify-content: center; /* Center the list items horizontally */
-        gap: 20px; /* Add space between the list items */
     }
 
 
@@ -122,13 +144,65 @@
     }
 
     .submenu ul li a {
-        display: block;
-        text-decoration: none;
-        color: #000000;
-        font-size: 1em;
-        padding: 10px;
-        text-align: center;
+        position: relative;
+        width: 270px;
+        min-width: 270px;
+        height: 370px;
+        background-color: #F3F3F3;
+        margin: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(10px);
         cursor: pointer;
+    }
+    .slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f3f3f3;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex; /* Ensure buttons are displayed */
+    justify-content: center;
+    align-items: center;
+}
+.prev-btn img, .next-btn img{
+    width: 15px;
+}
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+@media (max-width:1270px) {
+.service-container .card {
+width: 230px;
+height: 300px;
+min-width: 270px;
+
+}
+}
+    @media (max-width:1270px) {
+        .submenu ul li a {
+            width: 230px;
+            height: 300px;
+            min-width: 270px;
+        }
     }
 
     .submenu ul li a:hover,
@@ -175,41 +249,74 @@
 </div>
 
 <div class="submenu">
+
     <ul>
-        <li><a class="tab tab-active" data-filter="construction-team">Construction Team</a></li>
-        <li><a class="tab" data-filter="bim-team">BIM Team</a></li>
-        <li><a class="tab" data-filter="management-team">Management Team</a></li>
+        <li><a class="tab tab-active" data-filter="construction-team"><img src="assets/construction_team.png">Construction Team</a></li>
+        <li><a class="tab" data-filter="bim-team"><img src="assets/office.png">BIM Team</a></li>
+        <li><a class="tab" data-filter="management-team"><img src="assets/management.png">Management Team</a></li>
     </ul>
+
 </div>
 
 <section class="team-container" id="construction-team">
+    <div class="slider-container">
+        <button class="prev-btn"><img src="assets/icons/direction-left-position-icon.png"></button>
+
     <div class="team-grid">
         <div class="team-member">
             <img src="assets/man-icon.png" alt="John Doe">
-            <h3>John Doe</h3>
+            <h3>Jane Johanson</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>Construction Manager</p>
         </div>
         <div class="team-member">
             <img src="assets/man-icon.png" alt="John Doe">
-            <h3>John Doe</h3>
+            <h3>Jane Johanson</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>Construction Manager</p>
         </div>
         <div class="team-member">
             <img src="assets/man-icon.png" alt="John Doe">
-            <h3>John Doe</h3>
+            <h3>Jane Johanson</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>Construction Manager</p>
         </div>
         <div class="team-member">
             <img src="assets/man-icon.png" alt="John Doe">
-            <h3>John Doe</h3>
+            <h3>Jane Johanson</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>Construction Manager</p>
         </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="John Doe">
+            <h3>Jane Johanson</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Construction Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="John Doe">
+            <h3>Jane Johanson</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Construction Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="John Doe">
+            <h3>Jane Johanson</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Construction Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="John Doe">
+            <h3>Nena Panagou</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Construction Manager</p>
+        </div>
+    </div>
+    <button class="next-btn"><img src="assets/icons/direction-right-position-icon.png"></button>
+
     </div>
 
 </section>
 
+
 <section class="team-container" id="bim-team">
+ <div class="slider-container">
+    <button class="prev-btn"><img src="assets/icons/direction-left-position-icon.png"></button>
+
     <div class="team-grid">
+
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Jane Smith">
             <h3>Julia Lagkousi</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
@@ -254,11 +361,15 @@
             <h3>Diana Agkilar - Triantafilou</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>Surveying Engineer, CAD Specialist</p>
         </div>
-
     </div>
+    <button class="next-btn"><img src="assets/icons/direction-right-position-icon.png"></button>
+</div>
 </section>
 
 <section class="team-container" id="management-team">
+    <div class="slider-container">
+        <button class="prev-btn"><img src="assets/icons/direction-left-position-icon.png"></button>
+
     <div class="team-grid">
 
         <div class="team-member">
@@ -276,6 +387,18 @@
             <h3>Julia Zachari</h3>
             <p>Project Manager</p>
         </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Michael Brown">
+            <h3>Elena Amvrosiadou</h3>
+            <p>Project Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Michael Brown">
+            <h3>Julia Zachari</h3>
+            <p>Project Manager</p>
+        </div>
+    </div>
+        <button class="next-btn"><img src="assets/icons/direction-right-position-icon.png"></button>
     </div>
     </section>
 
@@ -294,36 +417,129 @@
         document.body.classList.add('loaded');
     });
 
+    // Trigger the default tab
+    const defaultTab = document.querySelector('.tab[data-filter="construction-team"]');
+    if (defaultTab) {
+        defaultTab.click();
+    }
+
+
     document.addEventListener('DOMContentLoaded', function () {
     const tabs = document.querySelectorAll('.tab');
     const teamSections = document.querySelectorAll('.team-container');
 
+    // Function to initialize slider functionality
+    function initializeSlider(section) {
+        const prevBtn = section.querySelector('.prev-btn');
+        const nextBtn = section.querySelector('.next-btn');
+        const slider = section.querySelector('.team-grid');
+
+        if (prevBtn && nextBtn && slider) {
+            // Calculate the full width of the slider's visible area
+            let scrollAmount = slider.offsetWidth;
+
+            // Remove previous event listeners to avoid duplication
+            prevBtn.onclick = null;
+            nextBtn.onclick = null;
+
+            // Button click logic
+            prevBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+
+            nextBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+
+            // Draggable logic
+            let isDragging = false;
+            let startX;
+            let scrollLeft;
+
+            slider.onmousedown = (e) => {
+                isDragging = true;
+                slider.classList.add('dragging');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            };
+
+            slider.onmouseleave = slider.onmouseup = () => {
+                isDragging = false;
+                slider.classList.remove('dragging');
+                snapToSection(slider, scrollAmount);
+            };
+
+            slider.onmousemove = (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = x - startX;
+                slider.scrollLeft = scrollLeft - walk;
+            };
+
+            // Add touch events for mobile
+            slider.ontouchstart = (e) => {
+                isDragging = true;
+                startX = e.touches[0].pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            };
+
+            slider.ontouchend = () => {
+                isDragging = false;
+                snapToSection(slider, scrollAmount);
+            };
+
+            slider.ontouchmove = (e) => {
+                if (!isDragging) return;
+                const x = e.touches[0].pageX - slider.offsetLeft;
+                const walk = x - startX;
+                slider.scrollLeft = scrollLeft - walk;
+            };
+
+            // Update scroll amount dynamically when window resizes
+            window.addEventListener('resize', () => {
+                scrollAmount = slider.offsetWidth;
+            });
+        }
+
+        // Function to snap to the nearest section based on the visible area
+        function snapToSection(slider, scrollAmount) {
+            const scrollLeft = slider.scrollLeft;
+            const closestIndex = Math.round(scrollLeft / scrollAmount);
+            slider.scrollTo({ left: closestIndex * scrollAmount, behavior: 'smooth' });
+        }
+    }
+
+    // Tab click logic
     tabs.forEach(tab => {
         tab.addEventListener('click', function () {
             const filter = tab.getAttribute('data-filter');
 
+            // Hide all sections
             teamSections.forEach(section => {
                 section.style.display = 'none';
             });
 
+            // Show the active section
             const activeSection = document.querySelector(`#${filter}`);
             if (activeSection) {
                 activeSection.style.display = 'flex';
+                initializeSlider(activeSection); // Initialize slider for the active section
             }
 
+            // Update active tab style
             tabs.forEach(t => t.classList.remove('tab-active'));
             tab.classList.add('tab-active');
         });
     });
 
+    // Trigger the default tab
     const defaultTab = document.querySelector('.tab[data-filter="construction-team"]');
     if (defaultTab) {
         defaultTab.click();
     }
 });
 
-
 </script>
 </body>
-
-</html>
+</html> 
