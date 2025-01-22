@@ -256,9 +256,9 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--dim-gray);
+  color: #f3f3f3;
   text-align: center;
-  background-color: #6f676bb0; /* Adjust opacity as needed */
+  background-color: #6f676bb0;
   padding: 10px;
 }
 
