@@ -1,3 +1,11 @@
+:root{
+  --cool-gray: #9F9EAD;
+  --dim-gray: #6F676B;
+  --rose-quartz: #AFA4A5;
+  --eerie-black: #1C1C1C;
+  --white: #F3F3F3;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -45,20 +53,20 @@ body{
   justify-content: space-evenly;
 }
 .tab-active {
-  color: #817C76; /* Example active color */
-  border-bottom: 2px solid #817C76; /* Active indicator for main tabs */
+  color: var(--dim-gray); /* Example active color */
+  border-bottom: 2px solid var(--dim-gray); /* Active indicator for main tabs */
   width: auto;
 }
 
 /* Styles for the subtabs */
 .featured_projects .dropdown-content p {
-  color: #999999; /* Default color for subtabs */
+  color: var(--dim-gray); /* Default color for subtabs */
   text-align: center;
 }
 
 /* Active state styles for subtabs */
 .subtab.tab-active {
-  color: #817C76; /* Example active color for active subtab */
+  color: var(--dim-gray); /* Example active color for active subtab */
   border-bottom: none; /* No border for active subtabs */
 }
 
@@ -199,7 +207,7 @@ body{
 
 .featured_projects .im {
   width: 100%;
-  background-color: #666666;
+  background-color: var(--dim-gray);
   height: auto;
   aspect-ratio: 16 / 9; /* Use the appropriate aspect ratio for your images */
 
@@ -248,9 +256,9 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: white;
+  color: var(--dim-gray);
   text-align: center;
-  background-color: #817c76c8; /* Adjust opacity as needed */
+  background-color: #6f676bb0; /* Adjust opacity as needed */
   padding: 10px;
 }
 
@@ -276,14 +284,14 @@ body{
 
 /* Active state styles */
 .tab-active{
-  color: #817C76; /* Example active color */
-  border-bottom: 2px solid #817C76; /* Example active indicator */
+  color: var(--dim-gray); /* Example active color */
+  border-bottom: 2px solid var(--dim-gray); /* Example active indicator */
   width: auto;
 }
 
 .subtab .tab-active{
-  color: #817C76; /* Example active color */
-  border-bottom: 0px solid #817C76; /* Example active indicator */
+  color: var(--dim-gray); /* Example active color */
+  border-bottom: 0px solid var(--dim-gray); /* Example active indicator */
   width: auto;
 }
 
@@ -314,7 +322,7 @@ body{
 .featured_projects .text-blk.heading {
   font-size: 25px;
   line-height: 34.1px;
-  color: #817C76;
+  color: var(--dim-gray);
   font-weight: 700;
   padding-top: 10px;
   padding-right: 0px;
@@ -322,7 +330,7 @@ body{
   padding-left: 0px;
   border-bottom-width: 5px;
   border-bottom-style: solid;
-  border-bottom-color: #817C76;
+  border-bottom-color: var(--dim-gray);
 }
 
 .featured_projects .tab:hover {
@@ -367,14 +375,13 @@ body{
     height: 100%;
   }
 
-
-.link-wrapper {
-  width: 50%;
-  position: relative;
-  height: auto;
-  padding: 0;
-  margin: 0;
-}
+  .link-wrapper {
+    width: 50%;
+    position: relative;
+    height: auto;
+    padding: 0;
+    margin: 0;
+  }
 
 .featured_projects .responsive-container-block.overlay {
   position: absolute;
@@ -400,7 +407,7 @@ body{
   align-items: center;
   color: white;
   text-align: center;
-  background-color: #817c76a7; /* Adjust opacity as needed */
+  background-color: #6f676ba1; /* Adjust opacity as needed */
   padding: 10px;
 }
 
