@@ -149,12 +149,11 @@ min-width: 270px;
 }
 
 .services_flex_container {
-  display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 0;
-  justify-content:center;
+  
 }
 
 .services_text-left{
@@ -165,7 +164,6 @@ min-width: 270px;
   margin-bottom: 2rem;
   font-size: 1.3em;
   color: #817C76;
-  max-width: 1000px;
 }
 
 .services_wrapper {
@@ -328,9 +326,13 @@ align-items: flex-start;
 position: relative;
 text-align: justify;
 font-size: 1.1rem;
-margin-left: 1em;
+margin-left: 2em;
+padding-right: 2em;
 }
 
+.vertical-line-container p {
+  margin-top: 0;
+}
 
 .vertical-line {
 position: absolute;
