@@ -15,10 +15,10 @@ function setVideoSource() {
     // Check screen width and assign video source accordingly
     if (window.innerWidth < 600) {
         // Set the mobile video source
-        videoSource.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_low.mp4?alt=media&token=332280e9-1399-4646-81fe-c73daf2d4b5a';
+        videoSource.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_low.mp4?alt=media&token=cfae68f3-1636-4543-ac3f-c8c6d19b1b90';
     } else {
         // Set the desktop video source
-        videoSource.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=7efe5d1b-868a-4e36-8026-2b7c4e38f5f1';
+        videoSource.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=c63fcf1a-bcf2-41c2-ae31-1dffe0432fcd';
     }
 
     // Only load if the source has changed
