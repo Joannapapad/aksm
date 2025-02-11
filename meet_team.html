@@ -51,6 +51,11 @@
     padding: 20px 0;
     width: 100%; /* Ensure the slider takes full width */
     max-width: 1200px; /* Restrict the slider width */
+    scroll-snap-type: x mandatory; 
+
+}
+.team-member {
+    scroll-snap-align: center;
 }
 
 /* Optional: Hide the default scrollbar */
@@ -69,7 +74,9 @@
 
 .team-member {
     flex: 0 0 auto; /* Prevent shrinking and set fixed width */
-    width: 220px;
+    width: 200px; /* Adjust based on your design */
+    overflow: hidden; 
+    text-overflow: ellipsis; /* Shows "..." if text overflows */
     height: 300px;
     background: #f8f8f8;
     border-radius: 5px;
@@ -309,11 +316,6 @@ min-width: 270px;
             <p>Assistant Surveyor</p>
         </div>
         <div class="team-member">
-            <img src="assets/man-icon.png" alt="Gioldasis Vasilis">
-            <h3>Gioldasis Vasilis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
-            <p>Surveyor Engineer</p>
-        </div>
-        <div class="team-member">
             <img src="assets/man-icon.png" alt="Gavas Athanasios">
             <h3>Gavas Athanasios</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>Assistant Surveyor</p>
@@ -323,11 +325,7 @@ min-width: 270px;
             <h3>Gkekos-Gkokopoulos Ioannis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>Surveyor Engineer</p>
         </div>
-        <div class="team-member">
-            <img src="assets/man-icon.png" alt="Gkotsis Vasilis">
-            <h3>Gkotsis Vasilis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
-            <p>Surveyor Engineer</p>
-        </div>
+
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Damoulakis Gabriel">
             <h3>Damoulakis Gabriel</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
@@ -554,11 +552,7 @@ min-width: 270px;
             <h3>Stavrou Theodoros</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>Surveyor Engineer</p>
         </div>
-        <div class="team-member">
-            <img src="assets/man-icon.png" alt="Tasianis Ioannis">
-            <h3>Tasianis Ioannis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
-            <p>Surveyor Engineer</p>
-        </div>
+
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Tzivelekidis Ioannis">
             <h3>Tzivelekidis Ioannis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
@@ -616,22 +610,25 @@ min-width: 270px;
             <p>Surveying Engineer
                 NTUA, Head of BIM Department</p>
         </div>
-        <div class="team-member">
 
+        <div class="team-member">
         <img src="assets/man-icon.png" alt="Jane Smith">
             <h3>Despoina Pirouni</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>Junior Architect Engineer NTUA</p>
         </div>
-
+        <div class="team-member">
         <img src="assets/man-icon.png" alt="Roumeliotou Anastasia">
             <h3>Roumeliotou Anastasia</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>?</p>
         </div>
+
+        <div class="team-member">
         <img src="assets/man-icon.png" alt="Fotiou Komissa">
             <h3>Fotiou Komissa</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>?</p>
         </div>
 
+        <div class="team-member">
         <img src="assets/man-icon.png" alt="Papadakaki Ioanna">
             <h3>Papadakaki Ioanna</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>IT Support</p>
@@ -639,7 +636,7 @@ min-width: 270px;
 
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Jane Smith">
-            <h3>Nena Panagou</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <h3>Panagou Eleni</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>Architect,
                 BIM Architect</p>
         </div>
@@ -700,7 +697,21 @@ min-width: 270px;
             <p>Surveying Engineer
                 NTUA, Head of BIM Departmen</p>
         </div>
-
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Gkotsis Vasilis">
+            <h3>Gkotsis Vasilis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Gioldasis Vasilis">
+            <h3>Gioldasis Vasilis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Tasianis Ioannis">
+            <h3>Tasianis Ioannis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
     </div>
         <button class="next-btn"><img src="assets/icons/direction-right-position-icon.png"></button>
     </div>
@@ -727,26 +738,34 @@ min-width: 270px;
         defaultTab.click();
     }
 
-
     document.addEventListener('DOMContentLoaded', function () {
     const tabs = document.querySelectorAll('.tab');
     const teamSections = document.querySelectorAll('.team-container');
 
-    // Function to initialize slider functionality
     function initializeSlider(section) {
         const prevBtn = section.querySelector('.prev-btn');
         const nextBtn = section.querySelector('.next-btn');
         const slider = section.querySelector('.team-grid');
+        const teamMembers = section.querySelectorAll('.team-member');
 
-        if (prevBtn && nextBtn && slider) {
-            // Calculate the full width of the slider's visible area
-            let scrollAmount = slider.offsetWidth;
+        if (prevBtn && nextBtn && slider && teamMembers.length > 0) {
+            let cardWidth = teamMembers[0].offsetWidth + 20; // Includes margin
+            let visibleCards = Math.floor(slider.offsetWidth / cardWidth);
+            let scrollAmount = cardWidth * visibleCards;
 
-            // Remove previous event listeners to avoid duplication
+            // Update scrollAmount on resize
+            function updateScrollAmount() {
+                cardWidth = teamMembers[0].offsetWidth + 20; // Adjust dynamically
+                visibleCards = Math.floor(slider.offsetWidth / cardWidth);
+                scrollAmount = cardWidth * visibleCards;
+            }
+
+            window.addEventListener('resize', updateScrollAmount);
+            updateScrollAmount(); // Initialize on load
+
             prevBtn.onclick = null;
             nextBtn.onclick = null;
 
-            // Button click logic
             prevBtn.addEventListener('click', () => {
                 slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
             });
@@ -755,10 +774,8 @@ min-width: 270px;
                 slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             });
 
-            // Draggable logic
             let isDragging = false;
-            let startX;
-            let scrollLeft;
+            let startX, scrollLeft;
 
             slider.onmousedown = (e) => {
                 isDragging = true;
@@ -770,7 +787,7 @@ min-width: 270px;
             slider.onmouseleave = slider.onmouseup = () => {
                 isDragging = false;
                 slider.classList.remove('dragging');
-                snapToSection(slider, scrollAmount);
+                snapToSection();
             };
 
             slider.onmousemove = (e) => {
@@ -781,7 +798,6 @@ min-width: 270px;
                 slider.scrollLeft = scrollLeft - walk;
             };
 
-            // Add touch events for mobile
             slider.ontouchstart = (e) => {
                 isDragging = true;
                 startX = e.touches[0].pageX - slider.offsetLeft;
@@ -790,7 +806,7 @@ min-width: 270px;
 
             slider.ontouchend = () => {
                 isDragging = false;
-                snapToSection(slider, scrollAmount);
+                snapToSection();
             };
 
             slider.ontouchmove = (e) => {
@@ -800,49 +816,34 @@ min-width: 270px;
                 slider.scrollLeft = scrollLeft - walk;
             };
 
-            // Update scroll amount dynamically when window resizes
-            window.addEventListener('resize', () => {
-                scrollAmount = slider.offsetWidth;
-            });
-        }
-
-        // Function to snap to the nearest section based on the visible area
-        function snapToSection(slider, scrollAmount) {
-            const scrollLeft = slider.scrollLeft;
-            const closestIndex = Math.round(scrollLeft / scrollAmount);
-            slider.scrollTo({ left: closestIndex * scrollAmount, behavior: 'smooth' });
+            function snapToSection() {
+                const scrollLeft = slider.scrollLeft;
+                const closestIndex = Math.round(scrollLeft / cardWidth);
+                slider.scrollTo({ left: closestIndex * cardWidth, behavior: 'smooth' });
+            }
         }
     }
 
-    // Tab click logic
     tabs.forEach(tab => {
         tab.addEventListener('click', function () {
             const filter = tab.getAttribute('data-filter');
-
-            // Hide all sections
-            teamSections.forEach(section => {
-                section.style.display = 'none';
-            });
-
-            // Show the active section
+            teamSections.forEach(section => (section.style.display = 'none'));
             const activeSection = document.querySelector(`#${filter}`);
             if (activeSection) {
                 activeSection.style.display = 'flex';
-                initializeSlider(activeSection); // Initialize slider for the active section
+                initializeSlider(activeSection);
             }
-
-            // Update active tab style
             tabs.forEach(t => t.classList.remove('tab-active'));
             tab.classList.add('tab-active');
         });
     });
 
-    // Trigger the default tab
     const defaultTab = document.querySelector('.tab[data-filter="construction-team"]');
     if (defaultTab) {
         defaultTab.click();
     }
 });
+
 
 </script>
 </body>
