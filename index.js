@@ -131,8 +131,8 @@ window.addEventListener('load', () => {
 
     // Counter Animation
     const counters = [
-        { counterId: 'counter1', startCount: 0, maxCount: 23, interval: 50 },
-        { counterId: 'counter2', startCount: 2900, maxCount: 3000, interval: 50 },
+        { counterId: 'counter1', startCount: 0, maxCount: 25, interval: 50 },
+        { counterId: 'counter2', startCount: 2900, maxCount: 3000, interval: 10 },
         { counterId: 'counter3', startCount: 0, maxCount: 80, interval: 10 }
     ];
 
