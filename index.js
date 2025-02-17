@@ -281,38 +281,73 @@ prev.addEventListener('click', function() {
 // Initially show the first slide
 showSlide(sectionIndex);
 
-    // Generic function to handle the slide transitions for the slider
+
     function initSlider(sliderContainerSelector, prevBtnSelector, nextBtnSelector) {
         const slider = document.querySelector(sliderContainerSelector);
         const prevBtn = document.querySelector(prevBtnSelector);
         const nextBtn = document.querySelector(nextBtnSelector);
 
         if (slider && prevBtn && nextBtn) {
-            const firstChild = slider.firstElementChild; // Get the first slide item
-            const slideWidth = firstChild.offsetWidth + 12; // Slide width including gap
-            let scrollPosition = 0; // Initialize scroll position
+            const items = slider.querySelectorAll('.img__wrap');
+            const itemWidth = items[0].offsetWidth + 10; // Width of each image with margin
+            let visibleCards = Math.floor(slider.offsetWidth / itemWidth);
+            let scrollPosition = slider.scrollLeft; // Start from current scroll position
 
-            const updateButtons = () => {
+            function updateButtons() {
                 const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-                prevBtn.style.display = scrollPosition > 0 ? "block" : "none";
-                nextBtn.style.display = scrollPosition < maxScrollLeft ? "block" : "none";
-            };
+                prevBtn.style.display = scrollPosition > 0 ? 'block' : 'none';
+                nextBtn.style.display = scrollPosition < maxScrollLeft ? 'block' : 'none';
+            }
 
-            // Event listeners for buttons
-            nextBtn.addEventListener("click", () => {
-                scrollPosition = Math.min(scrollPosition + slideWidth, slider.scrollWidth - slider.clientWidth);
-                slider.scrollTo({ left: scrollPosition, behavior: "smooth" });
-                updateButtons();
+            // Update the visible cards and the scroll amount on window resize
+            function updateScrollAmount() {
+                visibleCards = Math.floor(slider.offsetWidth / itemWidth);
+                console.log("Updated Visible Cards: ", visibleCards);
+            }
+
+            // MutationObserver to detect when the 'animate' class is added
+            const observer = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                        if (slider.classList.contains('animate')) {
+                            // Run updateScrollAmount once the 'animate' class is added
+                            console.log("Animate class added, running updateScrollAmount...");
+                            updateScrollAmount();
+                            break; // Stop observing once we have updated the scroll amount
+                        }
+                    }
+                }
             });
 
-            prevBtn.addEventListener("click", () => {
-                scrollPosition = Math.max(scrollPosition - slideWidth, 0);
-                slider.scrollTo({ left: scrollPosition, behavior: "smooth" });
-                updateButtons();
+            // Observe the 'class' attribute changes on the carousel slider
+            observer.observe(slider, { attributes: true });
+
+            // Recalculate visible cards on window resize (after 'animate' class is added)
+            window.addEventListener('resize', () => {
+                if (slider.classList.contains('animate')) {
+                    updateScrollAmount();
+                }
             });
 
-            // Initialize button visibility
+            // Set initial visible cards and scroll position on load
+            updateScrollAmount();
             updateButtons();
+
+            // Event listener for the "next" button
+            nextBtn.addEventListener('click', () => {
+                console.log("Next Button Clicked");
+
+                scrollPosition = Math.min(scrollPosition + (itemWidth * visibleCards), slider.scrollWidth - slider.clientWidth);
+                slider.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+                updateButtons(); // Update button visibility after scrolling
+            });
+
+            // Event listener for the "prev" button
+            prevBtn.addEventListener('click', () => {
+                scrollPosition = Math.max(scrollPosition - (itemWidth * visibleCards), 0);
+                slider.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+                updateButtons(); // Update button visibility after scrolling
+            });
         }
     }
 
