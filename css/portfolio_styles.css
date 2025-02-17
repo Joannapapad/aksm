@@ -57,7 +57,9 @@ body{
   border-bottom: 2px solid var(--dim-gray); /* Active indicator for main tabs */
   width: auto;
 }
-
+#portfolio-container{
+  min-height: 60vh;
+}
 /* Styles for the subtabs */
 .featured_projects .dropdown-content p {
   color: var(--dim-gray); /* Default color for subtabs */
