@@ -242,12 +242,14 @@ min-width: 270px;
 </style>
 </head>
 <body>
-<div id="menu-container"></div>
-
 <!-- Logo -->
 <a href="index.html">
     <img src="assets/aksm_logo.png" class="logo_header">
 </a>
+
+<div id="menu-container"></div>
+
+
 <div class="heading-container">
     <h1 class="head">Meet Our Team</h1>
     <div class="animated-line-container2">
@@ -354,7 +356,7 @@ min-width: 270px;
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Zikos Argiris">
             <h3>Zikos Argiris</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
-            <p>?</p>
+            <p>b</p>
         </div>
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Zioris Grgoris">
@@ -417,7 +419,7 @@ min-width: 270px;
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Kirousis Alexandros">
             <h3>Kotsakis Alexandros</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
-            <p>?</p>
+            <p>μη</p>
         </div>
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Lekas Ioannis">
@@ -437,22 +439,18 @@ min-width: 270px;
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Manteniotis Konstantinos">
             <h3>Manteniotis Konstantinos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
-            <p>?</p>
+            <p>μηχ</p>
         </div>
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Mantopoulos Grigoris">
             <h3>Mantopoulos Grigoris</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
             <p>Surveyor Engineer</p>
         </div>
-        <div class="team-member">
-            <img src="assets/man-icon.png" alt="Mersinis Konstantinos">
-            <h3>Mersinis Konstantinos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
-            <p>?</p>
-        </div>
+    
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Mpatsiavas Nikolaos">
-            <h3>Mpatsiavas Nikolaos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
-            <p>?</p>
+            <h3>Mpaltsiavas Nikolaos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>b</p>
         </div>
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Mpaxlavas Antonis">
@@ -467,7 +465,7 @@ min-width: 270px;
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Nikolaou Aggelos">
             <h3>Nikolaou Aggelos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
-            <p>?</p>
+            <p>b</p>
         </div>
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Nikou Ioannis">
@@ -477,7 +475,7 @@ min-width: 270px;
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Ksepapadatos Dimitris">
             <h3>Ksepapadatos Dimitris</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
-            <p>?</p>
+            <p>mhx</p>
         </div>
         <div class="team-member">
             <img src="assets/man-icon.png" alt="Pagoulatos Xristos">
@@ -743,107 +741,134 @@ min-width: 270px;
     const teamSections = document.querySelectorAll('.team-container');
 
     function initializeSlider(section) {
-        const prevBtn = section.querySelector('.prev-btn');
-        const nextBtn = section.querySelector('.next-btn');
-        const slider = section.querySelector('.team-grid');
-        const teamMembers = section.querySelectorAll('.team-member');
+    const prevBtn = section.querySelector('.prev-btn');
+    const nextBtn = section.querySelector('.next-btn');
+    const slider = section.querySelector('.team-grid');
+    const teamMembers = section.querySelectorAll('.team-member');
 
-        if (prevBtn && nextBtn && slider && teamMembers.length > 0) {
-            let cardWidth = teamMembers[0].offsetWidth + 20; // Includes margin
-            let visibleCards = Math.floor(slider.offsetWidth / cardWidth);
-            let scrollAmount = cardWidth * visibleCards;
+    if (prevBtn && nextBtn && slider && teamMembers.length > 0) {
+        let cardWidth, visibleCards, scrollAmount;
+        let isDragging = false;
+        let startX, scrollLeft, velocity = 0, animationFrame;
+        let isButtonClick = false; // Track button click to disable dragging
 
-            // Update scrollAmount on resize
-            function updateScrollAmount() {
-                cardWidth = teamMembers[0].offsetWidth + 20; // Adjust dynamically
-                visibleCards = Math.floor(slider.offsetWidth / cardWidth);
-                scrollAmount = cardWidth * visibleCards;
+        function updateScrollAmount() {
+            cardWidth = teamMembers[0].offsetWidth + 20; // Include margin
+            visibleCards = Math.floor(slider.offsetWidth / cardWidth) - 1;
+            scrollAmount = cardWidth * visibleCards;
+        }
+
+        updateScrollAmount();
+        window.addEventListener('resize', updateScrollAmount);
+
+        function disableDragging() {
+            slider.classList.add('no-drag');
+        }
+
+        function enableDragging() {
+            slider.classList.remove('no-drag');
+        }
+
+        prevBtn.onclick = nextBtn.onclick = null;
+
+        prevBtn.addEventListener('click', () => handleButtonClick(-scrollAmount));
+        nextBtn.addEventListener('click', () => handleButtonClick(scrollAmount));
+
+        function handleButtonClick(amount) {
+            if (isDragging) return; // Prevent interference
+
+            isButtonClick = true;
+            disableDragging();
+
+            let newScrollLeft = slider.scrollLeft + amount;
+            let maxScroll = slider.scrollWidth - slider.clientWidth;
+            slider.scrollTo({ left: Math.min(Math.max(newScrollLeft, 0), maxScroll), behavior: 'smooth' });
+
+            setTimeout(() => {
+                isButtonClick = false;
+                enableDragging();
+            }, 500); // Match scroll animation duration
+        }
+
+        function startDragging(e) {
+            if (isButtonClick) return; // Prevent dragging during button animation
+
+            isDragging = true;
+            velocity = 0;
+            slider.classList.add('dragging');
+            startX = (e.touches ? e.touches[0].pageX : e.pageX) - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+            cancelAnimationFrame(animationFrame);
+        }
+
+        function stopDragging() {
+            if (!isDragging) return;
+            isDragging = false;
+            slider.classList.remove('dragging');
+
+            function smoothScroll() {
+                if (Math.abs(velocity) > 0.1) {
+                    slider.scrollLeft += velocity;
+                    velocity *= 0.95; // Apply friction
+                    animationFrame = requestAnimationFrame(smoothScroll);
+                } else if (!isButtonClick) { 
+                    snapToSection();
+                }
             }
 
-            window.addEventListener('resize', updateScrollAmount);
-            updateScrollAmount(); // Initialize on load
+            smoothScroll();
+        }
 
-            prevBtn.onclick = null;
-            nextBtn.onclick = null;
+        function drag(e) {
+            if (!isDragging || isButtonClick) return; // Prevent dragging when button click is active
+            e.preventDefault();
+            const x = (e.touches ? e.touches[0].pageX : e.pageX) - slider.offsetLeft;
+            const move = x - startX;
+            slider.scrollLeft = scrollLeft - move;
+            velocity = move * 0.5;
+        }
 
-            prevBtn.addEventListener('click', () => {
-                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            });
+        // Mouse events
+        slider.addEventListener('mousedown', startDragging);
+        slider.addEventListener('mouseleave', stopDragging);
+        slider.addEventListener('mouseup', stopDragging);
+        slider.addEventListener('mousemove', drag);
 
-            nextBtn.addEventListener('click', () => {
-                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            });
+        // Touch events
+        slider.addEventListener('touchstart', startDragging);
+        slider.addEventListener('touchend', stopDragging);
+        slider.addEventListener('touchmove', drag);
 
-            let isDragging = false;
-            let startX, scrollLeft;
-
-            slider.onmousedown = (e) => {
-                isDragging = true;
-                slider.classList.add('dragging');
-                startX = e.pageX - slider.offsetLeft;
-                scrollLeft = slider.scrollLeft;
-            };
-
-            slider.onmouseleave = slider.onmouseup = () => {
-                isDragging = false;
-                slider.classList.remove('dragging');
-                snapToSection();
-            };
-
-            slider.onmousemove = (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-                const x = e.pageX - slider.offsetLeft;
-                const walk = x - startX;
-                slider.scrollLeft = scrollLeft - walk;
-            };
-
-            slider.ontouchstart = (e) => {
-                isDragging = true;
-                startX = e.touches[0].pageX - slider.offsetLeft;
-                scrollLeft = slider.scrollLeft;
-            };
-
-            slider.ontouchend = () => {
-                isDragging = false;
-                snapToSection();
-            };
-
-            slider.ontouchmove = (e) => {
-                if (!isDragging) return;
-                const x = e.touches[0].pageX - slider.offsetLeft;
-                const walk = x - startX;
-                slider.scrollLeft = scrollLeft - walk;
-            };
-
-            function snapToSection() {
-                const scrollLeft = slider.scrollLeft;
-                const closestIndex = Math.round(scrollLeft / cardWidth);
-                slider.scrollTo({ left: closestIndex * cardWidth, behavior: 'smooth' });
-            }
+        function snapToSection() {
+            const scrollLeft = slider.scrollLeft;
+            const closestIndex = Math.round(scrollLeft / cardWidth);
+            slider.scrollTo({ left: closestIndex * cardWidth, behavior: 'smooth' });
         }
     }
+}
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function () {
-            const filter = tab.getAttribute('data-filter');
-            teamSections.forEach(section => (section.style.display = 'none'));
-            const activeSection = document.querySelector(`#${filter}`);
-            if (activeSection) {
-                activeSection.style.display = 'flex';
-                initializeSlider(activeSection);
-            }
-            tabs.forEach(t => t.classList.remove('tab-active'));
-            tab.classList.add('tab-active');
-        });
+// Tab switching logic
+tabs.forEach(tab => {
+    tab.addEventListener('click', function () {
+        const filter = tab.getAttribute('data-filter');
+        teamSections.forEach(section => (section.style.display = 'none'));
+        const activeSection = document.querySelector(`#${filter}`);
+        if (activeSection) {
+            activeSection.style.display = 'flex';
+            initializeSlider(activeSection);
+        }
+        tabs.forEach(t => t.classList.remove('tab-active'));
+        tab.classList.add('tab-active');
     });
-
-    const defaultTab = document.querySelector('.tab[data-filter="construction-team"]');
-    if (defaultTab) {
-        defaultTab.click();
-    }
 });
 
+// Initialize default tab
+const defaultTab = document.querySelector('.tab[data-filter="construction-team"]');
+if (defaultTab) {
+    defaultTab.click();
+}
+
+});
 
 </script>
 </body>
