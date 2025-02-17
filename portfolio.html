@@ -154,19 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize tabs and subtabs with active classes and functionality
     function initializeTabs(projects) {
         const $portfolioContainer = $("[unique-script-id='w-w-dm-id']");
-        const $allLinks = $portfolioContainer.find(".link-wrapper");
-
-        $portfolioContainer.find(".img .desc").hide();
-        $portfolioContainer.find(".img .overlay").hide();
-
-        $portfolioContainer.find(".img").hover(
-            function () {
-                $(this).find('.overlay, .desc').fadeIn();
-            },
-            function () {
-                $(this).find('.overlay, .desc').fadeOut();
-            }
-        );
+        const $allLinks = $portfolioContainer.find(".project-card");
 
         // Handle main tab clicks
         $portfolioContainer.find(".tab").click(function () {
@@ -262,21 +250,36 @@ document.addEventListener('DOMContentLoaded', function () {
         : `Project Status: Ongoing`;
 
     const projectHTML = `
-        <a href="project_details.html?id=${project.id}" class="link-wrapper ${project.typeofproject2}" id="${project.id}">
-            <div class="responsive-container-block img ${project.typeofproject2}">
-                <img class="im image-block" src="${project.image_front}">
-                <div class="responsive-container-block overlay overlay-visible"></div>
-                <div class="responsive-container-block desc">
-                    <p class="text-blk title">${project.title}, ${project.location}</p>
-                    <p class="text-blk info">${projectStatusText} <br>${project.typeofproject.toUpperCase()}</p>
+    <div class="project-card ${project.typeofproject2}" data-id="${project.id}" id="${project.id}">
+        <div class="responsive-container-block image-container">
+                    <img src="${project.image_front}" alt="${project.title}" class="project-image">
                 </div>
-            </div>
-        </a>`;
+                <div class="project-info">
+                    <div class="info-divider"></div>
+                    <div class="info-content">
+                        <h3>${project.title}</h3>
+                        <p>${project.location}</p>
+                    </div>
+                </div>
+            </div>`;
+    
     container.append(projectHTML);
+    
 });
 
+    initializeTabs(projects);
 
-        initializeTabs(projects);
+        // Ensure click event works correctly
+        container.on('click', '.project-card', function () {
+            const projectId = $(this).attr('data-id'); // Alternative way to get data attribute
+            console.log("Clicked Project ID:", projectId); // Debugging line
+
+            if (projectId) {
+                window.location.href = `project_details.html?id=${projectId}`;
+            } else {
+                console.error("Project ID not found!"); // Debugging error
+            }
+        });
 
         // Trigger the default or last active tab and subtab
         const activeTab = getActiveTab();
