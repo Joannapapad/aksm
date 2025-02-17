@@ -740,6 +740,7 @@ min-width: 270px;
     const tabs = document.querySelectorAll('.tab');
     const teamSections = document.querySelectorAll('.team-container');
 
+
     function initializeSlider(section) {
     const prevBtn = section.querySelector('.prev-btn');
     const nextBtn = section.querySelector('.next-btn');
@@ -748,26 +749,17 @@ min-width: 270px;
 
     if (prevBtn && nextBtn && slider && teamMembers.length > 0) {
         let cardWidth, visibleCards, scrollAmount;
-        let isDragging = false;
-        let startX, scrollLeft, velocity = 0, animationFrame;
-        let isButtonClick = false; // Track button click to disable dragging
+        let isButtonClick = false; // Track button click to prevent interaction issues
 
         function updateScrollAmount() {
             cardWidth = teamMembers[0].offsetWidth + 20; // Include margin
             visibleCards = Math.floor(slider.offsetWidth / cardWidth) - 1;
+            if (visibleCards == 0) visibleCards += 1;
             scrollAmount = cardWidth * visibleCards;
         }
 
         updateScrollAmount();
         window.addEventListener('resize', updateScrollAmount);
-
-        function disableDragging() {
-            slider.classList.add('no-drag');
-        }
-
-        function enableDragging() {
-            slider.classList.remove('no-drag');
-        }
 
         prevBtn.onclick = nextBtn.onclick = null;
 
@@ -775,10 +767,9 @@ min-width: 270px;
         nextBtn.addEventListener('click', () => handleButtonClick(scrollAmount));
 
         function handleButtonClick(amount) {
-            if (isDragging) return; // Prevent interference
+            if (isButtonClick) return; // Prevent multiple clicks during animation
 
             isButtonClick = true;
-            disableDragging();
 
             let newScrollLeft = slider.scrollLeft + amount;
             let maxScroll = slider.scrollWidth - slider.clientWidth;
@@ -786,66 +777,11 @@ min-width: 270px;
 
             setTimeout(() => {
                 isButtonClick = false;
-                enableDragging();
             }, 500); // Match scroll animation duration
-        }
-
-        function startDragging(e) {
-            if (isButtonClick) return; // Prevent dragging during button animation
-
-            isDragging = true;
-            velocity = 0;
-            slider.classList.add('dragging');
-            startX = (e.touches ? e.touches[0].pageX : e.pageX) - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-            cancelAnimationFrame(animationFrame);
-        }
-
-        function stopDragging() {
-            if (!isDragging) return;
-            isDragging = false;
-            slider.classList.remove('dragging');
-
-            function smoothScroll() {
-                if (Math.abs(velocity) > 0.1) {
-                    slider.scrollLeft += velocity;
-                    velocity *= 0.95; // Apply friction
-                    animationFrame = requestAnimationFrame(smoothScroll);
-                } else if (!isButtonClick) { 
-                    snapToSection();
-                }
-            }
-
-            smoothScroll();
-        }
-
-        function drag(e) {
-            if (!isDragging || isButtonClick) return; // Prevent dragging when button click is active
-            e.preventDefault();
-            const x = (e.touches ? e.touches[0].pageX : e.pageX) - slider.offsetLeft;
-            const move = x - startX;
-            slider.scrollLeft = scrollLeft - move;
-            velocity = move * 0.5;
-        }
-
-        // Mouse events
-        slider.addEventListener('mousedown', startDragging);
-        slider.addEventListener('mouseleave', stopDragging);
-        slider.addEventListener('mouseup', stopDragging);
-        slider.addEventListener('mousemove', drag);
-
-        // Touch events
-        slider.addEventListener('touchstart', startDragging);
-        slider.addEventListener('touchend', stopDragging);
-        slider.addEventListener('touchmove', drag);
-
-        function snapToSection() {
-            const scrollLeft = slider.scrollLeft;
-            const closestIndex = Math.round(scrollLeft / cardWidth);
-            slider.scrollTo({ left: closestIndex * cardWidth, behavior: 'smooth' });
         }
     }
 }
+
 
 // Tab switching logic
 tabs.forEach(tab => {
