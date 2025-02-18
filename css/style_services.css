@@ -194,7 +194,23 @@ min-width: 270px;
   align-items: center;
   text-align: center;
   padding: 0;
-  
+  opacity: 0;
+  transition:opacity .6s ease-out, transform .9s ease-out;
+}
+
+.services_flex_container.animate{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.news2{
+  opacity: 0;
+  transition:opacity .6s ease-out, transform .9s ease-out;
+}
+
+.news2.animate{
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .services_text-left{
