@@ -53,7 +53,9 @@ if (!window.animateObserver) { // Use a global check to prevent reinitialization
             .heropanel__content,
             .vertical-line-container,
             .customers,
-            .row a
+            .row a,
+            .services_flex_container,
+            .news2
         `);
 
         // Attach observer to each element
