@@ -110,25 +110,10 @@
                 script.src = 'nav.js';
                 document.body.appendChild(script);
             });
+        
 window.addEventListener('load', () => {
-    const logoHeader = document.querySelector('.logo_header');
-    const logoEspa = document.querySelector('.logo_espa');
-
-    const checkImagesLoaded = () => {
-        if (logoHeader.complete && logoEspa.complete) {
             document.body.classList.add('loaded');
-        }
-    };
-
-    // If images are already loaded (cached)
-    if (logoHeader.complete && logoEspa.complete) {
-        checkImagesLoaded();
-    } else {
-        logoHeader.addEventListener('load', checkImagesLoaded);
-        logoEspa.addEventListener('load', checkImagesLoaded);
-    }
-});
-
+        })
         
     </script>
 
