@@ -109,9 +109,35 @@
                 document.body.appendChild(script);
             });
 
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('img');
+        let imagesLoaded = 0;
+
+        const checkImagesLoaded = () => {
+            imagesLoaded++;
+            if (imagesLoaded === images.length || document.readyState === 'complete') {
+                document.body.classList.add('loaded');
+            }
+        };
+
+        images.forEach(img => {
+            if (img.complete) {
+                checkImagesLoaded();
+            } else {
+                img.addEventListener('load', checkImagesLoaded);
+                img.addEventListener('error', checkImagesLoaded); // Handle broken images
+            }
         });
+
+        // In case there are no images or already loaded images
+        if (images.length === 0) {
+            document.body.classList.add('loaded');
+        }
+    });
+
+
+        
     </script>
 
     <a href="index.html">
