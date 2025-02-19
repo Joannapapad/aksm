@@ -73,28 +73,14 @@
 }
     
 .logo_header {
-    width: 50px; 
-    height: auto;
+    width: 4vw;
+    max-width: 60px; /* Prevents excessive size */
     position: fixed;
     z-index: 1000;
-    top: 1em;
-    left: 1em;
+    top: 2em;
+    left: 2em;
 }
 
-/* Responsive Adjustments */
-@media screen and (min-width: 800px) {
-    .logo_header {
-        width: 60px;
-        top: 2em;
-        left: 2em;
-    }
-}
-
-@media screen and (min-width: 2000px) {
-    .logo_header {
-        width: 70px;
-    }
-}
 
 .primary-header_header {
     align-items: center;
@@ -369,7 +355,12 @@ svg {
 
 @media(max-width:500px){
 
+.logo_header {
+    top: 1em;
+    left: 1em;
+    width: 6vw; 
 
+}
   .logo_espa {
     height: 2vh;
     z-index: 1000;
@@ -433,7 +424,11 @@ svg {
     }
 
     @media (min-width: 2000px) {
-
+        .logo_header {
+            width: 3vw;
+            top: 2em;
+            left: 2em;
+        }
         .nav-toggle_header {
             width: 3vw;
             background-size: 3vw;
