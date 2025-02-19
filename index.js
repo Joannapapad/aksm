@@ -54,8 +54,17 @@ fetch('header.html')
     });
 
 window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
+    const video = document.querySelector("video");
+
+    if (video) {
+        video.addEventListener("canplaythrough", () => {
+            document.body.classList.add("loaded");
+        });
+    } else {
+        document.body.classList.add("loaded"); // If no video exists, show page immediately
+    }
 });
+
     // JavaScript for Parallax Effect
 
 
