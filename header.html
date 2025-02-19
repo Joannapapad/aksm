@@ -73,14 +73,25 @@
 }
     
 .logo_header {
-    width: 4vw;
-    max-width: 60px; /* Prevents excessive size */
+    width: 50px; /* Set a default fixed size */
     position: fixed;
     z-index: 1000;
     top: 2em;
     left: 2em;
 }
 
+/* Responsive Adjustments */
+@media screen and (min-width: 768px) {
+    .logo_header {
+        width: 60px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .logo_header {
+        width: 70px;
+    }
+}
 
 .primary-header_header {
     align-items: center;
