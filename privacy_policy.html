@@ -6,14 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Privacy Policy - AKSM</title>
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            padding: 0;
-            background-color: #f3f3f3;
-            background: url('assets/services/const_23.webp') center center/cover no-repeat;
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #F3F3F3;
+        color: #333;
+        width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+        background: url('assets/services/const_23.webp') center center/cover no-repeat;
+    }
+
+    body,
+    html {
+    scroll-behavior: smooth;
+    }
+
+
+        .filter{
+            background-size:cover;
+            left:0;
+            position:absolute;
+            top:0;
+            width:100%;
+            height:100%;
+            background:#f3f3f36f;
+            z-index:-1;
         }
+
         h1, h2, h3 {
             color: #333;
             font-family: Arial;
@@ -22,12 +50,22 @@
             color: #555;
         }
         .container {
+            border-radius: 10px;
             max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
+            margin: 20px;
+            padding: 50px;
             background-color: #f3f3f3;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: justify;
+            z-index: 5;
         }
+
+        @media (max-width:500px){
+            .container {
+            padding: 30px;
+        }
+        }
+
         a {
             color: #97938d;
             text-decoration: none;
@@ -42,6 +80,8 @@
     </style>
 </head>
 <body>
+    <div class="filter"></div>
+
     <div class="container">
         <h1>Privacy Policy</h1>
         <p><strong>Effective Date:</strong> 4/10/2034</p>
@@ -107,6 +147,6 @@
         <div class="footer">
             <p>© 2024 Aksm. All rights reserved.</p>
         </div>
-    </div>
+
 </body>
 </html>
