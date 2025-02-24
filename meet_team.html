@@ -726,96 +726,86 @@ min-width: 270px;
     </div>
     </section>
 
+
 <script>
-    fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('menu-container').innerHTML = data;
+   fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('menu-container').innerHTML = data;
 
-            const script = document.createElement('script');
-            script.src = 'nav.js';
-            document.body.appendChild(script);
-        });
-
-    window.addEventListener('load', () => {
-        document.body.classList.add('loaded');
+        const script = document.createElement('script');
+        script.src = 'nav.js';
+        document.body.appendChild(script);
     });
 
-    // Trigger the default tab
-    const defaultTab = document.querySelector('.tab[data-filter="construction-team"]');
-    if (defaultTab) {
-        defaultTab.click();
-    }
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+});
 
-    document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     const tabs = document.querySelectorAll('.tab');
     const teamSections = document.querySelectorAll('.team-container');
 
-
     function initializeSlider(section) {
-    const prevBtn = section.querySelector('.prev-btn');
-    const nextBtn = section.querySelector('.next-btn');
-    const slider = section.querySelector('.team-grid');
-    const teamMembers = section.querySelectorAll('.team-member');
+        const prevBtn = section.querySelector('.prev-btn');
+        const nextBtn = section.querySelector('.next-btn');
+        const slider = section.querySelector('.team-grid');
+        const teamMembers = section.querySelectorAll('.team-member');
 
-    if (prevBtn && nextBtn && slider && teamMembers.length > 0) {
-        let cardWidth, visibleCards, scrollAmount;
-        let isButtonClick = false; // Track button click to prevent interaction issues
+        if (prevBtn && nextBtn && slider && teamMembers.length > 0) {
+            let cardWidth, visibleCards, scrollAmount;
+            let isButtonClick = false;
 
-        function updateScrollAmount() {
-            cardWidth = teamMembers[0].offsetWidth + 20; // Include margin
-            visibleCards = Math.floor(slider.offsetWidth / cardWidth) - 1;
-            if (visibleCards == 0) visibleCards += 1;
-            scrollAmount = cardWidth * visibleCards;
-        }
+            function updateScrollAmount() {
+                cardWidth = teamMembers[0].offsetWidth + 20;
+                visibleCards = Math.floor(slider.offsetWidth / cardWidth) - 1;
+                if (visibleCards == 0) visibleCards += 1;
+                scrollAmount = cardWidth * visibleCards;
+            }
 
-        updateScrollAmount();
-        window.addEventListener('resize', updateScrollAmount);
+            updateScrollAmount();
+            window.addEventListener('resize', updateScrollAmount);
 
-        prevBtn.onclick = nextBtn.onclick = null;
+            prevBtn.onclick = nextBtn.onclick = null;
 
-        prevBtn.addEventListener('click', () => handleButtonClick(-scrollAmount));
-        nextBtn.addEventListener('click', () => handleButtonClick(scrollAmount));
+            prevBtn.addEventListener('click', () => handleButtonClick(-scrollAmount));
+            nextBtn.addEventListener('click', () => handleButtonClick(scrollAmount));
 
-        function handleButtonClick(amount) {
-            if (isButtonClick) return; // Prevent multiple clicks during animation
+            function handleButtonClick(amount) {
+                if (isButtonClick) return;
 
-            isButtonClick = true;
+                isButtonClick = true;
 
-            let newScrollLeft = slider.scrollLeft + amount;
-            let maxScroll = slider.scrollWidth - slider.clientWidth;
-            slider.scrollTo({ left: Math.min(Math.max(newScrollLeft, 0), maxScroll), behavior: 'smooth' });
+                let newScrollLeft = slider.scrollLeft + amount;
+                let maxScroll = slider.scrollWidth - slider.clientWidth;
+                slider.scrollTo({ left: Math.min(Math.max(newScrollLeft, 0), maxScroll), behavior: 'smooth' });
 
-            setTimeout(() => {
-                isButtonClick = false;
-            }, 500); // Match scroll animation duration
+                setTimeout(() => {
+                    isButtonClick = false;
+                }, 500);
+            }
         }
     }
-}
 
-
-// Tab switching logic
-tabs.forEach(tab => {
-    tab.addEventListener('click', function () {
-        const filter = tab.getAttribute('data-filter');
-        teamSections.forEach(section => (section.style.display = 'none'));
-        const activeSection = document.querySelector(`#${filter}`);
-        if (activeSection) {
-            activeSection.style.display = 'flex';
-            initializeSlider(activeSection);
-        }
-        tabs.forEach(t => t.classList.remove('tab-active'));
-        tab.classList.add('tab-active');
+    // Tab switching logic
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            const filter = tab.getAttribute('data-filter');
+            teamSections.forEach(section => (section.style.display = 'none'));
+            const activeSection = document.querySelector(`#${filter}`);
+            if (activeSection) {
+                activeSection.style.display = 'flex';
+                initializeSlider(activeSection);
+            }
+            tabs.forEach(t => t.classList.remove('tab-active'));
+            tab.classList.add('tab-active');
+        });
     });
+
+    // Prevent any tab from being selected on load
+    teamSections.forEach(section => section.style.display = 'none');
 });
 
-// Initialize default tab
-const defaultTab = document.querySelector('.tab[data-filter="construction-team"]');
-if (defaultTab) {
-    defaultTab.click();
-}
-
-});
 
 </script>
 </body>
