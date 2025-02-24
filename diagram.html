@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizational Chart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f3f3f3;
+        }
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1500px;
+            min-width: 950px;
+        }
+        .box {
+        border: 2px solid black;
+        padding: 10px;
+        display: inline-block;
+        background-color: #f3f3f3;
+        font-weight: bold;
+        width: 200px;
+        text-align: center;
+        border-radius: 5px;  /* Ensure rounded corners */
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;  /* Smooth animation */
+        }
+
+        .box:hover {
+            transform: scale(1.05);  /* Slightly increase size on hover */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);  /* Optional shadow effect */
+        }
+
+        .connector {
+            width: 2px;
+            height: 20px;
+            background-color: black;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .box-vertical{
+            height: 110px;
+            width: 2px;
+            background-color: black;
+            margin: auto;
+            position: absolute;
+        }
+
+        .horizontal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .horizontal .connector {
+            width: 40px;
+            height: 2px;
+            background-color: black;
+        }
+        .level {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        .sub-level {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+        .vertical-line {
+            height: 50px;
+            width: 2px;
+            background-color: black;
+            margin: auto;
+        }
+        .bottom-lines {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+
+        }
+        .bottom-lines .connector {
+            height: 2px;
+            width: 250px;
+            background-color: black;
+        }
+
+        .header{
+            font-size: 1em;
+            font-weight: 600;
+            margin: 5px;
+        }
+        .box{
+            font-weight: 400;
+            font-size: 0.9em;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="org-chart">
+    <!-- Top level -->
+    <div class="box" style="border-width: 2px;"><h3 class="header">ΓΕΝΙΚΟΣ ΔΙΕΥΘΥΝΤΗΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΑΛΕΞΑΝΔΡΟΣ ΚΑΡΔΙΤΣΑΣ</div>
+    <div class="vertical-line"></div>
+
+    <!-- Second Level -->
+    <div class="horizontal">
+        <div class="box"><h3 class="header">ΓΡΑΜΜΑΤΕΙΑ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΑΜΒΡΟΣΙΑΔΟΥ ΕΛΕΝΗ</div>
+        <div class="connector"></div>
+        <div class="box-vertical"></div>
+        <div class="connector"></div>
+        <div class="box"><h3 class="header">ΕΚΠΡΟΣΩΠΟΣ ΔΙΑΧΕΙΡΙΣΗΣ ΠΟΙΟΤΗΤΑΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΖΑΧΑΡΗ ΓΕΩΡΓΙΑ</div>
+    </div>
+    <div class="vertical-line"></div>
+
+    <!-- Third Level -->
+    <div class="horizontal">
+        
+        <div class="box"><h3 class="header">ΝΟΜΙΚΟΣ ΣΥΜΒΟΥΛΟΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΕΞΩΤΕΡΙΚΟΣ ΣΥΝΕΡΓΑΤΗΣ</div>
+        <div class="box-vertical"></div>
+        <div class="connector"></div>
+
+        <div class="connector"></div>
+        <div class="box"><h3 class="header">ΤΕΧΝΙΚΟΣ ΑΣΦΑΛΕΙΑΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΓΙΟΛΑΔΗΣ</div>
+
+    </div>
+    <div class="vertical-line"></div>
+    <div class="horizontal">
+        
+        <div class="box" style="border: transparent;"></div>
+        <div class="connector" style="background-color: transparent;"></div>
+
+        <div class="box-vertical"></div>
+
+        <div class="connector"></div>
+        <div class="box"><h3 class="header">ΥΠΕΥΘΥΝΟΣ ΜΗΧΑΝΟΡΓΑΝΩΣΗΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΓΙΟΛΑΔΗΣ</div>
+
+    </div>
+
+    <div class="vertical-line"></div>
+
+    <!-- Fourth Level -->
+    <div class="bottom-lines">
+        <div class="vertical-line"></div>
+
+        <div class="connector"></div>
+        <div class="vertical-line"></div>
+
+        <div class="connector"></div>
+        <div class="vertical-line"></div>
+
+        <div class="connector"></div>
+        <div class="vertical-line"></div>
+
+    </div>
+    <div class="sub-level">
+        <div>
+            <div class="box"><h3 class="header">ΤΜΗΜΑ ΤΟΠΟΓΡΑΦΙΚΩΝ ΜΕΛΕΤΩΝ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΑΛΕΞΑΝΔΡΟΣ ΚΑΡΔΙΤΣΑΣ</div>
+            <div class="vertical-line"></div>
+            <div class="box"><h3 class="header">ΤΟΠΟΓΡΑΦΟΙ ΜΗΧΑΝΙΚΟΙ</h3></div>
+        </div>
+        <div>
+            <div class="box"><h3 class="header">ΤΜΗΜΑ ΕΡΓΟΤΑΞΙΩΝ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΑΛΕΞΑΝΔΡΟΣ ΚΑΡΔΙΤΣΑΣ</div>
+            <div class="vertical-line"></div>
+            <div class="box"><h3 class="header">ΕΡΓΟΤΑΞΙΑ</h3></div>
+        </div>
+        <div>
+            <div class="box"><h3 class="header">ΥΠΕΥΘΥΝΟΣ ΠΡΟΜΗΘΕΙΩΝ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΖΑΧΑΡΗ ΓΕΩΡΓΙΑ</div>
+        </div>
+        
+        <div>
+            <div class="box"><h3 class="header">ΥΠΕΥΘΥΝΟΣ ΑΝΑΠΤΥΞΗΣ & ΛΕΙΤΟΥΡΓΙΑΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΖΑΧΑΡΗ ΓΕΩΡΓΙΑ</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
