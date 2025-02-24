@@ -142,7 +142,7 @@ body.loaded {
 
     .submenu {
         width: 100%;
-        max-width: 1200px;
+        max-width: 1400px;
         padding: 10px;
         display: flex;
         flex-direction: row;
@@ -211,6 +211,41 @@ body.loaded {
 .next-btn {
     right: 0;
 }
+
+.image-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backdrop-filter: blur(2rem);
+    backdrop-filter: blur(2rem);    
+    background-color: rgba(209, 209, 209, 0.8);
+    z-index: 99999;
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 999999;
+}
+
+.close-button:hover {
+    color: #bbb;
+}
+
+.fullscreen-image {
+    max-width: 90%;
+    max-height: 90%;
+}
+
 @media (max-width:1270px) {
 .service-container .card {
 width: 230px;
@@ -277,7 +312,10 @@ min-width: 270px;
         <li><a href="#construction-team" class="tab tab-active" data-filter="construction-team" style="text-decoration: none; color: #000;" ><img src="assets/icons/construction_team.png">Construction Team</a></li>
         <li><a href="#bim-team" class="tab" data-filter="bim-team" style="text-decoration: none; color: #000;"><img src="assets/icons/bim_team.png">BIM Team</a></li>
         <li><a href="#management-team" class="tab" data-filter="management-team" style="text-decoration: none; color: #000;"><img src="assets/icons/management.png">Management Team</a></li>
+        <li><a href="#diagram" class="tab" data-filter="diagram" style="text-decoration: none; color: #000;"><img src="assets/icons/management.png">Organizational Chart</a></li>
+
     </ul>
+
 </div>
 
 <section class="team-container" id="construction-team">
@@ -726,6 +764,12 @@ min-width: 270px;
     </div>
     </section>
 
+    
+<section class="team-container" id="diagram">
+
+
+</section>
+
 
 <script>
    fetch('header.html')
@@ -805,6 +849,143 @@ document.addEventListener('DOMContentLoaded', function () {
     // Prevent any tab from being selected on load
     teamSections.forEach(section => section.style.display = 'none');
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const diagramContainer = document.getElementById("diagram");
+
+    function updateDiagramContent() {
+        diagramContainer.innerHTML = ""; // Clear previous content
+
+        if (window.innerWidth > 1000) {
+            // Load the HTML file dynamically
+            fetch("diagram.html")
+                .then(response => response.text())
+                .then(data => {
+                    diagramContainer.innerHTML = data;
+                })
+                .catch(error => console.error("Error loading diagram.html:", error));
+        } else {
+            // Display an image when width < 1200px
+            const img = document.createElement("img");
+            img.src = "assets/diagram.jpg"; 
+            img.alt = "Diagram";
+            img.style.width = "100%";
+            img.style.cursor = "pointer";
+            img.addEventListener("click", () => openImageInFullscreen(img.src));
+            diagramContainer.appendChild(img);
+        }
+    }
+
+    // Run the function initially
+    updateDiagramContent();
+
+    // Update on window resize
+    window.addEventListener("resize", updateDiagramContent);
+});
+
+// Fullscreen image viewer function (your existing code)
+function openImageInFullscreen(src) {
+    const modal = document.createElement("div");
+    modal.classList.add("image-modal");
+
+    const image = document.createElement("img");
+    image.src = src;
+    image.classList.add("fullscreen-image");
+
+    const closeButton = document.createElement("span");
+    closeButton.innerHTML = "&times;";
+    closeButton.classList.add("close-button");
+
+    modal.appendChild(image);
+    modal.appendChild(closeButton);
+    document.body.appendChild(modal);
+
+    document.body.style.overflow = "hidden";
+
+    closeButton.addEventListener("click", () => closeModal(modal));
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal(modal);
+    });
+
+    let scale = 1, posX = 0, posY = 0, isDragging = false, startX, startY;
+
+    modal.addEventListener("wheel", (event) => {
+        event.preventDefault();
+        scale += event.deltaY * -0.001;
+        scale = Math.min(Math.max(1, scale), 3);
+        applyTransform();
+    });
+
+    image.addEventListener("mousedown", (event) => {
+        isDragging = true;
+        startX = event.clientX - posX;
+        startY = event.clientY - posY;
+    });
+
+    document.addEventListener("mousemove", (event) => {
+        if (isDragging) {
+            posX = event.clientX - startX;
+            posY = event.clientY - startY;
+            applyTransform();
+        }
+    });
+
+    document.addEventListener("mouseup", () => {
+        isDragging = false;
+    });
+
+    let initialDistance = null;
+    
+    modal.addEventListener("touchstart", (event) => {
+        if (event.touches.length === 2) {
+            initialDistance = calculateDistance(event.touches);
+        } else if (event.touches.length === 1) {
+            isDragging = true;
+            startX = event.touches[0].clientX - posX;
+            startY = event.touches[0].clientY - posY;
+        }
+    });
+
+    modal.addEventListener("touchmove", (event) => {
+        if (event.touches.length === 2) {
+            event.preventDefault();
+            const currentDistance = calculateDistance(event.touches);
+            if (initialDistance) {
+                const scaleChange = currentDistance / initialDistance;
+                scale = Math.min(Math.max(1, scale * scaleChange), 3);
+                initialDistance = currentDistance;
+                applyTransform();
+            }
+        } else if (event.touches.length === 1 && isDragging) {
+            posX = event.touches[0].clientX - startX;
+            posY = event.touches[0].clientY - startY;
+            applyTransform();
+        }
+    });
+
+    modal.addEventListener("touchend", () => {
+        initialDistance = null;
+        isDragging = false;
+    });
+
+    function applyTransform() {
+        image.style.transform = `scale(${scale}) translate(${posX / scale}px, ${posY / scale}px)`;
+    }
+
+    function calculateDistance(touches) {
+        const [touch1, touch2] = touches;
+        return Math.hypot(
+            touch2.clientX - touch1.clientX,
+            touch2.clientY - touch1.clientY
+        );
+    }
+}
+
+function closeModal(modal) {
+    document.body.removeChild(modal);
+    document.body.style.overflow = "auto";
+}
 
 
 </script>
