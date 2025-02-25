@@ -43,7 +43,6 @@ opacity: 1;
   width: 100%;
   height: 20vh;
 }
-/* Media query for smaller screens */
 #separator_1{
   background: url("../assets/services/separator_1_high.jpg") center center/cover no-repeat fixed ;       
 }
@@ -228,7 +227,8 @@ min-width: 270px;
   text-align: center;
   margin-bottom: 2rem;
   font-size: 1.3em;
-  color: #817C76;
+  color: var(--dim-gray);
+  ;
 }
 
 .services_wrapper {
@@ -314,16 +314,16 @@ overflow: hidden;
     display: flex;
     justify-content: space-between;
     transform: translateY(-50%);
-    z-index: 1000; /* Ensure it’s above other content */
+    z-index: 1000; 
 }
 
 .carousel-prev, .carousel-next {
     border: none;
     background-color: #f3f3f36b;
     border-radius: 20px;
-    padding: 10px 15px; /* Increase size for easier clicking */
+    padding: 10px 15px; 
     cursor: pointer;
-    z-index: 1001; /* Ensure buttons are above the controls container */
+    z-index: 1001; 
 }
 
 
@@ -839,8 +839,6 @@ div[class*=box] {
 
 }
 
-
-/* Media Queries for Fine-tuning */
 @media (max-width: 900px) {
 .news {
   height:auto;
