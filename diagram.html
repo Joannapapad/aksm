@@ -1,349 +1,844 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organizational Chart</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #f3f3f3;
-        }
-        .image-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(209, 209, 209, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .fullscreen-image {
-            max-width: 90%;
-            max-height: 90%;
-            transition: transform 0.3s ease;
-        }
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 30px;
-            color: white;
-            cursor: pointer;
-        }
-        .org-chart {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 1500px;
-            min-width: 950px;
-        }
-        .box {
-        border: 2px solid black;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meet Our Team</title>
+<script src="nav.js"></script>
+<link rel="icon" href="assets/aksm_logo.png">
+<link rel="preload" href="assets/aksm_logo.webp" as="image">
+
+<style>
+   html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #F3F3F3;
+        color: #333;
+        width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+}
+
+body,
+html {
+  scroll-behavior: smooth;
+}
+
+/* Once the page is loaded, make it visible */
+body.loaded {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s; /* No delay for hiding */
+}
+
+    #menu-container {
+        width: 100%;
+    }
+
+    .team-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.team-grid {
+    display: flex; /* Change to flexbox for horizontal layout */
+    gap: 12px; /* Space between cards */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling effect */
+    padding: 20px 0;
+    width: 100%; /* Ensure the slider takes full width */
+    max-width: 1200px; /* Restrict the slider width */
+    scroll-snap-type: x mandatory; 
+
+}
+.team-member {
+    scroll-snap-align: center;
+}
+
+/* Optional: Hide the default scrollbar */
+.team-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.team-grid::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.team-grid::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.team-member {
+    flex: 0 0 auto; /* Prevent shrinking and set fixed width */
+    width: 200px; /* Adjust based on your design */
+    overflow: hidden; 
+    text-overflow: ellipsis; /* Shows "..." if text overflows */
+    height: 300px;
+    background: #f8f8f8;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.team-member:hover {
+    transform: scale(1.02); /* Scale effect on hover */
+}
+.tab{
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 3px;
+}
+
+.tab img{
+    width: 150px;
+    padding-bottom: 10px;
+}
+
+    .team-member img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
+
+    .team-member h3 {
+        font-size: 1.2em;
+        margin: 10px 0 5px;
+        letter-spacing: 2px;
+        font-weight: 400;
+    }
+
+    .team-member p {
+        font-size: 0.9em;
+        color: #817C76;
+        margin: 0;
+    }
+
+    .submenu {
+        width: 100%;
+        max-width: 1400px;
         padding: 10px;
-        display: inline-block;
-        background-color: #f3f3f3;
-        font-weight: bold;
-        width: 200px;
-        text-align: center;
-        border-radius: 5px;  /* Ensure rounded corners */
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;  /* Smooth animation */
-        }
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+    }
+    .submenu ul {
+        list-style: none;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        display: flex; /* Make the list horizontal */
+        justify-content: center; /* Center the list items horizontally */
+    }
 
-        .box:hover {
-            transform: scale(1.05);  /* Slightly increase size on hover */
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);  /* Optional shadow effect */
-        }
 
-        .connector {
-            width: 2px;
-            height: 20px;
-            background-color: black;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .box-vertical{
-            height: 110px;
-            width: 2px;
-            background-color: black;
-            margin: auto;
-            position: absolute;
-        }
+    .submenu ul li {
+        margin-bottom: 10px;
+    }
 
-        .horizontal {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .horizontal .connector {
-            width: 40px;
-            height: 2px;
-            background-color: black;
-        }
-        .level {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-        }
-        .sub-level {
-            display: flex;
-            justify-content: space-evenly;
-            width: 100%;
-        }
-        .vertical-line {
-            height: 50px;
-            width: 2px;
-            background-color: black;
-            margin: auto;
-        }
-        .bottom-lines {
-            display: flex;
-            justify-content: center;
-            align-items: start;
+    .submenu ul li a {
+        position: relative;
+        width: 270px;
+        min-width: 270px;
+        height: 370px;
+        background-color: #F3F3F3;
+        margin: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+    }
+    .slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f3f3f3;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex; /* Ensure buttons are displayed */
+    justify-content: center;
+    align-items: center;
+}
+.prev-btn img, .next-btn img{
+    width: 15px;
+}
+.prev-btn {
+    left: 0;
+}
 
-        }
-        .bottom-lines .connector {
-            height: 2px;
-            width: 250px;
-            background-color: black;
-        }
+.next-btn {
+    right: 0;
+}
 
-        .header{
-            font-size: 1em;
-            font-weight: 600;
-            margin: 5px;
-        }
-        .box{
-            font-weight: 400;
-            font-size: 0.9em;
-        }
+.image-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backdrop-filter: blur(2rem);
+    backdrop-filter: blur(2rem);    
+    background-color: rgba(209, 209, 209, 0.8);
+    z-index: 99999;
+}
 
-    </style>
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 999999;
+}
+
+.close-button:hover {
+    color: #bbb;
+}
+
+.fullscreen-image {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+@media (max-width:1270px) {
+.service-container .card {
+width: 230px;
+height: 300px;
+min-width: 270px;
+
+}
+}
+    @media (max-width:1270px) {
+        .submenu ul li a {
+            width: 230px;
+            height: 300px;
+            min-width: 270px;
+        }
+    }
+
+    .submenu ul li a:hover,
+    .submenu ul li a.tab-active {
+        color: #817C76; /* Example active color */
+        border-bottom: 2px solid #817C76; /* Active indicator for main tabs */
+        width: auto;
+        background-color: #817c761f;
+    }
+
+    /* Pointer cursor for tabs */
+    .submenu ul li a {
+        cursor: pointer;
+    }
+
+    @media (max-width:1150px){
+        .team-container{
+            max-width: 820px;
+        }
+    }
+
+    @media (max-width:860px){
+        .team-container{
+            max-width: 530px;
+        }
+    }
+
+    .center{
+        padding: 10px;
+        color: #6F676B;
+        font-weight: 550;
+    }
+</style>
+
+
+</style>
 </head>
 <body>
+<!-- Logo -->
+<a href="index.html">
+    <img src="assets/aksm_logo.png" class="logo_header">
+</a>
 
-<div id="diagram-container"></div>
+<div id="menu-container"></div>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const diagramContainer = document.getElementById("diagram-container");
 
-    function updateDiagramContent() {
-        diagramContainer.innerHTML = ""; // Clear previous content
-
-        if (window.innerWidth > 1000) {
-            // Show the organizational chart (HTML structure)
-            diagramContainer.innerHTML = `
-               
-<div class="org-chart">
-    <!-- Top level -->
-    <div class="box" style="border-width: 2px;"><h3 class="header">ΓΕΝΙΚΟΣ ΔΙΕΥΘΥΝΤΗΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΑΛΕΞΑΝΔΡΟΣ ΚΑΡΔΙΤΣΑΣ</div>
-    <div class="vertical-line"></div>
-
-    <!-- Second Level -->
-    <div class="horizontal">
-        <div class="box"><h3 class="header">ΓΡΑΜΜΑΤΕΙΑ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΑΜΒΡΟΣΙΑΔΟΥ ΕΛΕΝΗ</div>
-        <div class="connector"></div>
-        <div class="box-vertical"></div>
-        <div class="connector"></div>
-        <div class="box"><h3 class="header">ΕΚΠΡΟΣΩΠΟΣ ΔΙΑΧΕΙΡΙΣΗΣ ΠΟΙΟΤΗΤΑΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΖΑΧΑΡΗ ΓΕΩΡΓΙΑ</div>
-    </div>
-    <div class="vertical-line"></div>
-
-    <!-- Third Level -->
-    <div class="horizontal">
-        
-        <div class="box"><h3 class="header">ΝΟΜΙΚΟΣ ΣΥΜΒΟΥΛΟΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΕΞΩΤΕΡΙΚΟΣ ΣΥΝΕΡΓΑΤΗΣ</div>
-        <div class="box-vertical"></div>
-        <div class="connector"></div>
-
-        <div class="connector"></div>
-        <div class="box"><h3 class="header">ΤΕΧΝΙΚΟΣ ΑΣΦΑΛΕΙΑΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΓΙΟΛΑΔΗΣ</div>
-
-    </div>
-    <div class="vertical-line"></div>
-    <div class="horizontal">
-        
-        <div class="box" style="border: transparent;"></div>
-        <div class="connector" style="background-color: transparent;"></div>
-
-        <div class="box-vertical"></div>
-
-        <div class="connector"></div>
-        <div class="box"><h3 class="header">ΥΠΕΥΘΥΝΟΣ ΜΗΧΑΝΟΡΓΑΝΩΣΗΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΓΙΟΛΑΔΗΣ</div>
-
-    </div>
-
-    <div class="vertical-line"></div>
-
-    <!-- Fourth Level -->
-    <div class="bottom-lines">
-        <div class="vertical-line"></div>
-
-        <div class="connector"></div>
-        <div class="vertical-line"></div>
-
-        <div class="connector"></div>
-        <div class="vertical-line"></div>
-
-        <div class="connector"></div>
-        <div class="vertical-line"></div>
-
-    </div>
-    <div class="sub-level">
-        <div>
-            <div class="box"><h3 class="header">ΤΜΗΜΑ ΤΟΠΟΓΡΑΦΙΚΩΝ ΜΕΛΕΤΩΝ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΑΛΕΞΑΝΔΡΟΣ ΚΑΡΔΙΤΣΑΣ</div>
-            <div class="vertical-line"></div>
-            <div class="box"><h3 class="header">ΤΟΠΟΓΡΑΦΟΙ ΜΗΧΑΝΙΚΟΙ</h3></div>
-        </div>
-        <div>
-            <div class="box"><h3 class="header">ΤΜΗΜΑ ΕΡΓΟΤΑΞΙΩΝ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΑΛΕΞΑΝΔΡΟΣ ΚΑΡΔΙΤΣΑΣ</div>
-            <div class="vertical-line"></div>
-            <div class="box"><h3 class="header">ΕΡΓΟΤΑΞΙΑ</h3></div>
-        </div>
-        <div>
-            <div class="box"><h3 class="header">ΥΠΕΥΘΥΝΟΣ ΠΡΟΜΗΘΕΙΩΝ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΖΑΧΑΡΗ ΓΕΩΡΓΙΑ</div>
-        </div>
-        <div>
-            <div class="box"><h3 class="header">ΥΠΕΥΘΥΝΟΣ ΑΝΑΠΤΥΞΗΣ & ΛΕΙΤΟΥΡΓΙΑΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΖΑΧΑΡΗ ΓΕΩΡΓΙΑ</div>
-        </div>
+<div class="heading-container">
+    <h1 class="head">Meet Our Team</h1>
+    <div class="animated-line-container2">
+        <div class="animated-line2"></div>
     </div>
 </div>
 
-            `;
-        } else {
-            // Show the image when screen width is <= 1000px
-            const img = document.createElement("img");
-            img.src = "assets/diagram.jpg";
-            img.alt = "Diagram";
-            img.style.width = "100%";
-            img.style.cursor = "pointer";
-            img.addEventListener("click", () => openImageInFullscreen(img.src));
-            diagramContainer.appendChild(img);
-        }
-    }
+<div class="submenu">
+    <ul>
+        <li><a href="#construction-team" class="tab tab-active" data-filter="construction-team" style="text-decoration: none; color: #000;" ><img src="assets/icons/construction_team.png">Construction Team</a></li>
+        <li><a href="#bim-team" class="tab" data-filter="bim-team" style="text-decoration: none; color: #000;"><img src="assets/icons/bim_team.png">BIM Team</a></li>
+        <li><a href="#management-team" class="tab" data-filter="management-team" style="text-decoration: none; color: #000;"><img src="assets/icons/management.png">Management Team</a></li>
+    </ul>
+</div>
 
-    // Run function initially
-    updateDiagramContent();
+<div class="center">
+    <a href="diagram.html" style="text-decoration: none; color: #000;">
+        <img src="assets/icons/direction-right-position-icon.png" width="10px" alt="Organizational Chart arrow"> 
+         Organizational Chart
+    </a>
+</div>
 
-    // Update on window resize
-    window.addEventListener("resize", updateDiagramContent);
+
+<section class="team-container" id="construction-team">
+    <div class="slider-container">
+        <button class="prev-btn"><img src="assets/icons/direction-left-position-icon.png"></button>
+
+    <div class="team-grid">
+
+ 
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Samarchidi	Dionis">
+            <h3>Samarchidi	Dionis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Athanasiou Vasilis">
+            <h3>Athanasiou Vasilis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Al Marsi Theodorou Amira">
+            <h3>Al Masri Theodorou Amira</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Antonopoulos Mpampis">
+            <h3>Antonopoulos Mpampis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Chief Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Asvestopoulos Dimosthenis">
+            <h3>Asvestopoulos Dimosthenis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Aslanis Georgios">
+            <h3>Aslanis Georgios</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Gavas Athanasios">
+            <h3>Gavas Athanasios</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/team/gkekos.jpg" alt="Gkekos-Gkokopoulos Ioannis">
+            <h3>Gkekos-Gkekopoulos Ioannis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Damoulakis Gabriel">
+            <h3>Damoulakis Gabriel</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Delardas Michael">
+            <h3>Delardas Michael</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Chief Surveyor Engineer</p>
+        </div>        
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Drougos Georgios">
+            <h3>Drougos Georgios</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Drakatos Georgios">
+            <h3>Drakatos Georgios</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Zamparas Georgios">
+            <h3>Zamparas Georgios</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/team/zikos_argiris.JPG" alt="Zikos Argiris">
+            <h3>Zikos Argiris</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Zioris Grgoris">
+            <h3>Zioris Grigoris</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Ismirlis Doloros">
+            <h3>Ismirlis Doloros</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+
+        <!--
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Kakourakis Emanouil">
+            <h3>Kakourakis Emanouil</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Assistant Surveyor</p>
+        </div>
+        -->
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Kantalis Antonios">
+            <h3>Kantalis Antonios</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/team/karagiannis_georgios.jpg" alt="Karagiannis Georgios">
+            <h3>Karagiannis Georgios</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Karamanidis Hlias">
+            <h3>Karamanidis Hlias</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Katsoulias Panagiotis">
+            <h3>Katsoulias Panagiotis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Kolios Stavros">
+            <h3>Kolios Stavros</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Komis Aggelos">
+            <h3>Komis Aggelos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Koukouras Vaggelis">
+            <h3>Koukouras Vaggelis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Kirai Alexandros">
+            <h3>Kirai Alexandros</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/team/kotsakis_kon.jpg" alt="Kotsakis Konstantinos">
+            <h3>Kotsakis Konstantinos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Lekas Ioannis">
+            <h3>Lekas Ioannis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Chief Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Lois Giannis">
+            <h3>Lois Giannis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Manteniotis Konstantinos">
+            <h3>Manteniotis Konstantinos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/team/mantopoulos_grigoris.jpg" alt="Mantopoulos Grigoris">
+            <h3>Mantopoulos Grigoris</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+    
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Mpatsiavas Nikolaos">
+            <h3>Mpaltsiavas Nikolaos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Mpaxlavas Antonis">
+            <h3>Mpaxlavas Antonis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Chief Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Mpoutieros Georgios">
+            <h3>Mpoutieros Georgios</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Nikou Ioannis">
+            <h3>Nikou Ioannis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Ksepapadatos Dimitris">
+            <h3>Ksepapadatos Dimitris</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Pagoulatos Xristos">
+            <h3>Pagoulatos Xristos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Panagiotopoulos Xristos">
+            <h3>Panagiotopoulos Xristos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Paliouras Alexandros">
+            <h3>Paliouras Alexandros</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Pantas Sotiris">
+            <h3>Pantas Sotiris</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Chief Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Pantelaki Natalia">
+            <h3>Pantelaki Natalia</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Retzoulas Georgios">
+            <h3>Retzoulas Georgios</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Sifakis Kiriakos">
+            <h3>Sifakis Kiriakos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Sideris Giannis">
+            <h3>Sideris Giannis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Sophianopoulos Nikolaos">
+            <h3>Sophianopoulos Nikolaos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Stavrou Theodoros">
+            <h3>Stavrou Theodoros</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Tzivelekidis Ioannis">
+            <h3>Tzivelekidis Ioannis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Tsiakos Konstantinos">
+            <h3>Tsiakos Konstantinos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Tsoloudi Xristina">
+            <h3>Tsoloudi Xristina</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Fanos Aggelos">
+            <h3>Fanos Aggelos</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Xatzaras Petros">
+            <h3>Xatzaras Petros</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Xaralampous Antonios">
+            <h3>Xaralampous Antonios</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer</p>
+        </div>
+
+    </div>
+    <button class="next-btn"><img src="assets/icons/direction-right-position-icon.png"></button>
+
+    </div>
+
+</section>
+
+
+<section class="team-container" id="bim-team">
+ <div class="slider-container">
+    <button class="prev-btn"><img src="assets/icons/direction-left-position-icon.png"></button>
+
+    <div class="team-grid">
+
+        <div class="team-member">
+            <img src="assets/team/julia_lagkousi.jpg" alt="Lagkousi Julia">
+            <h3>Lagousi Julia</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+
+            <p>Surveying Engineer
+                NTUA, Head of BIM Department</p>
+        </div>
+
+        <div class="team-member">
+        <img src="assets/team/despoina_pirouni.jpg" alt="Despoina Pirouni">
+            <h3>Pirouni Despoina</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Architect Engineer NTUA</p>
+        </div>
+        <div class="team-member">
+        <img src="assets/man-icon.png" alt="Roumelioti Anastasia">
+            <h3>Roumelioti Anastasia</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Surveyor UniWa</p>
+        </div>
+
+        <div class="team-member">
+        <img src="assets/man-icon.png" alt="Fotiou Komissa">
+            <h3>Fotiou Komissa</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>CAD Specialist</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Poulaki Maro">
+            <h3>Poulaki Maro</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Engineer, Bim CAD Specialist</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/team/nena_panagou.jpg" alt="Panagou Nena">
+            <h3>Panagou Nena</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Architect,
+                BIM Architect</p>
+        </div>
+
+        <div class="team-member">
+            <img src="assets/team/sophia_sagia.jpg" alt="Sophia Sagia">
+            <h3>Sagia Sophia</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Civil Engineer,
+                BIM/CAD Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/team/alexander_kirousis.jpg" alt="Alexandros Kirousis">
+            <h3>Kirousis Alexandros</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Architect,
+                BIM/CAD Coordinator</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/team/maria_gkeli.jpg" alt="Maria Gkeli">
+            <h3>Gkeli Maria</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Dr. Surveying Engineer NTUA,
+                ΒΙΜ & GIS Expert, Ηead of R&D Department</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/team/daina_agkilar.jpg" alt="Diana Agkilar - Triantafilou">
+            <h3>Agkilar - Triantafilou Diana</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveying Engineer, CAD Specialist</p>
+        </div>
+    </div>
+    <button class="next-btn"><img src="assets/icons/direction-right-position-icon.png"></button>
+</div>
+</section>
+
+<section class="team-container" id="management-team">
+    <div class="slider-container">
+        <button class="prev-btn"><img src="assets/icons/direction-left-position-icon.png"></button>
+
+    <div class="team-grid">
+
+        <div class="team-member">
+            <img src="assets/team/alexander_karditsas.jpg" alt="Michael Brown">
+            <h3>Karditsas Alexandros</h3>
+            <p>Surveying Engineer,
+                NTUA, Founder & CEO της AKSM</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Gkotsis Vasilis">
+            <h3>Gkotsis Vasilis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Gioldasis Vasilis">
+            <h3>Gioldasis Vasilis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Tasianis Ioannis">
+            <h3>Tasianis Ioannis</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Surveyor Manager</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Julia Zachari">
+            <h3>Zachari Julia</h3>
+            <p>Head of Administrative and Financial Services,
+                Quality Management Representative</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/team/maria_gkeli.jpg" alt="Maria Gkeli">
+            <h3>Gkeli Maria</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Dr. Surveying Engineer NTUA,
+                ΒΙΜ & GIS Expert, Ηead of R&D Department</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/team/amvrosiadou_elena.JPG" alt="Elena Amvrosiadou">
+            <h3>Amvrosiadou Elena</h3>
+            <p>Operation Assistant</p>
+        </div>
+        <div class="team-member">
+            <img src="assets/team/julia_lagkousi.jpg" alt="Julia Lagkousi">
+            <h3>Lagousi Julia</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+
+            <p>Surveying Engineer
+                NTUA, Head of BIM Departmen</p>
+        </div>
+        
+
+        <div class="team-member">
+            <img src="assets/man-icon.png" alt="Papadakaki Ioanna">
+            <h3>Papadakaki Ioanna</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">
+            <p>Junior Informatics AUEB, IT Support</p>
+        </div>
+    </div>
+        <button class="next-btn"><img src="assets/icons/direction-right-position-icon.png"></button>
+    </div>
+    </section>
+
+    
+<section class="team-container" id="diagram">
+
+
+</section>
+
+
+<script>
+   fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('menu-container').innerHTML = data;
+
+        const script = document.createElement('script');
+        script.src = 'nav.js';
+        document.body.appendChild(script);
+    });
+
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
 });
 
-// Fullscreen image viewer function
-function openImageInFullscreen(src) {
-    const modal = document.createElement("div");
-    modal.classList.add("image-modal");
+document.addEventListener('DOMContentLoaded', function () {
+    const tabs = document.querySelectorAll('.tab');
+    const teamSections = document.querySelectorAll('.team-container');
 
-    const image = document.createElement("img");
-    image.src = src;
-    image.classList.add("fullscreen-image");
+    function initializeSlider(section) {
+        const prevBtn = section.querySelector('.prev-btn');
+        const nextBtn = section.querySelector('.next-btn');
+        const slider = section.querySelector('.team-grid');
+        const teamMembers = section.querySelectorAll('.team-member');
 
-    const closeButton = document.createElement("span");
-    closeButton.innerHTML = "&times;";
-    closeButton.classList.add("close-button");
+        if (prevBtn && nextBtn && slider && teamMembers.length > 0) {
+            let cardWidth, visibleCards, scrollAmount;
+            let isButtonClick = false;
 
-    modal.appendChild(image);
-    modal.appendChild(closeButton);
-    document.body.appendChild(modal);
-
-    document.body.style.overflow = "hidden";
-
-    closeButton.addEventListener("click", () => closeModal(modal));
-    modal.addEventListener("click", (e) => {
-        if (e.target === modal) closeModal(modal);
-    });
-
-    let scale = 1, posX = 0, posY = 0, isDragging = false, startX, startY;
-
-    modal.addEventListener("wheel", (event) => {
-        event.preventDefault();
-        scale += event.deltaY * -0.001;
-        scale = Math.min(Math.max(1, scale), 3);
-        applyTransform();
-    });
-
-    image.addEventListener("mousedown", (event) => {
-        isDragging = true;
-        startX = event.clientX - posX;
-        startY = event.clientY - posY;
-    });
-
-    document.addEventListener("mousemove", (event) => {
-        if (isDragging) {
-            posX = event.clientX - startX;
-            posY = event.clientY - startY;
-            applyTransform();
-        }
-    });
-
-    document.addEventListener("mouseup", () => {
-        isDragging = false;
-    });
-
-    let initialDistance = null;
-    
-    modal.addEventListener("touchstart", (event) => {
-        if (event.touches.length === 2) {
-            initialDistance = calculateDistance(event.touches);
-        } else if (event.touches.length === 1) {
-            isDragging = true;
-            startX = event.touches[0].clientX - posX;
-            startY = event.touches[0].clientY - posY;
-        }
-    });
-
-    modal.addEventListener("touchmove", (event) => {
-        if (event.touches.length === 2) {
-            event.preventDefault();
-            const currentDistance = calculateDistance(event.touches);
-            if (initialDistance) {
-                const scaleChange = currentDistance / initialDistance;
-                scale = Math.min(Math.max(1, scale * scaleChange), 3);
-                initialDistance = currentDistance;
-                applyTransform();
+            function updateScrollAmount() {
+                cardWidth = teamMembers[0].offsetWidth + 20;
+                visibleCards = Math.floor(slider.offsetWidth / cardWidth) - 1;
+                if (visibleCards == 0) visibleCards += 1;
+                scrollAmount = cardWidth * visibleCards;
             }
-        } else if (event.touches.length === 1 && isDragging) {
-            posX = event.touches[0].clientX - startX;
-            posY = event.touches[0].clientY - startY;
-            applyTransform();
+
+            updateScrollAmount();
+            window.addEventListener('resize', updateScrollAmount);
+
+            prevBtn.onclick = nextBtn.onclick = null;
+
+            prevBtn.addEventListener('click', () => handleButtonClick(-scrollAmount));
+            nextBtn.addEventListener('click', () => handleButtonClick(scrollAmount));
+
+            function handleButtonClick(amount) {
+                if (isButtonClick) return;
+
+                isButtonClick = true;
+
+                let newScrollLeft = slider.scrollLeft + amount;
+                let maxScroll = slider.scrollWidth - slider.clientWidth;
+                slider.scrollTo({ left: Math.min(Math.max(newScrollLeft, 0), maxScroll), behavior: 'smooth' });
+
+                setTimeout(() => {
+                    isButtonClick = false;
+                }, 500);
+            }
         }
-    });
-
-    modal.addEventListener("touchend", () => {
-        initialDistance = null;
-        isDragging = false;
-    });
-
-    function applyTransform() {
-        image.style.transform = `scale(${scale}) translate(${posX / scale}px, ${posY / scale}px)`;
     }
 
-    function calculateDistance(touches) {
-        const [touch1, touch2] = touches;
-        return Math.hypot(
-            touch2.clientX - touch1.clientX,
-            touch2.clientY - touch1.clientY
-        );
-    }
-}
+    // Tab switching logic
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            const filter = tab.getAttribute('data-filter');
+            teamSections.forEach(section => (section.style.display = 'none'));
+            const activeSection = document.querySelector(`#${filter}`);
+            if (activeSection) {
+                activeSection.style.display = 'flex';
+                initializeSlider(activeSection);
+            }
+            tabs.forEach(t => t.classList.remove('tab-active'));
+            tab.classList.add('tab-active');
+        });
+    });
 
-function closeModal(modal) {
-    document.body.removeChild(modal);
-    document.body.style.overflow = "auto";
-}
+    // Prevent any tab from being selected on load
+    teamSections.forEach(section => section.style.display = 'none');
+});
+
+document.getElementById("diagramLink").addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default anchor behavior
+        window.location.href = "diagram.html"; // Redirect to diagram.html
+    });
+
+
 </script>
-
 </body>
-</html>
+</html> 
