@@ -4,13 +4,8 @@
     --rose-quartz: #AFA4A5;
     --eerie-black: #1C1C1C;
     --white: #F3F3F3;
-/* CSS RGB */
---cool-gray-rgb: rgb(159, 158, 173);
---dim-gray-rgb: rgb(111, 103, 107);
---rose-quartz-rgb: rgb(175, 164, 165);
---eerie-black-rgb: rgb(28, 28, 28);
---white-rgb: rgb(254, 254, 254);
 }
+
 body {
   justify-content: center
 }
@@ -60,7 +55,7 @@ body.loaded {
     }
     
         .content-left{
-            background: #6f676bd0;
+            background: #6F676B;
             border-radius: 5px;
             padding-top: 40px;
             font-weight: 200;
