@@ -29,6 +29,16 @@ body.loaded {
     opacity: 1;
     transition-delay: 0s; 
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+}
 
 .background_contact{
   width: fit-content;
@@ -428,13 +438,13 @@ hr {
 <form id="contactForm" method="POST" class="form-horizontal">
     <input type="hidden" name="access_key" value="b9ebe546-ab35-4102-a541-86a149fa6069">
 
-    <label for="name">Your Name</label>
+    <label for="name" class="sr-only" >Your Name</label>
     <input type="text" name="name" id="name" placeholder="Your Name" class="contact-inputs" required>
 
-    <label for="email">Your Email</label>
+    <label for="email" class="sr-only" >Your Email</label>
     <input type="email" name="email" id="email" placeholder="Your Email" class="contact-inputs" required>
 
-    <label for="message">Your Message</label>
+    <label for="message" class="sr-only" >Your Message</label>
     <textarea name="message" id="message" placeholder="Your Message" class="contact-inputs" required></textarea>
 
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
