@@ -8,7 +8,6 @@
 
 <style>
 
-/* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
     width: 11px;
 }
@@ -71,31 +70,14 @@
 .grid_header {
     display: grid;
 }
-    
+
 .logo_header {
-    width: 40px; 
-    height: auto;
+    width: 4vw;
     position: fixed;
     z-index: 1000;
-    top: 1em;
-    left: 1em;
+    top: 2em;
+    left: 2em;
 }
-
-/* Responsive Adjustments */
-@media screen and (min-width: 800px) {
-    .logo_header {
-        width: 60px;
-        top: 2em;
-        left: 2em;
-    }
-}
-
-@media screen and (min-width: 2000px) {
-    .logo_header {
-        width: 70px;
-    }
-}
-
 
 .primary-header_header {
     align-items: center;
@@ -142,7 +124,6 @@
 }
 .logo_espa {
     height: 4vh;
-    width: auto;
 }
 .heading-container {
     text-align: center;
@@ -362,15 +343,21 @@ svg {
 }
 
 
-@media(max-width:1000px) {
+@media(max-width:1600px){
       .logo_espa {
-        height: 3vh;
-        width:auto;
+        height: 2vh;
         z-index: 1000;
     }
 }
 
 @media(max-width:500px){
+
+.logo_header {
+    top: 1em;
+    left: 1em;
+    width: 6vw; 
+
+}
   .logo_espa {
     height: 2vh;
     z-index: 1000;
@@ -434,7 +421,11 @@ svg {
     }
 
     @media (min-width: 2000px) {
-
+        .logo_header {
+            width: 3vw;
+            top: 2em;
+            left: 2em;
+        }
         .nav-toggle_header {
             width: 3vw;
             background-size: 3vw;
@@ -449,7 +440,7 @@ svg {
     
 <div>
     <header class="primary-header_header flex_header">
-        <button class="nav-toggle_header" aria-controls="primary-navigation_header" aria-expanded="false" aria-label="Toggle navigation menu">
+        <button class="nav-toggle_header" aria-controls="primary-navigation_header" aria-expanded="false">
                 <svg class="menu-icon" viewBox="0 0 100 100" width="60">
                     <rect id="top-line" class="menu-line" width="90" height="10" fill="#000" rx="5" ry="5"></rect>
                     <rect id="middle-line" class="menu-line" width="70" height="10" fill="#000" rx="5" ry="5"></rect>
@@ -461,10 +452,11 @@ svg {
 
         <nav>
             <ul id="primary-navigation_header" data-visible="false" class="primary-navigation_header flex_header">
-                <li><a href="index.html" data-en="Home" data-gr="Αρχική" class="menu_link_header">Home</a></li>
-                <li><a href="portfolio.html" data-en="Portfolio" data-gr="Πορτφόλιο" class="menu_link_header">Portfolio</a></li>
-                <li><a href="services.html" data-en="Services" data-gr="Υπηρεσίες" class="menu_link_header">Services</a></li>
-                <li><a href="contact.html" data-en="Contact" data-gr="Επικοινωνία" class="menu_link_header">Contact</a></li>
+                <li><a href="index.html" data-en="Home" class="menu_link_header">Home</a></li>
+                <li><a href="portfolio.html" data-en="Portfolio"  class="menu_link_header">Portfolio</a></li>
+                <li><a href="services.html" data-en="Services" class="menu_link_header">Services</a></li>
+                <li><a href="meet_team.html" data-en="Meet Team" class="menu_link_header">Meet Team</a></li>
+                <li><a href="contact.html" data-en="Contact"  class="menu_link_header">Contact</a></li>
 
                 <!--
                 <div class="language-switcher">
@@ -473,7 +465,7 @@ svg {
                 </div>
                 -->
 
-                <li class="social-media-icons">
+                <div class="social-media-icons">
                     <a href="https://www.facebook.com/p/AKSM-Land-Building-Industrial-Surveying-100049683236983/?_rdr" target="_blank" class="social-icon">
                         <img src="assets/icons/facebook-uxwing.svg" alt="Facebook">
                     </a>
@@ -483,7 +475,7 @@ svg {
                     <a href="https://www.instagram.com/alexander.karditsas/?hl=en" target="_blank" class="social-icon">
                         <img src="assets/icons/instagram-uxwing.svg" alt="Instagram">
                     </a>
-                </li>
+                </div>
                 
             </ul>
         </nav>
