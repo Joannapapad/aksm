@@ -134,10 +134,16 @@ font-size: 1.6rem;
     <div id="menu-container"></div>
 
     <div class="center_esp">
-            <a href="assets/ESPA.pdf" target="_blank">
-            <img src="assets/espa_banner.jpg" class="logo_espa" alt="espa_banner">
-            </a>
+        <a href="assets/ESPA.pdf" target="_blank">
+            <picture>
+                <source srcset="assets/espa_banner_low.jpg" media="(max-width: 600px)">
+                <source srcset="assets/espa_banner.jpg" media="(max-width: 1024px)">
+                <img src="assets/espa_banner.jpg" class="logo_espa" alt="espa_banner">
+            </picture>
+        </a>
     </div>
+
+    
     <a href="index.html">
         <img src="assets/aksm_logo.png" class="logo_header" alt="AKSM logo">
     </a>
