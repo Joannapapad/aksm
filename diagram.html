@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +14,31 @@
             align-items: center;
             justify-content: center;
             background-color: #f3f3f3;
+        }
+        .image-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(209, 209, 209, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .fullscreen-image {
+            max-width: 90%;
+            max-height: 90%;
+            transition: transform 0.3s ease;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
         }
         .org-chart {
             display: flex;
@@ -108,6 +133,19 @@
 </head>
 <body>
 
+<div id="diagram-container"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const diagramContainer = document.getElementById("diagram-container");
+
+    function updateDiagramContent() {
+        diagramContainer.innerHTML = ""; // Clear previous content
+
+        if (window.innerWidth > 1000) {
+            // Show the organizational chart (HTML structure)
+            diagramContainer.innerHTML = `
+               
 <div class="org-chart">
     <!-- Top level -->
     <div class="box" style="border-width: 2px;"><h3 class="header">ΓΕΝΙΚΟΣ ΔΙΕΥΘΥΝΤΗΣ</h3><hr style="border: none; height: 1px; background-color: #333; width: 50%; margin: 10px auto;">ΑΛΕΞΑΝΔΡΟΣ ΚΑΡΔΙΤΣΑΣ</div>
@@ -182,6 +220,130 @@
         </div>
     </div>
 </div>
+
+            `;
+        } else {
+            // Show the image when screen width is <= 1000px
+            const img = document.createElement("img");
+            img.src = "assets/diagram.jpg";
+            img.alt = "Diagram";
+            img.style.width = "100%";
+            img.style.cursor = "pointer";
+            img.addEventListener("click", () => openImageInFullscreen(img.src));
+            diagramContainer.appendChild(img);
+        }
+    }
+
+    // Run function initially
+    updateDiagramContent();
+
+    // Update on window resize
+    window.addEventListener("resize", updateDiagramContent);
+});
+
+// Fullscreen image viewer function
+function openImageInFullscreen(src) {
+    const modal = document.createElement("div");
+    modal.classList.add("image-modal");
+
+    const image = document.createElement("img");
+    image.src = src;
+    image.classList.add("fullscreen-image");
+
+    const closeButton = document.createElement("span");
+    closeButton.innerHTML = "&times;";
+    closeButton.classList.add("close-button");
+
+    modal.appendChild(image);
+    modal.appendChild(closeButton);
+    document.body.appendChild(modal);
+
+    document.body.style.overflow = "hidden";
+
+    closeButton.addEventListener("click", () => closeModal(modal));
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal(modal);
+    });
+
+    let scale = 1, posX = 0, posY = 0, isDragging = false, startX, startY;
+
+    modal.addEventListener("wheel", (event) => {
+        event.preventDefault();
+        scale += event.deltaY * -0.001;
+        scale = Math.min(Math.max(1, scale), 3);
+        applyTransform();
+    });
+
+    image.addEventListener("mousedown", (event) => {
+        isDragging = true;
+        startX = event.clientX - posX;
+        startY = event.clientY - posY;
+    });
+
+    document.addEventListener("mousemove", (event) => {
+        if (isDragging) {
+            posX = event.clientX - startX;
+            posY = event.clientY - startY;
+            applyTransform();
+        }
+    });
+
+    document.addEventListener("mouseup", () => {
+        isDragging = false;
+    });
+
+    let initialDistance = null;
+    
+    modal.addEventListener("touchstart", (event) => {
+        if (event.touches.length === 2) {
+            initialDistance = calculateDistance(event.touches);
+        } else if (event.touches.length === 1) {
+            isDragging = true;
+            startX = event.touches[0].clientX - posX;
+            startY = event.touches[0].clientY - posY;
+        }
+    });
+
+    modal.addEventListener("touchmove", (event) => {
+        if (event.touches.length === 2) {
+            event.preventDefault();
+            const currentDistance = calculateDistance(event.touches);
+            if (initialDistance) {
+                const scaleChange = currentDistance / initialDistance;
+                scale = Math.min(Math.max(1, scale * scaleChange), 3);
+                initialDistance = currentDistance;
+                applyTransform();
+            }
+        } else if (event.touches.length === 1 && isDragging) {
+            posX = event.touches[0].clientX - startX;
+            posY = event.touches[0].clientY - startY;
+            applyTransform();
+        }
+    });
+
+    modal.addEventListener("touchend", () => {
+        initialDistance = null;
+        isDragging = false;
+    });
+
+    function applyTransform() {
+        image.style.transform = `scale(${scale}) translate(${posX / scale}px, ${posY / scale}px)`;
+    }
+
+    function calculateDistance(touches) {
+        const [touch1, touch2] = touches;
+        return Math.hypot(
+            touch2.clientX - touch1.clientX,
+            touch2.clientY - touch1.clientY
+        );
+    }
+}
+
+function closeModal(modal) {
+    document.body.removeChild(modal);
+    document.body.style.overflow = "auto";
+}
+</script>
 
 </body>
 </html>
