@@ -447,20 +447,84 @@ hr {
         <label for="message" class="sr-only">Your Message</label>
         <textarea name="message" id="message" placeholder="Your Message" class="contact-inputs" required></textarea>
     
-        <input type="hidden" style="z-index:-2;" name="recaptcha_response" id="recaptchaResponse">
-    
-        <div id="successMessage" style="display:none;font-family:Arial;color:rgb(1, 54, 1);font-size: 1rem;">
+        <input type="hidden" style="z-index: -2;" name="recaptcha_response" id="recaptchaResponse">
+        
+        <div id="recaptcha-container"></div>
+
+        <div id="successMessage" style="display:none; font-family:Arial;color: rgb(1, 54, 1); font-size: 1rem;">
             Thank You for contacting us! We will contact you as soon as possible!
         </div>
     
-        <div id="errorMessage" style="display:none;font-family:Arial;color:rgb(123, 5, 5);">
+        <div id="errorMessage" style="display:none; font-family:Arial;color:rgb(123, 5, 5);">
             Something went wrong, please try again later.
         </div>
     
-        <div id="emailError" style="display:none;font-family:Arial;color:rgb(123, 5, 5)">Invalid email format.</div>
+        <div id="emailError" style="display:none; color:rgb(123, 5, 5)">Invalid email format.</div>
     
         <button type="submit">Submit Form</button>
     </form>
+    <!--
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lf-BukqAAAAAFYug6T8N138F3HXDYqQaj4ycypE"></script>
+
+<script>
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Try reCAPTCHA v3 first
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6Lf-BukqAAAAAFYug6T8N138F3HXDYqQaj4ycypE', {action: 'submit'}).then(function(token) {
+                // Handle the token from reCAPTCHA v3
+                document.getElementById("recaptchaResponse").value = token;
+
+                // Submit form using fetch
+                submitForm();
+            }).catch(function(error) {
+                // If v3 fails or is blocked by cookies, use reCAPTCHA v2 (Invisible)
+                showV2Captcha();
+            });
+        });
+    });
+
+    function showV2Captcha() {
+        // Dynamically insert reCAPTCHA v2 (Invisible) into your form
+        var recaptchaElement = document.createElement("div");
+        recaptchaElement.classList.add("g-recaptcha");
+        recaptchaElement.setAttribute("data-sitekey", "6LdQHekqAAAAANovvFvVEqVbYemx6wbuoNuT7pA4");
+        recaptchaElement.setAttribute("data-size", "invisible");
+        
+        // Append the reCAPTCHA element to a container in your form
+        document.getElementById("recaptcha-container").appendChild(recaptchaElement);
+        
+        // Re-render the reCAPTCHA v2
+        grecaptcha.render(recaptchaElement);
+        
+        // Once reCAPTCHA is visible, trigger it for the user to complete
+        grecaptcha.execute();
+    }
+
+    function submitForm() {
+        let formData = new FormData(document.getElementById("contactForm"));
+        
+        fetch("process-form.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById("successMessage").style.display = "block";
+                document.getElementById("errorMessage").style.display = "none";
+                document.getElementById("contactForm").reset();
+            } else {
+                document.getElementById("errorMessage").style.display = "block";
+            }
+        })
+        .catch(error => {
+            document.getElementById("errorMessage").style.display = "block";
+        });
+    }
+</script>
+-->
     
       
         <div class="direct-contact-container">
@@ -470,8 +534,14 @@ hr {
             
             <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:30-210-970-2510" title="Give me a call">(30) 210 97 02 510</a></span></i></li>
             
-            <li class="list-item"><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:#info@aksm.gr" title="Send me an email">info@aksm.gr</a></span></i></li>
-          </ul>
+            <li class="list-item">
+              <i class="fa fa-envelope fa-2x">
+                  <span class="contact-text gmail">
+                      <a href="javascript:void(0);" onclick="window.location.href='mailto:' + 'info' + '@' + 'aksm' + '.' + 'gr';" title="Send me an email">info@aksm.gr</a>
+                  </span>
+              </i>
+          </li>
+        </ul>
           <hr>
           <ul class="social-media-list">
             <li><a href="https://www.facebook.com/p/AKSM-Land-Building-Industrial-Surveying-100049683236983/?_rdr" target="_blank" alt=""class="contact-icon">
