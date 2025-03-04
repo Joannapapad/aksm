@@ -8,39 +8,25 @@ function preloadImages(urls) {
 function setVideoSource() {
     const videoSource = document.getElementById('videoSource');
     const videoElement = document.getElementById('dynamicVideo');
-
-    // Store the current source for comparison
     const currentSource = videoSource.src;
 
-    // Check screen width and assign video source accordingly
     if (window.innerWidth < 600) {
-        // Set the mobile video source
         videoSource.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_low.mp4?alt=media&token=cfae68f3-1636-4543-ac3f-c8c6d19b1b90';
     } else {
-        // Set the desktop video source
         videoSource.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=c63fcf1a-bcf2-41c2-ae31-1dffe0432fcd';
     }
 
-    // Only load if the source has changed
     if (currentSource !== videoSource.src) {
-        videoElement.load(); // Load the new video source
-
-        // Attempt to play the video after loading the new source
+        videoElement.load();
         videoElement.play().catch(error => {
             console.warn('Video play failed:', error);
-            // Optionally, you could show a play button or an overlay here
         });
     }
 }
 
-// Set the video source on page load
 window.onload = setVideoSource;
-
-// Optionally, change it on window resize
 window.onresize = setVideoSource;
 
-
-    // Load header.html and nav.js sequentially
 fetch('header.html')
     .then(response => response.text())
     .then(data => {
@@ -48,9 +34,8 @@ fetch('header.html')
 
     const script = document.createElement('script');
     script.src = 'nav.js';
-    script.defer = true;  // Use defer instead of async
+    script.defer = true;
     document.body.appendChild(script);
-
     });
 
 window.addEventListener('load', () => {
@@ -61,182 +46,156 @@ window.addEventListener('load', () => {
             document.body.classList.add("loaded");
         });
     } else {
-        document.body.classList.add("loaded"); // If no video exists, show page immediately
+        document.body.classList.add("loaded");
     }
 });
 
-    // JavaScript for Parallax Effect
+document.addEventListener('DOMContentLoaded', function () {
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentIndex = 0;
+    const totalSlides = slides.length;
 
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const slides = document.querySelectorAll('.carousel-slide');
-        let currentIndex = 0;
-        const totalSlides = slides.length;
-    
-        // Category names and corresponding URLs
-        const categories = [
-            "Scan2Bim",  // Slide 1
-            "Construction Surveying",  // Slide 2
-            // "Industrial Surveying",  // Slide 3
-            "Deformation Monitoring",   // Slide 4
-            "UAV Mapping"   // Slide 5
-        ];
-    
-        const categoryUrls = {
-            "Scan2Bim": "services.html#scan2bim-section",
-            "Construction Surveying": "services.html#ci_surveying",
-            "Deformation Monitoring": "services.html#deformation-monitoring",
-            "UAV Mapping": "services.html#UVA_mapping"
-        };
-    
-        const categoryTextElement = document.getElementById('categoryText');
-    
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                if (i === index) {
-                    slide.style.opacity = '1'; // Make the active slide visible
-                    slide.style.zIndex = '1'; // Active slide gets z-index 1
-                    slide.classList.add('active');
-                    
-                    // Update category text and fade it in
-                    categoryTextElement.textContent = categories[index]; // Update text
-                    categoryTextElement.style.opacity = '1'; // Fade in text
-                } else {
-                    slide.style.opacity = '0'; // Hide other slides
-                    slide.style.zIndex = '0'; // Other slides get z-index 0
-                    slide.classList.remove('active');
-                }
-            });
-    
-            if (index >= 0) {
-                setTimeout(() => {
-                    categoryTextElement.style.opacity = '0'; // Fade out text
-                }, 5800); // Time to wait before fading out text
-            }
-        }
-    
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % totalSlides; // Cycle through slides
-            showSlide(currentIndex);
-        }
-    
-        // Automatically change slides every 6 seconds
-        setInterval(nextSlide, 6000);
-    
-        // Initialize the first slide as active
-        showSlide(currentIndex);
-    
-        // Event listener for clicking on the category text
-        categoryTextElement.addEventListener('click', () => {
-            const currentCategory = categories[currentIndex];
-            const targetUrl = categoryUrls[currentCategory];
-    
-            if (targetUrl) {
-                window.location.href = targetUrl; // Redirect to the corresponding URL
-            }
-        });
-    });
-    
-
-    // Counter Animation
-    const counters = [
-        { counterId: 'counter1', startCount: 0, maxCount: 25, interval: 50 },
-        { counterId: 'counter2', startCount: 2900, maxCount: 3000, interval: 10 },
-        { counterId: 'counter3', startCount: 0, maxCount: 80, interval: 10 }
+    const categories = [
+        "Scan2Bim",
+        "Construction Surveying",
+        "Deformation Monitoring",
+        "UAV Mapping"
     ];
 
-    const counterObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const { counterId, startCount, maxCount, interval } = entry.target.dataset;
-                startCountdown(entry.target, parseInt(startCount), parseInt(maxCount), parseInt(interval));
-                counterObserver.unobserve(entry.target);
+    const categoryUrls = {
+        "Scan2Bim": "services.html#scan2bim-section",
+        "Construction Surveying": "services.html#ci_surveying",
+        "Deformation Monitoring": "services.html#deformation-monitoring",
+        "UAV Mapping": "services.html#UVA_mapping"
+    };
+
+    const categoryTextElement = document.getElementById('categoryText');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            if (i === index) {
+                slide.style.opacity = '1';
+                slide.style.zIndex = '1';
+                slide.classList.add('active');
+                categoryTextElement.textContent = categories[index];
+                categoryTextElement.style.opacity = '1';
+            } else {
+                slide.style.opacity = '0';
+                slide.style.zIndex = '0';
+                slide.classList.remove('active');
             }
         });
-    }, { threshold: 0.3 });
 
-    counters.forEach(item => {
-        const counter = document.getElementById(item.counterId);
-        if (counter) {
-            counter.dataset.startCount = item.startCount;
-            counter.dataset.maxCount = item.maxCount;
-            counter.dataset.interval = item.interval;
-            counterObserver.observe(counter);
+        if (index >= 0) {
+            setTimeout(() => {
+                categoryTextElement.style.opacity = '0';
+            }, 5800);
         }
-    });
-
-    function startCountdown(counter, startCount, maxCount, interval) {
-        let count = startCount;
-        counter.textContent = count;
-        const countdown = setInterval(() => {
-            count++;
-            counter.textContent = count;
-            if (count >= maxCount) clearInterval(countdown);
-        }, interval);
     }
 
-    const logos = [
-        { src: "assets/customers/titan.jpg", alt: "titan" },
-        { src: "assets/customers/elval.jpg", alt: "elval" },
-        { src: "assets/customers/temes.jpg", alt: "temes" },
-        { src: "assets/customers/terna.jpg", alt: "terna" },
-        { src: "assets/customers/elemka.jpg", alt: "elemka" },
-        { src: "assets/customers/ballian.jpg", alt: "ballian" },
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        showSlide(currentIndex);
+    }
 
+    setInterval(nextSlide, 6000);
+    showSlide(currentIndex);
 
-        { src: "assets/customers/atlantis.jpg", alt: "atlantis" },
-        { src: "assets/customers/metalsystems.jpg", alt: "metalsystems" },
-        { src: "assets/customers/unispace.jpg", alt: "unispace" },
-        { src: "assets/customers/bic.jpg", alt: "bic" },
-        { src: "assets/customers/adark.jpg", alt: "adark" },
-        { src: "assets/customers/eurohub.jpg", alt: "eurohub" },
-        { src: "assets/customers/adark.jpg", alt: "adark" },
-        { src: "assets/customers/arka.jpg", alt: "arka" },
-        { src: "assets/customers/ethnokat.jpg", alt: "ethnokat" },
-        
-        { src: "assets/customers/redex.jpg", alt: "redex" },
-        { src: "assets/customers/lafarge.jpg", alt: "lafarge" },
-        { src: "assets/customers/AIA.jpg", alt: "AIA" },
-        { src: "assets/customers/ioniki.jpg", alt: "ioniki" },
-        { src: "assets/customers/vitael.jpg", alt: "vitael" },
-        { src: "assets/customers/sklavenitis.jpg", alt: "sklavenitis" },
-        { src: "assets/customers/metlen.jpg", alt: "metlen" },
-        { src: "assets/customers/fraport.jpg", alt: "fraport" },
-        { src: "assets/customers/noval.jpg", alt: "noval" },
-        { src: "assets/customers/eyau.jpg", alt: "eyau" },
-        { src: "assets/customers/metka.jpg", alt: "metka" },
-        { src: "assets/customers/dimand.jpg", alt: "dimand" },
-        { src: "assets/customers/peraiosbank.jpg", alt: "peraiosbank" }
+    categoryTextElement.addEventListener('click', () => {
+        const currentCategory = categories[currentIndex];
+        const targetUrl = categoryUrls[currentCategory];
 
-    ];
-    
-// Function to generate scroller content dynamically
+        if (targetUrl) {
+            window.location.href = targetUrl;
+        }
+    });
+});
+
+const counters = [
+    { counterId: 'counter1', startCount: 0, maxCount: 25, interval: 50 },
+    { counterId: 'counter2', startCount: 2900, maxCount: 3000, interval: 10 },
+    { counterId: 'counter3', startCount: 0, maxCount: 80, interval: 10 }
+];
+
+const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const { counterId, startCount, maxCount, interval } = entry.target.dataset;
+            startCountdown(entry.target, parseInt(startCount), parseInt(maxCount), parseInt(interval));
+            counterObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.3 });
+
+counters.forEach(item => {
+    const counter = document.getElementById(item.counterId);
+    if (counter) {
+        counter.dataset.startCount = item.startCount;
+        counter.dataset.maxCount = item.maxCount;
+        counter.dataset.interval = item.interval;
+        counterObserver.observe(counter);
+    }
+});
+
+function startCountdown(counter, startCount, maxCount, interval) {
+    let count = startCount;
+    counter.textContent = count;
+    const countdown = setInterval(() => {
+        count++;
+        counter.textContent = count;
+        if (count >= maxCount) clearInterval(countdown);
+    }, interval);
+}
+
+const logos = [
+    { src: "assets/customers/titan.jpg", alt: "titan" },
+    { src: "assets/customers/elval.jpg", alt: "elval" },
+    { src: "assets/customers/temes.jpg", alt: "temes" },
+    { src: "assets/customers/terna.jpg", alt: "terna" },
+    { src: "assets/customers/elemka.jpg", alt: "elemka" },
+    { src: "assets/customers/ballian.jpg", alt: "ballian" },
+    { src: "assets/customers/atlantis.jpg", alt: "atlantis" },
+    { src: "assets/customers/metalsystems.jpg", alt: "metalsystems" },
+    { src: "assets/customers/unispace.jpg", alt: "unispace" },
+    { src: "assets/customers/bic.jpg", alt: "bic" },
+    { src: "assets/customers/adark.jpg", alt: "adark" },
+    { src: "assets/customers/eurohub.jpg", alt: "eurohub" },
+    { src: "assets/customers/arka.jpg", alt: "arka" },
+    { src: "assets/customers/ethnokat.jpg", alt: "ethnokat" },
+    { src: "assets/customers/redex.jpg", alt: "redex" },
+    { src: "assets/customers/lafarge.jpg", alt: "lafarge" },
+    { src: "assets/customers/AIA.jpg", alt: "AIA" },
+    { src: "assets/customers/ioniki.jpg", alt: "ioniki" },
+    { src: "assets/customers/vitael.jpg", alt: "vitael" },
+    { src: "assets/customers/sklavenitis.jpg", alt: "sklavenitis" },
+    { src: "assets/customers/metlen.jpg", alt: "metlen" },
+    { src: "assets/customers/fraport.jpg", alt: "fraport" },
+    { src: "assets/customers/noval.jpg", alt: "noval" },
+    { src: "assets/customers/eyau.jpg", alt: "eyau" },
+    { src: "assets/customers/metka.jpg", alt: "metka" },
+    { src: "assets/customers/dimand.jpg", alt: "dimand" },
+    { src: "assets/customers/peraiosbank.jpg", alt: "peraiosbank" }
+];
+
 function generateScrollerContent(logos) {
     const scrollerInner = document.querySelector(".scroller__inner");
 
     logos.forEach(logo => {
-        // Create a new div for each logo
         const circleDiv = document.createElement("div");
         circleDiv.classList.add("circle");
 
-        // Create a new image element
         const img = document.createElement("img");
         img.setAttribute("loading", "lazy");
         img.setAttribute("src", logo.src);
         img.setAttribute("alt", logo.alt);
 
-        // Append the image to the circle div
         circleDiv.appendChild(img);
-
-        // Append the circle div to the scroller inner container
         scrollerInner.appendChild(circleDiv);
     });
 }
 
-// Call the function to generate the content
 generateScrollerContent(logos);
 
-// Handle scroller animation if not reducing motion
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const scrollers = document.querySelectorAll(".scroller");
     scrollers.forEach(scroller => {
@@ -253,116 +212,95 @@ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     });
 }
 
-// Slider functionality
 const next = document.querySelector('.next');
 const prev = document.querySelector('.prev');
 const slider = document.querySelector('.slider');
-const sections = Array.from(slider.children); // Get all the child sections
-let sectionIndex = 0; // Initialize the current section index
+const sections = Array.from(slider.children);
+let sectionIndex = 0;
 
 function showSlide(index) {
     slider.style.transform = `translateX(-${index * 100}%)`;
-    slider.style.transition = 'transform 0.5s ease'; // Adding smooth transition
+    slider.style.transition = 'transform 0.5s ease';
 }
 
-// Function to move to the next slide
 function nextSlide() {
-    sectionIndex = (sectionIndex + 1) % sections.length; // Wrap around to first slide if at last
+    sectionIndex = (sectionIndex + 1) % sections.length;
     showSlide(sectionIndex);
 }
 
-// Function to move to the previous slide
 function prevSlide() {
-    sectionIndex = (sectionIndex - 1 + sections.length) % sections.length; // Wrap around to last slide if at first
+    sectionIndex = (sectionIndex - 1 + sections.length) % sections.length;
     showSlide(sectionIndex);
 }
 
-// Handle the "next" button click
 next.addEventListener('click', function() {
-    nextSlide(); // Move to the next slide
+    nextSlide();
 });
 
-// Handle the "prev" button click
 prev.addEventListener('click', function() {
-    prevSlide(); // Move to the previous slide
+    prevSlide();
 });
 
-// Initially show the first slide
 showSlide(sectionIndex);
 
+function initSlider(sliderContainerSelector, prevBtnSelector, nextBtnSelector) {
+    const slider = document.querySelector(sliderContainerSelector);
+    const prevBtn = document.querySelector(prevBtnSelector);
+    const nextBtn = document.querySelector(nextBtnSelector);
 
-    function initSlider(sliderContainerSelector, prevBtnSelector, nextBtnSelector) {
-        const slider = document.querySelector(sliderContainerSelector);
-        const prevBtn = document.querySelector(prevBtnSelector);
-        const nextBtn = document.querySelector(nextBtnSelector);
+    if (slider && prevBtn && nextBtn) {
+        const items = slider.querySelectorAll('.img__wrap');
+        const itemWidth = items[0].offsetWidth + 10;
+        let visibleCards = Math.floor(slider.offsetWidth / itemWidth);
+        let scrollPosition = slider.scrollLeft;
 
-        if (slider && prevBtn && nextBtn) {
-            const items = slider.querySelectorAll('.img__wrap');
-            const itemWidth = items[0].offsetWidth + 10; // Width of each image with margin
-            let visibleCards = Math.floor(slider.offsetWidth / itemWidth);
-            let scrollPosition = slider.scrollLeft; // Start from current scroll position
+        function updateButtons() {
+            const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+            prevBtn.style.display = scrollPosition > 0 ? 'block' : 'none';
+            nextBtn.style.display = scrollPosition < maxScrollLeft ? 'block' : 'none';
+        }
 
-            function updateButtons() {
-                const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-                prevBtn.style.display = scrollPosition > 0 ? 'block' : 'none';
-                nextBtn.style.display = scrollPosition < maxScrollLeft ? 'block' : 'none';
-            }
+        function updateScrollAmount() {
+            visibleCards = Math.floor(slider.offsetWidth / itemWidth);
+        }
 
-            // Update the visible cards and the scroll amount on window resize
-            function updateScrollAmount() {
-                visibleCards = Math.floor(slider.offsetWidth / itemWidth);
-                console.log("Updated Visible Cards: ", visibleCards);
-            }
-
-            // MutationObserver to detect when the 'animate' class is added
-            const observer = new MutationObserver((mutationsList) => {
-                for (let mutation of mutationsList) {
-                    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                        if (slider.classList.contains('animate')) {
-                            // Run updateScrollAmount once the 'animate' class is added
-                            console.log("Animate class added, running updateScrollAmount...");
-                            updateScrollAmount();
-                            break; // Stop observing once we have updated the scroll amount
-                        }
+        const observer = new MutationObserver((mutationsList) => {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    if (slider.classList.contains('animate')) {
+                        updateScrollAmount();
+                        break;
                     }
                 }
-            });
+            }
+        });
 
-            // Observe the 'class' attribute changes on the carousel slider
-            observer.observe(slider, { attributes: true });
+        observer.observe(slider, { attributes: true });
 
-            // Recalculate visible cards on window resize (after 'animate' class is added)
-            window.addEventListener('resize', () => {
-                if (slider.classList.contains('animate')) {
-                    updateScrollAmount();
-                }
-            });
+        window.addEventListener('resize', () => {
+            if (slider.classList.contains('animate')) {
+                updateScrollAmount();
+            }
+        });
 
-            // Set initial visible cards and scroll position on load
-            updateScrollAmount();
+        updateScrollAmount();
+        updateButtons();
+
+        nextBtn.addEventListener('click', () => {
+            scrollPosition = Math.min(scrollPosition + (itemWidth * visibleCards), slider.scrollWidth - slider.clientWidth);
+            slider.scrollTo({ left: scrollPosition, behavior: 'smooth' });
             updateButtons();
+        });
 
-            // Event listener for the "next" button
-            nextBtn.addEventListener('click', () => {
-                console.log("Next Button Clicked");
-
-                scrollPosition = Math.min(scrollPosition + (itemWidth * visibleCards), slider.scrollWidth - slider.clientWidth);
-                slider.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-                updateButtons(); // Update button visibility after scrolling
-            });
-
-            // Event listener for the "prev" button
-            prevBtn.addEventListener('click', () => {
-                scrollPosition = Math.max(scrollPosition - (itemWidth * visibleCards), 0);
-                slider.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-                updateButtons(); // Update button visibility after scrolling
-            });
-        }
+        prevBtn.addEventListener('click', () => {
+            scrollPosition = Math.max(scrollPosition - (itemWidth * visibleCards), 0);
+            slider.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+            updateButtons();
+        });
     }
+}
 
-    // Initialize "Project Carousel" slider
-    initSlider(".carousel", "#left", "#right");
-
+initSlider(".carousel", "#left", "#right");
 
 function changeImage(element, newSrc) {
     element.querySelector('img').src = newSrc;
@@ -377,4 +315,3 @@ fetch('footer.html')
 .then(data => {
     document.getElementById('footer__cont').innerHTML = data;
 });
-
