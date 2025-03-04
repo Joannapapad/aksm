@@ -462,39 +462,6 @@ hr {
         <button type="submit">Submit Form</button>
     </form>
     
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lf-BukqAAAAAFYug6T8N138F3HXDYqQaj4ycypE"></script>
-    <script>
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-    
-            grecaptcha.ready(function() {
-                grecaptcha.execute('6Lf-BukqAAAAAFYug6T8N138F3HXDYqQaj4ycypE', {action: 'submit'}).then(function(token) {
-                    document.getElementById("recaptchaResponse").value = token;
-    
-                    let formData = new FormData(document.getElementById("contactForm"));
-    
-                    fetch("process-form.php", {
-                        method: "POST",
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            document.getElementById("successMessage").style.display = "block";
-                            document.getElementById("errorMessage").style.display = "none";
-                            document.getElementById("contactForm").reset();
-                        } else {
-                            document.getElementById("errorMessage").style.display = "block";
-                        }
-                    })
-                    .catch(error => {
-                        document.getElementById("errorMessage").style.display = "block";
-                    });
-                });
-            });
-        });
-    </script>
-    
       
         <div class="direct-contact-container">
   
