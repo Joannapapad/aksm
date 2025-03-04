@@ -132,6 +132,7 @@ padding-right: 3em;
   padding-top: 15px;
   border-radius: 20px;
   color: #000;
+  resize: none; 
 }
 
 
@@ -448,30 +449,28 @@ hr {
     
         <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
     
-        <div id="successMessage" style="display:none; font-family:Arial;color: rgb(1, 54, 1); font-size: 1rem;">
+        <div id="successMessage" style="display:none;font-family:Arial;color:rgb(1, 54, 1);font-size: 1rem;">
             Thank You for contacting us! We will contact you as soon as possible!
         </div>
     
-        <div id="errorMessage" style="display:none; font-family:Arial;color:rgb(123, 5, 5);">
+        <div id="errorMessage" style="display:none;font-family:Arial;color:rgb(123, 5, 5);">
             Something went wrong, please try again later.
         </div>
     
-        <div id="emailError" style="display:none; color:rgb(123, 5, 5)">Invalid email format.</div>
+        <div id="emailError" style="display:none;font-family:Arial;color:rgb(123, 5, 5)">Invalid email format.</div>
     
         <button type="submit">Submit Form</button>
     </form>
     
-    <!-- Google reCAPTCHA v3 -->
     <script src="https://www.google.com/recaptcha/api.js?render=6Lf-BukqAAAAAFYug6T8N138F3HXDYqQaj4ycypE"></script>
     <script>
         document.getElementById("contactForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault();
     
             grecaptcha.ready(function() {
                 grecaptcha.execute('6Lf-BukqAAAAAFYug6T8N138F3HXDYqQaj4ycypE', {action: 'submit'}).then(function(token) {
                     document.getElementById("recaptchaResponse").value = token;
     
-                    // Perform form submission via AJAX
                     let formData = new FormData(document.getElementById("contactForm"));
     
                     fetch("process-form.php", {
@@ -505,9 +504,7 @@ hr {
             <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:30-210-970-2510" title="Give me a call">(30) 210 97 02 510</a></span></i></li>
             
             <li class="list-item"><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:#info@aksm.gr" title="Send me an email">info@aksm.gr</a></span></i></li>
-            
           </ul>
-  
           <hr>
           <ul class="social-media-list">
             <li><a href="https://www.facebook.com/p/AKSM-Land-Building-Industrial-Surveying-100049683236983/?_rdr" target="_blank" alt=""class="contact-icon">
