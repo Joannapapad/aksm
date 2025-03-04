@@ -301,18 +301,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 fetch('footer.html')
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById('footer__cont').innerHTML = data;
-    
-    var script = document.createElement('script');
-    script.src = 'footer_script.js';
-    script.type = 'text/javascript';
-    script.onload = function() {
-      console.log("Footer script loaded successfully.");
-    };
-    document.body.appendChild(script); 
-  })
-  .catch(error => console.error("Error fetching footer:", error));
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('footer__cont').innerHTML = data;
+    });
 
 });
