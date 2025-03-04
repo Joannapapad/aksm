@@ -435,40 +435,67 @@ hr {
             </div>
     
     <div class="contact-wrapper">
-<form id="contactForm" method="POST" class="form-horizontal">
+      <form id="contactForm" method="POST" class="form-horizontal">
 
-    <label for="name" class="sr-only" >Your Name</label>
-    <input type="text" name="name" id="name" placeholder="Your Name" class="contact-inputs" required>
-
-    <label for="email" class="sr-only" >Your Email</label>
-    <input type="email" name="email" id="email" placeholder="Your Email" class="contact-inputs" required>
-
-    <label for="message" class="sr-only" >Your Message</label>
-    <textarea name="message" id="message" placeholder="Your Message" class="contact-inputs" required></textarea>
-
-    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-
-    <div id="successMessage" style="display:none; font-family:Arial; color: rgb(94, 93, 93); font-size: 1rem;">
-        Thank You for contacting us!<br> We will contact you as soon as possible! 
-    </div>
-
-    <div id="errorMessage" style="display:none; font-family:Arial; color: red;">
-        Something went wrong, please try again later.
-    </div>
+        <label for="name" class="sr-only">Your Name</label>
+        <input type="text" name="name" id="name" placeholder="Your Name" class="contact-inputs" required>
     
-    <div id="emailError" style="display:none; color:red;">Invalid email format.</div>
-
-    <button type="submit">Submit Form</button>
-</form>
-
+        <label for="email" class="sr-only">Your Email</label>
+        <input type="email" name="email" id="email" placeholder="Your Email" class="contact-inputs" required>
     
- 
-<script>
-  
-</script>
+        <label for="message" class="sr-only">Your Message</label>
+        <textarea name="message" id="message" placeholder="Your Message" class="contact-inputs" required></textarea>
     
-
-    <!-- Left contact page --> 
+        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+    
+        <div id="successMessage" style="display:none; font-family:Arial;color: rgb(1, 54, 1); font-size: 1rem;">
+            Thank You for contacting us! We will contact you as soon as possible!
+        </div>
+    
+        <div id="errorMessage" style="display:none; font-family:Arial;color:rgb(123, 5, 5);">
+            Something went wrong, please try again later.
+        </div>
+    
+        <div id="emailError" style="display:none; color:rgb(123, 5, 5)">Invalid email format.</div>
+    
+        <button type="submit">Submit Form</button>
+    </form>
+    
+    <!-- Google reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lf-BukqAAAAAFYug6T8N138F3HXDYqQaj4ycypE"></script>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+    
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6Lf-BukqAAAAAFYug6T8N138F3HXDYqQaj4ycypE', {action: 'submit'}).then(function(token) {
+                    document.getElementById("recaptchaResponse").value = token;
+    
+                    // Perform form submission via AJAX
+                    let formData = new FormData(document.getElementById("contactForm"));
+    
+                    fetch("process-form.php", {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById("successMessage").style.display = "block";
+                            document.getElementById("errorMessage").style.display = "none";
+                            document.getElementById("contactForm").reset();
+                        } else {
+                            document.getElementById("errorMessage").style.display = "block";
+                        }
+                    })
+                    .catch(error => {
+                        document.getElementById("errorMessage").style.display = "block";
+                    });
+                });
+            });
+        });
+    </script>
+    
       
         <div class="direct-contact-container">
   
