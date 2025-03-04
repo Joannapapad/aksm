@@ -237,10 +237,26 @@ section {
                     (30) 694 47 74 491
                   </a>
                 
-                  <a href="mailto:info@aksm.gr">
-                    <img src="assets/icons/email-uxwing.svg" alt="Email Icon"> 
-                    info@aksm.gr
+                  <a href="#" id="emailLink">
+                    <img src="assets/icons/email-uxwing.svg" alt="Email Icon">
+                    <span id="emailText">Email</span>
                   </a>
+                  
+                  <script type="text/javascript">
+                    // Split email parts and encode them
+                    var user = ['i', 'n', 'f', 'o'].join('');
+                    var domain = ['a', 'k', 's', 'm'].join('');
+                    var tld = ['g', 'r'].join('');
+                  
+                    // Combine them to form the email
+                    var email = user + '@' + domain + '.' + tld;
+                  
+                    // Set the email address to the mailto link and text
+                    document.getElementById('emailLink').href = 'mailto:' + email;
+                    document.getElementById('emailText').innerText = email;
+                  </script>
+                  
+                  
                 
                   <a href="https://www.google.com/maps?q=392+Mesogion+Avenue+15341,+Agia+Paraskevi,+Athens" target="_blank">
                     <img src="assets/icons/maps-pin-uxwing.svg" alt="Location Icon">
