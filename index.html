@@ -1,18 +1,16 @@
+<?php include('header.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AKSM is a leading surveying company consisting of experienced engineers, implementing advanced technology and computerization to provide a full range of surveying services for both the public and private sectors.">
-    <link rel="stylesheet" href="css/styles.css?v=2.0">
+    <link rel="stylesheet" href="css/styles.css?v=2.4">
     <link rel="icon" href="assets/aksm_logo_google.png">
     <link rel="preload" href="assets/aksm_logo.webp" as="image">
-
     <title>AKSM</title>
-
-
-<script type="application/ld+json">
-
+    
+<script type="application/ld+json" nonce="<?php echo $nonce; ?>">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -56,7 +54,8 @@
   }
 }
 
-    </script>
+  </script>
+
     <script src="nav.js" defer></script>
     <script src="index.js" defer></script>
 
@@ -135,7 +134,7 @@
         <hr class="separator--line">
         <h1 data-en="Where Construction Meets Technology" class="heading-contai">Where Construction Meets Technology</h1>
     
-        <a href="contact.html" class="button">
+        <a href="/contact.html" class="button">
                 <div class="box-1">
                     <div class="btn btn-one" id="front_page">
                         <span>Contact us</span>
@@ -168,13 +167,13 @@
                 <div id="content-wrapper">
                     <img src="assets/construction_hat.svg" alt="construction_hat_icon" class="icon">
                     <div>
-                        <h1 id="counter1" class="counter" style="display: flex; align-items: start;padding-left: 0.5rem;">0</h1>
+                        <h1 id="counter1" class="counter">0</h1>
                         <div class="additional-text">
                             <p>Years Of Experience</p>
                         </div>
                     </div>
                 </div>
-                <div class="vertical-separator"></div> <!-- Vertical separator 1 -->
+                <div class="vertical-separator"></div>
             </div>
         </div>
     
@@ -183,8 +182,8 @@
                 <div id="content-wrapper2">
                     <img src="https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/jobs.png?alt=media&token=beb04762-cecf-463e-8347-303f67ff8b44" alt="suveying_tool" class="icon">
                     <div>
-                      <div style="display:flex;align-items: center;justify-content: center;" class="counter"><h3 id="counter2">2000</h3>+</div>
-                        <div class="additional-text">
+                      <div class="counter"><h3 id="counter2">2000</h3>+</div>
+                      <div class="additional-text">
                             <p>Projects</p>
                         </div>
                     </div>
@@ -216,7 +215,7 @@
                 <div id="content-wrapper">
                     <img src="https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/employee.png?alt=media&token=1165af4e-0dfb-4e3b-9cd1-36c87a27b600" alt="people_icon" class="icon">
                     <div>
-                        <div style="display:flex;align-items: center;justify-content: center;" class="counter"><h3 id="counter3">0</h3>+</div>
+                      <div class="counter"><h3 id="counter3">0</h3>+</div>
 
                         <div class="additional-text">
                             <p>Employees</p>
@@ -236,7 +235,7 @@
     <div id="services" class="container_services">
 
 
-      <div class="heading-container second" style="padding-top: 0;margin-top:0; ">
+      <div class="heading-container second" >
           <h1 class="head">SERVICES
           </h1>
           <div class="animated-line-container2">
@@ -277,12 +276,13 @@
   </div>
 
   <div class="project">
-    <h2 style="color: #000;">CUSTOMERS</h2>
-    <div class="line2" >
-      <div class="c_line3" style="background-color: #AFA4A5"></div>
-      <div class="c_line4" style="background-color: #AFA4A5"></div>
+    <h2 class="project-title cust">CUSTOMERS</h2>
+    <div class="line2">
+        <div class="c_line3"></div>
+        <div class="c_line4"></div>
     </div>
 </div>
+
 
 <div class="flex">
     <div class="scroller" data-direction="right" data-speed="slow">
@@ -299,7 +299,7 @@
                     <button class="prev" aria-label="Previous Slide"><img src="assets/icons/left_arrow_white.png" width="12px" alt="previous_button"></button> <!-- ⮞ -->
                     <button class="next" aria-label="Next Slide"><img src="assets/icons/right_arrow_white.png"width="12px" alt="next_button"></button>
                 </div>
-                <div class="heading-container" style="color:#000;padding-top: 2em;margin-top: 2em;">
+                <div class="heading-container news">
                   <h1 class="head">News</h1>
                   <div class="animated-line-container4">
                       <div class="animated-line4"></div>
@@ -369,7 +369,7 @@
                             <div class="content-right">
                               <div class="big-image-wrapper">
                                 <img id="image5" src="assets/news/aksm_news_low_2.jpg" alt="surveying_image">
-                                <a href="contact.html" style="text-decoration: none;" aria-label="Go to Contact Page" >
+                                <a href="contact.html" class="no-decor" aria-label="Go to Contact Page" >
 
                                     <div class="box-1"style="padding-top: 10px;">
                                         <div class="btn btn-one" id="front_page">
@@ -428,10 +428,12 @@
                   <div class="c_line4"></div>
                 </div>
             </div>
-            <div class="heading-container second" style="padding: 0;margin: 0;color: #f3f3f39a;">
+            <div class="heading-container second">
+              <p>Samples of selected latest projects that are worth mentioning</p>
 
-            <p>Samples of selected latest projects that are worth mentioning</p>
             </div>
+          
+        
             
         <div class="port">
           <div class="project_wrapper">
