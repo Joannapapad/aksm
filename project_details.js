@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                     width: 100%;
                                     height: 100%;
                                     box-sizing: border-box;
-                                ">
+                                " nonce="randomNonce123">
                                 <div class="project-summary">
                                     <div class="heading-container">
                                         <h1 class="head">${project.title}</h1>
