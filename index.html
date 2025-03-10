@@ -1,4 +1,3 @@
-<?php include('header.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,7 @@
     <link rel="preload" href="assets/aksm_logo.webp" as="image">
     <title>AKSM</title>
     
-<script type="application/ld+json" nonce="<?php echo $nonce; ?>">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -58,7 +57,19 @@
 
     <script src="nav.js" defer></script>
     <script src="index.js" defer></script>
+<style>
+body{
+opacity: 0;
+visibility: hidden;
+transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+}
 
+body.loaded {
+visibility: visible;
+opacity: 1;
+transition-delay: 0s;
+}
+</style>
 </head>
 
 <body>
@@ -369,9 +380,8 @@
                             <div class="content-right">
                               <div class="big-image-wrapper">
                                 <img id="image5" src="assets/news/aksm_news_low_2.jpg" alt="surveying_image">
-                                <a href="contact.html" class="no-decor" aria-label="Go to Contact Page" >
-
-                                    <div class="box-1"style="padding-top: 10px;">
+                                <a href="/contact.html" class="no-decor" aria-label="Go to Contact Page" >
+                                    <div class="box-1">
                                         <div class="btn btn-one" id="front_page">
                                           <span>Contact us</span>
                                         </div>
@@ -451,7 +461,7 @@
                 </div>
               </a>
         
-              <a href="project_details.html?id=2024_001" aria-label="the grid project details page">
+              <a href="/project_details.html?id=2024_001" aria-label="the grid project details page">
                 <div class="img__wrap">
                   <img id="image7" src="assets/latest_projects/2024_001.jpg" alt="The Grid Project" draggable="false">
                   <div class="img__description">
@@ -460,7 +470,7 @@
                 </div>
               </a>
         
-              <a href="project_details.html?id=2022_049" aria-label="pwc offices details page">
+              <a href="/project_details.html?id=2022_049" aria-label="pwc offices details page">
                 <div class="img__wrap">
                   <img id="image8" src="assets/latest_projects/2022_049.jpg" alt="PWC Offices" draggable="false">
                   <div class="img__description">
@@ -469,7 +479,7 @@
                 </div>
               </a>
         
-              <a href="project_details.html?id=2023_086" aria-label="vasiliko power station details page">
+              <a href="/project_details.html?id=2023_086" aria-label="vasiliko power station details page">
                 <div class="img__wrap">
                   <img id="image9" src="assets/latest_projects/2023_086.jpg" alt="Kasteli Airport" draggable="false">
                   <div class="img__description">
@@ -478,7 +488,7 @@
                 </div>
               </a>
         
-              <a href="project_details.html?id=2024_039" aria-label="galleria riviera details page">
+              <a href="/project_details.html?id=2024_039" aria-label="galleria riviera details page">
                 <div class="img__wrap">
                   <img id="image11" src="assets/latest_projects/2024_039.jpg" alt="Galleria Riviera" draggable="false">
                   <div class="img__description">
@@ -487,7 +497,7 @@
                 </div>
               </a>
         
-              <a href="project_details.html?id=2024_034" aria-label="Hard Rock Hotel & Casino details page">
+              <a href="/project_details.html?id=2024_034" aria-label="Hard Rock Hotel & Casino details page">
                 <div class="img__wrap">
                   <img id="image12" src="assets/latest_projects/2024_034.jpg" alt="Hard Rock Hotel & Casino" draggable="false">
                   <div class="img__description">
@@ -503,7 +513,7 @@
           </div>
         </div>
 
-  <a href="portfolio.html" style="text-decoration: none;" aria-label="portfolio page" >
+  <a href="/portfolio.html" class="no-decor" aria-label="portfolio page" >
 
     <div class="box-1">
         <div class="btn btn-one">
@@ -533,11 +543,11 @@
       <input type="checkbox" id="consent" required>
         <label for="consent">
           I consent to receive newsletters and updates via email and share my email according to our
-          <a href="privacy_policy.html" target="_blank"> privacy policy</a>.
+          <a href="/privacy_policy.html" target="_blank"> privacy policy</a>.
         </label>    </div>
       </form>
   <div class="center_message">
-    <span class="thank-you-message" style="display: none; color: #f3f3f3; justify-content: center;"></span>
+    <span class="thank-you-message"></span>
   </div>
 </section>
 
