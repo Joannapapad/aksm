@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById('project-details-container').innerHTML = projectHtml;
 
                     document.querySelectorAll('.clickable-image').forEach(img => {
-                        if (img.src.includes(project.image2)) {
+                        if (img.src.includes(project.image2) && project.image5) {
                             img.addEventListener('click', () => openCarousel(project.image2, project.image5));
                         } else {
                             img.addEventListener('click', () => openImageInFullscreen(img.src)); // Normal fullscreen for other images
