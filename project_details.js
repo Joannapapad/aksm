@@ -190,21 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (project) {
                     let projectHtml = `
                         <div class="project-details-container">
-                             <div class="project-background" 
-                                style="
-                                    background-image: url('${project.image_front || ''}');
-                                    background-repeat: no-repeat;
-                                    background-position: center center;
-                                    background-attachment: fixed;
-                                    background-size: cover;
-                                    z-index: -1;
-                                    display: flex;
-                                    align-items: center;
-                                    flex-direction: column;
-                                    width: 100%;
-                                    height: 100%;
-                                    box-sizing: border-box;
-                                " nonce="randomNonce123">
+                            <div class="project-background" data-bg="${project.image_front || ''}">
                             <div class="project-summary">
                                 <div class="heading-container">
                                     <h1 class="head">${project.title}</h1>
@@ -223,6 +209,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>`;
 
+                    document.getElementById('project-details-container').innerHTML = projectHtml;
+
+                    // Ensure the project background element exists
+                    const projectBg = document.querySelector(".project-background");
+                    if (projectBg && project.image_front) {
+                        console.log("Setting background image:", project.image_front);
+                        projectBg.style.backgroundImage = `url('${project.image_front}')`;
+                    }
+                    
                     let imgTextHtml = [];
                     const videoSource = window.innerWidth <= 800 ? project.video2 : project.video1;
                     if (videoSource) {
@@ -286,6 +281,20 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
                     projectHtml += `<div class="img_text_container">${imgTextHtml.join('')}</div>`;
+                    
+                    // Add project info HTML after the image-text container
+                    projectHtml += `
+                        <div class="project-info2">
+                            <div class="project-text">
+                                ${project.main_description ? `<p><strong>Description</strong><br> ${project.main_description}</p><hr>` : ''}
+                                ${project.area ? `<p><strong>Area</strong><br> ${project.area}</p><hr>` : ''}
+                                ${project.location ? `<p><strong>Location</strong><br> ${project.location}</p><hr>` : ''}
+                                ${project.LOD ? `<p><strong>LOD</strong><br> ${project.LOD}</p><hr>` : ''}
+                                ${project.completionyear ? `<p><strong>Completion</strong><br> ${project.completionyear}</p>` : ''}
+                            </div>
+                        </div>`;
+
+
                     document.getElementById('project-details-container').innerHTML = projectHtml;
 
                     document.querySelectorAll('.clickable-image').forEach(img => {
