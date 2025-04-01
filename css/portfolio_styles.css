@@ -134,6 +134,7 @@ body.loaded {
   border-radius: 2px;
   overflow: hidden;
   text-align: center;
+  cursor:pointer;
 }
 
 .project-card:hover {
