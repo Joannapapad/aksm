@@ -211,12 +211,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     document.getElementById('project-details-container').innerHTML = projectHtml;
 
-                    // Ensure the project background element exists
-                    const projectBg = document.querySelector(".project-background");
-                    if (projectBg && project.image_front) {
-                        console.log("Setting background image:", project.image_front);
-                        projectBg.style.backgroundImage = `url('${project.image_front}')`;
-                    }
+                    setTimeout(() => {
+                        const projectBg = document.querySelector(".project-background");
+                        if (projectBg) {
+                            console.log("Project background element found:", projectBg);
+                            projectBg.style.backgroundImage = `url('${project.image_front}')`;
+                        } else {
+                            console.warn("Project background element NOT FOUND.");
+                        }
+                    }, 100); 
+                    
                     
                     let imgTextHtml = [];
                     const videoSource = window.innerWidth <= 800 ? project.video2 : project.video1;
