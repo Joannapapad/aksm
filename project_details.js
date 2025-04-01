@@ -1,9 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+    });
+
     if ("ontouchstart" in window) {
         document.addEventListener("click", (event) => {
-            const hoverText = document.querySelector(".hover-text");  // Update with your hover text class
+            const hoverText = document.querySelector(".hover-text");
             if (hoverText) {
-                hoverText.style.display = "none";  // Hides hover text on tap
+                hoverText.style.display = "none";
             }
         });
     }
@@ -35,7 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal(modal);
         });
+        panImages(modal,image);
+    }
 
+    function panImages(modal,image){
         // Initialize zoom level and position
         let scale = 1;
         let posX = 0;
@@ -120,11 +127,57 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function openCarousel(startImage, secondImage) {
+        const modal = document.createElement('div');
+        modal.classList.add('image-modal');
+    
+        const image = document.createElement('img');
+        image.src = startImage;
+        image.classList.add('fullscreen-image');
+    
+        const closeButton = document.createElement('span');
+        closeButton.innerHTML = '&times;';
+        closeButton.classList.add('close-button');
+    
+        const nextButton = document.createElement('span');
+        nextButton.classList.add('next-button');
+    
+        // Create an image for the next button
+        const nextButtonImage = document.createElement('img');
+        nextButtonImage.src = 'assets/icons/right_arrow_white.png';  // Replace with the path to your image
+        nextButtonImage.alt = 'Next';
+        nextButtonImage.classList.add('next-button-image');  // Optional: for styling
+    
+        // Append the image to the next button
+        nextButton.appendChild(nextButtonImage);
+    
+        modal.appendChild(image);
+        modal.appendChild(closeButton);
+        modal.appendChild(nextButton);
+        document.body.appendChild(modal);
+    
+        document.body.style.overflow = 'hidden';
+    
+        let currentImage = startImage;
+        nextButton.addEventListener('click', () => {
+            currentImage = currentImage === startImage ? secondImage : startImage;
+            image.src = currentImage;
+        });
+    
+        // Pass the image element to panImages
+        panImages(modal, image);
+    
+        closeButton.addEventListener('click', () => closeModal(modal));
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal(modal);
+        });
+    }
+    
+
     function closeModal(modal) {
         document.body.removeChild(modal);
         document.body.style.overflow = 'auto';
     }
-
 
     function loadProjectDetails() {
         const projectId = getParameterByName('id');
@@ -135,10 +188,9 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 const project = data.find(item => item.id === projectId);
                 if (project) {
-                    // Create HTML for project background and summary
                     let projectHtml = `
-                        <div class="project-details-container">
-                            <div class="project-background" 
+                    <div class="project-details-container">
+                         <div class="project-background" 
                                 style="
                                     background-image: url('${project.image_front || ''}');
                                     background-repeat: no-repeat;
@@ -153,28 +205,25 @@ document.addEventListener("DOMContentLoaded", () => {
                                     height: 100%;
                                     box-sizing: border-box;
                                 " nonce="randomNonce123">
-                                <div class="project-summary">
-                                    <div class="heading-container">
-                                        <h1 class="head">${project.title}</h1>
-                                        <p>${project.typeofproject}</p>
-                                    </div>
-                                    <div class="project-info">
-                                        <div class="project-text">
-                                            ${project.main_description ? `<p><strong>Description</strong><br> ${project.main_description}</p><hr>` : ''}
-                                            ${project.area ? `<p><strong>Area</strong><br> ${project.area}</p><hr>` : ''}
-                                            ${project.location ? `<p><strong>Location</strong><br> ${project.location}</p><hr>` : ''}
-                                            ${project.LOD ? `<p><strong>LOD</strong><br> ${project.LOD}</p><hr>` : ''}
-                                            ${project.completionyear ? `<p><strong>Completion</strong><br> ${project.completionyear}</p>` : ''}
-                                        </div>
+                            <div class="project-summary">
+                                <div class="heading-container">
+                                    <h1 class="head">${project.title}</h1>
+                                    <p>${project.typeofproject}</p>
+                                </div>
+                                <div class="project-info">
+                                    <div class="project-text">
+                                        ${project.main_description ? `<p><strong>Description</strong><br> ${project.main_description}</p><hr>` : ''}
+                                        ${project.area ? `<p><strong>Area</strong><br> ${project.area}</p><hr>` : ''}
+                                        ${project.location ? `<p><strong>Location</strong><br> ${project.location}</p><hr>` : ''}
+                                        ${project.LOD ? `<p><strong>LOD</strong><br> ${project.LOD}</p><hr>` : ''}
+                                        ${project.completionyear ? `<p><strong>Completion</strong><br> ${project.completionyear}</p>` : ''}
                                     </div>
                                 </div>
                             </div>
-                        </div>`;
+                        </div>
+                    </div>`;
 
-                    // Generate HTML for images and descriptions
                     let imgTextHtml = [];
-
-                    // Add video based on screen width
                     const videoSource = window.innerWidth <= 800 ? project.video2 : project.video1;
                     if (videoSource) {
                         imgTextHtml.push(`
@@ -187,59 +236,43 @@ document.addEventListener("DOMContentLoaded", () => {
                         `);
                     }
 
-                    // Images and descriptions for projects
                     const imagesDescriptions = [
                         { image: project.image1, description: project.description },
                         { image: project.image2, description: project.description2 },
                         { image: project.image3, description: project.description3 },
                         { image: project.image4, description: project.description4 },
-                        { image: project.image5, description: project.description5 }
+                        // image5 is hidden on the main page
                     ];
 
-                    // Check the project type
                     if (project.typeofproject2 === "scan2bim") {
-                             // Scan2BIM projects: handle multiple image and description pairs with flexible layout
-                    const imageDescriptionPairs = [
-                        { image: project.image1, description: project.description },
-                        { image: project.image2, description: project.description2 },
-                        { image: project.image3, description: project.description3 },
-                        { image: project.image4, description: project.description4 }
-                    ];
-
-                    for (let i = 0; i < imageDescriptionPairs.length; i += 2) {
-                        const leftPair = imageDescriptionPairs[i];
-                        const rightPair = imageDescriptionPairs[i + 1];
-
-                        // If both images and descriptions are available, show in a flex row
-                        if (leftPair.image && leftPair.description && rightPair?.image && rightPair?.description) {
-                            imgTextHtml.push(`
-                                <div class="img_text_flex">
-                                    <div class="img_text img_left">
-                                        <p class="description">${leftPair.description}</p>
-                                        <img class="detail_proj_image clickable-image" src="${leftPair.image}" alt="Project Image Left">
+                        for (let i = 0; i < imagesDescriptions.length; i += 2) {
+                            const leftPair = imagesDescriptions[i];
+                            const rightPair = imagesDescriptions[i + 1];
+                            if (leftPair.image && leftPair.description && rightPair?.image && rightPair?.description) {
+                                imgTextHtml.push(`
+                                    <div class="img_text_flex">
+                                        <div class="img_text img_left">
+                                            <p class="description">${leftPair.description}</p>
+                                            <img class="detail_proj_image clickable-image" src="${leftPair.image}" alt="Project Image Left">
+                                        </div>
+                                        <div class="img_text img_right">
+                                            <p class="description">${rightPair.description}</p>
+                                            <img class="detail_proj_image clickable-image" src="${rightPair.image}" alt="Project Image Right">
+                                        </div>
                                     </div>
-                                    <div class="img_text img_right">
-                                        <p class="description">${rightPair.description}</p>
-                                        <img class="detail_proj_image clickable-image" src="${rightPair.image}" alt="Project Image Right">
+                                `);
+                            } else if (leftPair.image && leftPair.description) {
+                                imgTextHtml.push(`
+                                    <div class="img_text_flex">
+                                        <div class="img_text img_left">
+                                            <p class="description">${leftPair.description}</p>
+                                            <img class="detail_proj_image clickable-image" src="${leftPair.image}" alt="Project Image Left">
+                                        </div>
                                     </div>
-                                </div>
-                            `);
+                                `);
+                            }
                         }
-                        // If only the left image and description exist
-                        else if (leftPair.image && leftPair.description) {
-                            imgTextHtml.push(`
-                                <div class="img_text_flex">
-                                    <div class="img_text img_left">
-                                        <p class="description">${leftPair.description}</p>
-                                        <img class="detail_proj_image clickable-image" src="${leftPair.image}" alt="Project Image Left">
-                                    </div>
-                                </div>
-                            `);
-                        }
-                    }
-
                     } else {
-                        // Non-scan2bim projects
                         imagesDescriptions.forEach((item, index) => {
                             if (item.image) {
                                 imgTextHtml.push(`
@@ -252,27 +285,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         });
                     }
 
-                    // Join images and descriptions HTML
                     projectHtml += `<div class="img_text_container">${imgTextHtml.join('')}</div>`;
-
-                    // Add project info HTML after the image-text container
-                    projectHtml += `
-                        <div class="project-info2">
-                            <div class="project-text">
-                                ${project.main_description ? `<p><strong>Description</strong><br> ${project.main_description}</p><hr>` : ''}
-                                ${project.area ? `<p><strong>Area</strong><br> ${project.area}</p><hr>` : ''}
-                                ${project.location ? `<p><strong>Location</strong><br> ${project.location}</p><hr>` : ''}
-                                ${project.LOD ? `<p><strong>LOD</strong><br> ${project.LOD}</p><hr>` : ''}
-                                ${project.completionyear ? `<p><strong>Completion</strong><br> ${project.completionyear}</p>` : ''}
-                            </div>
-                        </div>`;
-
-                    // Set the inner HTML of project-details-container
                     document.getElementById('project-details-container').innerHTML = projectHtml;
 
-                    // Enable fullscreen for images
                     document.querySelectorAll('.clickable-image').forEach(img => {
-                        img.addEventListener('click', () => openImageInFullscreen(img.src));
+                        if (img.src.includes(project.image2)) {
+                            img.addEventListener('click', () => openCarousel(project.image2, project.image5));
+                        } else {
+                            img.addEventListener('click', () => openImageInFullscreen(img.src)); // Normal fullscreen for other images
+                        }
                     });
                 } else {
                     document.getElementById('project-details-container').innerHTML = '<p>No details found for this project.</p>';
@@ -284,7 +305,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-    // Fetch header and footer
     fetch('header.html')
         .then(response => response.text())
         .then(data => {
@@ -292,18 +312,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const script = document.createElement('script');
             script.src = 'nav.js';
             document.body.appendChild(script);
-            loadProjectDetails(); // Load project details after header is loaded
-        })
-        .catch(error => {
-            console.error('Error loading the header:', error);
-            document.getElementById('menu-container').innerHTML = '<p>Failed to load menu.</p>';
             loadProjectDetails();
         });
 
-fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer__cont').innerHTML = data;
-    });
-
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer__cont').innerHTML = data;
+        });
 });
