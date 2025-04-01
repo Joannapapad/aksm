@@ -214,7 +214,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     setTimeout(() => {
                         const projectBg = document.querySelector(".project-background");
                         if (projectBg) {
-                            console.log("Project background element found:", projectBg);
                             projectBg.style.backgroundImage = `url('${project.image_front}')`;
                         } else {
                             console.warn("Project background element NOT FOUND.");
