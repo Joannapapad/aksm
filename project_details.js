@@ -189,8 +189,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const project = data.find(item => item.id === projectId);
                 if (project) {
                     let projectHtml = `
-                    <div class="project-details-container">
-                         <div class="project-background" 
+                        <div class="project-details-container">
+                             <div class="project-background" 
                                 style="
                                     background-image: url('${project.image_front || ''}');
                                     background-repeat: no-repeat;
