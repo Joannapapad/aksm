@@ -359,25 +359,6 @@ hr{
 
 .close-button {
     position: absolute;
-    top: 15px;
-    right: 30px;
-    color: white;
-    font-size: 40px;
-    cursor: pointer;
-    z-index: 999999;
-}
-
-.close-button:hover {
-    color: #bbb;
-}
-
-.fullscreen-image {
-    max-width: 90%;
-    max-height: 90%;
-}
-
-.close-button {
-    position: absolute;
     top: 20px;
     right: 30px;
     color: white;
@@ -398,6 +379,27 @@ hr{
     box-sizing: border-box;
 }
 
+.next-button {
+    position: absolute;
+    top: 50%;           
+    right: 20px; 
+    transform: translateY(-50%); 
+    display: flex;      
+    justify-content: center;
+    align-items: center;
+    width: 40px;      
+    height: 40px;      
+    background-color: #bbb; 
+    border-radius: 50%;   
+    cursor: pointer;
+}
+
+.next-button img {
+    width: 18px;         
+    height: auto;        
+}
+
+
 @keyframes shimmer {
     0% {
         background-position: -200% 0;
@@ -406,7 +408,6 @@ hr{
         background-position: 200% 0;
     }
 }
-
 @media (min-width: 700px) and (min-height: 650px) {
     .project-info {
         position: fixed;
@@ -435,6 +436,27 @@ hr{
     }
     .desc{
         position: relative;
+    }
+
+    .next-button {
+        transform: translateY(-50%); 
+        display: flex;      
+        justify-content: center;
+        align-items: center;
+        width: 60px;      
+        height: 60px;      
+        background-color: #bbb; 
+        border-radius: 50%;   
+        cursor: pointer;
+    }
+    
+    .next-button img {
+        width: 30px;         
+        height: auto;        
+    }
+
+    .close-button {
+        font-size: 60px;
     }
 }
 
