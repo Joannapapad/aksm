@@ -1,179 +1,14 @@
+<?php include('header.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/footer_styles.css?v=2.2">
+
 </head>
-
-<Style>
-body{
-  font-family: Arial, Helvetica, sans-serif;
-  padding: 0;
-  margin: 0;
-}
-#footer-main {
-  background-color: #F3F3F3;
-  padding: 60px;
-  padding-bottom: 15px;
-  z-index: 110; 
-  position: relative; 
-
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-auto-rows: auto;
-  grid-gap: 10px;
-  margin: 0 auto;
-  max-width: 100%;
-  font-size: 20px;
-}
-
-@media (max-width: 1024px) {
-  .footer-grid {
-    padding-left: 20px;
-  }
-}
-
-
-.contact-info {
-  font-size: 20px;
-}
-
-.contact-info p {
-  margin-bottom: 10px;
-}
-
-.contact-info i {
-  margin-right: 10px;
-}
-
-
-
-section {
-  color: #000;
-  padding:20px;
-  align-items: center;
-  justify-content: center;
-}
-
-
-
-
-
-.contact-info img{
-  width: 15px;
-}
-.footer-grid h4{
-    text-align: center;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    padding-bottom: 10px;
-    line-height: 1.1em;
-  @include transition-property(font-size);  
-  @include transition-duration(0.5s);  
-}
-
-.footer-3,.footer-4,.footer-2 {
-  text-align: center;
-}
-
-.footer-links ,.contact-info{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
- .footer-links a{
-  text-decoration: none;
-  color: #333;
-  margin-bottom: 29px;
-
-}
-
- .footer-links a:hover {
-  color: #a3a2a2;
-}
-
-
-.footer-icons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.icon-link {
-  display: block;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  text-decoration: none;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  margin-bottom: 20px;
-}
-
-.icon-link img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.icon-link:hover {
-  transform: scale(1.1);
-}
-
-.icon-link:active {
-  transform: scale(1.2);
-}
-
-.footer-1 {
-  text-align: center;
-}
-
-.additional-info {
-  margin-top: 20px;
-}
-
-.additional-info img {
-  width: 120px;
-  height: auto;
-  margin-bottom: 10px;
-  margin-top: 30px;
-}
-
-.additional-info p {
-  font-size: 20px;
-  color: #000;
-}
-
-@media (max-width: 800px) {
-  .footer-grid {
-    font-size: 16px;
-  }
-
-  .contact-info {
-    font-size: 16px;
-  }
-
-  .footer-grid h4 {
-    font-size: 20px;
-  }
-
-  .additional-info p {
-    font-size: 16px;
-  }
-}
-
-</Style>
 <body>
-    
     <footer id="footer-main">
         <div class="footer-grid">
          
@@ -182,77 +17,76 @@ section {
                 <div class="additional-info">
                     <img src="assets/aksm_logo.png" alt="Image Description">
     
-                    <a href="quality_policy.html" style="text-decoration: none;color: #000 " target="_blank">
-                       <br> Read our Quality Policy
-                    </a>
-                    
-                    <a href="violence_prevention_policy.pdf" style="text-decoration: none; color: #000;" target="_blank">
-                       <br> Download the Violence Prevention Policy (PDF)
-                    </a>
-    
-                    <p style="font-size: small;">Content © 2025 Alexandros Karditsas<br> Certain images are sourced or adapted <br>from third-party websites for visualization purposes.<br> All rights remain with their respective owners.</p>
+                    <a href="/quality_policy.html" class="policy-link" target="_blank">
+                      <br> Read our Quality Policy
+                   </a>
+                   
+                   <a href="/violence_prevention_policy.pdf" class="policy-link" target="_blank">
+                      <br> Download the Violence Prevention Policy (PDF)
+                   </a>
+                   
+                    <p id="footer-text">Content © 2025 Alexandros Karditsas<br> Certain images are sourced or adapted <br>from third-party websites for visualization purposes.<br> All rights remain with their respective owners.</p>
                 </div>
 
               </section>
       
-             <section class="footer-2">
-                <h4>Social Media</h4>
-                <section class="footer-icons">
-                    <a href="index.html" target="_blank"class="icon-link">
-                        <img src="assets/icons/instagram-uxwing.svg" alt="insta">
+              <section class="footer-2">
+                  <h4>Social Media</h4>
+                  <section class="footer-icons">
+                    <a href="/index.html" target="_blank" class="icon-link" rel="noopener noreferrer">
+                        <img src="assets/icons/instagram-uxwing.svg" alt="Instagram">
                     </a>
-                    <a href="https://www.linkedin.com/company/aksm/?originalSubdomain=gr" target="_blank"class="icon-link">
-                        <img src="assets/icons/linkedin-uxwing.svg" alt="linkedin">
+                
+                    <a href="https://www.linkedin.com/company/aksm/?originalSubdomain=gr" target="_blank" class="icon-link" rel="noopener noreferrer">
+                        <img src="assets/icons/linkedin-uxwing.svg" alt="LinkedIn">
                     </a>
-                    <a href="https://www.facebook.com/p/AKSM-Land-Building-Industrial-Surveying-100049683236983/?_rdr" target="_blank" class="icon-link">
-                        <img src="assets/icons/facebook-uxwing.svg" alt="facebook">
+                
+                    <a href="https://www.facebook.com/p/AKSM-Land-Building-Industrial-Surveying-100049683236983/?_rdr" target="_blank" class="icon-link" rel="noopener noreferrer">
+                        <img src="assets/icons/facebook-uxwing.svg" alt="Facebook">
                     </a>
                 </section>
-                
               </section>
       
               <section class="footer-3">
                 <h4>SiteMap</h4>
                 <div class="footer-links">
-                    <a href="index.html">HomePage</a>
-                    <a href="meet_team.html">The Team</a>
-                    <a href="services.html">Services</a>
-                    <a href="portfolio.html">Portfolio</a>
-                    <a href="contact.html">Contact</a>
+                    <a href="/index.html">HomePage</a>
+                    <a href="/meet_team.html">Meet Our Team</a>
+                    <a href="/services.html">Services</a>
+                    <a href="/portfolio.html">Portfolio</a>
                 </div>
-            </section>
+              </section>
             
-      
-            <section class="footer-4">
-              <h4>Contact</h4>
-              <div class="contact-info footer-links" >
-                
+        
+              <section class="footer-4">
+                <h4>Contact</h4>
+                <div class="contact-info footer-links" >
                   <a href="tel:+302109702510">
                     <img src="assets/icons/phone-wing.png" alt="Phone Icon"> 
                     (30) 210 97 02 510
                   </a>
-                
+
                   <a href="tel:+306944774491">
-                    <img src="assets/icons/smartphone-wing.png" alt="Mobile Icon" style="width: 12px;"> 
+                    <img src="assets/icons/smartphone-wing.png" alt="Mobile Icon"> 
                     (30) 694 47 74 491
                   </a>
-                  
+
                   <a href="mailto:&#105;&#110;&#102;&#111;&#64;&#97;&#107;&#115;&#109;&#46;&#103;&#114;" id="emailLink">
                     <img src="assets/icons/email-uxwing.svg" alt="Email Icon">
                     <span>&#105;&#110;&#102;&#111;&#64;&#97;&#107;&#115;&#109;&#46;&#103;&#114;</span>
                   </a>
-                  
-                  <a href="https://www.google.com/maps?q=392+Mesogion+Avenue+15341,+Agia+Paraskevi,+Athens" target="_blank">
+
+                  <a href="https://www.google.com/maps?q=392+Mesogion+Avenue+15341,+Agia+Paraskevi,+Athens" target="_blank" rel="noopener noreferrer">
                     <img src="assets/icons/maps-pin-uxwing.svg" alt="Location Icon">
                     392 Mesogion Avenue 15341, Agia Paraskevi, Athens
                   </a>
-              </div>
-            </section>
-            
-            
+                  <a href="/" target="_blank" rel="noopener noreferrer">
+                    GEMI NUMBER: 133708503000
+                  </a>
+                </div>
               </section>
+            
          </div>
-        
       </footer>
 
     
