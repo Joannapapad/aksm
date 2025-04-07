@@ -310,8 +310,21 @@ function restoreImage(element, originalSrc) {
     element.querySelector('img').src = originalSrc;
 }
 
+function generateEmail() {
+    var user = "info";
+    var domain = "aksm.gr";
+    var element = document.getElementById("emailLink");
+    var email = user + "@" + domain;
+
+    // Set the mailto link and email text
+    element.href = "mailto:" + email;
+    document.getElementById("emailSpan").innerText = email;
+}
+
 fetch('footer.html')
 .then(response => response.text())
 .then(data => {
     document.getElementById('footer__cont').innerHTML = data;
+    generateEmail();
+
 });
