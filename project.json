@@ -19,6 +19,25 @@
         "status":"finished"
     },
     {
+        "id": "2025_007",
+        "title": "Sklavenitis Store",
+        "location": "Peristeri, Attiki",
+        "image_front": "assets/portfolio/2025_007_Sklavenitis.Peristeri/revit.jpg",
+        "main_description":"Bim Preparation for Architectural & Structural Elements",
+        "description": "POINT CLOUD",
+        "description2": "3D MODEL",
+        "description3": "PLAN VIEW",
+        "image1":"assets/portfolio/2025_007_Sklavenitis.Peristeri/cloud_final.png",
+        "image2":"assets/portfolio/2025_007_Sklavenitis.Peristeri/revit_final.png",
+        "image3":"assets/portfolio/2025_007_Sklavenitis.Peristeri/plan_view.png",
+        "image5":"assets/portfolio/2025_007_Sklavenitis.Peristeri/revit_section.png",
+        "typeofproject": "Scan2Bim",
+        "typeofproject2":"scan2bim",
+        "completionyear": "2025",
+        "LOD": "300",
+        "status":"finished"
+    },
+    {
         "id": "2024_060",
         "title": "Milaki Cement Plant",
         "location": "Evia, Greece",
