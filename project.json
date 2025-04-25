@@ -1,4 +1,25 @@
 [
+        {
+        "id": "2025_021",
+        "title": "Unipharma Offices",
+        "location": "Kifisia, Attica",
+        "image_front": "assets/portfolio/2025_021_Tourlomousi.Unifarma_BIM/revit.png",
+        "main_description":"Bim Preparation for Architectural & Structural Elements",
+        "description": "POINT CLOUD",
+        "description2": "3D MODEL",
+        "description3": "PLAN VIEW",
+        "description4": "SECTION",
+        "image1":"assets/portfolio/2025_021_Tourlomousi.Unifarma_BIM/cloud_final.png",
+        "image2":"assets/portfolio/2025_021_Tourlomousi.Unifarma_BIM/revit_final.png",
+        "image3":"assets/portfolio/2025_021_Tourlomousi.Unifarma_BIM/plan_view.jpg",
+        "image4":"assets/portfolio/2025_021_Tourlomousi.Unifarma_BIM/section_final.png",
+        "typeofproject": "Scan2Bim",
+        "typeofproject2":"scan2bim",
+        "completionyear": "2025",
+        "area": "8.500 m2",
+        "LOD": "300",
+        "status":"finished"
+    },
     {
         "id": "2025_010",
         "title": "Kalamata Airport",
