@@ -1,12 +1,10 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #FFF;
+    background-color: #f3f3f3;
     margin: 0;
     padding: 0;
 }
-.no-decor{
-    text-decoration: none;
-}
+
 .project-info2{
     display: none;
     margin-top: -400px;
@@ -22,14 +20,6 @@ div[class*=box] {
     padding-bottom: 3rem;
 }
 
-hr{
-    width: 40%;
-}
-
-.project-info{
-    display: flex;
-    width: auto;
-}
 .project-background {
     background-repeat: no-repeat;
     background-position: center center;
@@ -43,6 +33,21 @@ hr{
     height: 100%;
     box-sizing: border-box;
 }
+
+/* Ensure the background image loads dynamically */
+.project-background[data-bg] {
+    background-image: var(--bg-image);
+}
+
+hr{
+    width: 40%;
+}
+
+.project-info{
+    display: flex;
+    width: auto;
+}
+
 .btn {
     line-height: 50px;
     height: 50px;
@@ -215,7 +220,7 @@ hr{
 
 .project-details-container {
     width: 100%;
-    background-color: #FFF;
+    background-color: #f3f3f3;
     border-radius: 8px;
     z-index: 3;
     margin: 0 auto;
@@ -413,7 +418,9 @@ hr{
     height: auto;        
 }
 
-
+.no-decor{
+    text-decoration: none;
+}
 @keyframes shimmer {
     0% {
         background-position: -200% 0;
