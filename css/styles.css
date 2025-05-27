@@ -35,11 +35,8 @@ a {
   text-decoration: none;
 }
 
-.box-1,
-.center_message {
-  display: flex;
+.box-1 {
   align-items: center;
-  justify-content: center;
 }
 
 .cen {
@@ -124,8 +121,6 @@ a {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
   justify-content: center;
   overflow: hidden;
   z-index: 2;
@@ -186,9 +181,7 @@ a {
 
 .about_us {
   padding: 8% 5% 0;
-  display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .heading-contai {
@@ -260,7 +253,6 @@ a {
   flex: 1;
   font-size: 1.3rem;
    margin-top: 3%;
-
   padding: 0 5%;
   justify-content: center;
   text-align: justify;
@@ -299,8 +291,6 @@ a {
 #wrapper3 {
   position: relative;
   height: 100%;
-  display: flex;
-  align-items: center;
 }
 
 #wrapper1,
@@ -386,8 +376,6 @@ a {
 }
 
 .customers {
-  display: flex;
-  align-items: center;
   margin: 3rem;
 }
 
@@ -435,6 +423,25 @@ h2 {
 #content-wrapper,
 #content-wrapper2,
 .service,
+.video-container,
+.box-1,
+.circle,
+.news,
+.animated-line-container4,
+.content-right,
+.line,
+.line4,
+.project-overlay,
+.img__description,
+.port ,
+.animated-line-container,
+.counter,
+.flex,
+.about_us,
+#wrapper1,
+#wrapper2,
+#wrapper3,
+.customers,
 .port {
   display: flex;
   align-items: center;
@@ -491,8 +498,6 @@ h2 {
   border-radius: 50%;
   overflow: hidden;
   display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #fff;
 }
 
@@ -554,9 +559,7 @@ h2 {
   padding: 2rem;
   margin: 0;
   max-height: 150vh;
-  display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .content-text {
@@ -595,9 +598,7 @@ h2 {
 }
 
 .animated-line-container4 {
-  display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
   position: relative;
   padding-top: 1%;
@@ -668,9 +669,7 @@ h2 {
 
 .content-right {
   flex: 1;
-  display: flex;
   justify-content: center;
-  align-items: center;
   padding: 1rem;
 }
 
@@ -735,20 +734,6 @@ h2 {
   padding: 12% 2%;
   box-sizing: border-box;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media (max-width: 1200px) {
   .container_services {
@@ -848,8 +833,6 @@ h2 {
 .line,
 .line4 {
   width: 100%;
-  display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -875,15 +858,11 @@ h2 {
   background: url("../assets/separator_high.png") center center/cover no-repeat fixed #dfdfdf9e;
 }
 
-
-
 .project-overlay {
   padding-top: 10%;
   min-height: 100vh;
   background: linear-gradient(180deg, var(--dim-gray), #383838, var(--eerie-black));
-  display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   position: relative;
 }
@@ -932,12 +911,6 @@ h2 {
 .line2 {
   display: flex;
   justify-content: center;
-}
-
-.img__description,
-.port {
-  align-items: center;
-  display: flex;
 }
 
 .c_line3,
@@ -1049,28 +1022,6 @@ h2 {
   position: relative;
   vertical-align: top;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media (max-width:1200px),(max-height:600px) {
   .carousel a {
@@ -1302,9 +1253,7 @@ h2 {
 }
 
 .animated-line-container {
-  display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
   position: relative;
   padding-top: 15%;
@@ -1332,9 +1281,6 @@ h2 {
   width: 100%;
 }
 
-
-
-
 .background-clip {
   background-position: center;
   background-repeat: no-repeat;
@@ -1351,22 +1297,6 @@ h2 {
     margin-bottom: 4vh;
   }
 }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .meet {
     text-decoration: none;
@@ -1395,8 +1325,6 @@ h2 {
     max-width: 1000px;
 }
 .flex{
-    display: flex;
-    align-items: center;
     justify-content: center;
 }
 .text-right{
@@ -1406,15 +1334,7 @@ h2 {
     margin-top: 0;
 }
 
-
-#wrapper2 {
-    display: flex;
-    align-items: center;
-}
-
 .counter {
-    display: flex;
-    align-items: center;
     justify-content: center;
 }
 
@@ -1458,9 +1378,6 @@ h2 {
 .no-decor{
     text-decoration: none;
 }
-
-
-
 
 @media screen and (max-width:2000px) {
     .row{
@@ -1663,7 +1580,6 @@ h1.heading-contai {
     background: url("../assets/separator.png") center center/cover no-repeat fixed #dfdfdf9e;
   }
 }
-
 
 @media (max-width: 500px) {
   .logo_espa {
