@@ -11,9 +11,9 @@ function setVideoSource() {
     const currentSource = videoSource.src;
 
     if (window.innerWidth < 600) {
-        videoSource.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_low.mp4?alt=media&token=cfae68f3-1636-4543-ac3f-c8c6d19b1b90';
+        videoSource.src = 'assets/video_low.mp4';
     } else {
-        videoSource.src = 'https://firebasestorage.googleapis.com/v0/b/aksmweb-a8516.appspot.com/o/video_high.mp4?alt=media&token=c63fcf1a-bcf2-41c2-ae31-1dffe0432fcd';
+        videoSource.src = 'assets/video_high.mp4';
     }
 
     if (currentSource !== videoSource.src) {
@@ -242,7 +242,6 @@ prev.addEventListener('click', function() {
 });
 
 showSlide(sectionIndex);
-
 function initSlider(sliderContainerSelector, prevBtnSelector, nextBtnSelector) {
     const slider = document.querySelector(sliderContainerSelector);
     const prevBtn = document.querySelector(prevBtnSelector);
@@ -250,8 +249,10 @@ function initSlider(sliderContainerSelector, prevBtnSelector, nextBtnSelector) {
 
     if (slider && prevBtn && nextBtn) {
         const items = slider.querySelectorAll('.img__wrap');
-        const itemWidth = items[0].offsetWidth + 10;
-        let visibleCards = Math.floor(slider.offsetWidth / itemWidth);
+        if (items.length === 0) return; 
+
+        let itemWidth = items[0].offsetWidth + 10; 
+        let visibleCards = Math.max(Math.floor(slider.offsetWidth / itemWidth), 1); 
         let scrollPosition = slider.scrollLeft;
 
         function updateButtons() {
@@ -261,14 +262,23 @@ function initSlider(sliderContainerSelector, prevBtnSelector, nextBtnSelector) {
         }
 
         function updateScrollAmount() {
-            visibleCards = Math.floor(slider.offsetWidth / itemWidth);
+            if (items.length > 0) {
+                itemWidth = items[0].offsetWidth + 10;
+            }
+            visibleCards = Math.max(Math.floor(slider.offsetWidth / itemWidth), 1);
         }
+
+        slider.addEventListener('scroll', () => {
+            scrollPosition = slider.scrollLeft;
+            updateButtons();
+        });
 
         const observer = new MutationObserver((mutationsList) => {
             for (let mutation of mutationsList) {
                 if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
                     if (slider.classList.contains('animate')) {
                         updateScrollAmount();
+                        updateButtons();
                         break;
                     }
                 }
@@ -280,6 +290,7 @@ function initSlider(sliderContainerSelector, prevBtnSelector, nextBtnSelector) {
         window.addEventListener('resize', () => {
             if (slider.classList.contains('animate')) {
                 updateScrollAmount();
+                updateButtons();
             }
         });
 
@@ -289,18 +300,17 @@ function initSlider(sliderContainerSelector, prevBtnSelector, nextBtnSelector) {
         nextBtn.addEventListener('click', () => {
             scrollPosition = Math.min(scrollPosition + (itemWidth * visibleCards), slider.scrollWidth - slider.clientWidth);
             slider.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-            updateButtons();
         });
 
         prevBtn.addEventListener('click', () => {
             scrollPosition = Math.max(scrollPosition - (itemWidth * visibleCards), 0);
             slider.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-            updateButtons();
         });
     }
 }
 
 initSlider(".carousel", "#left", "#right");
+
 
 function changeImage(element, newSrc) {
     element.querySelector('img').src = newSrc;
